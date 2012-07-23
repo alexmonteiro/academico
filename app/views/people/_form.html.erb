@@ -1,0 +1,123 @@
+<%= form_for @person, :html => { :class => 'form-vertical' } do |f| %>
+<div class="container">
+
+	<% if @person.errors.any? %>
+	<div class="span9">
+	  <div class="alert alert-error">
+	    <%= pluralize(@person.errors.count, "erro impediu", "erros impediram") %> o novo cadastro:
+	    <ul>
+	    <% @person.errors.full_messages.each do |msg| %>
+	      <li><%=t msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+	</div>
+	<% end %>
+
+
+<fieldset>
+<legend>Identificação</legend>	
+   <div class="span5">
+    <%= f.label t(:name_complete), :class => 'control-label' %>
+    <%= f.text_field :name, :class => 'text_field', :style => "width: 300px;"%>
+
+    <%= f.label t(:race_id), :class => 'control-label' %>    
+    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}) , :class => 'select_field' %>
+
+    <%= f.label t(:gender_id), :class => 'control-label' %>    
+    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}) , :class => 'select_field' %>
+
+    <%= f.label t(:education_degree_id), :class => 'control-label' %>    
+    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}) , :class => 'select_field' %>
+
+    <%= f.label t(:marital_status_id), :class => 'control-label' %>    
+    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
+
+   </div>
+
+   <div class="span5">
+    <%= f.label t(:birth_date), :class => 'control-label' %>
+    <%= f.text_field :birth_date, :class => 'text_field'%>
+  
+    <%= f.label t(:email), :class => 'control-label' %>    
+    <%= f.text_field :email, :class => 'text_field' %>
+
+    <%= f.label t(:blood_type_id), :class => 'control-label' %>    
+    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}) , :class => 'select_field' %>
+
+    <%= f.label t(:lattes_url), :class => 'control-label' %>    
+    <%= f.text_field :lattes_url, :class => 'text_field' %>
+
+    <%= f.label t(:number_children), :class => 'control-label' %>
+    <%= f.number_field :number_children, :class => 'number_field' %>
+
+
+   </div>
+</fieldset>
+</div>
+	
+<fieldset>
+  <legend>Filiação</legend>
+   <div class="span5">
+    <%= f.label t(:father_name), :class => 'control-label' %>
+    <%= f.text_field :father_name, :class => 'text_field', :style => "width: 300px;" %>
+   </div>
+   <div class="span5">
+    <%= f.label t(:mom_name), :class => 'control-label' %>    
+    <%= f.text_field :mom_name, :class => 'text_field', :style => "width: 300px;"%>
+   </div>
+</fieldset>
+      
+<div class="container">
+<fieldset>
+  <legend>Nacionalidade/Naturalidade</legend>
+  <div class="span3">
+    <%= f.label t(:country_id), :class => 'control-label' %>
+    <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
+  </div>
+  <div class="span3">
+
+    <%= f.label t(:state_id), :class => 'control-label' %>
+    <div class="controls"  id="addressStates">
+	   <%= render :partial => 'states'%>
+    </div>
+	<!--
+   <%= f.label t(:state_id), :class => 'control-label' %>
+   <%= f.select :state_id, [[State.find(7, :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
+   -->
+  </div>
+
+
+  <div class="span3">  
+
+    <%= f.label t(:city_id), :class => 'control-label' %>
+    <div class="controls"  id="addressCities">
+	   <%= render :partial => 'cities'  %>	
+    </div>
+	<!--
+   <%= f.label t(:city_id), :class => 'control-label' %>
+   <%= f.select :city_id, [[City.find_by_name('Brasília', :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
+   </div>
+   -->
+</fieldset>
+</div>
+ 
+<div class="container">
+<fieldset>
+  <legend>Vínculo Institucional</legend>
+   <div class="span1">
+    <%= f.label t(:isemployee), :class => 'control-label' %>
+    <%= f.check_box :isemployee, :class => 'check_box' %>
+   </div>
+   <div class="span3">
+    <%= f.label t(:isstudent), :class => 'control-label' %>
+    <%= f.check_box :isstudent, :class => 'check_box' %>
+   </div>
+</fieldset>
+</div>
+
+  <div class="form-actions">
+    <%= f.submit t('action.create')+t('person'), :class => 'btn btn-primary' %>
+    <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Listing genders</h1>
+
+<table>
+  <tr>
+    <th>Gender</th>
+    <th>Acronym</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @genders.each do |gender| %>
+  <tr>
+    <td><%= gender.gender %></td>
+    <td><%= gender.acronym %></td>
+    <td><%= link_to 'Show', gender %></td>
+    <td><%= link_to 'Edit', edit_gender_path(gender) %></td>
+    <td><%= link_to 'Destroy', gender, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gender', new_gender_path %>
