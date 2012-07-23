@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  birth_date: MyString
+  father_name: MyString
+  mom_name: MyString
+  email: MyString
+  lattes_url: MyString
+  gender: 
+  EducationDegree: 
+  Race: 
+  MaritalStatus: 
+  BloodType: 
+  Country: 
+  State: 
+  City: 
+  number_children: 1
+  isemployee: false
+  isstudent: false
+
+two:
+  name: MyString
+  birth_date: MyString
+  father_name: MyString
+  mom_name: MyString
+  email: MyString
+  lattes_url: MyString
+  gender: 
+  EducationDegree: 
+  Race: 
+  MaritalStatus: 
+  BloodType: 
+  Country: 
+  State: 
+  City: 
+  number_children: 1
+  isemployee: false
+  isstudent: false
