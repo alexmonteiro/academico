@@ -1,0 +1,23 @@
+<h1>Listing special_needs_types</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @special_needs_types.each do |special_needs_type| %>
+  <tr>
+    <td><%= special_needs_type.type %></td>
+    <td><%= link_to 'Show', special_needs_type %></td>
+    <td><%= link_to 'Edit', edit_special_needs_type_path(special_needs_type) %></td>
+    <td><%= link_to 'Destroy', special_needs_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Special needs type', new_special_needs_type_path %>

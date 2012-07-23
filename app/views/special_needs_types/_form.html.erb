@@ -1,0 +1,21 @@
+<%= form_for(@special_needs_type) do |f| %>
+  <% if @special_needs_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@special_needs_type.errors.count, "error") %> prohibited this special_needs_type from being saved:</h2>
+
+      <ul>
+      <% @special_needs_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
