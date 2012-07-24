@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  acronym: MyString
+  cnpj: MyString
+  started_at: 2012-07-23
+  finished_at: 2012-07-23
+  site: MyString
+  email: MyString
+  description: MyString
+  dept_type: 
+  dept: 
+
+two:
+  name: MyString
+  acronym: MyString
+  cnpj: MyString
+  started_at: 2012-07-23
+  finished_at: 2012-07-23
+  site: MyString
+  email: MyString
+  description: MyString
+  dept_type: 
+  dept: 

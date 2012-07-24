@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717203119) do
+ActiveRecord::Schema.define(:version => 20120723195506) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -33,6 +33,30 @@ ActiveRecord::Schema.define(:version => 20120717203119) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "dept_types", :force => true do |t|
+    t.string   "dept_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "depts", :force => true do |t|
+    t.string   "name"
+    t.string   "acronym"
+    t.string   "cnpj"
+    t.date     "started_at"
+    t.date     "finished_at"
+    t.string   "site"
+    t.string   "email"
+    t.string   "description"
+    t.integer  "dept_type_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
+  add_index "depts", ["dept_type_id"], :name => "index_depts_on_dept_type_id"
 
   create_table "education_degrees", :force => true do |t|
     t.string   "degree"
@@ -69,10 +93,9 @@ ActiveRecord::Schema.define(:version => 20120717203119) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "number_children"
-    t.boolean  "isemployee"
-    t.boolean  "isstudent"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "person_type_id"
   end
 
   add_index "people", ["blood_type_id"], :name => "index_people_on_blood_type_id"
@@ -83,6 +106,22 @@ ActiveRecord::Schema.define(:version => 20120717203119) do
   add_index "people", ["marital_status_id"], :name => "index_people_on_marital_status_id"
   add_index "people", ["race_id"], :name => "index_people_on_race_id"
   add_index "people", ["state_id"], :name => "index_people_on_state_id"
+
+  create_table "person_person_types", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "person_type_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "person_person_types", ["person_id"], :name => "index_person_person_types_on_person_id"
+  add_index "person_person_types", ["person_type_id"], :name => "index_person_person_types_on_person_type_id"
+
+  create_table "person_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "races", :force => true do |t|
     t.string   "race"

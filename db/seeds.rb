@@ -6035,5 +6035,11 @@ necessidade_expecial = SpecialNeedsType.create([
   {:type => 'Outros'},
   {:type => 'Surdez'},
   {:type => 'Surdocegueira'}])
+
+# Alimenta tabela com os tipos de Departamentos
+dept_types = DeptType.create([
+  {:dept_type => 'Instituto'},
+  {:dept_type => 'Unidade de Ensino'},
+  {:dept_type => 'Unidade Organizacional'}])
   
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

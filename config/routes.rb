@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :depts
+
+  resources :dept_types
+
   match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
   
