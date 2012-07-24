@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 1
+  number: 1
+  start_at: 2012-07-24 15:09:13
+  end_at: 2012-07-24 15:09:13
+  class_season_type: 
+  dept: 
+
+two:
+  year: 1
+  number: 1
+  start_at: 2012-07-24 15:09:13
+  end_at: 2012-07-24 15:09:13
+  class_season_type: 
+  dept: 
