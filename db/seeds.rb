@@ -6042,4 +6042,13 @@ dept_types = DeptType.create([
   {:dept_type => 'Unidade de Ensino'},
   {:dept_type => 'Unidade Organizacional'}])
   
+class_season_types = ClassSeasonType.create([
+    {:id => 1, :description => 'Quinzenal'},
+    {:id => 2, :description => 'Mensal'},
+    {:id => 3, :description => 'Trimestral'},
+    {:id => 4, :description => 'Semestral'},
+    {:id => 5, :description => 'Anual'},
+    {:id => 6, :description => 'Outros'}
+  ])
+  
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

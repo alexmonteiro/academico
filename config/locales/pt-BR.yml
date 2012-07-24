@@ -26,8 +26,15 @@ pt-BR:
         city_id:  "Cidade" 
         number_children:  "Filhos" 
         person_types: "Vínculo(s)"
+      class_season:
+        end_at: "Término em"
+        number: "Número"
+        start_at: "Início em"
+        year: "Ano"
+        class_season_type_id: "Tipo de Período Letivo"
     models:
       person: "Pessoa"  
+      class_season: "Período Letivo"
    
   action:
       actions: "Ações"
@@ -39,7 +46,6 @@ pt-BR:
       create: "Cadastrar "
       back: "Voltar"
 
-     
   date:
     abbr_day_names:
     - Dom
@@ -50,7 +56,7 @@ pt-BR:
     - Sex
     - Sáb
     abbr_month_names:
-    - 
+    -
     - Jan
     - Fev
     - Mar
@@ -76,7 +82,7 @@ pt-BR:
       long: ! '%d de %B de %Y'
       short: ! '%d de %B'
     month_names:
-    - 
+    -
     - Janeiro
     - Fevereiro
     - Março
@@ -139,31 +145,31 @@ pt-BR:
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
-      accepted: deve ser aceito
-      blank: não pode ficar em branco
-      confirmation: não está de acordo com a confirmação
-      empty: não pode ficar vazio
-      equal_to: deve ser igual a %{count}
-      even: deve ser par
-      exclusion: não está disponível
-      greater_than: deve ser maior que %{count}
-      greater_than_or_equal_to: deve ser maior ou igual a %{count}
-      inclusion: não está incluído na lista
-      invalid: não é válido
-      less_than: deve ser menor que %{count}
-      less_than_or_equal_to: deve ser menor ou igual a %{count}
-      not_a_number: não é um número
-      not_an_integer: não é um número inteiro
-      odd: deve ser ímpar
-      record_invalid: ! 'A validação falhou: %{errors}'
-      taken: já está em uso
-      too_long: ! 'é muito longo (máximo: %{count} caracteres)'
-      too_short: ! 'é muito curto (mínimo: %{count} caracteres)'
-      wrong_length: não possui o tamanho esperado (%{count} caracteres)
+      accepted: deve ser aceito.
+      blank: não pode ficar em branco.
+      confirmation: não está de acordo com a confirmação.
+      empty: não pode ficar vazio.
+      equal_to: deve ser igual a %{count}.
+      even: deve ser par.
+      exclusion: não está disponível.
+      greater_than: deve ser maior que %{count}.
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}.
+      inclusion: não está incluído na lista.
+      invalid: não é válido.
+      less_than: deve ser menor que %{count}.
+      less_than_or_equal_to: deve ser menor ou igual a %{count}.
+      not_a_number: não é um número.
+      not_an_integer: não é um número inteiro.
+      odd: deve ser ímpar.
+      record_invalid: ! 'A validação falhou: %{errors}.'
+      taken: já está em uso.
+      too_long: ! 'é muito longo (máximo: %{count} caracteres).'
+      too_short: ! 'é muito curto (mínimo: %{count} caracteres).'
+      wrong_length: não possui o tamanho esperado (%{count} caracteres).
     template:
       body: ! 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
-        one: ! 'Não foi possível gravar %{model}: 1 erro'
+        one: ! 'Não foi possível gravar %{model}: 1 erro.'
         other: ! 'Não foi possível gravar %{model}: %{count} erros.'
   helpers:
     select:
@@ -172,6 +178,16 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+    links:
+      back: Voltar
+      edit: Editar
+      destroy: Destruir
+      cancel: Cancelar
+      new: Criar
+    titles:
+      new: Criação de %{model}
+      edit: Edição de %{model}
+    actions: "Ações"
   number:
     currency:
       format:
@@ -179,7 +195,7 @@ pt-BR:
         format: ! '%u %n'
         precision: 2
         separator: ! ','
-        significant: false
+        significant: false        stores/1/stocks/11/products/new
         strip_insignificant_zeros: false
         unit: R$
     format:
@@ -239,5 +255,3 @@ pt-BR:
       long: ! '%A, %d de %B de %Y, %H:%M h'
       short: ! '%d/%m, %H:%M h'
     pm: ''
-    
-        

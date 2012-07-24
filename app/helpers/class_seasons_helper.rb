@@ -1,0 +1,2 @@
+module ClassSeasonsHelper
+end

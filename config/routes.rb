@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :class_seasons
+
+  resources :class_season_types
+
   get "welcome/index"
 
   resources :depts
