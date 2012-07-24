@@ -1,0 +1,21 @@
+<%= form_for(@dept_type) do |f| %>
+  <% if @dept_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dept_type.errors.count, "error") %> prohibited this dept_type from being saved:</h2>
+
+      <ul>
+      <% @dept_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dept_type %><br />
+    <%= f.text_field :dept_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

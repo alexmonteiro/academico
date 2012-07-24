@@ -1,0 +1,68 @@
+<%= form_for @dept, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :acronym, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :acronym, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cnpj, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cnpj, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :started_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :started_at, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :finished_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :finished_at, :class => 'date_select', :include_blank => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :site, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :site, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :dept_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :dept_type_id, DeptType.find(:all), :id, :dept_type, :prompt => "Tipo de elemento organizacional" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :dept_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :dept_id, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                depts_path, :class => 'btn' %>
+  </div>
+<% end %>
