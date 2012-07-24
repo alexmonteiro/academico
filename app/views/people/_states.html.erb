@@ -15,9 +15,9 @@ jQuery(function($) {
 
 
     <% if !states.blank? %>
-       <%= select_tag :state_id, states.collect{ |s| [s.name,s.id]} %>
+       <%= select_tag 'person[state_id]', options_from_collection_for_select(states, "id", "name") %>
     <% else %>
-      <%= select_tag :state_id, [], :class => 'select_field' %>
+      <%= select_tag 'person[state_id]', [], :class => 'select_field' %>
     <% end %>
 
 

@@ -1,28 +1,34 @@
 pt-BR:
-  people: 
-    title: "Pessoas"
-  
-  person: "Pessoa"
-    
-  name:  "Nome" 
-  name_complete:  "Nome completo" 
-  birth_date:  "Nascimento" 
-  father_name:  "Pai" 
-  mom_name:  "Mãe" 
-  email:  "email" 
-  lattes_url:  "Lattes" 
-  gender_id:  "Sexo" 
-  education_degree_id:  "Formação" 
-  race_id:  "Raça" 
-  marital_status_id:  "Estado Civil" 
-  blood_type_id:  "Tipo Snguíneo" 
-  country_id:  "País" 
-  state_id:  "Estado" 
-  city_id:  "Cidade" 
-  number_children:  "Filhos" 
-  isemployee:  "Servidor?" 
-  isstudent:  "Aluno?" 
-  
+
+# remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+    attributes:
+      person:
+        name:  "Nome" 
+        name_complete:  "Nome completo" 
+        birth_date:  "Nascimento" 
+        father_name:  "Pai" 
+        mom_name:  "Mãe" 
+        email:  "email" 
+        lattes_url:  "Lattes" 
+        gender_id:  "Sexo" 
+        education_degree_id:  "Formação" 
+        race_id:  "Raça" 
+        marital_status_id:  "Estado Civil" 
+        blood_type_id:  "Tipo Snguíneo" 
+        country_id:  "País" 
+        state_id:  "Estado" 
+        city_id:  "Cidade" 
+        number_children:  "Filhos" 
+        person_types: "Vínculo(s)"
+    models:
+      person: "Pessoa"  
+   
   action:
       actions: "Ações"
       new: "Novo"
@@ -233,10 +239,5 @@ pt-BR:
       long: ! '%A, %d de %B de %Y, %H:%M h'
       short: ! '%d/%m, %H:%M h'
     pm: ''
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
+    
+        

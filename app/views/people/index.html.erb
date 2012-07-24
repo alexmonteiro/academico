@@ -1,16 +1,15 @@
 <%- model_class = Person -%>
 <div class="page-header">
-  <h1><%=t 'people.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(t :name) %></th>
-      <th><%= model_class.human_attribute_name(t :birth_date) %></th>
-      <th><%= model_class.human_attribute_name(t :email) %></th>
-      <th><%= model_class.human_attribute_name(t :isemployee) %></th>
-      <th><%= model_class.human_attribute_name(t :isstudent) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:birth_date) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:person_types) %></th>
       <th><%=t 'action.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,8 +20,7 @@
         <td><%= person.name %></td>
         <td><%= person.birth_date %></td>
         <td><%= person.email %></td>
-        <td><%= person.isemployee %></td>
-        <td><%= person.isstudent %></td>
+        <td><%= get_person_types(person) %></td>
         <td>
           <%= link_to t('action.edit', :default => t("helpers.links.edit")),
                       edit_person_path(person), :class => 'btn btn-mini' %>
