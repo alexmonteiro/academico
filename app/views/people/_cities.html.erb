@@ -1,9 +1,5 @@
-<%= semantic_form_for "person" do |form| %>
-
-    <% if !cities.blank? %>
-      <%= form.select :city_id, cities.collect{ |c| [c.name,c.id]} %>
-    <% else %>
-      <%= form.select :city_id, [] %>
-    <% end %>
-
-<% end %>
+<% if !cities.blank? %>
+    <%= select_tag 'person[city_id]', options_from_collection_for_select(cities, "id", "name") %>
+ <% else %>
+   <%= select_tag 'person[city_id]', [], :class => 'select_field' %>
+ <% end %>

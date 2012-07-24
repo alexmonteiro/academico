@@ -57,10 +57,14 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
+    if !params[:person]['person_type_ids']
+      @person.person_types.destroy_all
+    end 
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        format.html { redirect_to @person, :notice => 'Person was successfully updated.' }
+        flash[:success] = 'Person was successfully updated.'
+        format.html { redirect_to @person }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -83,12 +87,12 @@ class PeopleController < ApplicationController
   
   def update_state_select
       states = State.where(:country_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => "states", :locals => { :states => states }
+      render :partial => "states", :locals => { :states => states }      
   end
   
   def update_city_select
       cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => "cities", :locals => { :cities => cities }
+      render :partial => "cities", :locals => { :cities => cities }      
   end
   
 end

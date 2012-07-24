@@ -18,53 +18,53 @@
 <fieldset>
 <legend>Identificação</legend>	
    <div class="span5">
-    <%= f.label t(:name_complete), :class => 'control-label' %>
-    <%= f.text_field :name, :class => 'text_field', :style => "width: 300px;"%>
+    <%= f.label :name_complete, :class => 'control-label' %>
+    <%= f.text_field :name, :class => 'text_field' %>
 
-    <%= f.label t(:race_id), :class => 'control-label' %>    
+    <%= f.label :race_id, :class => 'control-label' %>    
     <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}) , :class => 'select_field' %>
 
-    <%= f.label t(:gender_id), :class => 'control-label' %>    
+    <%= f.label :gender_id, :class => 'control-label' %>    
     <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}) , :class => 'select_field' %>
 
-    <%= f.label t(:education_degree_id), :class => 'control-label' %>    
+    <%= f.label :education_degree_id, :class => 'control-label' %>    
     <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}) , :class => 'select_field' %>
 
-    <%= f.label t(:marital_status_id), :class => 'control-label' %>    
+    <%= f.label :marital_status_id, :class => 'control-label' %>    
     <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
 
    </div>
 
    <div class="span5">
-    <%= f.label t(:birth_date), :class => 'control-label' %>
+    <%= f.label :birth_date, :class => 'control-label' %>
     <%= f.text_field :birth_date, :class => 'text_field'%>
   
-    <%= f.label t(:email), :class => 'control-label' %>    
+    <%= f.label :email, :class => 'control-label' %>    
     <%= f.text_field :email, :class => 'text_field' %>
 
-    <%= f.label t(:blood_type_id), :class => 'control-label' %>    
+    <%= f.label :blood_type_id, :class => 'control-label' %>    
     <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}) , :class => 'select_field' %>
 
-    <%= f.label t(:lattes_url), :class => 'control-label' %>    
+    <%= f.label :lattes_url, :class => 'control-label' %>    
     <%= f.text_field :lattes_url, :class => 'text_field' %>
 
-    <%= f.label t(:number_children), :class => 'control-label' %>
+    <%= f.label :number_children, :class => 'control-label' %>
     <%= f.number_field :number_children, :class => 'number_field' %>
 
 
    </div>
 </fieldset>
-</div>
+
 	
 <fieldset>
   <legend>Filiação</legend>
    <div class="span5">
-    <%= f.label t(:father_name), :class => 'control-label' %>
-    <%= f.text_field :father_name, :class => 'text_field', :style => "width: 300px;" %>
+    <%= f.label :father_name, :class => 'control-label' %>
+    <%= f.text_field :father_name, :class => 'text_field' %>
    </div>
    <div class="span5">
-    <%= f.label t(:mom_name), :class => 'control-label' %>    
-    <%= f.text_field :mom_name, :class => 'text_field', :style => "width: 300px;"%>
+    <%= f.label :mom_name, :class => 'control-label' %>    
+    <%= f.text_field :mom_name, :class => 'text_field' 	%>
    </div>
 </fieldset>
       
@@ -72,17 +72,17 @@
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
   <div class="span3">
-    <%= f.label t(:country_id), :class => 'control-label' %>
+    <%= f.label :country_id, :class => 'control-label' %>
     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
   </div>
   <div class="span3">
 
-    <%= f.label t(:state_id), :class => 'control-label' %>
+    <%= f.label :state_id, :class => 'control-label' %>
     <div class="controls"  id="addressStates">
 	   <%= render :partial => 'states'%>
     </div>
 	<!--
-   <%= f.label t(:state_id), :class => 'control-label' %>
+   <%= f.label :state_id, :class => 'control-label' %>
    <%= f.select :state_id, [[State.find(7, :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
    -->
   </div>
@@ -90,12 +90,12 @@
 
   <div class="span3">  
 
-    <%= f.label t(:city_id), :class => 'control-label' %>
+    <%= f.label :city_id, :class => 'control-label' %>
     <div class="controls"  id="addressCities">
 	   <%= render :partial => 'cities'  %>	
     </div>
 	<!--
-   <%= f.label t(:city_id), :class => 'control-label' %>
+   <%= f.label :city_id, :class => 'control-label' %>
    <%= f.select :city_id, [[City.find_by_name('Brasília', :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
    </div>
    -->
@@ -105,19 +105,36 @@
 <div class="container">
 <fieldset>
   <legend>Vínculo Institucional</legend>
-   <div class="span1">
-    <%= f.label t(:isemployee), :class => 'control-label' %>
-    <%= f.check_box :isemployee, :class => 'check_box' %>
-   </div>
-   <div class="span3">
-    <%= f.label t(:isstudent), :class => 'control-label' %>
-    <%= f.check_box :isstudent, :class => 'check_box' %>
+   <div class="span1">	
+	<%= f.fields_for :person_type_ids do |pt| %>
+        <div class="right_box">
+          <% PersonType.all.each do |person_type| %>
+				  <% if params[:action] == 'new' %>
+					<label class="checkbox">
+                  		<%= (pt.check_box [], {:checked=> false, :type => 'checkbox'}, person_type.id, nil) %>
+						<%= person_type.description %> 
+					</label>
+				  <% elsif params[:action] == 'edit' %>
+					<label class="checkbox">
+				  		<%= (pt.check_box [], {:checked=> verificaChecados(person_type.id), :type => 'checkbox'}, person_type.id, nil) %>
+                  		<%= person_type.description %>                
+					</label>
+				  <% elsif params[:action] == 'create' %>
+					<label class="checkbox">
+				  		<%= (pt.check_box [], {:checked=> verificaMarcados(person_type.id), :type => 'checkbox'}, person_type.id, nil) %>
+                  		<%= person_type.description %>      
+					</label>
+				  <% end %>
+          <% end %>
+        </div>
+    <% end %>
    </div>
 </fieldset>
 </div>
 
   <div class="form-actions">
-    <%= f.submit t('action.create')+t('person'), :class => 'btn btn-primary' %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path, :class => 'btn' %>
   </div>
+</div>
 <% end %>

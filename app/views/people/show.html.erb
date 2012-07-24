@@ -1,44 +1,41 @@
 <%- model_class = Person -%>
 <div class="page-header">
-	<% if notice %> <div class="alert alert-success"><%= notice %></div><% end%>
   <h1><%=t 'person', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(t :name) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @person.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :birth_date) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
   <dd><%= @person.birth_date %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :father_name) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:father_name) %>:</strong></dt>
   <dd><%= @person.father_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :mom_name) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:mom_name) %>:</strong></dt>
   <dd><%= @person.mom_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :email) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
   <dd><%= @person.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :lattes_url) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:lattes_url) %>:</strong></dt>
   <dd><%= @person.lattes_url %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :gender_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:gender_id) %>:</strong></dt>
   <dd><%= @person.gender.gender %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :education_degree_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:education_degree_id) %>:</strong></dt>
   <dd><%= @person.education_degree.degree %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :race_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:race_id) %>:</strong></dt>
   <dd><%= @person.race.race %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :marital_status_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>
   <dd><%= @person.marital_status.status %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :blood_type_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:blood_type_id) %>:</strong></dt>
   <dd><%= @person.blood_type.type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :country_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:country_id) %>:</strong></dt>
   <dd><%= @person.country.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :state_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
   <dd><%= @person.state.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :city_id) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
   <dd><%= @person.city.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :number_children) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:number_children) %>:</strong></dt>
   <dd><%= @person.number_children %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t :isemployee) %>:</strong></dt>
-  <dd><%= @person.isemployee %></dd>
-  <dt><strong><%= model_class.human_attribute_name(t 	:isstudent) %>:</strong></dt>
-  <dd><%= @person.isstudent %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:person_types) %>:</strong></dt>
+  <dd><%= get_person_types(@person) %></dd>
 </dl>
 
 <div class="form-actions">
