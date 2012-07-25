@@ -32,9 +32,20 @@ pt-BR:
         start_at: "Início em"
         year: "Ano"
         class_season_type_id: "Tipo de Período Letivo"
+      dept:
+        name: "Nome"
+        acronym: "Sigla"
+        cnpj: "CNPJ"
+        site: "Site"
+        email: "Email"
+        depty_type: "Tipo"
+        dept_id: "Vínculo"
+        started_at: "Data de início"
+        finished_at: "Data de desativação"
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
+      dept: "Estrutura Organizacional"
    
   action:
       actions: "Ações"

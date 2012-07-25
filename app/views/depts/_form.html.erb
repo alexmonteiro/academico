@@ -56,7 +56,7 @@
   <div class="control-group">
     <%= f.label :dept_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :dept_id, :class => 'number_field' %>
+      <%= f.collection_select :dept_id, Dept.find(:all), :id, :name, :prompt => "Setor pai..." %>
     </div>
   </div>
 

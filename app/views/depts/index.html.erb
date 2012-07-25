@@ -2,6 +2,45 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<% @dept_roots = Dept.find_by_sql("select * from depts where dept_id is null") %>
+<br/>
+<%= nested_depts(@dept_roots) %>
+<br/>
+<div class="css-treeview">
+<% for dept in @dept_roots %>	
+ <ul>
+ <li><input type="checkbox" id="item-0" />
+     <label for="item-0">
+  	   <%= dept.name%>
+       <%= link_to image_tag("isometric/notep_16.png", :border=>0), :action => 'edit', :id => dept %>
+     </label>
+ <% @dept_nodes = Dept.find_by_sql("select * from depts where dept_id = #{dept.id}") %>
+	<ul>
+ <% for no in @dept_nodes %>
+		<li>
+			<input type="checkbox" id="item-0-0" />
+			 <label for="item-0-0"><%= no.name%>
+				<%= link_to image_tag("isometric/notep_16.png", :border=>0), :action => 'edit', :id => no %>
+			 </label>
+			 <% @dept_subnodes = Dept.find_by_sql("select * from depts where dept_id = #{no.id}") %>
+			<ul>
+				 <% for subno in @dept_subnodes %>
+				  <li>
+					<input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0"><%= subno.name%></label>
+		            <%= link_to image_tag("isometric/notep_16.png", :border=>0), :action => 'edit', :id => subno %>
+				  </li>
+				 <%end%>
+			</ul>	
+		</li>
+ <%end%>
+	</ul>
+ </li> 
+ </ul>
+<% end %>
+</div>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
