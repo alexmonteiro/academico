@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731141426) do
+ActiveRecord::Schema.define(:version => 20120806184944) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -84,6 +84,12 @@ ActiveRecord::Schema.define(:version => 20120731141426) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "education_levels", :force => true do |t|
+    t.string   "level"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "genders", :force => true do |t|
     t.string   "gender"
     t.string   "acronym"
@@ -126,6 +132,19 @@ ActiveRecord::Schema.define(:version => 20120731141426) do
   add_index "people", ["marital_status_id"], :name => "index_people_on_marital_status_id"
   add_index "people", ["race_id"], :name => "index_people_on_race_id"
   add_index "people", ["state_id"], :name => "index_people_on_state_id"
+
+  create_table "people_telephones", :force => true do |t|
+    t.integer  "telephone_type_id"
+    t.integer  "people_id"
+    t.integer  "area_code"
+    t.integer  "number"
+    t.integer  "branch"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "people_telephones", ["people_id"], :name => "index_people_telephones_on_people_id"
+  add_index "people_telephones", ["telephone_type_id"], :name => "index_people_telephones_on_telephone_type_id"
 
   create_table "person_person_types", :force => true do |t|
     t.integer  "person_id"
@@ -178,6 +197,12 @@ ActiveRecord::Schema.define(:version => 20120731141426) do
     t.string   "techaxis_type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "telephone_types", :force => true do |t|
+    t.string   "telephone_type"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
 end

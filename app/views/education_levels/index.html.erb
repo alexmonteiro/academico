@@ -1,0 +1,23 @@
+<h1>Listing education_levels</h1>
+
+<table>
+  <tr>
+    <th>Level</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @education_levels.each do |education_level| %>
+  <tr>
+    <td><%= education_level.level %></td>
+    <td><%= link_to 'Show', education_level %></td>
+    <td><%= link_to 'Edit', edit_education_level_path(education_level) %></td>
+    <td><%= link_to 'Destroy', education_level, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Education level', new_education_level_path %>

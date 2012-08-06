@@ -6086,5 +6086,13 @@ techaxis = Techaxis.create([
   {:techaxis => 'Produçao Cultural e Design', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
   {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')}])
 
+# Alimenta tabela de Nível Educacional
+puts 'Inserindo dados na tabela de Nível Educional...'
+education_levels = EducationLevel.create([
+  {:level => 'Educação Básica'},
+  {:level => 'Educação Superior'},
+  {:level => 'FIC'}])
+
+
   
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

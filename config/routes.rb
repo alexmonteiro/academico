@@ -1,4 +1,6 @@
 AcademicoRails::Application.routes.draw do
+  resources :education_levels
+
   resources :techaxis_types do
    resources :techaxes
   end
