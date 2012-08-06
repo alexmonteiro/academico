@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724180913) do
+ActiveRecord::Schema.define(:version => 20120731141426) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -164,5 +164,20 @@ ActiveRecord::Schema.define(:version => 20120724180913) do
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
+
+  create_table "techaxes", :force => true do |t|
+    t.string   "techaxis"
+    t.integer  "techaxis_type_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "techaxes", ["techaxis_type_id"], :name => "index_techaxes_on_techaxis_type_id"
+
+  create_table "techaxis_types", :force => true do |t|
+    t.string   "techaxis_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
 end

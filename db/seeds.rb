@@ -6037,18 +6037,54 @@ necessidade_expecial = SpecialNeedsType.create([
   {:type => 'Surdocegueira'}])
 
 # Alimenta tabela com os tipos de Departamentos
+puts 'Inserindo dados na tabela de Tipos de Departamanetos...'
 dept_types = DeptType.create([
   {:dept_type => 'Instituto'},
   {:dept_type => 'Unidade de Ensino'},
   {:dept_type => 'Unidade Organizacional'}])
   
+# Alimenta tabela com os tipos de períodos
+puts 'Inserindo dados na tabela de Tipos de Período Letivo...'
 class_season_types = ClassSeasonType.create([
     {:id => 1, :description => 'Quinzenal'},
     {:id => 2, :description => 'Mensal'},
     {:id => 3, :description => 'Trimestral'},
     {:id => 4, :description => 'Semestral'},
     {:id => 5, :description => 'Anual'},
-    {:id => 6, :description => 'Outros'}
-  ])
+    {:id => 6, :description => 'Outros'}])
+
+# Alimenta tabela com os tipos de Eixos Tecnológicos
+puts 'Inserindo dados na tabela de Tipos de Eixo Tecnológico...'
+techaxis_types = TechaxisType.create([
+  {:techaxis_type => 'Eixo Tecnológico Curso Superior de Tecnologia'},
+  {:techaxis_type => 'Eixo Tecnológico Curso Técnico'},
+  {:techaxis_type => 'Eixo Tecnológico que não consta no catálogo'}])
+
+# Alimenta tabela com os Eixos Tecnológicos
+puts 'Inserindo dados na tabela de Eixos Tecnológicos...'
+techaxis = Techaxis.create([
+  {:techaxis => 'Produção Alimentícia', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Gestão e Negócios', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Ambiente, Saúde e Segurança', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Controle e Processos Industriais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Hospitalidade e Lazer', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},            
+  {:techaxis => 'Informaçao e Comunicaçao', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Infra-estrutura', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Produçao Cultural e Design', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  
+  {:techaxis => 'Infra-estrutura', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produção Industrial', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produção Alimentícia', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Ambiente, Saúde e Segurança', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Apoio Educacional', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},                   
+  {:techaxis => 'Controle e Processos Industriais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Gestao e Negócios', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Hospitalidade e Lazer', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Informaçao e Comunicação', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produçao Cultural e Design', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')}])
+
   
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

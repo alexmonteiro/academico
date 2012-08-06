@@ -1,0 +1,21 @@
+<%= form_for(@techaxis_type) do |f| %>
+  <% if @techaxis_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@techaxis_type.errors.count, "error") %> prohibited this techaxis_type from being saved:</h2>
+
+      <ul>
+      <% @techaxis_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :techaxis_type %><br />
+    <%= f.text_field :techaxis_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

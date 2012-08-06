@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :techaxis_types do
+   resources :techaxes
+  end
+
   resources :class_seasons
 
   resources :class_season_types
