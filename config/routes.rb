@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :education_modalities
+
+  resources :education_steps
+
   resources :education_levels
 
   resources :techaxis_types do

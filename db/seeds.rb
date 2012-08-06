@@ -6093,6 +6093,48 @@ education_levels = EducationLevel.create([
   {:level => 'Educação Superior'},
   {:level => 'FIC'}])
 
+# Alimenta tabela de Etapa Educacional
+puts 'Inserindo dados na tabela de Etapa Educacional...'
+education_steps = EducationStep.create([
+    {:description => 'Educação Infantil', :education_level => EducationLevel.find(1)},
+    {:description => 'Ensino Fundamental', :education_level => EducationLevel.find(1)},
+    {:description => 'Ensino Médio', :education_level => EducationLevel.find(1) },
+    {:description => 'Sequencial', :education_level => EducationLevel.find(2) },    
+    {:description => 'Extensão', :education_level => EducationLevel.find(2) },    
+    {:description => 'Graduação', :education_level => EducationLevel.find(2) },
+    {:description => 'Pós-Graduação', :education_level => EducationLevel.find(2) },
+    {:description => 'Capacitação', :education_level => EducationLevel.find(3) },
+    {:description => 'Aperfeiçoamento', :education_level => EducationLevel.find(3) },
+    {:description => 'Especialização', :education_level => EducationLevel.find(3) },
+    {:description => 'Atualização', :education_level => EducationLevel.find(3) },
+    {:description => 'Extensão', :education_level => EducationLevel.find(3) }])
 
-  
+# Alimenta tabela de Modalidade Educacional
+puts 'Inserindo dados na tabela de Modalidade Educacional...'
+education_modalities = EducationModality.create([
+    {:description => 'Educação Infantil', :education_step => EducationStep.find(1)},
+    {:description => 'Ensino Fundamental', :education_step => EducationStep.find(2)},
+    {:description => 'Ensino Médio Regular', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Habilitação Integrado', :education_step => EducationStep.find(3) },    
+    {:description => 'Técnico Habilitação Concomitante', :education_step => EducationStep.find(3) },    
+    {:description => 'Técnico Habilitação Subsequente', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Especialização', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Aperfeiçoamento', :education_step => EducationStep.find(3) },
+    {:description => 'Formação', :education_step => EducationStep.find(4) },
+    {:description => 'Complementação', :education_step => EducationStep.find(4) },
+    {:description => 'Extensão', :education_step => EducationStep.find(5) },
+    {:description => 'Bacharelado', :education_step => EducationStep.find(6)},
+    {:description => 'Licenciatura', :education_step => EducationStep.find(6)},
+    {:description => 'Tecnologia', :education_step => EducationStep.find(6)},
+    {:description => 'Especialização', :education_step => EducationStep.find(7)},          
+    {:description => 'Aperfeiçoamento', :education_step => EducationStep.find(7)},
+    {:description => 'Outros', :education_step => EducationStep.find(7)},
+    {:description => 'Mestrado', :education_step => EducationStep.find(7)},
+    {:description => 'Doutorado', :education_step => EducationStep.find(7)},      
+    {:description => 'Capacitação', :education_step => EducationStep.find(8)},
+    {:description => 'Aperfeiçoamento', :education_step => EducationStep.find(9)},
+    {:description => 'Especialização', :education_step => EducationStep.find(10)},
+    {:description => 'Atualização', :education_step => EducationStep.find(11)},      
+    {:description => 'Extensão', :education_step => EducationStep.find(12)  }])    
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

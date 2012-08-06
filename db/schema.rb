@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806184944) do
+ActiveRecord::Schema.define(:version => 20120806191505) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -89,6 +89,24 @@ ActiveRecord::Schema.define(:version => 20120806184944) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "education_modalities", :force => true do |t|
+    t.string   "description"
+    t.integer  "education_step_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "education_modalities", ["education_step_id"], :name => "index_education_modalities_on_education_step_id"
+
+  create_table "education_steps", :force => true do |t|
+    t.string   "description"
+    t.integer  "education_level_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "education_steps", ["education_level_id"], :name => "index_education_steps_on_education_level_id"
 
   create_table "genders", :force => true do |t|
     t.string   "gender"
