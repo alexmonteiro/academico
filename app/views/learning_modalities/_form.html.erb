@@ -1,0 +1,21 @@
+<%= form_for(@learning_modality) do |f| %>
+  <% if @learning_modality.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@learning_modality.errors.count, "error") %> prohibited this learning_modality from being saved:</h2>
+
+      <ul>
+      <% @learning_modality.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

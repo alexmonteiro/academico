@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :registration_schemes
+
+  resources :learning_modalities
+
   resources :education_modalities
 
   resources :education_steps

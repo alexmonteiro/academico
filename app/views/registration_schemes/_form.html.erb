@@ -1,0 +1,21 @@
+<%= form_for(@registration_scheme) do |f| %>
+  <% if @registration_scheme.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_scheme.errors.count, "error") %> prohibited this registration_scheme from being saved:</h2>
+
+      <ul>
+      <% @registration_scheme.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -6136,5 +6136,21 @@ education_modalities = EducationModality.create([
     {:description => 'Especialização', :education_step => EducationStep.find(10)},
     {:description => 'Atualização', :education_step => EducationStep.find(11)},      
     {:description => 'Extensão', :education_step => EducationStep.find(12)  }])    
+    
+# Alimenta tabela de Modalidade de Aprendizagem
+puts 'Inserindo dados na tabela de Modalidade de Aprendizagem...'
+learning_modalities = LearningModality.create([
+    {:description => 'Presencial'},
+    {:description => 'À distância'},
+    {:description => 'Semi-Presencial'}])    
+    
+# Alimenta tabela de Regime de matricula
+puts 'Inserindo dados na tabela de Regime de Matricula...'
+registration_schemes = RegistrationScheme.create([
+    {:description => 'Seriado'},
+    {:description => 'Sistema de Crédito'},
+    {:description => 'Modular'},
+    {:description => 'Matrícula por Disciplina'},
+    {:description => 'Outros'}])    
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
