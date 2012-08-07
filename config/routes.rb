@@ -1,4 +1,6 @@
 AcademicoRails::Application.routes.draw do
+  resources :knowledge_areas
+
   resources :registration_schemes
 
   resources :learning_modalities

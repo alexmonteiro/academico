@@ -6151,6 +6151,19 @@ registration_schemes = RegistrationScheme.create([
     {:description => 'Sistema de Crédito'},
     {:description => 'Modular'},
     {:description => 'Matrícula por Disciplina'},
-    {:description => 'Outros'}])    
+    {:description => 'Outros'}])   
+
+# Alimenta tabela de Área de Conhecimento
+puts 'Inserindo dados na tabela de Área de Conhecimento...'
+knowledge_areas = KnowledgeArea.create([
+    {:description => 'Ciência Exatas e da Terra'},
+    {:description => 'Ciência Biológicas'},
+    {:description => 'Ciência Humanas'},
+    {:description => 'Ciências Agrárias'},
+    {:description => 'Ciências da Saúde'},
+    {:description => 'Ciências Sociais Aplicadas'},
+    {:description => 'Engenharias'},
+    {:description => 'Linguistíca, Letras e Artes'},
+    {:description => 'Outros'}])         
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
