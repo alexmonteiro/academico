@@ -1,4 +1,10 @@
 AcademicoRails::Application.routes.draw do
+  resources :disciplines
+
+  resources :discipline_types
+
+  resources :courses
+
   resources :knowledge_areas
 
   resources :registration_schemes

@@ -6164,6 +6164,14 @@ knowledge_areas = KnowledgeArea.create([
     {:description => 'Ciências Sociais Aplicadas'},
     {:description => 'Engenharias'},
     {:description => 'Linguistíca, Letras e Artes'},
-    {:description => 'Outros'}])         
+    {:description => 'Outros'}])
+
+# Alimenta tabela de Tipo de Elemento Curricular (Disciplina)
+puts 'Inserindo dados na tabela de Tipo de Elemento Curricular (Disciplina)...'
+discipline_types = DisciplineType.create([
+    {:description => 'Atividade Complementar'},
+    {:description => 'Disciplina'},
+    {:description => 'Estágio'},
+    {:description => 'Trabalho de Conclusão'}])           
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

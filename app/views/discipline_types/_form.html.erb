@@ -1,0 +1,21 @@
+<%= form_for(@discipline_type) do |f| %>
+  <% if @discipline_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discipline_type.errors.count, "error") %> prohibited this discipline_type from being saved:</h2>
+
+      <ul>
+      <% @discipline_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807191701) do
+ActiveRecord::Schema.define(:version => 20120808195711) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -54,6 +54,34 @@ ActiveRecord::Schema.define(:version => 20120807191701) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "courses", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "goal"
+    t.integer  "maxtime"
+    t.integer  "mintime"
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.integer  "dept_id"
+    t.integer  "registration_scheme_id"
+    t.integer  "class_season_type_id"
+    t.integer  "learning_modality_id"
+    t.integer  "knowledge_area_id"
+    t.integer  "techaxes_id"
+    t.integer  "education_modality_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "courses", ["class_season_type_id"], :name => "index_courses_on_class_season_type_id"
+  add_index "courses", ["dept_id"], :name => "index_courses_on_dept_id"
+  add_index "courses", ["education_modality_id"], :name => "index_courses_on_education_modality_id"
+  add_index "courses", ["knowledge_area_id"], :name => "index_courses_on_knowledge_area_id"
+  add_index "courses", ["learning_modality_id"], :name => "index_courses_on_learning_modality_id"
+  add_index "courses", ["registration_scheme_id"], :name => "index_courses_on_registration_scheme_id"
+  add_index "courses", ["techaxes_id"], :name => "index_courses_on_techaxes_id"
+
   create_table "dept_types", :force => true do |t|
     t.string   "dept_type"
     t.datetime "created_at", :null => false
@@ -77,6 +105,30 @@ ActiveRecord::Schema.define(:version => 20120807191701) do
 
   add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
   add_index "depts", ["dept_type_id"], :name => "index_depts_on_dept_type_id"
+
+  create_table "discipline_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "disciplines", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.text     "description"
+    t.text     "goals"
+    t.integer  "workload"
+    t.integer  "credits"
+    t.integer  "discipline_type_id"
+    t.integer  "course_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "disciplines", ["course_id"], :name => "index_disciplines_on_course_id"
+  add_index "disciplines", ["dept_id"], :name => "index_disciplines_on_dept_id"
+  add_index "disciplines", ["discipline_type_id"], :name => "index_disciplines_on_discipline_type_id"
 
   create_table "education_degrees", :force => true do |t|
     t.string   "degree"
@@ -176,6 +228,26 @@ ActiveRecord::Schema.define(:version => 20120807191701) do
   add_index "people_telephones", ["people_id"], :name => "index_people_telephones_on_people_id"
   add_index "people_telephones", ["telephone_type_id"], :name => "index_people_telephones_on_telephone_type_id"
 
+  create_table "person_addresses", :force => true do |t|
+    t.integer  "street_type_id"
+    t.integer  "city_id"
+    t.string   "street_name"
+    t.string   "complement"
+    t.string   "post_office_box"
+    t.string   "neighborhood"
+    t.integer  "zip_code"
+    t.string   "number"
+    t.integer  "provenance_area_id"
+    t.integer  "person_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "person_addresses", ["city_id"], :name => "index_person_addresses_on_city_id"
+  add_index "person_addresses", ["person_id"], :name => "index_person_addresses_on_person_id"
+  add_index "person_addresses", ["provenance_area_id"], :name => "index_person_addresses_on_provenance_area_id"
+  add_index "person_addresses", ["street_type_id"], :name => "index_person_addresses_on_street_type_id"
+
   create_table "person_person_types", :force => true do |t|
     t.integer  "person_id"
     t.integer  "person_type_id"
@@ -187,6 +259,12 @@ ActiveRecord::Schema.define(:version => 20120807191701) do
   add_index "person_person_types", ["person_type_id"], :name => "index_person_person_types_on_person_type_id"
 
   create_table "person_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "provenance_areas", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -219,6 +297,12 @@ ActiveRecord::Schema.define(:version => 20120807191701) do
   end
 
   add_index "states", ["country_id"], :name => "index_states_on_country_id"
+
+  create_table "street_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "techaxes", :force => true do |t|
     t.string   "techaxis"
