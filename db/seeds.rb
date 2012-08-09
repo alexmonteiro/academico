@@ -6174,4 +6174,26 @@ discipline_types = DisciplineType.create([
     {:description => 'Estágio'},
     {:description => 'Trabalho de Conclusão'}])           
 
+# Alimenta tabela de Matriz Status (Situação da Matriz Curricular)
+puts 'Inserindo dados na tabela de Matriz Status (Situação da Matriz Curricular)...'
+matrix_statuses = MatrixStatus.create([
+    {:description => 'EM CADASTRO'},
+    {:description => 'VIGENTE'},
+    {:description => 'ATIVA'},
+    {:description => 'DESATIVADA'}])
+    
+# Alimenta tabela de Tipos de Avaliação da Matriz
+puts 'Inserindo dados na tabela de Tipos de Avaliação da Matriz...'
+matrix_evaluation_types = MatrixEvaluationType.create([
+    {:description => 'NOTA'},
+    {:description => 'CONCEITO'},
+    {:description => 'FREQUÊNCIA'}])
+
+# Alimenta tabela de Grupos da Matriz Disciplina
+puts 'Inserindo dados na tabela de Grupos da Matriz Disciplina...'
+matrix_discipline_groups = MatrixDisciplineGroup.create([
+    {:description => 'ELETIVAS'},
+    {:description => 'CONCEITO'},
+    {:description => 'OPTATIVAS'}])
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

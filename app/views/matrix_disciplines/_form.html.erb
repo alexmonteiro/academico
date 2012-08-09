@@ -1,0 +1,41 @@
+<%= form_for(@matrix_discipline) do |f| %>
+  <% if @matrix_discipline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@matrix_discipline.errors.count, "error") %> prohibited this matrix_discipline from being saved:</h2>
+
+      <ul>
+      <% @matrix_discipline.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :matrix %><br />
+    <%= f.text_field :matrix %>
+  </div>
+  <div class="field">
+    <%= f.label :discipline %><br />
+    <%= f.text_field :discipline %>
+  </div>
+  <div class="field">
+    <%= f.label :matrix_discipline_group %><br />
+    <%= f.text_field :matrix_discipline_group %>
+  </div>
+  <div class="field">
+    <%= f.label :maxseasons %><br />
+    <%= f.number_field :maxseasons %>
+  </div>
+  <div class="field">
+    <%= f.label :isoptative %><br />
+    <%= f.check_box :isoptative %>
+  </div>
+  <div class="field">
+    <%= f.label :isdependence %><br />
+    <%= f.check_box :isdependence %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

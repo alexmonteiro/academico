@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808195711) do
+ActiveRecord::Schema.define(:version => 20120809150329) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -183,6 +183,57 @@ ActiveRecord::Schema.define(:version => 20120808195711) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "matrices", :force => true do |t|
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.integer  "maxdisciplines"
+    t.integer  "maxseasons"
+    t.integer  "course_id"
+    t.integer  "matrix_evaluation_type_id"
+    t.integer  "matrix_status_id"
+    t.integer  "class_season_type_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "matrices", ["class_season_type_id"], :name => "index_matrices_on_class_season_type_id"
+  add_index "matrices", ["course_id"], :name => "index_matrices_on_course_id"
+  add_index "matrices", ["matrix_evaluation_type_id"], :name => "index_matrices_on_matrix_evaluation_type_id"
+  add_index "matrices", ["matrix_status_id"], :name => "index_matrices_on_matrix_status_id"
+
+  create_table "matrix_discipline_groups", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "matrix_disciplines", :force => true do |t|
+    t.integer  "matrix_id"
+    t.integer  "discipline_id"
+    t.integer  "matrix_discipline_group_id"
+    t.integer  "maxseasons"
+    t.boolean  "isoptative"
+    t.boolean  "isdependence"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "matrix_disciplines", ["discipline_id"], :name => "index_matrix_disciplines_on_discipline_id"
+  add_index "matrix_disciplines", ["matrix_discipline_group_id"], :name => "index_matrix_disciplines_on_matrix_discipline_group_id"
+  add_index "matrix_disciplines", ["matrix_id"], :name => "index_matrix_disciplines_on_matrix_id"
+
+  create_table "matrix_evaluation_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "matrix_statuses", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "people", :force => true do |t|

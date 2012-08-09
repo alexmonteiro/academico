@@ -1,4 +1,14 @@
 AcademicoRails::Application.routes.draw do
+  resources :matrix_disciplines
+
+  resources :matrix_discipline_groups
+
+  resources :matrices
+
+  resources :matrix_evaluation_types
+
+  resources :matrix_statuses
+
   resources :disciplines
 
   resources :discipline_types

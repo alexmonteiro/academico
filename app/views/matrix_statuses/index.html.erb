@@ -1,0 +1,23 @@
+<h1>Listing matrix_statuses</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @matrix_statuses.each do |matrix_status| %>
+  <tr>
+    <td><%= matrix_status.description %></td>
+    <td><%= link_to 'Show', matrix_status %></td>
+    <td><%= link_to 'Edit', edit_matrix_status_path(matrix_status) %></td>
+    <td><%= link_to 'Destroy', matrix_status, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Matrix status', new_matrix_status_path %>
