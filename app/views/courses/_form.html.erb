@@ -20,7 +20,7 @@
   <div class="control-group">
     <%= f.label :goal, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :goal, :class => 'text_field' %>
+      <%= f.text_area :goal, :class => 'text_area' %>
     </div>
   </div>
   <div class="control-group">
@@ -44,49 +44,49 @@
   <div class="control-group">
     <%= f.label :ended_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :ended_at, :class => 'date_select' %>
+      <%= f.date_select :ended_at, :class => 'date_select', :include_blank => true %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :dept_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :dept_id, :class => 'number_field' %>
+      <%= f.collection_select :dept_id, Dept.find(:all), :id, :name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :registration_scheme_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :registration_scheme_id, :class => 'number_field' %>
+      <%= f.collection_select :registration_scheme_id, RegistrationScheme.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :class_season_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :class_season_type_id, :class => 'number_field' %>
+    <%= f.collection_select :class_season_type_id, ClassSeasonType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :learning_modality_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :learning_modality_id, :class => 'number_field' %>
+     <%= f.collection_select :learning_modality_id, LearningModality.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :knowledge_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :knowledge_area_id, :class => 'number_field' %>
+     <%= f.collection_select :knowledge_area_id, KnowledgeArea.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :techaxes_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :techaxes_id, :class => 'number_field' %>
+     <%= f.collection_select :techaxes_id, Techaxis.find(:all), :id, :techaxis, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :education_modality_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :education_modality_id, :class => 'number_field' %>
+     <%= f.collection_select :education_modality_id, EducationModality.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
 

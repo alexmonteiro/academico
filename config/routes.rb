@@ -17,7 +17,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :discipline_types
 
-  resources :courses
+  resources :courses, :path => "cursos"
 
   resources :knowledge_areas
 
@@ -41,7 +41,10 @@ AcademicoRails::Application.routes.draw do
 
   get "welcome/index"
 
-  resources :depts
+  resources :depts, :path => "departamentos" do
+      resources :courses, :path => "cursos"
+  end
+    
 
   resources :dept_types
 

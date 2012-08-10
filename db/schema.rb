@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810180937) do
+ActiveRecord::Schema.define(:version => 20120810183310) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -53,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20120810180937) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "course_vacancies", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "class_season_id"
+    t.integer  "shift_type_id"
+    t.integer  "number_vacancies"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "course_vacancies", ["class_season_id"], :name => "index_course_vacancies_on_class_season_id"
+  add_index "course_vacancies", ["course_id"], :name => "index_course_vacancies_on_course_id"
+  add_index "course_vacancies", ["shift_type_id"], :name => "index_course_vacancies_on_shift_type_id"
 
   create_table "courses", :force => true do |t|
     t.string   "code"

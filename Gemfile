@@ -42,3 +42,4 @@ gem 'rails-i18n'
 
 # To use debugger
 # gem 'ruby-debug'
+gem 'font-awesome-rails'
