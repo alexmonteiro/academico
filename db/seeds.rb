@@ -6196,4 +6196,12 @@ matrix_discipline_groups = MatrixDisciplineGroup.create([
     {:description => 'CONCEITO'},
     {:description => 'OPTATIVAS'}])
 
+# Alimenta tabela de Turno
+puts 'Inserindo dados na tabela de Turno...'
+shift_types = ShiftType.create([
+    {:description => 'Matutino'},
+    {:description => 'Vespertino'},
+    {:description => 'Noturno'},
+    {:description => 'Integral'}])    
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

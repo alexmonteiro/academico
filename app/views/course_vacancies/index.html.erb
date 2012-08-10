@@ -1,0 +1,29 @@
+<h1>Listing course_vacancies</h1>
+
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Class season</th>
+    <th>Shift type</th>
+    <th>Number vacancies</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @course_vacancies.each do |course_vacancy| %>
+  <tr>
+    <td><%= course_vacancy.course %></td>
+    <td><%= course_vacancy.class_season %></td>
+    <td><%= course_vacancy.shift_type %></td>
+    <td><%= course_vacancy.number_vacancies %></td>
+    <td><%= link_to 'Show', course_vacancy %></td>
+    <td><%= link_to 'Edit', edit_course_vacancy_path(course_vacancy) %></td>
+    <td><%= link_to 'Destroy', course_vacancy, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Course vacancy', new_course_vacancy_path %>

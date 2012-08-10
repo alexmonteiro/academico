@@ -1,4 +1,8 @@
 AcademicoRails::Application.routes.draw do
+  resources :course_vacancies
+
+  resources :shift_types
+
   resources :matrix_disciplines
 
   resources :matrix_discipline_groups

@@ -1,0 +1,23 @@
+<h1>Listing shift_types</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shift_types.each do |shift_type| %>
+  <tr>
+    <td><%= shift_type.description %></td>
+    <td><%= link_to 'Show', shift_type %></td>
+    <td><%= link_to 'Edit', edit_shift_type_path(shift_type) %></td>
+    <td><%= link_to 'Destroy', shift_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shift type', new_shift_type_path %>
