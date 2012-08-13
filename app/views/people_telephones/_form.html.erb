@@ -1,0 +1,37 @@
+<%= form_for([@person, @people_telephone]) do |f| %>
+  <% if @people_telephone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@people_telephone.errors.count, "error") %> prohibited this people_telephone from being saved:</h2>
+
+      <ul>
+      <% @people_telephone.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <p/>
+    <h3><%= Person.find(params[:person_id]).name %></h3><br />
+    <%= f.hidden_field :people_id, :value => params[:person_id] %>
+  </div>
+  <div class="field">
+    <%= f.label :telephone_type %><br />
+    <%= f.collection_select :telephone_type_id, TelephoneType.find(:all) , :id, :telephone_type, :prompt => "Select a Type Telephone" %>
+  </div>
+  <div class="field">
+    <%= f.label :area_code %><br />
+    <%= f.number_field :area_code %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.number_field :number %>
+  </div>
+  <div class="field">
+    <%= f.label :branch %><br />
+    <%= f.number_field :branch %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,13 @@
 AcademicoRails::Application.routes.draw do
+
+  resources :person_addresses
+
+  resources :provenance_areas
+
+  resources :street_types
+
+  resources :telephone_types
+
   resources :class_seasons
 
   resources :class_season_types
@@ -11,8 +20,11 @@ AcademicoRails::Application.routes.draw do
 
   match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
-  
-  resources :people
+
+  resources :people do
+    resources :people_telephones
+    resources :person_addresses
+  end
 
   resources :special_needs_types
 
