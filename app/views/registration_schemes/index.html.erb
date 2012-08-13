@@ -1,0 +1,23 @@
+<h1>Listing registration_schemes</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registration_schemes.each do |registration_scheme| %>
+  <tr>
+    <td><%= registration_scheme.description %></td>
+    <td><%= link_to 'Show', registration_scheme %></td>
+    <td><%= link_to 'Edit', edit_registration_scheme_path(registration_scheme) %></td>
+    <td><%= link_to 'Destroy', registration_scheme, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Registration scheme', new_registration_scheme_path %>

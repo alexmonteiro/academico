@@ -21,11 +21,11 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @dept.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
-  <dd><%= @dept.dept_type.dept_type %></dd>
+  <dd><%= @dept.dept_type.dept_type if @dept.dept_type_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
   <dd><%= @dept.dept_id %></dd>
 </dl>
-
+<br/>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               depts_path, :class => 'btn'  %>

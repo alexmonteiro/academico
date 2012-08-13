@@ -1,0 +1,49 @@
+<%= form_for(@matrix) do |f| %>
+  <% if @matrix.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@matrix.errors.count, "error") %> prohibited this matrix from being saved:</h2>
+
+      <ul>
+      <% @matrix.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :started_at %><br />
+    <%= f.date_select :started_at %>
+  </div>
+  <div class="field">
+    <%= f.label :ended_at %><br />
+    <%= f.date_select :ended_at %>
+  </div>
+  <div class="field">
+    <%= f.label :maxdisciplines %><br />
+    <%= f.number_field :maxdisciplines %>
+  </div>
+  <div class="field">
+    <%= f.label :maxseasons %><br />
+    <%= f.number_field :maxseasons %>
+  </div>
+  <div class="field">
+    <%= f.label :course %><br />
+    <%= f.text_field :course %>
+  </div>
+  <div class="field">
+    <%= f.label :matrix_evaluation_type %><br />
+    <%= f.text_field :matrix_evaluation_type %>
+  </div>
+  <div class="field">
+    <%= f.label :matrix_status %><br />
+    <%= f.text_field :matrix_status %>
+  </div>
+  <div class="field">
+    <%= f.label :class_season_type %><br />
+    <%= f.text_field :class_season_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

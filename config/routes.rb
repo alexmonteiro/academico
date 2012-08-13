@@ -1,11 +1,50 @@
 AcademicoRails::Application.routes.draw do
+  resources :course_vacancies
+
+  resources :shift_types
+
+  resources :matrix_disciplines
+
+  resources :matrix_discipline_groups
+
+  resources :matrices
+
+  resources :matrix_evaluation_types
+
+  resources :matrix_statuses
+
+  resources :disciplines
+
+  resources :discipline_types
+
+  resources :courses, :path => "cursos"
+
+  resources :knowledge_areas
+
+  resources :registration_schemes
+
+  resources :learning_modalities
+
+  resources :education_modalities
+
+  resources :education_steps
+
+  resources :education_levels
+
+  resources :techaxis_types do
+   resources :techaxes
+  end
+
   resources :class_seasons
 
   resources :class_season_types
 
   get "welcome/index"
 
-  resources :depts
+  resources :depts, :path => "departamentos" do
+      resources :courses, :path => "cursos"
+  end
+    
 
   resources :dept_types
 

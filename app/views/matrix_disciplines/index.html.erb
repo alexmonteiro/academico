@@ -1,0 +1,33 @@
+<h1>Listing matrix_disciplines</h1>
+
+<table>
+  <tr>
+    <th>Matrix</th>
+    <th>Discipline</th>
+    <th>Matrix discipline group</th>
+    <th>Maxseasons</th>
+    <th>Isoptative</th>
+    <th>Isdependence</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @matrix_disciplines.each do |matrix_discipline| %>
+  <tr>
+    <td><%= matrix_discipline.matrix %></td>
+    <td><%= matrix_discipline.discipline %></td>
+    <td><%= matrix_discipline.matrix_discipline_group %></td>
+    <td><%= matrix_discipline.maxseasons %></td>
+    <td><%= matrix_discipline.isoptative %></td>
+    <td><%= matrix_discipline.isdependence %></td>
+    <td><%= link_to 'Show', matrix_discipline %></td>
+    <td><%= link_to 'Edit', edit_matrix_discipline_path(matrix_discipline) %></td>
+    <td><%= link_to 'Destroy', matrix_discipline, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Matrix discipline', new_matrix_discipline_path %>

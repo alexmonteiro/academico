@@ -1,0 +1,23 @@
+<h1>Listing learning_modalities</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @learning_modalities.each do |learning_modality| %>
+  <tr>
+    <td><%= learning_modality.description %></td>
+    <td><%= link_to 'Show', learning_modality %></td>
+    <td><%= link_to 'Edit', edit_learning_modality_path(learning_modality) %></td>
+    <td><%= link_to 'Destroy', learning_modality, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Learning modality', new_learning_modality_path %>

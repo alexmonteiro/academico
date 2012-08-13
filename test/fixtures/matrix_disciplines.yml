@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  matrix: 
+  discipline: 
+  matrix_discipline_group: 
+  maxseasons: 1
+  isoptative: false
+  isdependence: false
+
+two:
+  matrix: 
+  discipline: 
+  matrix_discipline_group: 
+  maxseasons: 1
+  isoptative: false
+  isdependence: false

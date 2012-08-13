@@ -6037,18 +6037,171 @@ necessidade_expecial = SpecialNeedsType.create([
   {:type => 'Surdocegueira'}])
 
 # Alimenta tabela com os tipos de Departamentos
+puts 'Inserindo dados na tabela de Tipos de Departamanetos...'
 dept_types = DeptType.create([
   {:dept_type => 'Instituto'},
   {:dept_type => 'Unidade de Ensino'},
   {:dept_type => 'Unidade Organizacional'}])
   
+# Alimenta tabela com os tipos de períodos
+puts 'Inserindo dados na tabela de Tipos de Período Letivo...'
 class_season_types = ClassSeasonType.create([
     {:id => 1, :description => 'Quinzenal'},
     {:id => 2, :description => 'Mensal'},
     {:id => 3, :description => 'Trimestral'},
     {:id => 4, :description => 'Semestral'},
     {:id => 5, :description => 'Anual'},
-    {:id => 6, :description => 'Outros'}
-  ])
+    {:id => 6, :description => 'Outros'}])
+
+# Alimenta tabela com os tipos de Eixos Tecnológicos
+puts 'Inserindo dados na tabela de Tipos de Eixo Tecnológico...'
+techaxis_types = TechaxisType.create([
+  {:techaxis_type => 'Eixo Tecnológico Curso Superior de Tecnologia'},
+  {:techaxis_type => 'Eixo Tecnológico Curso Técnico'},
+  {:techaxis_type => 'Eixo Tecnológico que não consta no catálogo'}])
+
+# Alimenta tabela com os Eixos Tecnológicos
+puts 'Inserindo dados na tabela de Eixos Tecnológicos...'
+techaxis = Techaxis.create([
+  {:techaxis => 'Produção Alimentícia', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Gestão e Negócios', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Ambiente, Saúde e Segurança', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Controle e Processos Industriais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Hospitalidade e Lazer', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},            
+  {:techaxis => 'Informaçao e Comunicaçao', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Infra-estrutura', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Produçao Cultural e Design', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Superior de Tecnologia')},
   
+  {:techaxis => 'Infra-estrutura', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produção Industrial', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produção Alimentícia', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Ambiente, Saúde e Segurança', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Apoio Educacional', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},                   
+  {:techaxis => 'Controle e Processos Industriais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Gestao e Negócios', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Hospitalidade e Lazer', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Informaçao e Comunicação', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Produçao Cultural e Design', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')},
+  {:techaxis => 'Recursos Naturais', :techaxis_type => TechaxisType.find_by_techaxis_type('Eixo Tecnológico Curso Técnico')}])
+
+# Alimenta tabela de Nível Educacional
+puts 'Inserindo dados na tabela de Nível Educional...'
+education_levels = EducationLevel.create([
+  {:level => 'Educação Básica'},
+  {:level => 'Educação Superior'},
+  {:level => 'FIC'}])
+
+# Alimenta tabela de Etapa Educacional
+puts 'Inserindo dados na tabela de Etapa Educacional...'
+education_steps = EducationStep.create([
+    {:description => 'Educação Infantil', :education_level => EducationLevel.find(1)},
+    {:description => 'Ensino Fundamental', :education_level => EducationLevel.find(1)},
+    {:description => 'Ensino Médio', :education_level => EducationLevel.find(1) },
+    {:description => 'Sequencial', :education_level => EducationLevel.find(2) },    
+    {:description => 'Extensão', :education_level => EducationLevel.find(2) },    
+    {:description => 'Graduação', :education_level => EducationLevel.find(2) },
+    {:description => 'Pós-Graduação', :education_level => EducationLevel.find(2) },
+    {:description => 'Capacitação', :education_level => EducationLevel.find(3) },
+    {:description => 'Aperfeiçoamento', :education_level => EducationLevel.find(3) },
+    {:description => 'Especialização', :education_level => EducationLevel.find(3) },
+    {:description => 'Atualização', :education_level => EducationLevel.find(3) },
+    {:description => 'Extensão', :education_level => EducationLevel.find(3) }])
+
+# Alimenta tabela de Modalidade Educacional
+puts 'Inserindo dados na tabela de Modalidade Educacional...'
+education_modalities = EducationModality.create([
+    {:description => 'Educação Infantil', :education_step => EducationStep.find(1)},
+    {:description => 'Ensino Fundamental', :education_step => EducationStep.find(2)},
+    {:description => 'Ensino Médio Regular', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Habilitação Integrado', :education_step => EducationStep.find(3) },    
+    {:description => 'Técnico Habilitação Concomitante', :education_step => EducationStep.find(3) },    
+    {:description => 'Técnico Habilitação Subsequente', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Especialização', :education_step => EducationStep.find(3) },
+    {:description => 'Técnico Aperfeiçoamento', :education_step => EducationStep.find(3) },
+    {:description => 'Formação', :education_step => EducationStep.find(4) },
+    {:description => 'Complementação', :education_step => EducationStep.find(4) },
+    {:description => 'Extensão', :education_step => EducationStep.find(5) },
+    {:description => 'Bacharelado', :education_step => EducationStep.find(6)},
+    {:description => 'Licenciatura', :education_step => EducationStep.find(6)},
+    {:description => 'Tecnologia', :education_step => EducationStep.find(6)},
+    {:description => 'Especialização', :education_step => EducationStep.find(7)},          
+    {:description => 'Aperfeiçoamento', :education_step => EducationStep.find(7)},
+    {:description => 'Outros', :education_step => EducationStep.find(7)},
+    {:description => 'Mestrado', :education_step => EducationStep.find(7)},
+    {:description => 'Doutorado', :education_step => EducationStep.find(7)},      
+    {:description => 'Capacitação', :education_step => EducationStep.find(8)},
+    {:description => 'Aperfeiçoamento', :education_step => EducationStep.find(9)},
+    {:description => 'Especialização', :education_step => EducationStep.find(10)},
+    {:description => 'Atualização', :education_step => EducationStep.find(11)},      
+    {:description => 'Extensão', :education_step => EducationStep.find(12)  }])    
+    
+# Alimenta tabela de Modalidade de Aprendizagem
+puts 'Inserindo dados na tabela de Modalidade de Aprendizagem...'
+learning_modalities = LearningModality.create([
+    {:description => 'Presencial'},
+    {:description => 'À distância'},
+    {:description => 'Semi-Presencial'}])    
+    
+# Alimenta tabela de Regime de matricula
+puts 'Inserindo dados na tabela de Regime de Matricula...'
+registration_schemes = RegistrationScheme.create([
+    {:description => 'Seriado'},
+    {:description => 'Sistema de Crédito'},
+    {:description => 'Modular'},
+    {:description => 'Matrícula por Disciplina'},
+    {:description => 'Outros'}])   
+
+# Alimenta tabela de Área de Conhecimento
+puts 'Inserindo dados na tabela de Área de Conhecimento...'
+knowledge_areas = KnowledgeArea.create([
+    {:description => 'Ciência Exatas e da Terra'},
+    {:description => 'Ciência Biológicas'},
+    {:description => 'Ciência Humanas'},
+    {:description => 'Ciências Agrárias'},
+    {:description => 'Ciências da Saúde'},
+    {:description => 'Ciências Sociais Aplicadas'},
+    {:description => 'Engenharias'},
+    {:description => 'Linguistíca, Letras e Artes'},
+    {:description => 'Outros'}])
+
+# Alimenta tabela de Tipo de Elemento Curricular (Disciplina)
+puts 'Inserindo dados na tabela de Tipo de Elemento Curricular (Disciplina)...'
+discipline_types = DisciplineType.create([
+    {:description => 'Atividade Complementar'},
+    {:description => 'Disciplina'},
+    {:description => 'Estágio'},
+    {:description => 'Trabalho de Conclusão'}])           
+
+# Alimenta tabela de Matriz Status (Situação da Matriz Curricular)
+puts 'Inserindo dados na tabela de Matriz Status (Situação da Matriz Curricular)...'
+matrix_statuses = MatrixStatus.create([
+    {:description => 'EM CADASTRO'},
+    {:description => 'VIGENTE'},
+    {:description => 'ATIVA'},
+    {:description => 'DESATIVADA'}])
+    
+# Alimenta tabela de Tipos de Avaliação da Matriz
+puts 'Inserindo dados na tabela de Tipos de Avaliação da Matriz...'
+matrix_evaluation_types = MatrixEvaluationType.create([
+    {:description => 'NOTA'},
+    {:description => 'CONCEITO'},
+    {:description => 'FREQUÊNCIA'}])
+
+# Alimenta tabela de Grupos da Matriz Disciplina
+puts 'Inserindo dados na tabela de Grupos da Matriz Disciplina...'
+matrix_discipline_groups = MatrixDisciplineGroup.create([
+    {:description => 'ELETIVAS'},
+    {:description => 'CONCEITO'},
+    {:description => 'OPTATIVAS'}])
+
+# Alimenta tabela de Turno
+puts 'Inserindo dados na tabela de Turno...'
+shift_types = ShiftType.create([
+    {:description => 'Matutino'},
+    {:description => 'Vespertino'},
+    {:description => 'Noturno'},
+    {:description => 'Integral'}])    
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

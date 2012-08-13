@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Course:</b>
+  <%= @course_vacancy.course %>
+</p>
+
+<p>
+  <b>Class season:</b>
+  <%= @course_vacancy.class_season %>
+</p>
+
+<p>
+  <b>Shift type:</b>
+  <%= @course_vacancy.shift_type %>
+</p>
+
+<p>
+  <b>Number vacancies:</b>
+  <%= @course_vacancy.number_vacancies %>
+</p>
+
+
+<%= link_to 'Edit', edit_course_vacancy_path(@course_vacancy) %> |
+<%= link_to 'Back', course_vacancies_path %>

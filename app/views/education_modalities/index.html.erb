@@ -1,0 +1,25 @@
+<h1>Listing education_modalities</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Education step</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @education_modalities.each do |education_modality| %>
+  <tr>
+    <td><%= education_modality.description %></td>
+    <td><%= education_modality.education_step %></td>
+    <td><%= link_to 'Show', education_modality %></td>
+    <td><%= link_to 'Edit', edit_education_modality_path(education_modality) %></td>
+    <td><%= link_to 'Destroy', education_modality, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Education modality', new_education_modality_path %>

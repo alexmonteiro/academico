@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Started at:</b>
+  <%= @matrix.started_at %>
+</p>
+
+<p>
+  <b>Ended at:</b>
+  <%= @matrix.ended_at %>
+</p>
+
+<p>
+  <b>Maxdisciplines:</b>
+  <%= @matrix.maxdisciplines %>
+</p>
+
+<p>
+  <b>Maxseasons:</b>
+  <%= @matrix.maxseasons %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%= @matrix.course %>
+</p>
+
+<p>
+  <b>Matrix evaluation type:</b>
+  <%= @matrix.matrix_evaluation_type %>
+</p>
+
+<p>
+  <b>Matrix status:</b>
+  <%= @matrix.matrix_status %>
+</p>
+
+<p>
+  <b>Class season type:</b>
+  <%= @matrix.class_season_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_matrix_path(@matrix) %> |
+<%= link_to 'Back', matrices_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@course_vacancy) do |f| %>
+  <% if @course_vacancy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course_vacancy.errors.count, "error") %> prohibited this course_vacancy from being saved:</h2>
+
+      <ul>
+      <% @course_vacancy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course %><br />
+    <%= f.text_field :course %>
+  </div>
+  <div class="field">
+    <%= f.label :class_season %><br />
+    <%= f.text_field :class_season %>
+  </div>
+  <div class="field">
+    <%= f.label :shift_type %><br />
+    <%= f.text_field :shift_type %>
+  </div>
+  <div class="field">
+    <%= f.label :number_vacancies %><br />
+    <%= f.number_field :number_vacancies %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

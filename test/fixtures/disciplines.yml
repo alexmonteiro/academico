@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  code: MyString
+  description: MyString
+  goals: MyString
+  workload: 1
+  credits: 1
+  discipline_type: 
+  course: 
+  dept: 
+
+two:
+  name: MyString
+  code: MyString
+  description: MyString
+  goals: MyString
+  workload: 1
+  credits: 1
+  discipline_type: 
+  course: 
+  dept: 

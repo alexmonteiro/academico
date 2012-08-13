@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Matrix:</b>
+  <%= @matrix_discipline.matrix %>
+</p>
+
+<p>
+  <b>Discipline:</b>
+  <%= @matrix_discipline.discipline %>
+</p>
+
+<p>
+  <b>Matrix discipline group:</b>
+  <%= @matrix_discipline.matrix_discipline_group %>
+</p>
+
+<p>
+  <b>Maxseasons:</b>
+  <%= @matrix_discipline.maxseasons %>
+</p>
+
+<p>
+  <b>Isoptative:</b>
+  <%= @matrix_discipline.isoptative %>
+</p>
+
+<p>
+  <b>Isdependence:</b>
+  <%= @matrix_discipline.isdependence %>
+</p>
+
+
+<%= link_to 'Edit', edit_matrix_discipline_path(@matrix_discipline) %> |
+<%= link_to 'Back', matrix_disciplines_path %>

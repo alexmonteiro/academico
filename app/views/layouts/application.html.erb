@@ -57,6 +57,8 @@
 	              <li><a href="#">Link</a></li>
 
 	              <li class="nav-header">Registros Acadêmicos</li>
+             	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><%= link_to('Cursos',courses_path) %></li>
+                  <li class="<%= ('disciplines' == params[:controller] ? 'active' : '')%>"><%= link_to('Disciplinas (Elemento Curricular)',disciplines_path) %></li>
 	              <li><a href="#">Link</a></li>
 
 	            </ul>

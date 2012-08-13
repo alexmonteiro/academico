@@ -1,0 +1,37 @@
+<h1>Listing matrices</h1>
+
+<table>
+  <tr>
+    <th>Started at</th>
+    <th>Ended at</th>
+    <th>Maxdisciplines</th>
+    <th>Maxseasons</th>
+    <th>Course</th>
+    <th>Matrix evaluation type</th>
+    <th>Matrix status</th>
+    <th>Class season type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @matrices.each do |matrix| %>
+  <tr>
+    <td><%= matrix.started_at %></td>
+    <td><%= matrix.ended_at %></td>
+    <td><%= matrix.maxdisciplines %></td>
+    <td><%= matrix.maxseasons %></td>
+    <td><%= matrix.course %></td>
+    <td><%= matrix.matrix_evaluation_type %></td>
+    <td><%= matrix.matrix_status %></td>
+    <td><%= matrix.class_season_type %></td>
+    <td><%= link_to 'Show', matrix %></td>
+    <td><%= link_to 'Edit', edit_matrix_path(matrix) %></td>
+    <td><%= link_to 'Destroy', matrix, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Matrix', new_matrix_path %>

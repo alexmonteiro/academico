@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: MyString
+  name: MyString
+  nickname: MyString
+  goal: MyString
+  maxtime: 1
+  mintime: 1
+  started_at: 2012-08-07
+  ended_at: 2012-08-07
+  dept: 
+  registration_scheme: 
+  class_season_type: 
+  learning_modality: 
+  knowledge_area: 
+  techaxes: 
+  education_modality: 
+
+two:
+  code: MyString
+  name: MyString
+  nickname: MyString
+  goal: MyString
+  maxtime: 1
+  mintime: 1
+  started_at: 2012-08-07
+  ended_at: 2012-08-07
+  dept: 
+  registration_scheme: 
+  class_season_type: 
+  learning_modality: 
+  knowledge_area: 
+  techaxes: 
+  education_modality: 
