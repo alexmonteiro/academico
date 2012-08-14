@@ -1,45 +1,50 @@
-<%= form_for(@school_class) do |f| %>
-  <% if @school_class.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@school_class.errors.count, "error") %> prohibited this school_class from being saved:</h2>
-
-      <ul>
-      <% @school_class.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @school_class, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :identifier, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :identifier, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :period, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :period, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :matrix_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :matrix_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :class_season_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :class_season_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :shift_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :shift_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :opening_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :opening_at, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :closing_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :closing_at, :class => 'date_select' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :identifier %><br />
-    <%= f.text_field :identifier %>
-  </div>
-  <div class="field">
-    <%= f.label :period %><br />
-    <%= f.number_field :period %>
-  </div>
-  <div class="field">
-    <%= f.label :matrix %><br />
-    <%= f.text_field :matrix %>
-  </div>
-  <div class="field">
-    <%= f.label :class_season %><br />
-    <%= f.text_field :class_season %>
-  </div>
-  <div class="field">
-    <%= f.label :shift_type %><br />
-    <%= f.text_field :shift_type %>
-  </div>
-  <div class="field">
-    <%= f.label :opening_at %><br />
-    <%= f.date_select :opening_at %>
-  </div>
-  <div class="field">
-    <%= f.label :closing_at %><br />
-    <%= f.date_select :closing_at %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                school_classes_path, :class => 'btn' %>
   </div>
 <% end %>

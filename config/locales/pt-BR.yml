@@ -58,12 +58,20 @@ pt-BR:
         knowledge_area_id: "Área de conhecimento"
         techaxes_id: "Eixo tecnológico"
         education_modality_id: "Modalidadce de ensino"     
+      school_class:
+        identifier: "Identificador"
+        period: "Período"
+        matrix_id: "Matriz"
+        class_season_id: "Período Letivo"
+        shift_type_id: "Turno"
+        opening_at: "Abertura"
+        closing_at: "Abertura"                      
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
       dept: "Departamento"
       course: "Curso"
-   
+      school_class: "Turma"
   action:
       actions: "Ações"
       new: "Novo"

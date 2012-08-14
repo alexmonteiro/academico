@@ -1,4 +1,5 @@
 AcademicoRails::Application.routes.draw do
+  
   resources :school_classes
 
   resources :course_vacancies
@@ -33,9 +34,19 @@ AcademicoRails::Application.routes.draw do
 
   resources :education_levels
 
+  resources :person_addresses
+
   resources :techaxis_types do
    resources :techaxes
   end
+
+  resources :education_steps
+
+  resources :provenance_areas
+
+  resources :street_types
+
+  resources :telephone_types
 
   resources :class_seasons
 
@@ -44,16 +55,20 @@ AcademicoRails::Application.routes.draw do
   get "welcome/index"
 
   resources :depts, :path => "departamentos" do
-      resources :courses, :path => "cursos"
+    resources :courses, :path => "cursos"
   end
-    
+
+  resources :depts
 
   resources :dept_types
 
   match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
-  
-  resources :people
+
+  resources :people do
+    resources :people_telephones
+    resources :person_addresses
+  end
 
   resources :special_needs_types
 
