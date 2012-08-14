@@ -6250,10 +6250,35 @@ street_types = StreetType.create([
   ])
 
 # Alimenta tabela com os tipos de Zonas
-puts 'Inserindo dados na tipos de Zonas...'
+puts 'Inserindo dados nos tipos de Zonas...'
 provenance_area = ProvenanceArea.create([
  {:description => 'rural'},
  {:description => 'urbana'}
+  ])
+
+# Alimenta tabela com as Situações dos Equipamentos de Ensino
+puts 'Inserindo dados nas Situações dos Equipamentos de Ensino...'
+situation_teaching_equipament = SituationTeachingEquipament.create([
+ {:description => 'Bom estado'},
+ {:description => 'Defeituoso'}
+  ])
+
+# Alimenta tabela com as Situações dos Equipamentos de Ensino
+puts 'Inserindo dados nos Tipos de Equipamento...'
+equipament_type = EquipamentType.create([
+  {:description => 'Aparelho de DVD'},
+  {:description => 'Ar Condicionado'},
+  {:description => 'Computador'},
+  {:description => 'Equipamentos de Informática'},
+  {:description => 'Equipamentos de Som'},
+  {:description => 'Impressora'},
+  {:description => 'Máquina de Xerox'},
+  {:description => 'Microfone'},
+  {:description => 'Notebook'},
+  {:description => 'Outros'},
+  {:description => 'Projetor Multimídia'},
+  {:description => 'Scanner'},
+  {:description => 'Televisăo'}
   ])
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

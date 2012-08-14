@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <h3>Dept: <%= @dept.name %></h3>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @teaching_equipament.description %>
+</p>
+
+<p>
+  <b>Arrival date:</b>
+  <%= @teaching_equipament.arrival_date %>
+</p>
+
+<p>
+  <b>Equipament type:</b>
+  <%= @teaching_equipament.equipament_type.description %>
+</p>
+
+<p>
+  <b>Situation teaching equipament:</b>
+  <%= @teaching_equipament.situation_teaching_equipament.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_dept_teaching_equipament_path %> |
+<%= link_to 'Back', dept_teaching_equipaments_path %>

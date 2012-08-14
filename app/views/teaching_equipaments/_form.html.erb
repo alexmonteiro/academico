@@ -1,0 +1,39 @@
+<%= form_for([@dept,@teaching_equipament]) do |f| %>
+  <% if @teaching_equipament.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@teaching_equipament.errors.count, "error") %> prohibited this teaching_equipament from being saved:</h2>
+
+      <ul>
+      <% @teaching_equipament.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p/>
+    <h3><%= Dept.find(params[:dept_id]).name %></h3><br />
+    <%= f.hidden_field :dept_id, :value => params[:dept_id] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :arrival_date %><br />
+    <%= f.date_select :arrival_date %>
+  </div>
+  <div class="field">
+    <%= f.label :equipament_type %><br />
+    <%= f.collection_select :equipament_type_id, EquipamentType.find(:all) , :id, :description, :prompt => "Select a equipament type" %>
+  </div>
+  <div class="field">
+    <%= f.label :situation_teaching_equipament %><br />
+    <%= f.collection_select :situation_teaching_equipament_id, SituationTeachingEquipament.find(:all) , :id, :description, :prompt => "Select a situation of the equipament" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
