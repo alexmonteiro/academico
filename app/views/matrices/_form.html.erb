@@ -1,49 +1,56 @@
-<%= form_for(@matrix) do |f| %>
-  <% if @matrix.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@matrix.errors.count, "error") %> prohibited this matrix from being saved:</h2>
-
-      <ul>
-      <% @matrix.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @matrix, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :started_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :started_at, :class => 'date_select' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :ended_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :ended_at, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :maxdisciplines, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :maxdisciplines, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :maxseasons, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :maxseasons, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :course_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :course_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :matrix_evaluation_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :matrix_evaluation_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :matrix_status_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :matrix_status_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :class_season_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :class_season_type_id, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :started_at %><br />
-    <%= f.date_select :started_at %>
-  </div>
-  <div class="field">
-    <%= f.label :ended_at %><br />
-    <%= f.date_select :ended_at %>
-  </div>
-  <div class="field">
-    <%= f.label :maxdisciplines %><br />
-    <%= f.number_field :maxdisciplines %>
-  </div>
-  <div class="field">
-    <%= f.label :maxseasons %><br />
-    <%= f.number_field :maxseasons %>
-  </div>
-  <div class="field">
-    <%= f.label :course %><br />
-    <%= f.text_field :course %>
-  </div>
-  <div class="field">
-    <%= f.label :matrix_evaluation_type %><br />
-    <%= f.text_field :matrix_evaluation_type %>
-  </div>
-  <div class="field">
-    <%= f.label :matrix_status %><br />
-    <%= f.text_field :matrix_status %>
-  </div>
-  <div class="field">
-    <%= f.label :class_season_type %><br />
-    <%= f.text_field :class_season_type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                matrices_path, :class => 'btn' %>
   </div>
 <% end %>

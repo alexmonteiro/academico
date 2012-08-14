@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @course_vacancy.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Course:</b>
-  <%= @course_vacancy.course %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
+  <dd><%= @course_vacancy.course_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:class_season_id) %>:</strong></dt>
+  <dd><%= @course_vacancy.class_season_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
+  <dd><%= @course_vacancy.shift_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number_vacancies) %>:</strong></dt>
+  <dd><%= @course_vacancy.number_vacancies %></dd>
+</dl>
 
-<p>
-  <b>Class season:</b>
-  <%= @course_vacancy.class_season %>
-</p>
-
-<p>
-  <b>Shift type:</b>
-  <%= @course_vacancy.shift_type %>
-</p>
-
-<p>
-  <b>Number vacancies:</b>
-  <%= @course_vacancy.number_vacancies %>
-</p>
-
-
-<%= link_to 'Edit', edit_course_vacancy_path(@course_vacancy) %> |
-<%= link_to 'Back', course_vacancies_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              course_vacancies_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_course_vacancy_path(@course_vacancy), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              course_vacancy_path(@course_vacancy),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
