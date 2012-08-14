@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810183310) do
+ActiveRecord::Schema.define(:version => 20120814143856) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -345,6 +345,22 @@ ActiveRecord::Schema.define(:version => 20120810183310) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "school_classes", :force => true do |t|
+    t.string   "identifier"
+    t.integer  "period"
+    t.integer  "matrix_id"
+    t.integer  "class_season_id"
+    t.integer  "shift_type_id"
+    t.date     "opening_at"
+    t.date     "closing_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "school_classes", ["class_season_id"], :name => "index_school_classes_on_class_season_id"
+  add_index "school_classes", ["matrix_id"], :name => "index_school_classes_on_matrix_id"
+  add_index "school_classes", ["shift_type_id"], :name => "index_school_classes_on_shift_type_id"
 
   create_table "shift_types", :force => true do |t|
     t.string   "description"
