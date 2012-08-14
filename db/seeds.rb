@@ -6202,6 +6202,58 @@ shift_types = ShiftType.create([
     {:description => 'Matutino'},
     {:description => 'Vespertino'},
     {:description => 'Noturno'},
-    {:description => 'Integral'}])    
+    {:description => 'Integral'}])
+
+# Alimenta tabela com os tipos de Telefones
+puts 'Inserindo dados na tipos de Telefones...'
+telephone_types = TelephoneType.create([
+    {:telephone_type => 'Trabalho'},
+    {:telephone_type => 'Residencial'},
+    {:telephone_type => 'Celular'},
+    {:telephone_type => 'Recado'},
+    {:telephone_type => 'Fax'},
+    {:telephone_type => 'Outros'}
+  ])
+
+# Alimenta tabela com os tipos de Logradouros
+puts 'Inserindo dados na tipos de Logradouros...'
+street_types = StreetType.create([
+ {:description => 'Aeroporto'},
+ {:description => 'Alameda'},
+ {:description => 'Apartamento'},
+ {:description => 'Avenida'},
+ {:description => 'Beco'},
+ {:description => 'Caminho'},
+ {:description => 'Ch√°cara'},
+ {:description => 'Escadinha'},
+ {:description => 'Esta√ßƒÉo'},
+ {:description => 'Estrada'},
+ {:description => 'Fazenda'},
+ {:description => 'Fortaleza'},
+ {:description => 'Galeria'},
+ {:description => 'Ladeira'},
+ {:description => 'Largo'},
+ {:description => 'Outros'},
+ {:description => 'Parque'},
+ {:description => 'Pra√ßa'},
+ {:description => 'Praia'},
+ {:description => 'Quadra'},
+ {:description => 'Quil√¥metro'},
+ {:description => 'Quinta'},
+ {:description => 'Rodovia'},
+ {:description => 'Rua'},
+ {:description => 'Setor'},
+ {:description => 'Super Quadra'},
+ {:description => 'Travessa'},
+ {:description => 'Viaduto'},
+ {:description => 'Vila'}
+  ])
+
+# Alimenta tabela com os tipos de Zonas
+puts 'Inserindo dados na tipos de Zonas...'
+provenance_area = ProvenanceArea.create([
+ {:description => 'rural'},
+ {:description => 'urbana'}
+  ])
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
