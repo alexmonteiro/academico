@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Identifier:</b>
+  <%= @school_class.identifier %>
+</p>
+
+<p>
+  <b>Period:</b>
+  <%= @school_class.period %>
+</p>
+
+<p>
+  <b>Matrix:</b>
+  <%= @school_class.matrix %>
+</p>
+
+<p>
+  <b>Class season:</b>
+  <%= @school_class.class_season %>
+</p>
+
+<p>
+  <b>Shift type:</b>
+  <%= @school_class.shift_type %>
+</p>
+
+<p>
+  <b>Opening at:</b>
+  <%= @school_class.opening_at %>
+</p>
+
+<p>
+  <b>Closing at:</b>
+  <%= @school_class.closing_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_class_path(@school_class) %> |
+<%= link_to 'Back', school_classes_path %>

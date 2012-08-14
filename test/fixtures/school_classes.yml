@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  identifier: MyString
+  period: 1
+  matrix: 
+  class_season: 
+  shift_type: 
+  opening_at: 2012-08-14
+  closing_at: 2012-08-14
+
+two:
+  identifier: MyString
+  period: 1
+  matrix: 
+  class_season: 
+  shift_type: 
+  opening_at: 2012-08-14
+  closing_at: 2012-08-14
