@@ -14,19 +14,19 @@
   <div class="control-group">
     <%= f.label :matrix_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :matrix_id, :class => 'number_field' %>
+      <%= f.collection_select :matrix_id, Matrix.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :class_season_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :class_season_id, :class => 'number_field' %>
+      <%= f.collection_select :class_season_id, ClassSeason.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :shift_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :shift_type_id, :class => 'number_field' %>
+      <%= f.collection_select :shift_type_id, ShiftType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
@@ -38,7 +38,7 @@
   <div class="control-group">
     <%= f.label :closing_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :closing_at, :class => 'date_select' %>
+      <%= f.date_select :closing_at, :class => 'date_select', :include_blank => true %>
     </div>
   </div>
 

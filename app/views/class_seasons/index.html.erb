@@ -12,7 +12,6 @@
       <th><%= model_class.human_attribute_name(:end_at) %></th>
       <th><%= model_class.human_attribute_name(:class_season_type_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -24,9 +23,8 @@
         <td><%= class_season.number %></td>
         <td><%= class_season.start_at %></td>
         <td><%= class_season.end_at %></td>
-        <td><%= class_season.class_season_type_id %></td>
-        <td><%= class_season.dept_id %></td>
-        <td><%=l class_season.created_at %></td>
+        <td><%= class_season.class_season_type.description %></td>
+        <td><%= class_season.dept.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_class_season_path(class_season), :class => 'btn btn-mini' %>

@@ -13,7 +13,6 @@
       <th><%= model_class.human_attribute_name(:shift_type_id) %></th>
       <th><%= model_class.human_attribute_name(:opening_at) %></th>
       <th><%= model_class.human_attribute_name(:closing_at) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -25,10 +24,9 @@
         <td><%= school_class.period %></td>
         <td><%= school_class.matrix_id %></td>
         <td><%= school_class.class_season_id %></td>
-        <td><%= school_class.shift_type_id %></td>
+        <td><%= school_class.shift_type.description %></td>
         <td><%= school_class.opening_at %></td>
         <td><%= school_class.closing_at %></td>
-        <td><%=l school_class.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_school_class_path(school_class), :class => 'btn btn-mini' %>
