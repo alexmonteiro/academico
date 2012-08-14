@@ -1,0 +1,21 @@
+<%= form_for(@provenance_area) do |f| %>
+  <% if @provenance_area.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@provenance_area.errors.count, "error") %> prohibited this provenance_area from being saved:</h2>
+
+      <ul>
+      <% @provenance_area.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

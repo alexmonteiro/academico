@@ -27,3 +27,22 @@ jQuery(function($) {
     return false;
   });
 })
+
+
+jQuery(function($) {
+  // when the #country field changes
+  $("#person_address_country").change(function() {
+    // make a POST call and replace the content
+    var country = $('select#person_address_country :selected').val();
+    if(country == "") country="0";
+    jQuery.get('/people/update_state_select/' + country, function(data){
+        $("#addressStates").html(data);
+    })
+    return false;
+  });
+})
+
+
+
+
+

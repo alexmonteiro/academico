@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Telephone type:</b>
+  <%= @people_telephone.telephone_type.telephone_type %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @person.name %>
+</p>
+
+<p>
+  <b>Area code:</b>
+  <%= @people_telephone.area_code %>
+</p>
+
+<p>
+  <b>Number:</b>
+  <%= @people_telephone.number %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%=  @people_telephone.branch ? @people_telephone.branch : "<nenhum>" %>
+</p>
+
+
+<%= link_to 'Edit', edit_person_people_telephone_path %> |
+<%= link_to 'Back', person_people_telephones_path %>

@@ -1,0 +1,30 @@
+<h1>Listing people_telephones</h1>
+<p><h3>from <%= @person.name %></h3></p>
+<table>
+  <tr>
+    <th>Telephone type</th>
+    <th>People</th>
+    <th>Area code</th>
+    <th>Number</th>
+    <th>Branch</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @people_telephones.each do |people_telephone| %>
+  <tr>
+    <td><%= people_telephone.telephone_type.telephone_type %></td>
+    <td><%= people_telephone.area_code %></td>
+    <td><%= people_telephone.number %></td>
+    <td><%= people_telephone.branch %></td>
+    <td><%= link_to 'Show', [@person, people_telephone] %></td>
+    <td><%= link_to 'Edit', edit_person_people_telephone_path(:id =>  people_telephone.id ) %></td>
+    <td><%= link_to 'Destroy', [@person, people_telephone], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New People telephone', new_person_people_telephone_path %>
