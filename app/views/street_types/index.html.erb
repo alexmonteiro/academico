@@ -1,0 +1,23 @@
+<h1>Listing street_types</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @street_types.each do |street_type| %>
+  <tr>
+    <td><%= street_type.description %></td>
+    <td><%= link_to 'Show', street_type %></td>
+    <td><%= link_to 'Edit', edit_street_type_path(street_type) %></td>
+    <td><%= link_to 'Destroy', street_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Street type', new_street_type_path %>
