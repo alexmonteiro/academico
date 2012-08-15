@@ -1,0 +1,44 @@
+<%- model_class = TeachingEquipament.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:arrival_date) %></th>
+      <th><%= model_class.human_attribute_name(:equipament_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:situation_teaching_equipament_id) %></th>
+      <th><%= model_class.human_attribute_name(:dept_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teaching_equipaments.each do |teaching_equipament| %>
+      <tr>
+        <td><%= link_to teaching_equipament.id, [@dept, teaching_equipament] %></td>
+        <td><%= teaching_equipament.description %></td>
+        <td><%= teaching_equipament.arrival_date %></td>
+        <td><%= teaching_equipament.equipament_type_id %></td>
+        <td><%= teaching_equipament.situation_teaching_equipament_id %></td>
+        <td><%= teaching_equipament.dept_id %></td>
+        <td><%=l teaching_equipament.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dept_teaching_equipament_path(:id => teaching_equipament), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      [@dept, teaching_equipament],
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dept_teaching_equipament_path,
+            :class => 'btn btn-primary' %>

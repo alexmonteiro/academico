@@ -2,6 +2,12 @@ AcademicoRails::Application.routes.draw do
   
   resources :school_classes, :path =>"turmas"
 
+  resources :equipament_types
+
+  resources :situation_teaching_equipaments
+
+  resources :course_vacancies
+
   resources :course_vacancies, :path => "ofertadevagas"
 
   resources :shift_types, :path => "turnos"
@@ -56,6 +62,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :depts, :path => "departamentos" do
     resources :courses, :path => "cursos"
+    resources :teaching_equipaments, :path => "equipamentos_de_ensino"
   end
 
   resources :depts
