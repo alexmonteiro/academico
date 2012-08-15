@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyString
+  arrival_date: 2012-08-14
+  equipament_type: 
+  situation_teaching_equipament: 
+  dept: 
+
+two:
+  description: MyString
+  arrival_date: 2012-08-14
+  equipament_type: 
+  situation_teaching_equipament: 
+  dept: 

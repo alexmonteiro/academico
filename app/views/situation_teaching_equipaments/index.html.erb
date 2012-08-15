@@ -1,0 +1,23 @@
+<h1>Listing situation_teaching_equipaments</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @situation_teaching_equipaments.each do |situation_teaching_equipament| %>
+  <tr>
+    <td><%= situation_teaching_equipament.description %></td>
+    <td><%= link_to 'Show', situation_teaching_equipament %></td>
+    <td><%= link_to 'Edit', edit_situation_teaching_equipament_path(situation_teaching_equipament) %></td>
+    <td><%= link_to 'Destroy', situation_teaching_equipament, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Situation teaching equipament', new_situation_teaching_equipament_path %>
