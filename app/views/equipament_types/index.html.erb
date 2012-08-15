@@ -1,0 +1,23 @@
+<h1>Listing equipament_types</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @equipament_types.each do |equipament_type| %>
+  <tr>
+    <td><%= equipament_type.description %></td>
+    <td><%= link_to 'Show', equipament_type %></td>
+    <td><%= link_to 'Edit', edit_equipament_type_path(equipament_type) %></td>
+    <td><%= link_to 'Destroy', equipament_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Equipament type', new_equipament_type_path %>

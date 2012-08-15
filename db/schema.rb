@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814143856) do
+ActiveRecord::Schema.define(:version => 20120814192016) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -172,6 +172,12 @@ ActiveRecord::Schema.define(:version => 20120814143856) do
   end
 
   add_index "education_steps", ["education_level_id"], :name => "index_education_steps_on_education_level_id"
+
+  create_table "equipament_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "genders", :force => true do |t|
     t.string   "gender"
@@ -368,6 +374,12 @@ ActiveRecord::Schema.define(:version => 20120814143856) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "situation_teaching_equipaments", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "special_needs_types", :force => true do |t|
     t.string   "type"
     t.datetime "created_at", :null => false
@@ -389,6 +401,20 @@ ActiveRecord::Schema.define(:version => 20120814143856) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "teaching_equipaments", :force => true do |t|
+    t.string   "description"
+    t.date     "arrival_date"
+    t.integer  "equipament_type_id"
+    t.integer  "situation_teaching_equipament_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "teaching_equipaments", ["dept_id"], :name => "index_teaching_equipaments_on_dept_id"
+  add_index "teaching_equipaments", ["equipament_type_id"], :name => "index_teaching_equipaments_on_equipament_type_id"
+  add_index "teaching_equipaments", ["situation_teaching_equipament_id"], :name => "index_teaching_equipaments_on_situation_teaching_equipament_id"
 
   create_table "techaxes", :force => true do |t|
     t.string   "techaxis"
