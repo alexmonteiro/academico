@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :start_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.datetime_select :start_at, :class => 'datetime_select' %>
+      <%= f.date_select :start_at, :class => 'date_select' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :end_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.datetime_select :end_at, :class => 'datetime_select' %>
+      <%= f.date_select :end_at, :class => 'date_select', :include_blank => true %>
     </div>
   </div>
   <div class="control-group">

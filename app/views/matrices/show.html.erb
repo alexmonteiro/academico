@@ -1,45 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @matrix.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Started at:</b>
-  <%= @matrix.started_at %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
+  <dd><%= @matrix.started_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ended_at) %>:</strong></dt>
+  <dd><%= @matrix.ended_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:maxdisciplines) %>:</strong></dt>
+  <dd><%= @matrix.maxdisciplines %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:maxseasons) %>:</strong></dt>
+  <dd><%= @matrix.maxseasons %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
+  <dd><%= @matrix.course_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:matrix_evaluation_type_id) %>:</strong></dt>
+  <dd><%= @matrix.matrix_evaluation_type_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:matrix_status_id) %>:</strong></dt>
+  <dd><%= @matrix.matrix_status_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:class_season_type_id) %>:</strong></dt>
+  <dd><%= @matrix.class_season_type_id %></dd>
+</dl>
 
-<p>
-  <b>Ended at:</b>
-  <%= @matrix.ended_at %>
-</p>
-
-<p>
-  <b>Maxdisciplines:</b>
-  <%= @matrix.maxdisciplines %>
-</p>
-
-<p>
-  <b>Maxseasons:</b>
-  <%= @matrix.maxseasons %>
-</p>
-
-<p>
-  <b>Course:</b>
-  <%= @matrix.course %>
-</p>
-
-<p>
-  <b>Matrix evaluation type:</b>
-  <%= @matrix.matrix_evaluation_type %>
-</p>
-
-<p>
-  <b>Matrix status:</b>
-  <%= @matrix.matrix_status %>
-</p>
-
-<p>
-  <b>Class season type:</b>
-  <%= @matrix.class_season_type %>
-</p>
-
-
-<%= link_to 'Edit', edit_matrix_path(@matrix) %> |
-<%= link_to 'Back', matrices_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              matrices_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_matrix_path(@matrix), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              matrix_path(@matrix),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

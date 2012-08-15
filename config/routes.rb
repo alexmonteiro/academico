@@ -1,24 +1,30 @@
 AcademicoRails::Application.routes.draw do
+  
+  resources :school_classes, :path =>"turmas"
 
+<<<<<<< HEAD
   resources :equipament_types
 
   resources :situation_teaching_equipaments
 
   resources :course_vacancies
+=======
+  resources :course_vacancies, :path => "ofertadevagas"
+>>>>>>> e5dc21f8ee3b08758e31e01f037d531f561e13f1
 
-  resources :shift_types
+  resources :shift_types, :path => "turnos"
 
   resources :matrix_disciplines
 
   resources :matrix_discipline_groups
 
-  resources :matrices
+  resources :matrices, :path => "matrizcurricular"
 
   resources :matrix_evaluation_types
 
   resources :matrix_statuses
 
-  resources :disciplines
+  resources :disciplines, :path => "disciplinas"
 
   resources :discipline_types
 
@@ -50,7 +56,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :telephone_types
 
-  resources :class_seasons
+  resources :class_seasons, :path => "periodosletivos"
 
   resources :class_season_types
 

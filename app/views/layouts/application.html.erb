@@ -49,17 +49,18 @@
 	          <div class="well sidebar-nav">
 	            <ul class="nav nav-list">
 	              <li class="nav-header">Infraestrutura</li>
+		          <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href="#"><%= link_to('Estrutura Organizacional',depts_path) %></a></li>
 	              <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><%= link_to('Pessoas',people_path) %></li>
-	              <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href="#"><%= link_to('Estrutura Organizacional',depts_path) %></a></li>
-	              <li><a href="#">Link</a></li>
+
 	              <li class="nav-header">Perído Letivo</li>
-	              <li><a href="#">Link</a></li>
-	              <li><a href="#">Link</a></li>
+             	  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><%= link_to('Turmas',school_classes_path) %></li>
+             	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><%= link_to('Período Letivo',class_seasons_path) %></li>
 
 	              <li class="nav-header">Registros Acadêmicos</li>
              	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><%= link_to('Cursos',courses_path) %></li>
                   <li class="<%= ('disciplines' == params[:controller] ? 'active' : '')%>"><%= link_to('Disciplinas (Elemento Curricular)',disciplines_path) %></li>
-	              <li><a href="#">Link</a></li>
+                  <li class="<%= ('matrices' == params[:controller] ? 'active' : '')%>"><%= link_to('Matriz Curricular',matrices_path) %></li>
+                  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><%= link_to('Oferta de Vagas',course_vacancies_path) %></li>
 
 	            </ul>
 	          </div><!--/.well -->

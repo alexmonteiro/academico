@@ -1,62 +1,80 @@
 <%= form_for @discipline, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
+
+<div class="container">
+
+<div class="span5">	
+   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+    <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :code, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :code, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
+   </div>
+   
+   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :description, :class => 'text_field' %>
+    <div class="controls">    
+    <%= f.text_area :description, :class => 'text_area' %>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :goals, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :goals, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
+   </div>
+
+   <div class="control-group">
     <%= f.label :workload, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :workload, :class => 'number_field' %>
+    <div class="controls">    
+    <%= f.number_field :workload, :class => 'number_field' %>.
     </div>
-  </div>
-  <div class="control-group">
+   </div>
+   
+   <div class="control-group">
     <%= f.label :credits, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :credits, :class => 'number_field' %>
+    <div class="controls">    
+    <%= f.number_field :credits, :class => 'number_field' %>
     </div>
-  </div>
-  <div class="control-group">
+   </div>
+
+</div>
+<div class="span5">	
+   <div class="control-group">
+	<%= f.label :code, :class => 'control-label' %>
+	<div class="controls">    
+    <%= f.text_field :code, :class => 'text_field' %>
+    </div>
+   </div>
+    
+    <div class="control-group">
+    <%= f.label :goals, :class => 'control-label' %>
+    <div class="controls">    
+    <%= f.text_area :goals, :class => 'text_area' %>
+    </div>
+    </div>
+
+    <div class="control-group">
     <%= f.label :discipline_type_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :discipline_type_id, :class => 'number_field' %>
+    <div class="controls">    
+    <%= f.collection_select :discipline_type_id, DisciplineType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
-  </div>
-  <div class="control-group">
+    </div>
+
+    <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :course_id, :class => 'number_field' %>
+    <div class="controls">    
+    <%= f.collection_select :course_id, Course.find(:all), :id, :name, :prompt => "...Selecione..." %>
     </div>
-  </div>
-  <div class="control-group">
+    </div>
+
+    <div class="control-group">
     <%= f.label :dept_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :dept_id, :class => 'number_field' %>
+    <div class="controls">    
+    <%= f.collection_select :dept_id, Course.find(:all), :id, :name, :prompt => "...Selecione..." %>
     </div>
-  </div>
+    </div>
+</div>
+
+</div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 disciplines_path, :class => 'btn' %>
   </div>
+
 <% end %>

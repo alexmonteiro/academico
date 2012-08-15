@@ -1,33 +1,32 @@
-<%= form_for(@course_vacancy) do |f| %>
-  <% if @course_vacancy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course_vacancy.errors.count, "error") %> prohibited this course_vacancy from being saved:</h2>
-
-      <ul>
-      <% @course_vacancy.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @course_vacancy, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :course_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :course_id, :class => 'number_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :class_season_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :class_season_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :shift_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :shift_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :number_vacancies, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :number_vacancies, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :course %><br />
-    <%= f.text_field :course %>
-  </div>
-  <div class="field">
-    <%= f.label :class_season %><br />
-    <%= f.text_field :class_season %>
-  </div>
-  <div class="field">
-    <%= f.label :shift_type %><br />
-    <%= f.text_field :shift_type %>
-  </div>
-  <div class="field">
-    <%= f.label :number_vacancies %><br />
-    <%= f.number_field :number_vacancies %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                course_vacancies_path, :class => 'btn' %>
   </div>
 <% end %>
