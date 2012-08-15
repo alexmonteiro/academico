@@ -2,15 +2,13 @@ AcademicoRails::Application.routes.draw do
   
   resources :school_classes, :path =>"turmas"
 
-<<<<<<< HEAD
   resources :equipament_types
 
   resources :situation_teaching_equipaments
 
   resources :course_vacancies
-=======
+
   resources :course_vacancies, :path => "ofertadevagas"
->>>>>>> e5dc21f8ee3b08758e31e01f037d531f561e13f1
 
   resources :shift_types, :path => "turnos"
 

@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120814192016) do
-=======
-ActiveRecord::Schema.define(:version => 20120814143856) do
->>>>>>> e5dc21f8ee3b08758e31e01f037d531f561e13f1
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
