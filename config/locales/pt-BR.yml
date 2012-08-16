@@ -88,9 +88,17 @@ pt-BR:
         maxdisciplines: "No. Disciplinas"
         maxseasons: "No. de Períodos"
         course_id: "Curso"
-        matrix_evaluation_type_id: "Tipo de Inscrição"
+        matrix_evaluation_type_id: "Tipo de Avaliação"
         matrix_status_id: "Status"
         class_season_type_id: "Tipo Período"
+      discipline_class: 
+        school_class_id: "Turma"
+        matrix_discipline_id: "Discipline"
+        code: "Código"
+        vacancies: "No. Vagas"
+        started_at: "Dt. Abertura"
+        ending_at: "Dt. Fechamento"
+        timetable_started_at: "Vg. Grade Horária"
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -99,7 +107,8 @@ pt-BR:
       course_vacancy: "Oferta de Vaga"      
       discipline: "Disciplina"
       school_class: "Turma"
-      matrix: "Matriz" 
+      matrix: "Matriz"
+      discipline_class: "Classe" 
 
   action:
       actions: "Ações"

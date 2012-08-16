@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
   
+  resources :discipline_classes
+
   resources :school_classes, :path =>"turmas"
 
   resources :equipament_types

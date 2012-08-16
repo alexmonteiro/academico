@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  school_class: 
+  matrix_discipline: 
+  code: MyString
+  vancancies: 
+  started_at: 2012-08-15
+  ending_at: 2012-08-15
+  timetable_started_at: 2012-08-15
+
+two:
+  school_class: 
+  matrix_discipline: 
+  code: MyString
+  vancancies: 
+  started_at: 2012-08-15
+  ending_at: 2012-08-15
+  timetable_started_at: 2012-08-15

@@ -1,4 +1,6 @@
 <%= form_for @matrix, :html => { :class => 'form-horizontal' } do |f| %>
+<fieldset class="control-group">
+<legend>Vigência<legend>
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls">
@@ -11,6 +13,7 @@
       <%= f.date_select :ended_at, :class => 'date_select' %>
     </div>
   </div>
+</fieldset>
   <div class="control-group">
     <%= f.label :maxdisciplines, :class => 'control-label' %>
     <div class="controls">
@@ -26,25 +29,25 @@
   <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :course_id, :class => 'number_field' %>
+      <%= f.collection_select :course_id, Course.find(:all), :id, :name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :matrix_evaluation_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :matrix_evaluation_type_id, :class => 'number_field' %>
+      <%= f.collection_select :matrix_evaluation_type_id, MatrixEvaluationType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :matrix_status_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :matrix_status_id, :class => 'number_field' %>
+      <%= f.collection_select :matrix_status_id, MatrixStatus.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :class_season_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :class_season_type_id, :class => 'number_field' %>
+      <%= f.collection_select :class_season_type_id, ClassSeasonType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
 
