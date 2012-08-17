@@ -28,7 +28,6 @@ jQuery(function($) {
   });
 })
 
-
 jQuery(function($) {
   // when the #country field changes
   $("#person_address_country").change(function() {
@@ -42,6 +41,19 @@ jQuery(function($) {
   });
 })
 
+// Disciplinas da Turma/MatrizCurricular
+jQuery(function($) {
+  // when the #turma field changes
+  $("#discipline_class_school_class_id").change(function() {
+    // make a POST call and replace the content
+    var turma = $('select#discipline_class_school_class_id :selected').val();
+    if(turma == "") turma="0";
+    jQuery.get('/discipline_classes/update_discipline_select/' + turma, function(data){
+        $("#turmaDisciplinas").html(data);
+    })
+    return false;
+  });
+})
 
 
 

@@ -2,6 +2,7 @@ class MatrixDisciplinesController < ApplicationController
   # GET /matrix_disciplines
   # GET /matrix_disciplines.json
   def index
+    @matrix = Matrix.find(params[:matrix_id])
     @matrix_disciplines = MatrixDiscipline.all
 
     respond_to do |format|
@@ -24,6 +25,7 @@ class MatrixDisciplinesController < ApplicationController
   # GET /matrix_disciplines/new
   # GET /matrix_disciplines/new.json
   def new
+    @matrix = Matrix.find(params[:matrix_id])
     @matrix_discipline = MatrixDiscipline.new
 
     respond_to do |format|

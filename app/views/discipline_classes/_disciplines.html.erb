@@ -1,0 +1,5 @@
+ <% if !disciplines.blank? %>
+    <%= select_tag 'discipline_class[matrix_discipline_id]', options_from_collection_for_select(disciplines, "id", "name") %>
+ <% else %>
+    <%= select_tag 'discipline_class[matrix_discipline_id]', [], :class => 'select_field' %>
+ <% end %>

@@ -80,4 +80,10 @@ class DisciplineClassesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_discipline_select
+      turma = SchoolClass.find(params[:id])
+      disciplinas = turma.matrix.disciplines
+      render :partial => "disciplines", :locals => { :disciplines => disciplinas }      
+  end  
 end

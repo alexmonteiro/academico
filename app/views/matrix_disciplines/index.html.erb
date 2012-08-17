@@ -1,33 +1,46 @@
-<h1>Listing matrix_disciplines</h1>
-
-<table>
-  <tr>
-    <th>Matrix</th>
-    <th>Discipline</th>
-    <th>Matrix discipline group</th>
-    <th>Maxseasons</th>
-    <th>Isoptative</th>
-    <th>Isdependence</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @matrix_disciplines.each do |matrix_discipline| %>
-  <tr>
-    <td><%= matrix_discipline.matrix %></td>
-    <td><%= matrix_discipline.discipline %></td>
-    <td><%= matrix_discipline.matrix_discipline_group %></td>
-    <td><%= matrix_discipline.maxseasons %></td>
-    <td><%= matrix_discipline.isoptative %></td>
-    <td><%= matrix_discipline.isdependence %></td>
-    <td><%= link_to 'Show', matrix_discipline %></td>
-    <td><%= link_to 'Edit', edit_matrix_discipline_path(matrix_discipline) %></td>
-    <td><%= link_to 'Destroy', matrix_discipline, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = MatrixDiscipline.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:matrix_id) %></th>
+      <th><%= model_class.human_attribute_name(:discipline_id) %></th>
+      <th><%= model_class.human_attribute_name(:matrix_discipline_group_id) %></th>
+      <th><%= model_class.human_attribute_name(:maxseasons) %></th>
+      <th><%= model_class.human_attribute_name(:isoptative) %></th>
+      <th><%= model_class.human_attribute_name(:isdependence) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matrix_disciplines.each do |matrix_discipline| %>
+      <tr>
+        <td><%= link_to matrix_discipline.id, [@matrix, matrix_discipline] %></td>
+        <td><%= matrix_discipline.matrix_id %></td>
+        <td><%= matrix_discipline.discipline_id %></td>
+        <td><%= matrix_discipline.matrix_discipline_group_id %></td>
+        <td><%= matrix_discipline.maxseasons %></td>
+        <td><%= matrix_discipline.isoptative %></td>
+        <td><%= matrix_discipline.isdependence %></td>
+        <td><%=l matrix_discipline.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_matrix_matrix_discipline_path(:id => matrix_discipline.id), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      [@matrix, matrix_discipline],
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Matrix discipline', new_matrix_discipline_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_matrix_matrix_discipline_path,
+            :class => 'btn btn-primary' %>
