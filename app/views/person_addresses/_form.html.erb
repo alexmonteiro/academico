@@ -1,81 +1,81 @@
-<%= form_for([@person, @person_address]) do |f| %>
-  <% if @person_address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person_address.errors.count, "error") %> prohibited this person_address from being saved:</h2>
-
-      <ul>
-      <% @person_address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for [@person,@person_address], :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+      <h3><%= Person.find(params[:person_id]).name %></h3><br />
+      <%= f.hidden_field :person_id, :value => params[:person_id] %>
+  </div>
+  <div class="control-group">
+    <%= f.label :street_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Select a Street Type" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <h3><%= Person.find(params[:person_id]).name %></h3><br />
-    <%= f.hidden_field :person_id, :value => params[:person_id] %>
   </div>
-
-  <div class="field">
-    <%= f.label :street_type %><br />
-    <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Select a Street" %>
-  </div>
-
-
-
-    <!-- País Cidade e Estado -->
-  <div class="span3" id="addressCountry">
-    <%= f.label :country_id, :class => 'control-label' %>
+<div class="control-group">
+<!-- País Cidade e Estado -->
+  <%= f.label :country_id, :class => 'control-label' %>
+  <div class="controls" id="addressCountry">
     <%= render :partial =>'country' %>
   </div>
-  <div class="span3">
-
+</div>
+<div class="control-group">
   <%= f.label :state_id, :class => 'control-label' %>
-    <div class="controls"  id="addressStates">
-	   <%= render :partial => 'states'%>
-    </div>
+  <div class="controls"  id="addressStates">
+	 <%= render :partial => 'states'%>
   </div>
-
-  <div class="span3">
+</div>
+<div class="control-group">
   <%= f.label :city_id, :class => 'control-label' %>
-    <div class="controls"  id="addressCities">
-	   <%= render :partial => 'cities'  %>
+  <div class="controls"  id="addressCities">
+	 <%= render :partial => 'cities'  %>
+  </div>
+</div>
+<!-- Fim -->
+
+  <div class="control-group">
+    <%= f.label :street_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :street_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :complement, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :complement, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :post_office_box, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :post_office_box, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :neighborhood, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :neighborhood, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :zip_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :zip_code, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :number, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :provenance_area_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Zone" %>
     </div>
   </div>
 
-   <!-- Fim -->
-
-
-
-  <div class="field">
-    <%= f.label :street_name %><br />
-    <%= f.text_field :street_name %>
-  </div>
-  <div class="field">
-    <%= f.label :complement %><br />
-    <%= f.text_field :complement %>
-  </div>
-  <div class="field">
-    <%= f.label :post_office_box %><br />
-    <%= f.text_field :post_office_box %>
-  </div>
-  <div class="field">
-    <%= f.label :neighborhood %><br />
-    <%= f.text_field :neighborhood %>
-  </div>
-  <div class="field">
-    <%= f.label :zip_code %><br />
-    <%= f.number_field :zip_code %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :provenance_area %><br />
-    <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Provenance Area" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                person_person_addresses_path, :class => 'btn' %>
   </div>
 <% end %>

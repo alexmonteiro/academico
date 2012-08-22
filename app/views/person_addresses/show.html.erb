@@ -1,55 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Street type:</b>
-  <%= @person_address.street_type %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @person_address.city %>
-</p>
-
-<p>
-  <b>Street name:</b>
-  <%= @person_address.street_name %>
-</p>
-
-<p>
-  <b>Complement:</b>
-  <%= @person_address.complement %>
-</p>
-
-<p>
-  <b>Post office box:</b>
-  <%= @person_address.post_office_box %>
-</p>
-
-<p>
-  <b>Neighborhood:</b>
-  <%= @person_address.neighborhood %>
-</p>
-
-<p>
-  <b>Zip code:</b>
-  <%= @person_address.zip_code %>
-</p>
-
-<p>
-  <b>Number:</b>
-  <%= @person_address.number %>
-</p>
-
-<p>
-  <b>Provenance area:</b>
-  <%= @person_address.provenance_area %>
-</p>
-
-<p>
-  <b>Person:</b>
-  <%= @person_address.person %>
-</p>
-
-
-<%= link_to 'Edit', edit_person_person_address_path %> |
-<%= link_to 'Back', person_person_addresses_path %>
+<%- model_class = @person_address.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-home"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @person.name, person_path(@person) %></h3>
+</div>
+<div class="container">
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:street_type_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.street_type, :atributo => "description") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.city, :atributo => "name")%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_name) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.street_name) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:complement) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.complement) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:post_office_box) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.post_office_box) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:neighborhood) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.neighborhood) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:zip_code) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.zip_code) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.number) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:provenance_area_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_address.provenance_area, :atributo => "description") %></dd>
+</dl>
+</div>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              person_person_addresses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_person_person_address_path, :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              person_person_address_path,
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
