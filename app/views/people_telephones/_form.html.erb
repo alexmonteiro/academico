@@ -1,37 +1,36 @@
-<%= form_for([@person, @people_telephone]) do |f| %>
-  <% if @people_telephone.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@people_telephone.errors.count, "error") %> prohibited this people_telephone from being saved:</h2>
-
-      <ul>
-      <% @people_telephone.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for [@person,@people_telephone], :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+      <h3><%= Person.find(params[:person_id]).name %></h3><br />
+      <%= f.hidden_field :people_id, :value => params[:person_id] %>
+  </div>
+  <div class="control-group">
+    <%= f.label :telephone_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :telephone_type_id, TelephoneType.find(:all),:id, :telephone_type, :prompt => 'Select a Telephone Type' %>
     </div>
-  <% end %>
-  <div class="field">
-    <p/>
-    <h3><%= Person.find(params[:person_id]).name %></h3><br />
-    <%= f.hidden_field :people_id, :value => params[:person_id] %>
   </div>
-  <div class="field">
-    <%= f.label :telephone_type %><br />
-    <%= f.collection_select :telephone_type_id, TelephoneType.find(:all) , :id, :telephone_type, :prompt => "Select a Type Telephone" %>
+  <div class="control-group">
+    <%= f.label :area_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :area_code, :class => 'number_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :area_code %><br />
-    <%= f.number_field :area_code %>
+  <div class="control-group">
+    <%= f.label :number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :number, :class => 'number_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.number_field :number %>
+  <div class="control-group">
+    <%= f.label :branch, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :branch, :class => 'number_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :branch %><br />
-    <%= f.number_field :branch %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                person_people_telephones_path, :class => 'btn' %>
   </div>
 <% end %>

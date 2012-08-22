@@ -1,43 +1,57 @@
-<h1>Listing person_addresses</h1>
-<h3><%= @person.name %></h3>
-<table>
-  <tr>
-    <th>Street name</th>
-    <th>City</th>
-    <th>Complement</th>
-    <th>Post office box</th>
-    <th>Neighborhood</th>
-    <th>Zip code</th>
-    <th>Number</th>
-    <th>Provenance area</th>
-    <th>Street type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @person_addresses.each do |person_address| %>
-  <tr>
-    <td><%= person_address.street_name %></td>
-    <td><%= person_address.city.name %></td>
-    <td><%= person_address.complement %></td>
-    <td><%= person_address.post_office_box %></td>
-    <td><%= person_address.neighborhood %></td>
-    <td><%= person_address.zip_code %></td>
-    <td><%= person_address.number %></td>
-    <td><%= person_address.provenance_area.description %></td>
-    <td><%= person_address.street_type.description %></td>
-    <td><%= link_to 'Show', [@person, person_address] %></td>
-    <td><%= link_to 'Edit', edit_person_person_address_path(:id => person_address) %></td>
-    <td><%= link_to 'Destroy', [@person, person_address], :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = PersonAddress.new.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-home"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @person.name, person_path(@person) %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:street_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:city_id) %></th>
+      <th><%= model_class.human_attribute_name(:street_name) %></th>
+      <th><%= model_class.human_attribute_name(:complement) %></th>
+      <th><%= model_class.human_attribute_name(:post_office_box) %></th>
+      <th><%= model_class.human_attribute_name(:neighborhood) %></th>
+      <th><%= model_class.human_attribute_name(:zip_code) %></th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:provenance_area_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @person_addresses.each do |person_address| %>
+      <tr>
+        <td><%= link_to person_address.id, [@person,person_address] %></td>
+        <td><%= verifica_registro(:campo => person_address.street_type, :atributo => "description") %></td>
+        <td><%= verifica_registro(:campo => person_address.city, :atributo => "name") %></td>
+        <td><%= verifica_registro(:campo => person_address.street_name) %></td>
+        <td><%= verifica_registro(:campo => person_address.complement) %></td>
+        <td><%= verifica_registro(:campo => person_address.post_office_box) %></td>
+        <td><%= verifica_registro(:campo => person_address.neighborhood) %></td>
+        <td><%= verifica_registro(:campo => person_address.zip_code) %></td>
+        <td><%= verifica_registro(:campo => person_address.number) %></td>
+        <td><%= verifica_registro(:campo => person_address.provenance_area, :atributo => "description") %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_person_person_address_path(:id => person_address), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      [@perons,person_address],
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
 <% if !@person_addresses.exists? %>
-    <%= link_to 'New Person address', new_person_person_address_path %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_person_person_address_path,
+            :class => 'btn btn-primary' %>
 <% else %>
     <!-- <td><%= link_to 'Edit Person address', edit_person_person_address_path(@person,@person_addresses[0]) %></td> -->
 <%end%>

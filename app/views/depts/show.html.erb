@@ -2,30 +2,37 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
+<div class="container">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @dept.name %></dd>
+  <dd><%= verifica_registro :campo => @dept.name, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
-  <dd><%= @dept.acronym %></dd>
+  <dd><%= verifica_registro :campo => @dept.acronym, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:cnpj) %>:</strong></dt>
-  <dd><%= @dept.cnpj %></dd>
+  <dd><%= verifica_registro :campo => @dept.cnpj, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%= @dept.started_at %></dd>
+  <dd><%= verifica_registro :campo => @dept.started_at, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:finished_at) %>:</strong></dt>
-  <dd><%= @dept.finished_at %></dd>
+  <dd><%= verifica_registro :campo => @dept.finished_at, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:site) %>:</strong></dt>
-  <dd><%= @dept.site %></dd>
+  <dd><%= verifica_registro :campo => @dept.site, :mensagem => "<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @dept.email %></dd>
+  <dd><%= verifica_registro :campo => @dept.email, :mensagem =>"<<Sem Registro>>"%></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @dept.description %></dd>
+  <dd><%= verifica_registro :campo => @dept.description, :mensagem => "<<Sem Registro>>"  %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
-  <dd><%= @dept.dept_type.dept_type if @dept.dept_type_id %></dd>
+  <dd><%= verifica_registro :campo => @dept.dept_type, :mensagem => "<<Sem Registro>>",  :atributo => "dept_type" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-  <dd><%= @dept.dept_id %></dd>
+  <dd><%= verifica_registro :campo => @dept.dept, :mensagem => "<<Sem Registro>>",  :atributo => "name"  %></dd>
 </dl>
 <br/>
+</div>
+<!-- Botões Para Equipamentos -->
+<%= link_to dept_teaching_equipaments_path(@dept), :class => "btn" do %>
+    <i class="icon-hdd"></i> Equipamentos
+<% end %>
+<!-- Fim -->
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               depts_path, :class => 'btn'  %>
@@ -36,4 +43,6 @@
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
+
+
 </div>

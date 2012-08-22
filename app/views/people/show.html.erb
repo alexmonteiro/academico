@@ -1,42 +1,53 @@
 <%- model_class = Person -%>
 <div class="page-header">
-  <h1><%=t 'person', :default => model_class.model_name.human %></h1>
+  <div style="font-size: 24px;">
+    <h1><i class="icon-user"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
 </div>
-
+<div class="container">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @person.name %></dd>
+  <dd><%= verifica_registro(:campo => @person.name) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
-  <dd><%= @person.birth_date %></dd>
+  <dd><%= verifica_registro(:campo => @person.birth_date) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:father_name) %>:</strong></dt>
-  <dd><%= @person.father_name %></dd>
+  <dd><%= verifica_registro(:campo => @person.father_name) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:mom_name) %>:</strong></dt>
-  <dd><%= @person.mom_name %></dd>
+  <dd><%= verifica_registro(:campo => @person.mom_name) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @person.email %></dd>
+  <dd><%= verifica_registro(:campo => @person.email) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:lattes_url) %>:</strong></dt>
-  <dd><%= @person.lattes_url %></dd>
+  <dd><%= verifica_registro(:campo => @person.lattes_url) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:gender_id) %>:</strong></dt>
-  <dd><%= @person.gender.gender %></dd>
+  <dd><%= verifica_registro(:campo => @person.gender, :atributo => "gender") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:education_degree_id) %>:</strong></dt>
-  <dd><%= @person.education_degree.degree %></dd>
+  <dd><%= verifica_registro(:campo => @person.education_degree, :atributo => "degree") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:race_id) %>:</strong></dt>
-  <dd><%= @person.race.race %></dd>
+  <dd><%= verifica_registro(:campo => @person.race, :atributo => "race") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>
-  <dd><%= @person.marital_status.status %></dd>
+  <dd><%= verifica_registro(:campo => @person.marital_status, :atributo => "status") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:blood_type_id) %>:</strong></dt>
-  <dd><%= @person.blood_type.type %></dd>
+  <dd><%= verifica_registro(:campo => @person.blood_type, :atributo => "type")%></dd>
   <dt><strong><%= model_class.human_attribute_name(:country_id) %>:</strong></dt>
-  <dd><%= @person.country.name %></dd>
+  <dd><%= verifica_registro(:campo => @person.country, :atributo => "name") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
-  <dd><%= @person.state.name %></dd>
+  <dd><%= verifica_registro(:campo => @person.state, :atributo => "name")%></dd>
   <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
-  <dd><%= @person.city.name %></dd>
+  <dd><%= verifica_registro(:campo => @person.city, :atributo => "name") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:number_children) %>:</strong></dt>
-  <dd><%= @person.number_children %></dd>
+  <dd><%= verifica_registro(:campo => @person.number_children) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:person_types) %>:</strong></dt>
   <dd><%= get_person_types(@person) %></dd>
 </dl>
+</div>
+<!-- Botões Para Endereço e Telefones da Pessoa -->
+<%= link_to person_person_addresses_path(@person), :class => "btn" do %>
+    <i class="icon-home"></i> Endereço
+<% end %>
+<%= link_to person_people_telephones_path(@person), :class => "btn" do %>
+    <i class="icon-phone"></i> Telefones
+<% end %>
+<!-- Fim -->
 
 <div class="form-actions">
   <%= link_to t('action.back', :default => t("helpers.links.back")), people_path, :class => 'btn'  %>
