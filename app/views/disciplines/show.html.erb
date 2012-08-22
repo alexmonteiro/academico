@@ -26,12 +26,12 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              disciplines_path, :class => 'btn'  %>
+              course_disciplines_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_discipline_path(@discipline), :class => 'btn' %>
+              edit_course_discipline_path(:id => @discipline.id), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              discipline_path(@discipline),
+              course_discipline_path(params[:course_id]),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "Tem certeza que deseja excluir a disciplina #{@discipline.name}?")),
               :class => 'btn btn-danger' %>
 </div>

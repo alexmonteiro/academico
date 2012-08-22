@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814192016) do
+ActiveRecord::Schema.define(:version => 20120815203936) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -118,6 +118,21 @@ ActiveRecord::Schema.define(:version => 20120814192016) do
 
   add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
   add_index "depts", ["dept_type_id"], :name => "index_depts_on_dept_type_id"
+
+  create_table "discipline_classes", :force => true do |t|
+    t.integer  "school_class_id"
+    t.integer  "matrix_discipline_id"
+    t.string   "code"
+    t.integer  "vancancies"
+    t.date     "started_at"
+    t.date     "ending_at"
+    t.date     "timetable_started_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "discipline_classes", ["matrix_discipline_id"], :name => "index_discipline_classes_on_matrix_discipline_id"
+  add_index "discipline_classes", ["school_class_id"], :name => "index_discipline_classes_on_school_class_id"
 
   create_table "discipline_types", :force => true do |t|
     t.string   "description"
