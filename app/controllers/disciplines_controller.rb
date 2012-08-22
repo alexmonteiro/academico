@@ -2,7 +2,8 @@ class DisciplinesController < ApplicationController
   # GET /disciplines
   # GET /disciplines.json
   def index
-    @disciplines = Discipline.all
+    @course = Course.find(params[:course_id])
+    @disciplines = Discipline.where(:course_id => params[:course_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,6 +35,7 @@ class DisciplinesController < ApplicationController
 
   # GET /disciplines/1/edit
   def edit
+    @course = Course.find(params[:course_id])  
     @discipline = Discipline.find(params[:id])
   end
 
@@ -44,7 +46,7 @@ class DisciplinesController < ApplicationController
 
     respond_to do |format|
       if @discipline.save
-        format.html { redirect_to @discipline, :notice => 'Discipline was successfully created.' }
+        format.html { redirect_to @discipline, :notice => "Disciplina #{@discipline.name} criada com sucesso." }
         format.json { render :json => @discipline, :status => :created, :location => @discipline }
       else
         format.html { render :action => "new" }
@@ -60,7 +62,7 @@ class DisciplinesController < ApplicationController
 
     respond_to do |format|
       if @discipline.update_attributes(params[:discipline])
-        format.html { redirect_to @discipline, :notice => 'Discipline was successfully updated.' }
+        format.html { redirect_to course_disciplines_path, :notice => "Disciplina #{@discipline.name} atualizada com sucesso." }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +78,7 @@ class DisciplinesController < ApplicationController
     @discipline.destroy
 
     respond_to do |format|
-      format.html { redirect_to disciplines_url }
+      format.html { redirect_to course_disciplines_path }
       format.json { head :no_content }
     end
   end

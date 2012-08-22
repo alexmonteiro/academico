@@ -1,6 +1,6 @@
 <%- model_class = DisciplineClass.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -12,8 +12,6 @@
       <th><%= model_class.human_attribute_name(:vancancies) %></th>
       <th><%= model_class.human_attribute_name(:started_at) %></th>
       <th><%= model_class.human_attribute_name(:ending_at) %></th>
-      <th><%= model_class.human_attribute_name(:timetable_started_at) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,14 +19,12 @@
     <% @discipline_classes.each do |discipline_class| %>
       <tr>
         <td><%= link_to discipline_class.id, discipline_class_path(discipline_class) %></td>
-        <td><%= discipline_class.school_class_id %></td>
-        <td><%= discipline_class.matrix_discipline_id %></td>
+        <td><%= discipline_class.school_class.model_custom_tiny_name %></td>
+        <td><%= discipline_class.matrix_discipline.discipline_name %></td>
         <td><%= discipline_class.code %></td>
         <td><%= discipline_class.vancancies %></td>
         <td><%= discipline_class.started_at %></td>
         <td><%= discipline_class.ending_at %></td>
-        <td><%= discipline_class.timetable_started_at %></td>
-        <td><%=l discipline_class.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_discipline_class_path(discipline_class), :class => 'btn btn-mini' %>

@@ -42,11 +42,13 @@ class MatrixDisciplinesController < ApplicationController
   # POST /matrix_disciplines
   # POST /matrix_disciplines.json
   def create
+    @matrix = Matrix.find(params[:matrix_id])
     @matrix_discipline = MatrixDiscipline.new(params[:matrix_discipline])
+    @matrix_discipline.matrix_id = @matrix.id
 
     respond_to do |format|
       if @matrix_discipline.save
-        format.html { redirect_to @matrix_discipline, :notice => 'Matrix discipline was successfully created.' }
+        format.html { redirect_to matrix_matrix_disciplines_path, :notice => 'Matrix discipline was successfully created.' }
         format.json { render :json => @matrix_discipline, :status => :created, :location => @matrix_discipline }
       else
         format.html { render :action => "new" }
@@ -78,7 +80,7 @@ class MatrixDisciplinesController < ApplicationController
     @matrix_discipline.destroy
 
     respond_to do |format|
-      format.html { redirect_to matrix_disciplines_url }
+      format.html { redirect_to matrix_matrix_disciplines_path }
       format.json { head :no_content }
     end
   end

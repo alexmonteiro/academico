@@ -20,7 +20,7 @@
 	            <span class="icon-bar"></span>
 	            <span class="icon-bar"></span>
 	          </a>
-	          <a class="brand" href="#"><i class="icon-table"></i> @cadêmico - ®ails</a>
+	          <a class="brand" href="#"><i class="icon-book"></i> @cadêmico - IFB</a>
 	          <div class="btn-group pull-right">
 	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 	              <i class="icon-user"></i> Username
@@ -52,16 +52,15 @@
 		          <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i>Estrutura Organizacional</a></li>
 			      <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>				 
 
-	              <li class="nav-header">Perído Letivo</li>
-             	  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><%= link_to('Turmas',school_classes_path) %></li>
-             	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><%= link_to('Período Letivo',class_seasons_path) %></li>
-                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><%= link_to('Classe',discipline_classes_path) %></li>
-
 	              <li class="nav-header">Registros Acadêmicos</li>
-             	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><%= link_to('Cursos',courses_path) %></li>
-                  <li class="<%= ('disciplines' == params[:controller] ? 'active' : '')%>"><%= link_to('Disciplinas (Elemento Curricular)',disciplines_path) %></li>
-                  <li class="<%= ('matrices' == params[:controller] ? 'active' : '')%>"><%= link_to('Matriz Curricular',matrices_path) %></li>
-                  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><%= link_to('Oferta de Vagas',course_vacancies_path) %></li>
+             	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><a href=<%= courses_path%> ><i class="icon-book"></i>Cursos & Disciplinas</a></li>
+                  <li class="<%= ('matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= matrices_path%> ><i class="icon-table"></i>Matriz Curricular</a></li>
+                  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><a href=<%= course_vacancies_path%> ><i class="icon-bullhorn"></i>Oferta de Vagas</a></li>
+
+	              <li class="nav-header">Perído Letivo</li>
+             	  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
+             	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i>Período Letivo</a></li>
+                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes</a></li>
 
 	            </ul>
 	          </div><!--/.well -->

@@ -1,18 +1,21 @@
 <%- model_class = MatrixDiscipline.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+	<h2>Matriz: <%= @matrix.model_custom_name %></h2>
+<fieldset>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:matrix_id) %></th>
+      
       <th><%= model_class.human_attribute_name(:discipline_id) %></th>
       <th><%= model_class.human_attribute_name(:matrix_discipline_group_id) %></th>
       <th><%= model_class.human_attribute_name(:maxseasons) %></th>
       <th><%= model_class.human_attribute_name(:isoptative) %></th>
       <th><%= model_class.human_attribute_name(:isdependence) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -20,13 +23,11 @@
     <% @matrix_disciplines.each do |matrix_discipline| %>
       <tr>
         <td><%= link_to matrix_discipline.id, [@matrix, matrix_discipline] %></td>
-        <td><%= matrix_discipline.matrix_id %></td>
-        <td><%= matrix_discipline.discipline_id %></td>
-        <td><%= matrix_discipline.matrix_discipline_group_id %></td>
+        <td><%= matrix_discipline.discipline.name %></td>
+        <td><%= matrix_discipline.matrix_discipline_group.description %></td>
         <td><%= matrix_discipline.maxseasons %></td>
-        <td><%= matrix_discipline.isoptative %></td>
-        <td><%= matrix_discipline.isdependence %></td>
-        <td><%=l matrix_discipline.created_at %></td>
+        <td><%= matrix_discipline.isoptative_description %></td>
+        <td><%= matrix_discipline.isdependence_description %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_matrix_matrix_discipline_path(:id => matrix_discipline.id), :class => 'btn btn-mini' %>
@@ -40,7 +41,7 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+</fieldset>
+<%= link_to 'Incluir Disciplinas',
             new_matrix_matrix_discipline_path,
             :class => 'btn btn-primary' %>

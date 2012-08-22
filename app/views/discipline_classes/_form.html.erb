@@ -7,14 +7,9 @@
   </div>
   <div class="control-group">
     <%= f.label :matrix_discipline_id, :class => 'control-label' %>
-    <div class="controls">
-	 <!--
-      <%= f.number_field :matrix_discipline_id, :class => 'number_field' %>
-     -->
-      <div class="controls"  id="turmaDisciplinas">
- 	   <%= render :partial => 'disciplines'%>
+      <div class="controls"  id="turmaDisciplinas"> 
+ 	    <%= render :partial => 'disciplines'%>
       </div>
-    </div>
   </div>
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>

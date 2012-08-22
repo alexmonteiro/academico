@@ -7,5 +7,9 @@ class SchoolClass < ActiveRecord::Base
   def model_custom_name
     'Turma: ' + self.identifier.to_s+ '  Matriz: ' + self.matrix.model_custom_name + ' Período: '  + self.class_season.model_custom_name 
   end
+
+  def model_custom_tiny_name
+    self.identifier.to_s+ ' / ' + self.matrix.model_custom_name
+  end  
   
 end

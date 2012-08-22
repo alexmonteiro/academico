@@ -1,13 +1,13 @@
 <%- model_class = @discipline_class.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:school_class_id) %>:</strong></dt>
-  <dd><%= @discipline_class.school_class_id %></dd>
+  <dd><%= @discipline_class.school_class.model_custom_tiny_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_id) %>:</strong></dt>
-  <dd><%= @discipline_class.matrix_discipline_id %></dd>
+  <dd><%= @discipline_class.matrix_discipline.discipline_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
   <dd><%= @discipline_class.code %></dd>
   <dt><strong><%= model_class.human_attribute_name(:vancancies) %>:</strong></dt>

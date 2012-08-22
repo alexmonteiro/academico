@@ -1,6 +1,6 @@
 <%- model_class = @matrix.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -15,18 +15,19 @@
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @matrix.course_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_evaluation_type_id) %>:</strong></dt>
-  <dd><%= @matrix.matrix_evaluation_type_id %></dd>
+  <dd><%= @matrix.matrix_evaluation_type.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_status_id) %>:</strong></dt>
-  <dd><%= @matrix.matrix_status_id %></dd>
+  <dd><%= @matrix.matrix_status.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_season_type_id) %>:</strong></dt>
-  <dd><%= @matrix.class_season_type_id %></dd>
+  <dd><%= @matrix.class_season_type.description %></dd>
+  <dd></dd>
+  <dt><strong>Disciplinas:</strong></dt>
+  <dd><%=link_to "<i class='icon-table'></i> Elementos Curriculares".html_safe, matrix_matrix_disciplines_path(@matrix) %></dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              matrices_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_matrix_path(@matrix), :class => 'btn' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")), matrices_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_matrix_path(@matrix), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               matrix_path(@matrix),
               :method => 'delete',

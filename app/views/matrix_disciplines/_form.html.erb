@@ -1,3 +1,14 @@
+<% if @matrix_discipline.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@matrix_discipline.errors.count, "error") %> impediu a gravação:</h2>
+
+    <ul>
+    <% @matrix_discipline.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for ([@matrix, @matrix_discipline], :html => { :class => 'form-horizontal' }) do |f| %>
   <%matrix = Matrix.find(params[:matrix_id])%>
   <h2>Matriz: <%= matrix.model_custom_name%></h2>
@@ -34,7 +45,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit 'Incluir Disciplina', :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 matrix_matrix_disciplines_path, :class => 'btn' %>
   </div>

@@ -25,11 +25,11 @@ AcademicoRails::Application.routes.draw do
 
   resources :matrix_statuses
 
-  resources :disciplines, :path => "disciplinas"
-
   resources :discipline_types
 
-  resources :courses, :path => "cursos"
+  resources :courses, :path => "cursos" do
+      resources :disciplines, :path => "disciplinas"
+  end
 
   resources :knowledge_areas
 
