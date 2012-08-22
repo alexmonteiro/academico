@@ -1,21 +1,22 @@
 <%- model_class = @teaching_equipament.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <div style="font-size: 24px;">
+    <h1><i class="icon-hdd"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @dept.name, dept_path(@dept) %></h3>
 </div>
-
+<div class="container">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @teaching_equipament.description %></dd>
+  <dd><%= verifica_registro :campo => @teaching_equipament.description, :mensagem => "<<Sem Registro>>" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:arrival_date) %>:</strong></dt>
-  <dd><%= @teaching_equipament.arrival_date %></dd>
+  <dd><%= verifica_registro :campo => @teaching_equipament.arrival_date, :mensagem => "<<Sem Registro>>" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:equipament_type_id) %>:</strong></dt>
-  <dd><%= @teaching_equipament.equipament_type_id %></dd>
+  <dd><%= verifica_registro :campo => @teaching_equipament.equipament_type, :atributo => "description" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:situation_teaching_equipament_id) %>:</strong></dt>
-  <dd><%= @teaching_equipament.situation_teaching_equipament_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-  <dd><%= @teaching_equipament.dept_id %></dd>
+  <dd><%= verifica_registro :campo => @teaching_equipament.situation_teaching_equipament, :mensagem => "<<Sem Registro>>", :atributo => "description" %></dd>
 </dl>
-
+</div>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               dept_teaching_equipaments_path, :class => 'btn'  %>

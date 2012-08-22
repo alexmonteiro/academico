@@ -71,6 +71,28 @@
 <div class="container">
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
+
+  <!-- País Cidade e Estado -->
+  <%= f.label :country_id, :class => 'control-label' %>
+  <div class="controls" id="addressCountry">
+     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
+  </div>
+<div class="control-group">
+  <%= f.label :state_id, :class => 'control-label' %>
+  <div class="controls"  id="addressStates">
+	 <%= render :partial => 'states'%>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :city_id, :class => 'control-label' %>
+  <div class="controls"  id="addressCities">
+	 <%= render :partial => 'cities'  %>
+  </div>
+</div>
+<!-- Fim -->
+
+  <!-- Antes Aplicado
+
   <div class="span3">
     <%= f.label :country_id, :class => 'control-label' %>
     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
@@ -84,9 +106,8 @@
 	<!--
    <%= f.label :state_id, :class => 'control-label' %>
    <%= f.select :state_id, [[State.find(7, :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
-   -->
+    --<
   </div>
-
 
   <div class="span3">  
 
@@ -97,8 +118,9 @@
 	<!--
    <%= f.label :city_id, :class => 'control-label' %>
    <%= f.select :city_id, [[City.find_by_name('Brasília', :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
-   -->
+
    </div>
+ -->
 
 </fieldset>
 </div>

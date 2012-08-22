@@ -1,6 +1,9 @@
 <%- model_class = TeachingEquipament.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <div style="font-size: 24px;">
+    <h1><i class="icon-hdd"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @dept.name, dept_path(@dept) %></h3>
 </div>
 <table class="table table-striped">
   <thead>
@@ -10,8 +13,6 @@
       <th><%= model_class.human_attribute_name(:arrival_date) %></th>
       <th><%= model_class.human_attribute_name(:equipament_type_id) %></th>
       <th><%= model_class.human_attribute_name(:situation_teaching_equipament_id) %></th>
-      <th><%= model_class.human_attribute_name(:dept_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,12 +20,10 @@
     <% @teaching_equipaments.each do |teaching_equipament| %>
       <tr>
         <td><%= link_to teaching_equipament.id, [@dept, teaching_equipament] %></td>
-        <td><%= teaching_equipament.description %></td>
-        <td><%= teaching_equipament.arrival_date %></td>
-        <td><%= teaching_equipament.equipament_type_id %></td>
-        <td><%= teaching_equipament.situation_teaching_equipament_id %></td>
-        <td><%= teaching_equipament.dept_id %></td>
-        <td><%=l teaching_equipament.created_at %></td>
+        <td><%= verifica_registro :campo => teaching_equipament.description, :mensagem => "<<Sem Registro>>" %></td>
+        <td><%= verifica_registro :campo => teaching_equipament.arrival_date, :mensagem => "<<Sem Registro>>" %></td>
+        <td><%= verifica_registro :campo => teaching_equipament.equipament_type, :mensagem => "<<Sem Registro>>", :atributo => "description" %></td>
+        <td><%= verifica_registro :campo => teaching_equipament.situation_teaching_equipament, :mensagem => "<<Sem Registro>>", :atributo => "description" %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_dept_teaching_equipament_path(:id => teaching_equipament), :class => 'btn btn-mini' %>
