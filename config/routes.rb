@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
   
+  resources :discipline_classes
+
   resources :school_classes, :path =>"turmas"
 
   resources :equipament_types
@@ -12,21 +14,22 @@ AcademicoRails::Application.routes.draw do
 
   resources :shift_types, :path => "turnos"
 
-  resources :matrix_disciplines
-
   resources :matrix_discipline_groups
 
-  resources :matrices, :path => "matrizcurricular"
+  resources :matrices, :path => "matrizcurricular" do
+    resources :matrix_disciplines, :path => "disciplinas"
+  end
+  
 
   resources :matrix_evaluation_types
 
   resources :matrix_statuses
 
-  resources :disciplines, :path => "disciplinas"
-
   resources :discipline_types
 
-  resources :courses, :path => "cursos"
+  resources :courses, :path => "cursos" do
+      resources :disciplines, :path => "disciplinas"
+  end
 
   resources :knowledge_areas
 
@@ -71,6 +74,7 @@ AcademicoRails::Application.routes.draw do
 
   match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
+  match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
 
   resources :people do
     resources :people_telephones

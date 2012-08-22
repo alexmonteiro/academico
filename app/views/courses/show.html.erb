@@ -1,8 +1,8 @@
 <%- model_class = @course.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
+<div class="container">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
   <dd><%= @course.code %></dd>
@@ -21,21 +21,21 @@
   <dt><strong><%= model_class.human_attribute_name(:ended_at) %>:</strong></dt>
   <dd><%= @course.ended_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-  <dd><%= @course.dept_id %></dd>
+  <dd><%= @course.dept.name if @course.dept_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:registration_scheme_id) %>:</strong></dt>
-  <dd><%= @course.registration_scheme_id %></dd>
+  <dd><%= @course.registration_scheme.description if @course.registration_scheme_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_season_type_id) %>:</strong></dt>
-  <dd><%= @course.class_season_type_id %></dd>
+  <dd><%= @course.class_season_type.description if @course.class_season_type_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:learning_modality_id) %>:</strong></dt>
-  <dd><%= @course.learning_modality_id %></dd>
+  <dd><%= @course.learning_modality.description if @course.learning_modality_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:knowledge_area_id) %>:</strong></dt>
-  <dd><%= @course.knowledge_area_id %></dd>
+  <dd><%= @course.knowledge_area.description if @course.knowledge_area_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:techaxes_id) %>:</strong></dt>
-  <dd><%= @course.techaxes_id %></dd>
+  <dd><%= Techaxis.find(@course.techaxes_id).techaxis if @course.techaxes_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:education_modality_id) %>:</strong></dt>
-  <dd><%= @course.education_modality_id %></dd>
+  <dd><%= @course.education_modality.description if @course.education_modality_id %></dd>
 </dl>
-
+</div>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               courses_path, :class => 'btn'  %>

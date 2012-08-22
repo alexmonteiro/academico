@@ -1,0 +1,50 @@
+<%= form_for @discipline_class, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :school_class_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :school_class_id, SchoolClass.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :matrix_discipline_id, :class => 'control-label' %>
+      <div class="controls"  id="turmaDisciplinas"> 
+ 	    <%= render :partial => 'disciplines'%>
+      </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :code, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :vancancies, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :vancancies, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :started_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :started_at, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :ending_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :ending_at, :class => 'date_select', :include_blank => true %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :timetable_started_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :timetable_started_at, :class => 'date_select', :include_blank => true %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                discipline_classes_path, :class => 'btn' %>
+  </div>
+<% end %>

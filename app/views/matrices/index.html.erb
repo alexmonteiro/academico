@@ -1,6 +1,6 @@
 <%- model_class = Matrix.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -14,7 +14,6 @@
       <th><%= model_class.human_attribute_name(:matrix_evaluation_type_id) %></th>
       <th><%= model_class.human_attribute_name(:matrix_status_id) %></th>
       <th><%= model_class.human_attribute_name(:class_season_type_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,11 +25,10 @@
         <td><%= matrix.ended_at %></td>
         <td><%= matrix.maxdisciplines %></td>
         <td><%= matrix.maxseasons %></td>
-        <td><%= matrix.course_id %></td>
-        <td><%= matrix.matrix_evaluation_type_id %></td>
-        <td><%= matrix.matrix_status_id %></td>
-        <td><%= matrix.class_season_type_id %></td>
-        <td><%=l matrix.created_at %></td>
+        <td><%= matrix.course.name %></td>
+        <td><%= matrix.matrix_evaluation_type.description %></td>
+        <td><%= matrix.matrix_status.description %></td>
+        <td><%= matrix.class_season_type.description %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_matrix_path(matrix), :class => 'btn btn-mini' %>
