@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
 //= require_tree .
 
 jQuery(function($) {
@@ -41,6 +43,7 @@ jQuery(function($) {
   });
 })
 
+
 // Disciplinas da Turma/MatrizCurricular
 jQuery(function($) {
   // when the #turma field changes
@@ -54,7 +57,3 @@ jQuery(function($) {
     return false;
   });
 })
-
-
-
-

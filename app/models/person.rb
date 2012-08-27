@@ -18,5 +18,5 @@ class Person < ActiveRecord::Base
   #Validações
   validates :name, :presence => true
   validates :number_children, :numericality => { :only_integer => true }
-  validates :email, :uniqueness => true
+  #validates :email, :uniqueness => true
 end

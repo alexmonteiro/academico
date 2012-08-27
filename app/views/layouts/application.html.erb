@@ -65,11 +65,23 @@
 	            </ul>
 	          </div><!--/.well -->
 	        </div><!--/span-->
-	        <div class="span9">
-	          <div class="hero-unit">
+	       <%if content_for?(:right_side_bar)%>
+	        <div class="span7">
+	       <%else%>
+        	<div class="span9">
+	       <%end%> 
+	           <div class="hero-unit">
 	            <%= yield %>
 	            </div><!--/span-->
 	          </div><!--/row-->
+	      <!-- Cria menu direito --> 
+	      <%if content_for?(:right_side_bar)%>
+	        <div class="span2">
+	          <div class="hero-unit">
+	            <%= yield :right_side_bar %>
+	          </div><!--/span-->
+	        </div><!--/row-->
+	      <%end%>
 	        </div><!--/span-->
 	      </div><!--/row-->
 
