@@ -1,9 +1,6 @@
 class PersonAddressesController < ApplicationController
-
-
   # GET /person_addresses
   # GET /person_addresses.json
-
   def index
     @person = Person.find((params[:person_id]))
     @person_addresses = PersonAddress.where("person_id = ?", params[:person_id])
@@ -27,7 +24,7 @@ class PersonAddressesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to person_person_addresses_path, :notice => "This record do not exists."}
+        format.html { redirect_to person_person_addresses_path, :notice => "This record doesn`t exists."}
         format.json { render :json => @person_address}
       end
     end
