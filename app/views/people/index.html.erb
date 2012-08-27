@@ -12,6 +12,8 @@
       <th><%= model_class.human_attribute_name(:birth_date) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:person_types) %></th>
+      <th><%= model_class.human_attribute_name(:telephones) %></th>
+      <th><%= model_class.human_attribute_name(:address) %></th>
       <th><%=t 'action.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -23,6 +25,18 @@
         <td><%= person.birth_date %></td>
         <td><%= person.email %></td>
         <td><%= get_person_types(person) %></td>
+        <td>
+          <%= link_to person_people_telephones_path(person) do %>
+            <% telephones = PeopleTelephone.where("people_id = ?", person.id)%>
+            <i class="icon-phone"></i> <%= telephones.count %>
+          <%end%>
+        </td>
+        <td>
+          <%= link_to person_person_addresses_path(person) do %>
+            <!-- <% address = PersonAddress.where("person_id = ?", person.id) %> -->
+            <i class="icon-home"></i>
+          <%end%>
+        </td>
         <td>
           <%= link_to t('action.edit', :default => t("helpers.links.edit")),
                       edit_person_path(person), :class => 'btn btn-mini' %>

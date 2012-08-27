@@ -14,7 +14,7 @@ pt-BR:
         birth_date:  "Nascimento" 
         father_name:  "Pai" 
         mom_name:  "Mãe" 
-        email:  "email" 
+        email:  "Email"
         lattes_url:  "Lattes" 
         gender_id:  "Sexo" 
         education_degree_id:  "Formação" 
@@ -26,6 +26,8 @@ pt-BR:
         city_id:  "Cidade" 
         number_children:  "Filhos" 
         person_types: "Vínculo(s)"
+        telephones: "Telefones"
+        address: "Endereço"
       class_season:
         end_at: "Término em"
         number: "Número"
@@ -44,6 +46,9 @@ pt-BR:
         description: "Descrição"
         started_at: "Data de início"
         finished_at: "Data de desativação"
+        dept_telephones: "Telefones"
+        dept_addresses: "Endereço"
+        teaching_equipaments: "Equipamentos de Ensino"
       course:
         code: "Código"
         name: "Nome"

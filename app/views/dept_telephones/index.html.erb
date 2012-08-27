@@ -1,0 +1,41 @@
+<%- model_class = DeptTelephone.new.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-phone"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @dept.name, dept_path(@dept) %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:telephone_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:area_code) %></th>
+      <th><%= model_class.human_attribute_name(:number) %></th>
+      <th><%= model_class.human_attribute_name(:branch) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dept_telephones.each do |dept_telephone| %>
+      <tr>
+        <td><%= link_to verifica_registro(:campo => dept_telephone.telephone_type, :atributo => "telephone_type"), [@dept, dept_telephone]%></td>
+        <td>(<%= verifica_registro(:campo => dept_telephone.area_code) %>)</td>
+        <td><%= verifica_registro(:campo => dept_telephone.number) %></td>
+        <td><%= verifica_registro(:campo => dept_telephone.branch) %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_dept_dept_telephone_path(:id => dept_telephone), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      [@dept,dept_telephone],
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_dept_dept_telephone_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,40 @@
+<%- model_class = @dept_address.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-home"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @dept.name, dept_path(@dept) %></h3>
+</div>
+<div class="container">
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:street_type_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.street_type, :atributo => "description") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.city, :atributo => "name")%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_name) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.street_name) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:complement) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.complement) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:post_office_box) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.post_office_box) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:neighborhood) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.neighborhood) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:zip_code) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.zip_code) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.number) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:provenance_area_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @dept_address.provenance_area, :atributo => "description") %></dd>
+</dl>
+</div>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              dept_dept_addresses_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_dept_dept_address_path, :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dept_dept_address_path,
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
