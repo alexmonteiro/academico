@@ -1,6 +1,8 @@
 <%- model_class = Dept -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <div style="font-size: 24px;">
+    <h1><i class="icon-sitemap"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
 </div>
 
 <% @dept_roots = Dept.find_by_sql("select * from depts where dept_id is null") %>
@@ -55,6 +57,9 @@
       <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:dept_type_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_id) %></th>
+      <th><%= model_class.human_attribute_name(:dept_telephones) %></th>
+      <th><%= model_class.human_attribute_name(:dept_addresses) %></th>
+      <th><%= model_class.human_attribute_name(:teaching_equipaments) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -69,6 +74,24 @@
         <td><%= dept.email %></td>
         <td><%= dept.dept_type_id %></td>
         <td><%= dept.dept_id %></td>
+        <td>
+          <%= link_to dept_dept_telephones_path(dept) do %>
+            <% telephones = DeptTelephone.where("dept_id = ?", dept.id)%>
+            <i class="icon-phone"></i> <%= telephones.count %>
+          <%end%>
+        </td>
+        <td>
+          <%= link_to dept_dept_addresses_path(dept) do %>
+            <!-- <% address = DeptAddress.where("dept_id = ?", dept.id) %> -->
+            <i class="icon-home"></i>
+          <%end%>
+        </td>
+        <td>
+          <%= link_to dept_teaching_equipaments_path(dept) do%>
+              <% equipaments = TeachingEquipament.where("dept_id = ?", dept.id)%>
+              <i class="icon-hdd"></i> <%= equipaments.count %>
+          <%end%>
+        </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_dept_path(dept), :class => 'btn btn-mini' %>

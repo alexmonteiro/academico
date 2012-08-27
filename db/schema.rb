@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815203936) do
+ActiveRecord::Schema.define(:version => 20120823143036) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -94,6 +94,39 @@ ActiveRecord::Schema.define(:version => 20120815203936) do
   add_index "courses", ["learning_modality_id"], :name => "index_courses_on_learning_modality_id"
   add_index "courses", ["registration_scheme_id"], :name => "index_courses_on_registration_scheme_id"
   add_index "courses", ["techaxes_id"], :name => "index_courses_on_techaxes_id"
+
+  create_table "dept_addresses", :force => true do |t|
+    t.integer  "street_type_id"
+    t.integer  "city_id"
+    t.string   "street_name"
+    t.string   "complement"
+    t.string   "post_office_box"
+    t.string   "neighborhood"
+    t.integer  "zip_code"
+    t.string   "number"
+    t.integer  "provenance_area_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "dept_addresses", ["city_id"], :name => "index_dept_addresses_on_city_id"
+  add_index "dept_addresses", ["dept_id"], :name => "index_dept_addresses_on_dept_id"
+  add_index "dept_addresses", ["provenance_area_id"], :name => "index_dept_addresses_on_provenance_area_id"
+  add_index "dept_addresses", ["street_type_id"], :name => "index_dept_addresses_on_street_type_id"
+
+  create_table "dept_telephones", :force => true do |t|
+    t.integer  "telephone_type_id"
+    t.integer  "dept_id"
+    t.integer  "area_code"
+    t.integer  "number"
+    t.integer  "branch"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "dept_telephones", ["dept_id"], :name => "index_dept_telephones_on_dept_id"
+  add_index "dept_telephones", ["telephone_type_id"], :name => "index_dept_telephones_on_telephone_type_id"
 
   create_table "dept_types", :force => true do |t|
     t.string   "dept_type"
