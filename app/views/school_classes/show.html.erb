@@ -1,6 +1,6 @@
 <%- model_class = @school_class.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -9,11 +9,11 @@
   <dt><strong><%= model_class.human_attribute_name(:period) %>:</strong></dt>
   <dd><%= @school_class.period %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_id) %>:</strong></dt>
-  <dd><%= @school_class.matrix_id %></dd>
+  <dd><%= @school_class.matrix.model_custom_name if @school_class.matrix_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_season_id) %>:</strong></dt>
-  <dd><%= @school_class.class_season_id %></dd>
+  <dd><%= @school_class.class_season.model_custom_name if @school_class.class_season_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
-  <dd><%= @school_class.shift_type_id %></dd>
+  <dd><%= @school_class.shift_type.description if @school_class.shift_type_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:opening_at) %>:</strong></dt>
   <dd><%= @school_class.opening_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:closing_at) %>:</strong></dt>

@@ -36,7 +36,7 @@
     <% end %>
   </tbody>
 </table>
-
+<center><%= will_paginate @people %></center>
 <div class="form-actions">
  <%= link_to t('action.new', :default => t("helpers.links.new")), new_person_path, :class => 'btn btn-primary' %>
 </div>
