@@ -20,7 +20,7 @@
       <tr>
         <td><%= link_to discipline_class.id, discipline_class_path(discipline_class) %></td>
         <td><%= discipline_class.school_class.model_custom_tiny_name %></td>
-        <td><%= discipline_class.matrix_discipline.discipline_name %></td>
+        <td><%= discipline_class.matrix_discipline.discipline_name if discipline_class.matrix_discipline_id %></td>
         <td><%= discipline_class.code %></td>
         <td><%= discipline_class.vancancies %></td>
         <td><%= discipline_class.started_at %></td>

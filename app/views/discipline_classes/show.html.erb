@@ -7,7 +7,7 @@
   <dt><strong><%= model_class.human_attribute_name(:school_class_id) %>:</strong></dt>
   <dd><%= @discipline_class.school_class.model_custom_tiny_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_id) %>:</strong></dt>
-  <dd><%= @discipline_class.matrix_discipline.discipline_name %></dd>
+  <dd><%= @discipline_class.matrix_discipline.discipline_name if @discipline_class.matrix_discipline_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
   <dd><%= @discipline_class.code %></dd>
   <dt><strong><%= model_class.human_attribute_name(:vancancies) %>:</strong></dt>

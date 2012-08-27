@@ -16,7 +16,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
   
@@ -43,3 +43,5 @@ gem 'rails-i18n'
 # To use debugger
 # gem 'ruby-debug'
 gem 'font-awesome-rails'
+gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'bootstrap-will_paginate'
