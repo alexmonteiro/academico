@@ -24,7 +24,7 @@ class PeopleTelephonesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to person_people_telephones_path, :notice => "This record do not exists."}
+        format.html { redirect_to person_people_telephones_path, :notice => "This record doesn`t exists."}
         format.json { render :json => @people_telephone }
       end
     end

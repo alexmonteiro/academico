@@ -1,6 +1,8 @@
 <%- model_class = Dept -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <div style="font-size: 24px;">
+    <h1><i class="icon-sitemap"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
 </div>
 <div class="container">
 <dl class="dl-horizontal">
@@ -27,7 +29,13 @@
 </dl>
 <br/>
 </div>
-<!-- Botões Para Equipamentos -->
+<!-- Botões Para Equipamentos, Endereço e Telefones -->
+<%= link_to dept_dept_addresses_path(@dept), :class => "btn" do %>
+    <i class="icon-home"></i> Endereço
+<% end %>
+<%= link_to dept_dept_telephones_path(@dept), :class => "btn" do %>
+    <i class="icon-phone"></i> Telefones
+<% end %>
 <%= link_to dept_teaching_equipaments_path(@dept), :class => "btn" do %>
     <i class="icon-hdd"></i> Equipamentos
 <% end %>

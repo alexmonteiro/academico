@@ -1,5 +1,5 @@
 AcademicoRails::Application.routes.draw do
-  
+
   resources :discipline_classes
 
   resources :school_classes, :path =>"turmas"
@@ -66,6 +66,8 @@ AcademicoRails::Application.routes.draw do
   resources :depts, :path => "departamentos" do
     resources :courses, :path => "cursos"
     resources :teaching_equipaments, :path => "equipamentos_de_ensino"
+    resources :dept_addresses, :path => "endereco"
+    resources :dept_telephones, :path => "telefones"
   end
 
   resources :depts
