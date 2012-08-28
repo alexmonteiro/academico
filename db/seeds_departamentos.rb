@@ -528,4 +528,4 @@ dept.id = 45
 dept.save!
 
 #Atualiza sequence
-ActiveRecord::Migration.execute("SELECT SETVAL('depts_id_seq', (select max(id)+1 from depts), false);")
+ActiveRecord::Migration.execute("SELECT SETVAL('depts_id_seq', (select max(id) from depts), true);")

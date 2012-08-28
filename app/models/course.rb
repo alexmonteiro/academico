@@ -8,4 +8,19 @@ class Course < ActiveRecord::Base
   belongs_to :education_modality
   has_many :disciplines
   attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id
+  
+  
+  def dept_acronym
+    self.dept.acronym
+  end
+
+  def dept_name
+    self.dept.name
+  end  
+  
+  searchable do
+    text :code, :name, :nickname, :dept_acronym, :dept_name
+    
+  end
+  
 end
