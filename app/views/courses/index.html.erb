@@ -1,6 +1,13 @@
 <%- model_class = Course.new.class -%>
 <div class="page-header">
-  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %>
+<%= form_tag courses_path, :method => :get, :class => 'form-search pull-right' do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Pesquisar...", :class => 'search-query' %>
+	<button type="submit" class="btn">
+	  <i class='icon-search'></i> Ok
+	</button>
+<% end %>
+</h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -19,7 +26,7 @@
         <td><%= link_to course.id, course_path(course) %></td>
         <td><%= course.code %></td>
         <td><%= course.name %></td>
-        <td><%= course.dept.acronym %></td>
+        <td><%= course.dept.acronym if course.dept %></td>
         <td><a href=<%= course_disciplines_path(course) %> > <%= course.disciplines.count %> <i class="icon-book"></i> </a></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -34,6 +41,7 @@
     <% end %>
   </tbody>
 </table>
+<center><%= will_paginate @courses %></center>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_course_path,

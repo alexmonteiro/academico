@@ -1,6 +1,11 @@
 pt-BR:
 
 # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Próximo &#8594;"
+    page_gap: "&hellip;"        
+
   activemodel:
     errors:
       <<: *errors
@@ -97,6 +102,7 @@ pt-BR:
         matrix_evaluation_type_id: "Tipo de Avaliação"
         matrix_status_id: "Status"
         class_season_type_id: "Tipo Período"
+        matrix_disciplines: "Disciplinas"
       discipline_class: 
         school_class_id: "Turma"
         matrix_discipline_id: "Disciplina"
@@ -112,7 +118,42 @@ pt-BR:
         maxseasons: "No. Períodos"
         isoptative: "Optativa?"
         isdependence: "Dependencia?"
-           
+      teaching_equipament:
+        description: "Descrição"
+        arrival_date: "Data de entrada"
+        equipament_type_id: "Tipo"
+        situation_teaching_equipament_id: "Situação" 
+      people_telephone:
+        telephone_type_id: "Tipo"
+        area_code: "Código de área"
+        number: "Número"
+        branch: "Ramal"     
+      person_address:
+        street_type_id: "Logradouro"
+        city_id: "Cidade"
+        street_name: "Rua"
+        complement: "Complemento"
+        post_office_box: "Caixa Postal"
+        neighborhood: "Bairro"
+        zip_code: "Cep"
+        provenance_area_id: "Zona"
+        number: "Número"                
+      dept_telephone:
+        telephone_type_id: "Tipo"
+        area_code: "Código de área"
+        number: "Número"
+        branch: "Ramal"        
+      dept_address:
+        street_type_id: "Logradouro"
+        city_id: "Cidade"
+        street_name: "Rua"
+        complement: "Complemento"
+        post_office_box: "Caixa Postal"
+        neighborhood: "Bairro"
+        zip_code: "Cep"
+        provenance_area_id: "Zona"
+        number: "Número"        
+                   
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -124,6 +165,12 @@ pt-BR:
       matrix: "Matriz"
       discipline_class: "Classe" 
       matrix_discipline: "Matriz de Disciplina"
+      teaching_equipament: "Equipamento de Ensino"
+      people_telephone: "Telefone"
+      person_address: "Endereço"
+      dept_telephone: "Telefone"
+      dept_address: "Endereço"  
+
 
   action:
       actions: "Ações"

@@ -10,7 +10,7 @@ class SchoolClass < ActiveRecord::Base
   end
 
   def model_custom_tiny_name
-    self.identifier.to_s+ ' / ' + self.matrix.model_custom_name
+    self.identifier.to_s+ ' / ' + self.matrix.try(:model_custom_name)
   end  
   
 end

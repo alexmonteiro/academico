@@ -8,10 +8,8 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:started_at) %></th>
       <th><%= model_class.human_attribute_name(:ended_at) %></th>
-      <th><%= model_class.human_attribute_name(:maxdisciplines) %></th>
-      <th><%= model_class.human_attribute_name(:maxseasons) %></th>
       <th><%= model_class.human_attribute_name(:course_id) %></th>
-      <th><%= model_class.human_attribute_name(:matrix_evaluation_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:matrix_disciplines) %></th>
       <th><%= model_class.human_attribute_name(:matrix_status_id) %></th>
       <th><%= model_class.human_attribute_name(:class_season_type_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -23,10 +21,8 @@
         <td><%= link_to matrix.id, matrix_path(matrix) %></td>
         <td><%= matrix.started_at %></td>
         <td><%= matrix.ended_at %></td>
-        <td><%= matrix.maxdisciplines %></td>
-        <td><%= matrix.maxseasons %></td>
-        <td><%= matrix.course.name %></td>
-        <td><%= matrix.matrix_evaluation_type.description %></td>
+        <td><%= matrix.course.try(:name)   %></td>
+        <td><%=link_to "<i class='icon-table'></i> ".html_safe+"#{matrix.matrix_disciplines.count.to_s}", matrix_matrix_disciplines_path(matrix) %></td>
         <td><%= matrix.matrix_status.description %></td>
         <td><%= matrix.class_season_type.description %></td>
         <td>

@@ -3,7 +3,7 @@ class MatrixDisciplinesController < ApplicationController
   # GET /matrix_disciplines.json
   def index
     @matrix = Matrix.find(params[:matrix_id])
-    @matrix_disciplines = MatrixDiscipline.all
+    @matrix_disciplines = MatrixDiscipline.where(:matrix_id => @matrix.id)
 
     respond_to do |format|
       format.html # index.html.erb
