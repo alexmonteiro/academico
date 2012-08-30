@@ -10,7 +10,7 @@
   <dt><strong><%= model_class.human_attribute_name(:telephone_type_id) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @dept_telephone.telephone_type, :atributo => "telephone_type") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:area_code) %>:</strong></dt>
-  <dd>(<%= verifica_registro(:campo => @dept_telephone.area_code) %>)</dd>
+  <dd>(<%= verifica_registro(:campo => @dept_telephone.area_code, :mensagem => " - ") %>)</dd>
   <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @dept_telephone.number) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:branch) %>:</strong></dt>
@@ -18,13 +18,17 @@
 </dl>
 </div>
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              dept_dept_telephones_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_dept_dept_telephone_path, :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <div class="pagination-centered">
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              dept_dept_telephones_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_dept_dept_telephone_path, :class => 'btn btn-large pull-left' %>
+
+
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               dept_dept_telephone_path,
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger btn-large pull-right' %>
+  </div>
 </div>

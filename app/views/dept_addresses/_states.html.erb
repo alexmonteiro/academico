@@ -1,9 +1,9 @@
 <script type="text/javascript">
 jQuery(function($) {
 // when the #region_id field changes
-  $("#person_address_state").change(function() {
+  $("#dept_address_state").change(function() {
     // make a POST call and replace the content
-    var state = $('select#person_address_state :selected').val();
+    var state = $('select#dept_address_state :selected').val();
     var nome_view = $('input#nome_view').val();
     if(state == "") state="0";
     jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
@@ -16,10 +16,10 @@ jQuery(function($) {
 
 
     <% if !states.blank? %>
-       <%= select_tag 'person_address_state', options_from_collection_for_select(states, "id", "name") %>
+       <%= select_tag 'dept_address_state', options_from_collection_for_select(states, "id", "name") %>
 
     <% else %>
-      <%= select_tag 'person_address_state', [], :class => 'select_field' %>
+      <%= select_tag 'dept_address_state', [], :class => 'select_field' %>
     <% end %>
 
 
