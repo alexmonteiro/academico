@@ -25780,4 +25780,4 @@ person.id = 8708
 person.save!
 
 #Atualiza sequence
-ActiveRecord::Migration.execute("SELECT SETVAL('people_id_seq', (select max(id)+1 from people), false);")
+ActiveRecord::Migration.execute("SELECT SETVAL('people_id_seq', (select max(id) from people), true);")

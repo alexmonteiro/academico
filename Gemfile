@@ -43,5 +43,10 @@ gem 'rails-i18n'
 # To use debugger
 # gem 'ruby-debug'
 gem 'font-awesome-rails'
-gem 'jquery-datatables-rails', :git => 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'bootstrap-will_paginate'
+gem 'sunspot_rails'
+
+group :development do
+  gem 'sunspot_solr'
+    gem 'progress_bar' 
+end

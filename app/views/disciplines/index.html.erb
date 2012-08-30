@@ -25,8 +25,8 @@
         <td><%= link_to discipline.id, course_discipline_path( :id => discipline.id) %></td>
         <td><%= discipline.name %></td>
         <td><%= discipline.code %></td>
-        <td><%= discipline.discipline_type.description if discipline.discipline_type_id %></td>
-        <td><%= discipline.dept.acronym if discipline.dept_id %></td>
+        <td><%= discipline.discipline_type.try(:description) %></td>
+        <td><%= discipline.dept.try(:acronym) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_course_discipline_path(:id => discipline.id), :class => 'btn btn-mini' %>

@@ -9,4 +9,5 @@ class Matrix < ActiveRecord::Base
   def model_custom_name
        self.id.to_s+ ' - ' + self.course.name + ' - '  + self.course.dept.acronym
   end  
+  
 end

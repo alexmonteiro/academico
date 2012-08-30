@@ -8,7 +8,6 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:school_class_id) %></th>
       <th><%= model_class.human_attribute_name(:matrix_discipline_id) %></th>
-      <th><%= model_class.human_attribute_name(:code) %></th>
       <th><%= model_class.human_attribute_name(:vancancies) %></th>
       <th><%= model_class.human_attribute_name(:started_at) %></th>
       <th><%= model_class.human_attribute_name(:ending_at) %></th>
@@ -19,9 +18,8 @@
     <% @discipline_classes.each do |discipline_class| %>
       <tr>
         <td><%= link_to discipline_class.id, discipline_class_path(discipline_class) %></td>
-        <td><%= discipline_class.school_class.model_custom_tiny_name %></td>
-        <td><%= discipline_class.matrix_discipline.discipline_name if discipline_class.matrix_discipline_id %></td>
-        <td><%= discipline_class.code %></td>
+        <td><%= discipline_class.school_class.try(:model_custom_tiny_name) %></td>
+        <td><%= discipline_class.matrix_discipline.try(:discipline_name) %></td>
         <td><%= discipline_class.vancancies %></td>
         <td><%= discipline_class.started_at %></td>
         <td><%= discipline_class.ending_at %></td>

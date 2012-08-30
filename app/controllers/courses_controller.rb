@@ -2,7 +2,17 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    if params[:search]
+     @search = Course.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 10
+     end
+     @courses = @search.results
+    else
+     @courses = Course.paginate(:page => params[:page], :per_page => 10)
+    end
+    
+    
 
     respond_to do |format|
       format.html # index.html.erb

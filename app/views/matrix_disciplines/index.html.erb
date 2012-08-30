@@ -23,7 +23,7 @@
     <% @matrix_disciplines.each do |matrix_discipline| %>
       <tr>
         <td><%= link_to matrix_discipline.id, [@matrix, matrix_discipline] %></td>
-        <td><%= matrix_discipline.discipline.name %></td>
+        <td><%= matrix_discipline.discipline.try(:name) %></td>
         <td><%= matrix_discipline.matrix_discipline_group.description %></td>
         <td><%= matrix_discipline.maxseasons %></td>
         <td><%= matrix_discipline.isoptative_description %></td>
