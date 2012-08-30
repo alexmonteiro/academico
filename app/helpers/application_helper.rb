@@ -25,9 +25,9 @@ module ApplicationHelper
   #  Fim
 
   def verifica_registro(opcoes)
-    @campo = opcoes[:campo].to_s
-    @campo.strip!
     @mensagem = opcoes[:mensagem]||="<<Sem Registro>>"
+    @campo = opcoes[:campo].to_s||= @mensagem
+    @campo.strip!
     if opcoes[:atributo].nil?
       @campo.blank? ? @mensagem : opcoes[:campo]
     else

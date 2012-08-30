@@ -37,15 +37,17 @@
 </dl>
 </div>
 <div class="form-actions">
+  <div class="pagination-centered">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
-              courses_path, :class => 'btn btn-large'  %>
+              courses_path, :class => 'btn btn-large  pull-left' %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
-              edit_course_path(@course), :class => 'btn btn-large' %>
+              edit_course_path(@course), :class => 'btn btn-large pull-left' %>
   <%= link_to "<i class='icon-book'></i> ".html_safe + 'Disciplinas',
-              course_disciplines_path(@course), :class => 'btn btn-large' %>
+              course_disciplines_path(@course), :class => 'btn btn-large pull-left' %>
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               course_path(@course),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger btn-large pull-right' %>
+  </div>
 </div>

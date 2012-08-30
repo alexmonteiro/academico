@@ -14,10 +14,30 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
-
+/*
+* ADICAO DE JS GENERICA PARA PAIS, ESTADO, CIDADE
+* */
 jQuery(function($) {
   // when the #country field changes
-  $("#person_country_id").change(function() {
+  $("#country").change(function() {
+    // make a POST call and replace the content
+    var country = $('select#country :selected').val();
+    var nome_view = $('input#nome_view').val();
+    if(country == "") country="0";
+    jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
+        $("#addressStates").html(data);
+    })
+    return false;
+  });
+})
+
+/*
+* FIM
+*/
+
+ jQuery(function($) {
+  // when the #country field changes
+  $("#person_country_id").click(function() {
     // make a POST call and replace the content
     var country = $('select#person_country_id :selected').val();
     if(country == "") country="0";
@@ -28,18 +48,8 @@ jQuery(function($) {
   });
 })
 
-jQuery(function($) {
-  // when the #country field changes
-  $("#person_address_country").change(function() {
-    // make a POST call and replace the content
-    var country = $('select#person_address_country :selected').val();
-    if(country == "") country="0";
-    jQuery.get('/people/update_state_select/' + country, function(data){
-        $("#addressStates").html(data);
-    })
-    return false;
-  });
-})
+
+
 
 
 // Disciplinas da Turma/MatrizCurricular

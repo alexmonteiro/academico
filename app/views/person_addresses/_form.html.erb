@@ -11,6 +11,12 @@
   </div>
 <div class="control-group">
 <!-- País Cidade e Estado -->
+  <!--
+  Tag Hidden atributos:
+  # id = nome_view -> Variavel para o JS application - Não muda
+  # value = person_addresses -> nome da view em que se encontra o codigo - Aqui muda de acordo com a view em que se encontra
+  -->
+  <input type="hidden" id="nome_view" value="person_addresses">
   <%= f.label :country_id, :class => 'control-label' %>
   <div class="controls" id="addressCountry">
     <%= render :partial =>'country' %>

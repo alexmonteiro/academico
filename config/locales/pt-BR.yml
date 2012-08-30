@@ -324,6 +324,10 @@ pt-BR:
       new: Criação de %{model}
       edit: Edição de %{model}
     actions: "Ações"
+    others_links:
+      telephones: Telefones
+      address: Endereço
+      teaching_equipaments: Equipamentos
   number:
     currency:
       format:

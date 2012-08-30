@@ -60,11 +60,12 @@ class DeptAddressesController < ApplicationController
   # POST /dept_addresses
   # POST /dept_addresses.json
   def create
+    @dept = Dept.find((params[:dept_id]))
     @dept_address = DeptAddress.new(params[:dept_address])
 
     respond_to do |format|
       if @dept_address.save
-        format.html { redirect_to dept_dept_addresses_path, :notice => 'Dept address was successfully created.' }
+        format.html { redirect_to [@dept,@dept_address], :notice => 'Dept address was successfully created.' }
         format.json { render :json => [@dept,@dept_address], :status => :created, :location => @dept_address }
       else
         format.html { render :action => "new" }
@@ -76,11 +77,12 @@ class DeptAddressesController < ApplicationController
   # PUT /dept_addresses/1
   # PUT /dept_addresses/1.json
   def update
+    @dept = Dept.find((params[:dept_id]))
     @dept_address = DeptAddress.find(params[:id])
 
     respond_to do |format|
       if @dept_address.update_attributes(params[:dept_address])
-        format.html { redirect_to dept_dept_addresses_path, :notice => 'Dept address was successfully updated.' }
+        format.html { redirect_to [@dept,@dept_address], :notice => 'Dept address was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

@@ -40,20 +40,23 @@
   <dd><%= get_person_types(@person) %></dd>
 </dl>
 </div>
-<!-- Botões Para Endereço e Telefones da Pessoa -->
-<%= link_to person_person_addresses_path(@person), :class => "btn" do %>
-    <i class="icon-home"></i> Endereço
-<% end %>
-<%= link_to person_people_telephones_path(@person), :class => "btn" do %>
-    <i class="icon-phone"></i> Telefones
-<% end %>
-<!-- Fim -->
 
 <div class="form-actions">
-  <%= link_to t('action.back', :default => t("helpers.links.back")), people_path, :class => 'btn'  %>
-  <%= link_to t('action.edit', :default => t("helpers.links.edit")), edit_person_path(@person), :class => 'btn' %>
-  <%= link_to t('action.destroy', :default => t("helpers.links.destroy")), person_path(@person),
+  <div class="pagination-centered">
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              people_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_person_path(@person), :class => 'btn btn-large pull-left' %>
+
+  <%= link_to "<i class='icon-home'></i>".html_safe + t('.address', :default => t("helpers.others_links.address")),
+              person_person_addresses_path(@person), :class => 'btn btn-large  pull-left' %>
+  <%= link_to "<i class='icon-phone'></i>".html_safe + t('.telephones', :default => t("helpers.others_links.telephones")),
+              person_people_telephones_path(@person), :class => 'btn btn-large pull-left' %>
+
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
+              person_path(@person),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Tem certeza que deseja excluir?')),
-              :class => 'btn btn-danger' %>
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger btn-large pull-right' %>
+  </div>
 </div>
