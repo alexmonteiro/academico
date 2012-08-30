@@ -51,11 +51,12 @@ class TeachingEquipamentsController < ApplicationController
   # POST /teaching_equipaments
   # POST /teaching_equipaments.json
   def create
+    @dept = Dept.find((params[:dept_id]))
     @teaching_equipament = TeachingEquipament.new(params[:teaching_equipament])
 
     respond_to do |format|
       if @teaching_equipament.save
-        format.html { redirect_to dept_teaching_equipaments_path, :notice => 'Teaching equipament was successfully created.' }
+        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Teaching equipament was successfully created.' }
         format.json { render :json => [@dept, @teaching_equipament], :status => :created, :location => @teaching_equipament }
       else
         format.html { render :action => "new" }
@@ -67,11 +68,12 @@ class TeachingEquipamentsController < ApplicationController
   # PUT /teaching_equipaments/1
   # PUT /teaching_equipaments/1.json
   def update
+    @dept = Dept.find((params[:dept_id]))
     @teaching_equipament = TeachingEquipament.find(params[:id])
 
     respond_to do |format|
       if @teaching_equipament.update_attributes(params[:teaching_equipament])
-        format.html { redirect_to dept_teaching_equipaments_path, :notice => 'Teaching equipament was successfully updated.' }
+        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Teaching equipament was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

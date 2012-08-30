@@ -51,11 +51,12 @@ class PeopleTelephonesController < ApplicationController
   # POST /people_telephones
   # POST /people_telephones.json
   def create
+    @person = Person.find((params[:person_id]))
     @people_telephone = PeopleTelephone.new(params[:people_telephone])
 
     respond_to do |format|
       if @people_telephone.save
-        format.html { redirect_to person_people_telephones_path, :notice => 'People telephone was successfully created.' }
+        format.html { redirect_to [@people,@people_telephone], :notice => 'People telephone was successfully created.' }
         format.json { render :json => [@people,@people_telephone], :status => :created, :location => @people_telephone }
       else
         format.html { render :action => "new" }
@@ -67,11 +68,12 @@ class PeopleTelephonesController < ApplicationController
   # PUT /people_telephones/1
   # PUT /people_telephones/1.json
   def update
+    @person = Person.find((params[:person_id]))
     @people_telephone = PeopleTelephone.find(params[:id])
 
     respond_to do |format|
       if @people_telephone.update_attributes(params[:people_telephone])
-        format.html { redirect_to person_people_telephones_path, :notice => 'People telephone was successfully updated.' }
+        format.html { redirect_to [@people,@people_telephone], :notice => 'People telephone was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

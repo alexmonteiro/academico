@@ -1,0 +1,24 @@
+<script type="text/javascript">
+jQuery(function($) {
+// when the #region_id field changes
+  $("#state").change(function() {
+    // make a POST call and replace the content
+    var state = $('select#state :selected').val();
+    if(state == "") state="0";
+    jQuery.get('/countries/update_city_select/' + state, function(data){
+        $("#addressCities").html(data);
+    })
+    return false;
+  });
+})
+</script>
+
+
+    <% if !states.blank? %>
+       <%= select_tag 'state', options_from_collection_for_select(states, "id", "name") %>
+
+    <% else %>
+      <%= select_tag 'state', [], :class => 'select_field' %>
+    <% end %>
+
+

@@ -29,28 +29,24 @@
 </dl>
 <br/>
 </div>
-<!-- Botões Para Equipamentos, Endereço e Telefones -->
-<%= link_to dept_dept_addresses_path(@dept), :class => "btn" do %>
-    <i class="icon-home"></i> Endereço
-<% end %>
-<%= link_to dept_dept_telephones_path(@dept), :class => "btn" do %>
-    <i class="icon-phone"></i> Telefones
-<% end %>
-<%= link_to dept_teaching_equipaments_path(@dept), :class => "btn" do %>
-    <i class="icon-hdd"></i> Equipamentos
-<% end %>
-<!-- Fim -->
-
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              depts_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_dept_path(@dept), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <div class="pagination-centered">
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              depts_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_dept_path(@dept), :class => 'btn btn-large pull-left' %>
+
+  <%= link_to "<i class='icon-home'></i>".html_safe + t('.address', :default => t("helpers.others_links.address")),
+              dept_dept_addresses_path(@dept), :class => 'btn btn-large  pull-left' %>
+  <%= link_to "<i class='icon-phone'></i>".html_safe + t('.telephones', :default => t("helpers.others_links.telephones")),
+              dept_dept_telephones_path(@dept), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-hdd'></i>".html_safe + t('.teaching_equipaments', :default => t("helpers.others_links.teaching_equipaments")),
+              dept_teaching_equipaments_path(@dept), :class => 'btn btn-large pull-left' %>
+
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               dept_path(@dept),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
-
-
+              :class => 'btn btn-danger btn-large pull-right' %>
+  </div>
 </div>

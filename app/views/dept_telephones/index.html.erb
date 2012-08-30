@@ -19,7 +19,7 @@
     <% @dept_telephones.each do |dept_telephone| %>
       <tr>
         <td><%= link_to verifica_registro(:campo => dept_telephone.telephone_type, :atributo => "telephone_type"), [@dept, dept_telephone]%></td>
-        <td>(<%= verifica_registro(:campo => dept_telephone.area_code) %>)</td>
+        <td>(<%= verifica_registro(:campo => dept_telephone.area_code, :mensagem => " - ") %>)</td>
         <td><%= verifica_registro(:campo => dept_telephone.number) %></td>
         <td><%= verifica_registro(:campo => dept_telephone.branch) %></td>
         <td>

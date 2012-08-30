@@ -6,15 +6,37 @@
   <div class="control-group">
     <%= f.label :street_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :street_type_id, :class => 'number_field' %>
+      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Select a Street Type" %>
+    </div>
+  </div>
+<div class="control-group">
+
+<!-- País Cidade e Estado -->
+  <!--
+  Tag Hidden atributos:
+  # id = nome_view -> Variavel para o JS application - Não muda
+  # value = person_addresses -> nome da view em que se encontra o codigo - Aqui muda de acordo com a view em que se encontra
+  -->
+  <input type="hidden" id="nome_view" value="dept_addresses">
+  <%= f.label :country_id, :class => 'control-label' %>
+  <div class="controls" id="addressCountry">
+    <%= render :partial =>'country' %>
+  </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state_id, :class => 'control-label' %>
+    <div class="controls"  id="addressStates">
+       <%= render :partial => 'states'%>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :city_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :city_id, :class => 'number_field' %>
+    <div class="controls"  id="addressCities">
+       <%= render :partial => 'cities'  %>
     </div>
   </div>
+  <!-- Fim -->
+
   <div class="control-group">
     <%= f.label :street_name, :class => 'control-label' %>
     <div class="controls">
@@ -54,7 +76,7 @@
   <div class="control-group">
     <%= f.label :provenance_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :provenance_area_id, :class => 'number_field' %>
+      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Zone" %>
     </div>
   </div>
 
