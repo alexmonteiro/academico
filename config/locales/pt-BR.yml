@@ -102,6 +102,7 @@ pt-BR:
         matrix_evaluation_type_id: "Tipo de Avaliação"
         matrix_status_id: "Status"
         class_season_type_id: "Tipo Período"
+        matrix_disciplines: "Disciplinas"
       discipline_class: 
         school_class_id: "Turma"
         matrix_discipline_id: "Disciplina"

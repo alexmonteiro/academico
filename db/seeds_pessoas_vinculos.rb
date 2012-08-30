@@ -7595,6 +7595,3 @@ PersonPersonType.create([
   {:person_id => 99, :person_type_id => 1 }, 
   {:person_id => 9, :person_type_id => 1 }
 ])
-
-#Atualiza sequence
-#ActiveRecord::Migration.execute("SELECT SETVAL('person_person_types_id_seq', (select max(id) from person_person_types), true);")
