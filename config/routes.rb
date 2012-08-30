@@ -99,7 +99,10 @@ AcademicoRails::Application.routes.draw do
 
   resources :states
 
+  match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
+  match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'
   resources :countries
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

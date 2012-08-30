@@ -26,8 +26,8 @@
         <td><%= link_to course.id, course_path(course) %></td>
         <td><%= course.code %></td>
         <td><%= course.name %></td>
-        <td><%= course.dept.acronym if course.dept %></td>
-        <td><a href=<%= course_disciplines_path(course) %> > <%= course.disciplines.count %> <i class="icon-book"></i> </a></td>
+        <td><%= course.dept.acronym %></td>
+        <td><a href=<%= course_disciplines_path(course) %> > <i class="icon-book"></i> <%= course.disciplines.count %> </a></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_course_path(course), :class => 'btn btn-mini' %>
