@@ -5,4 +5,8 @@ class DisciplineClass < ActiveRecord::Base
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
   validates :school_class_id, :matrix_discipline_id, :code, :presence => true
+  
+  def model_custom_name
+    self.school_class.try(:model_custom_tiny_name)+" - "+self.matrix_discipline.id.to_s || "null" +" - "+self.matrix_discipline.try(:discipline_name)
+  end
 end

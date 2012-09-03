@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823143036) do
+ActiveRecord::Schema.define(:version => 20120831144146) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(:version => 20120823143036) do
 
   add_index "class_seasons", ["class_season_type_id"], :name => "index_class_seasons_on_class_season_type_id"
   add_index "class_seasons", ["dept_id"], :name => "index_class_seasons_on_dept_id"
+
+  create_table "class_teachings", :force => true do |t|
+    t.integer  "discipline_class_id"
+    t.integer  "person_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "class_teachings", ["dept_id"], :name => "index_class_teachings_on_dept_id"
+  add_index "class_teachings", ["discipline_class_id"], :name => "index_class_teachings_on_discipline_class_id"
+  add_index "class_teachings", ["person_id"], :name => "index_class_teachings_on_person_id"
 
   create_table "countries", :force => true do |t|
     t.string   "name"

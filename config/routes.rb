@@ -1,8 +1,16 @@
 AcademicoRails::Application.routes.draw do
 
-  resources :discipline_classes
+  resources :class_teachings, :path =>"docencias"
 
-  resources :school_classes, :path =>"turmas"
+  resources :discipline_classes, :path =>"classes" do
+    resources :class_teachings, :path =>"docencias"
+  end
+
+  resources :school_classes, :path =>"turmas" do
+    resources :discipline_classes, :path =>"classes" do
+      resources :class_teachings, :path =>"docencias"
+    end
+  end
 
   resources :equipament_types
 

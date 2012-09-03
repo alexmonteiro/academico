@@ -2,7 +2,15 @@ class DisciplineClassesController < ApplicationController
   # GET /discipline_classes
   # GET /discipline_classes.json
   def index
-    @discipline_classes = DisciplineClass.all
+    if params[:search]
+     @search = DisciplineClass.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 10
+     end
+     @discipline_classes = @search.results
+    else
+     @discipline_classes = DisciplineClass.paginate(:page => params[:page], :per_page => 10)
+    end    
 
     respond_to do |format|
       format.html # index.html.erb
