@@ -11,11 +11,11 @@ class Course < ActiveRecord::Base
   
   
   def dept_acronym
-    self.dept.acronym
+    self.dept.dept.try(:acronym)+"-"+self.dept.try(:acronym)
   end
 
   def dept_name
-    self.dept.name
+    self.dept.try(:name)
   end  
   
   searchable do

@@ -153,6 +153,10 @@ pt-BR:
         zip_code: "Cep"
         provenance_area_id: "Zona"
         number: "Número"        
+      class_teaching:
+        person_id: "Professor"
+        discipline_class_id: "Turma/Classe/Disciplina"
+        dept_id: "Ambiente de aprendizagem"
                    
     models:
       person: "Pessoa"  
@@ -170,6 +174,7 @@ pt-BR:
       person_address: "Endereço"
       dept_telephone: "Telefone"
       dept_address: "Endereço"  
+      class_teaching: "Docencias"  
 
 
   action:

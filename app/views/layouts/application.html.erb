@@ -88,7 +88,7 @@
 	      <hr>
 
 	      <footer>
-	        <p><center>&copy;<%= link_to 'Instituto Federal de Educação, Ciência e Tecnologia', 'http://www.ifb.edu.br'%></center></p>
+	        <p><center>&copy; <%= link_to 'Instituto Federal de Educação, Ciência e Tecnologia', 'http://www.ifb.edu.br'%> <%= '('+Rails.env+')' if Rails.env != 'production'%></center></p>
 	      </footer>
 
 	    </div><!--/.fluid-container-->
