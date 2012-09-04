@@ -8,10 +8,7 @@ module PeopleHelper
      false
    end
 
-   def verificaMarcados(id)
-     params[:person]['person_type_ids'].reject{ |e| e.empty? }.index(id.to_s).nil? ? false : true    
-   end
-   
+
    def get_person_types(person)
      str_pt = String.new
      person.person_types.each do |pt|

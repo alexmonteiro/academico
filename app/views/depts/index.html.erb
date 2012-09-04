@@ -9,7 +9,7 @@
 <br/>
 <%= nested_depts(@dept_roots) %>
 <br/>
-<div class="css-treeview"> 
+<div class="css-treeview">
 <% for dept in @dept_roots %>	
  <ul>
  <li><input type="checkbox" id="item-0" />
@@ -32,15 +32,15 @@
 				 <% for subno in @dept_subnodes %>
 				  <li>
 					<input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0"><%= subno.name%></label>
-		            <%= link_to "<i class='icon-play'></i>".html_safe, :action => 'show', :id => subno %> 
+		            <%= link_to "<i class='icon-play'></i>".html_safe, :action => 'show', :id => subno %>
  			        <%= link_to "<i class='icon-edit'></i>".html_safe, :action => 'edit', :id => subno %>
 				  </li>
 				 <%end%>
-			</ul>	
+			</ul>
 		</li>
  <%end%>
 	</ul>
- </li> 
+ </li>
  </ul>
 <% end %>
 </div>
