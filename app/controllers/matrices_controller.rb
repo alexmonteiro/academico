@@ -2,7 +2,15 @@ class MatricesController < ApplicationController
   # GET /matrices
   # GET /matrices.json
   def index
-    @matrices = Matrix.all
+    if params[:search]
+     @search = Matrix.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 10
+     end
+     @matrices = @search.results
+    else
+     @matrices = Matrix.paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

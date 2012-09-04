@@ -1,6 +1,13 @@
 <%- model_class = Matrix.new.class -%>
 <div class="page-header">
-  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %>
+		<%= form_tag matrices_path, :method => :get, :class => 'form-search pull-right' do %>
+		    <%= text_field_tag :search, params[:search], :placeholder => "Pesquisar...", :class => 'search-query' %>
+			<button type="submit" class="btn">
+			  <i class='icon-search'></i> Ok
+			</button>
+		<% end %>	
+  </h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -19,8 +26,8 @@
     <% @matrices.each do |matrix| %>
       <tr>
         <td><%= link_to matrix.id, matrix_path(matrix) %></td>
-        <td><%= matrix.started_at %></td>
-        <td><%= matrix.ended_at %></td>
+        <td><%=l matrix.started_at %></td>
+        <td><%=l matrix.ended_at %></td>
         <td><%= matrix.course.try(:name)   %></td>
         <td><%=link_to "<i class='icon-table'></i> ".html_safe+"#{matrix.matrix_disciplines.count.to_s}", matrix_matrix_disciplines_path(matrix) %></td>
         <td><%= matrix.matrix_status.description %></td>
@@ -38,6 +45,7 @@
     <% end %>
   </tbody>
 </table>
+<center><%= will_paginate @matrices %></center>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_matrix_path,

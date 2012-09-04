@@ -21,7 +21,7 @@
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @discipline.course.name if @discipline.course_id%></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-  <dd><%= @discipline.dept.name if @discipline.dept_id %></dd>
+  <dd><%= @discipline.course.dept.try(:name) %></dd>
 </dl>
 </div>
 <div class="form-actions">

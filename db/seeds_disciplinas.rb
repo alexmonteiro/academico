@@ -17,8 +17,7 @@ discipline = Discipline.new(
          :workload => \''||carga_horaria||'\',   
          :credits => '||coalesce(credito,0)||',    
          :discipline_type_id => DisciplineType.find_by_description(\''||tipo_elemento_curricular||'\').id,   
-         :course_id => '||curso_id||',
-         :dept_id => '||elemento_curricular.elemento_organizacional_id||'
+         :course_id => '||curso_id||'
          })
 discipline.id = '||elemento_curricular.id||'
 discipline.save!         
@@ -48,8 +47,7 @@ discipline = Discipline.new(
          :workload => \''||carga_horaria||'\',   
          :credits => '||coalesce(credito,0)||',    
          :discipline_type_id => DisciplineType.find_by_description(\''||tipo_elemento_curricular||'\').id,   
-         :course_id => '||curso_id||',
-         :dept_id => '||elemento_curricular.elemento_organizacional_id||'
+         :course_id => '||curso_id||'
          })
 discipline.id = '||elemento_curricular.id||'
 discipline.save!         

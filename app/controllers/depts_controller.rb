@@ -2,7 +2,15 @@ class DeptsController < ApplicationController
   # GET /depts
   # GET /depts.json
   def index
-    @depts = Dept.all
+    if params[:search]
+     @search = Dept.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 10
+     end
+     @depts = @search.results
+    else
+     @depts = Dept.paginate(:page => params[:page], :per_page => 10)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
