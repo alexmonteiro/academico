@@ -2,19 +2,19 @@
   <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :course_id, :class => 'number_field' %>
+     <%= f.collection_select :course_id, Course.find(:all, :order => :name), :id, :name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :class_season_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :class_season_id, :class => 'number_field' %>
+      <%= f.collection_select :class_season_id, ClassSeason.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :shift_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :shift_type_id, :class => 'number_field' %>
+      <%= f.collection_select :shift_type_id, ShiftType.find(:all), :id, :description, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">

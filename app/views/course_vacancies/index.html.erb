@@ -10,7 +10,6 @@
       <th><%= model_class.human_attribute_name(:class_season_id) %></th>
       <th><%= model_class.human_attribute_name(:shift_type_id) %></th>
       <th><%= model_class.human_attribute_name(:number_vacancies) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -18,11 +17,10 @@
     <% @course_vacancies.each do |course_vacancy| %>
       <tr>
         <td><%= link_to course_vacancy.id, course_vacancy_path(course_vacancy) %></td>
-        <td><%= course_vacancy.course_id %></td>
-        <td><%= course_vacancy.class_season_id %></td>
-        <td><%= course_vacancy.shift_type_id %></td>
+        <td><%= course_vacancy.course.try(:name) %></td>
+        <td><%= course_vacancy.class_season.try(:model_custom_name) %></td>
+        <td><%= course_vacancy.shift_type.try(:description) %></td>
         <td><%= course_vacancy.number_vacancies %></td>
-        <td><%=l course_vacancy.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_course_vacancy_path(course_vacancy), :class => 'btn btn-mini' %>

@@ -16,8 +16,6 @@ AcademicoRails::Application.routes.draw do
 
   resources :situation_teaching_equipaments
 
-  resources :course_vacancies
-
   resources :course_vacancies, :path => "ofertadevagas"
 
   resources :shift_types, :path => "turnos"
