@@ -84,9 +84,9 @@ AcademicoRails::Application.routes.draw do
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
   match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
 
-  resources :people do
-    resources :people_telephones
-    resources :person_addresses
+  resources :people, :path =>"pessoas" do
+    resources :people_telephones, :path =>"telefones"
+    resources :person_addresses, :path =>"endereços"
   end
 
   resources :special_needs_types

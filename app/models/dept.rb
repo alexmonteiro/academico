@@ -6,5 +6,14 @@ class Dept < ActiveRecord::Base
 
   #Validacoes
   validates :name, :acronym, :presence => true
+  
+  def dept_type_desc
+    self.dept_type.dept_type
+  end
+  
+  searchable do
+    text :acronym, :cnpj, :description, :email, :name, :site, :dept_type_desc
+        
+  end
 
 end

@@ -2,7 +2,7 @@ class CreatePeople < ActiveRecord::Migration
   def change
     create_table :people do |t|
       t.string :name
-      t.string :birth_date
+      t.date :birth_date
       t.string :father_name
       t.string :mom_name
       t.string :email
