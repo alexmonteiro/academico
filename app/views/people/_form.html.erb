@@ -14,7 +14,8 @@
 	</div>
 	<% end %>
 
-
+</div>
+<div class="container">
 <fieldset>
 <legend>Identificação</legend>	
    <div class="span5">
@@ -49,7 +50,7 @@
     <%= f.text_field :lattes_url, :class => 'text_field' %>
 
     <%= f.label :number_children, :class => 'control-label' %>
-    <%= f.number_field :number_children, :class => 'number_field' %>
+    <%= f.number_field :number_children, :class => 'number_field', :value => 0 %>
 
 
    </div>
@@ -128,26 +129,12 @@
 <div class="container">
 <fieldset>
   <legend>Vínculo Institucional</legend>
-   <div class="span1">	
-	<%= f.fields_for :person_type_ids do |pt| %>
+   <div class="span1">
+    <%= f.fields_for :person_type_ids do |pt| %>
         <div class="right_box">
           <% PersonType.all.each do |person_type| %>
-				  <% if params[:action] == 'new' %>
-					<label class="checkbox">
-                  		<%= (pt.check_box [], {:checked=> false, :type => 'checkbox'}, person_type.id, nil) %>
-						<%= person_type.description %> 
-					</label>
-				  <% elsif params[:action] == 'edit' %>
-					<label class="checkbox">
-				  		<%= (pt.check_box [], {:checked=> verificaChecados(person_type.id), :type => 'checkbox'}, person_type.id, nil) %>
-                  		<%= person_type.description %>                
-					</label>
-				  <% elsif params[:action] == 'create' %>
-					<label class="checkbox">
-				  		<%= (pt.check_box [], {:checked=> verificaMarcados(person_type.id), :type => 'checkbox'}, person_type.id, nil) %>
-                  		<%= person_type.description %>      
-					</label>
-				  <% end %>
+                  <%= (pt.check_box [], {:checked=> @person.person_types.include?(person_type) }, person_type.id, nil) %>
+                  <%= person_type.description %><br/>
           <% end %>
         </div>
     <% end %>
@@ -160,4 +147,5 @@
     <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path, :class => 'btn' %>
   </div>
 </div>
+
 <% end %>
