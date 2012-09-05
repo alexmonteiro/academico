@@ -29,7 +29,7 @@
       <tr>
         <td><%= link_to person.id, person_path(person) %></td>
         <td><%= person.name %></td>
-        <td><%= person.birth_date %></td>
+        <td><%=l person.birth_date %></td>
         <td><%= person.email %></td>
         <td><%= get_person_types(person) %></td>
         <td>
