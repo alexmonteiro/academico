@@ -1,7 +1,14 @@
 <%- model_class = Dept -%>
 <div class="page-header">
   <div style="font-size: 24px;">
-    <h1><i class="icon-sitemap"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+    <h1><i class="icon-sitemap"></i> <%=t '.title', :default => model_class.model_name.human %>
+		<%= form_tag depts_path, :method => :get, :class => 'form-search pull-right' do %>
+		    <%= text_field_tag :search, params[:search], :placeholder => "Pesquisar...", :class => 'search-query' %>
+			<button type="submit" class="btn">
+			  <i class='icon-search'></i> Ok
+			</button>
+		<% end %>
+	</h1>
   </div>
 </div>
 
@@ -52,9 +59,6 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:acronym) %></th>
-      <th><%= model_class.human_attribute_name(:cnpj) %></th>
-      <th><%= model_class.human_attribute_name(:site) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
       <th><%= model_class.human_attribute_name(:dept_type_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_telephones) %></th>
@@ -69,11 +73,8 @@
         <td><%= link_to dept.id, dept_path(dept) %></td>
         <td><%= dept.name %></td>
         <td><%= dept.acronym %></td>
-        <td><%= dept.cnpj %></td>
-        <td><%= dept.site %></td>
-        <td><%= dept.email %></td>
-        <td><%= dept.dept_type_id %></td>
-        <td><%= dept.dept_id %></td>
+        <td><%= dept.dept_type.try(:dept_type) %></td>
+        <td><%= dept.dept.try(:acronym) %></td>
         <td>
           <%= link_to dept_dept_telephones_path(dept) do %>
             <% telephones = DeptTelephone.where("dept_id = ?", dept.id)%>
@@ -105,6 +106,7 @@
     <% end %>
   </tbody>
 </table>
+<center><%= will_paginate @depts %></center>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_dept_path,

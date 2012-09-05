@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:school_class_id) %></th>
       <th><%= model_class.human_attribute_name(:matrix_discipline_id) %></th>
+      <th><%= model_class.human_attribute_name(:docentes) %></th>
       <th><%= model_class.human_attribute_name(:vancancies) %></th>
       <th><%= model_class.human_attribute_name(:started_at) %></th>
       <th><%= model_class.human_attribute_name(:ending_at) %></th>
@@ -20,9 +21,10 @@
         <td><%= link_to discipline_class.id, discipline_class_path(discipline_class) %></td>
         <td><%= discipline_class.school_class.try(:model_custom_tiny_name) %></td>
         <td><%= discipline_class.matrix_discipline.try(:discipline_name) %></td>
+        <td><%= link_to "<i class='icon-user'></i> ".html_safe + discipline_class.class_teachings.count.to_s, discipline_class_class_teachings_path(discipline_class) %></td>
         <td><%= discipline_class.vancancies %></td>
-        <td><%= discipline_class.started_at %></td>
-        <td><%= discipline_class.ending_at %></td>
+        <td><%=l discipline_class.started_at %></td>
+        <td><%=l discipline_class.ending_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_discipline_class_path(discipline_class), :class => 'btn btn-mini' %>
@@ -36,7 +38,7 @@
     <% end %>
   </tbody>
 </table>
-
+<center><%= will_paginate @discipline_classes %></center>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_discipline_class_path,
             :class => 'btn btn-primary' %>

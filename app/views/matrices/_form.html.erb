@@ -10,7 +10,7 @@
   <div class="control-group">
     <%= f.label :ended_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :ended_at, :class => 'date_select' %>
+      <%= f.date_select :ended_at, :class => 'date_select', :include_blank => true %>
     </div>
   </div>
 </fieldset>
@@ -29,7 +29,7 @@
   <div class="control-group">
     <%= f.label :course_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :course_id, Course.find(:all), :id, :name, :prompt => "...Selecione..." %>
+      <%= f.collection_select :course_id, Course.find(:all, :order => :name), :id, :name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">

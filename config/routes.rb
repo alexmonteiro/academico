@@ -1,14 +1,20 @@
 AcademicoRails::Application.routes.draw do
 
-  resources :discipline_classes
+  resources :class_teachings, :path =>"docencias"
 
-  resources :school_classes, :path =>"turmas"
+  resources :discipline_classes, :path =>"classes" do
+    resources :class_teachings, :path =>"docencias"
+  end
+
+  resources :school_classes, :path =>"turmas" do
+    resources :discipline_classes, :path =>"classes" do
+      resources :class_teachings, :path =>"docencias"
+    end
+  end
 
   resources :equipament_types
 
   resources :situation_teaching_equipaments
-
-  resources :course_vacancies
 
   resources :course_vacancies, :path => "ofertadevagas"
 
@@ -78,9 +84,9 @@ AcademicoRails::Application.routes.draw do
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
   match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
 
-  resources :people do
-    resources :people_telephones
-    resources :person_addresses
+  resources :people, :path =>"pessoas" do
+    resources :people_telephones, :path =>"telefones"
+    resources :person_addresses, :path =>"endereços"
   end
 
   resources :special_needs_types

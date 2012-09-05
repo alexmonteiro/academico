@@ -40,7 +40,7 @@
     <% end %>
   </tbody>
 </table>
-
+<center><%= will_paginate @school_classes %></center>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_school_class_path,
             :class => 'btn btn-primary' %>

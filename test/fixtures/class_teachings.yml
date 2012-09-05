@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  discipline_class: 
+  person: 
+  dept: 
+
+two:
+  discipline_class: 
+  person: 
+  dept: 

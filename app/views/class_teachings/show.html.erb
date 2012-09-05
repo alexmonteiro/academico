@@ -1,0 +1,25 @@
+<%- model_class = @class_teaching.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:discipline_class_id) %>:</strong></dt>
+  <dd><%= @class_teaching.discipline_class_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:person_id) %>:</strong></dt>
+  <dd><%= @class_teaching.person_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
+  <dd><%= @class_teaching.dept_id %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              class_teachings_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_class_teaching_path(@class_teaching), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              class_teaching_path(@class_teaching),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

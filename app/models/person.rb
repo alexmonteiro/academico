@@ -19,4 +19,10 @@ class Person < ActiveRecord::Base
   validates :name, :presence => true
   validates :number_children, :numericality => { :only_integer => true }
   #validates :email, :uniqueness => true
+
+  searchable do
+    text :birth_date, :email, :name, :number_children
+    string :name
+    
+  end  
 end

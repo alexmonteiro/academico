@@ -10,4 +10,17 @@ class Matrix < ActiveRecord::Base
        self.id.to_s+ ' - ' + self.course.name + ' - '  + self.course.dept.acronym
   end  
   
+  def matrix_status_desc
+    self.matrix_status.description
+  end
+  
+  def course_name
+    self.course.name
+  end
+  
+  searchable do
+    text :matrix_status_desc, :course_name, :model_custom_name
+    
+  end
+  
 end

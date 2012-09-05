@@ -1,0 +1,2 @@
+module ClassTeachingsHelper
+end

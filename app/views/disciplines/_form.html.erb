@@ -1,5 +1,5 @@
 <%curso = Course.find(params[:course_id])%>
-<h2>Curso: <%= curso.name%></h2>
+<h2>Curso: <%= curso.name%> | <%= curso.dept.try(:name)%></h2>
 <% if @discipline.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
     <h2><%= pluralize(@discipline.errors.count, "error impediu", "errors impediram") %> impediu a gravação:</h2>
@@ -67,12 +67,6 @@
     </div>
     </div>
 
-    <div class="control-group">
-    <%= f.label :dept_id, :class => 'control-label' %>
-    <div class="controls">    
-    <%= f.collection_select :dept_id, Dept.find(:all), :id, :name, :prompt => "...Selecione..." %>
-    </div>
-    </div>
 </div>
 
 </div>

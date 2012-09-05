@@ -2,7 +2,15 @@ class SchoolClassesController < ApplicationController
   # GET /school_classes
   # GET /school_classes.json
   def index
-    @school_classes = SchoolClass.all
+    if params[:search]
+     @search = SchoolClass.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 10
+     end
+     @school_classes = @search.results
+    else
+     @school_classes = SchoolClass.paginate(:page => params[:page], :per_page => 10)
+    end    
 
     respond_to do |format|
       format.html # index.html.erb
