@@ -1,0 +1,21 @@
+<%= form_for(@day_week) do |f| %>
+  <% if @day_week.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@day_week.errors.count, "error") %> prohibited this day_week from being saved:</h2>
+
+      <ul>
+      <% @day_week.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

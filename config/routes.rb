@@ -1,5 +1,13 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :timetable_class_times, :path =>"horas"
+
+  resources :timetables, :path =>"gradehoraria"
+
+  resources :class_times
+
+  resources :day_weeks
+
   resources :class_teachings, :path =>"docencias"
 
   resources :discipline_classes, :path =>"classes" do
@@ -24,6 +32,9 @@ AcademicoRails::Application.routes.draw do
 
   resources :matrices, :path => "matrizcurricular" do
     resources :matrix_disciplines, :path => "disciplinas"
+    resources :timetables, :path =>"gradehoraria" do
+      resources :timetable_class_times, :path =>"horas"
+    end
   end
   
 

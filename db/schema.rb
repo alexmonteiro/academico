@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831144146) do
+ActiveRecord::Schema.define(:version => 20120911120152) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20120831144146) do
   add_index "class_teachings", ["discipline_class_id"], :name => "index_class_teachings_on_discipline_class_id"
   add_index "class_teachings", ["person_id"], :name => "index_class_teachings_on_person_id"
 
+  create_table "class_times", :force => true do |t|
+    t.string   "started_at"
+    t.string   "ended_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "countries", :force => true do |t|
     t.string   "name"
     t.string   "nationality"
@@ -106,6 +113,12 @@ ActiveRecord::Schema.define(:version => 20120831144146) do
   add_index "courses", ["learning_modality_id"], :name => "index_courses_on_learning_modality_id"
   add_index "courses", ["registration_scheme_id"], :name => "index_courses_on_registration_scheme_id"
   add_index "courses", ["techaxes_id"], :name => "index_courses_on_techaxes_id"
+
+  create_table "day_weeks", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "dept_addresses", :force => true do |t|
     t.integer  "street_type_id"
@@ -246,6 +259,13 @@ ActiveRecord::Schema.define(:version => 20120831144146) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "issuing_institutions", :force => true do |t|
+    t.string   "description"
+    t.string   "acronym"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "knowledge_areas", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
@@ -315,9 +335,15 @@ ActiveRecord::Schema.define(:version => 20120831144146) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "military_document_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
-    t.string   "birth_date"
+    t.date     "birth_date"
     t.string   "father_name"
     t.string   "mom_name"
     t.string   "email"
@@ -496,5 +522,25 @@ ActiveRecord::Schema.define(:version => 20120831144146) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  create_table "timetable_class_times", :force => true do |t|
+    t.integer  "timetable_id"
+    t.integer  "class_time_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "timetable_class_times", ["class_time_id"], :name => "index_timetable_class_times_on_class_time_id"
+  add_index "timetable_class_times", ["timetable_id"], :name => "index_timetable_class_times_on_timetable_id"
+
+  create_table "timetables", :force => true do |t|
+    t.integer  "matrix_id"
+    t.integer  "day_week_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "timetables", ["day_week_id"], :name => "index_timetables_on_day_week_id"
+  add_index "timetables", ["matrix_id"], :name => "index_timetables_on_matrix_id"
 
 end

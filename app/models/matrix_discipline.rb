@@ -2,6 +2,7 @@ class MatrixDiscipline < ActiveRecord::Base
   belongs_to :matrix
   belongs_to :discipline
   belongs_to :matrix_discipline_group
+  default_scope :order => :maxseasons
   attr_accessible :isdependence, :isoptative, :maxseasons, :discipline_id, :matrix_discipline_group_id, :matrix_id
   
   validates_uniqueness_of :matrix_id, :scope => :discipline_id, :message => "já possui esta disciplina associada."
