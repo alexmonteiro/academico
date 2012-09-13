@@ -8,7 +8,7 @@ class Matrix < ActiveRecord::Base
   attr_accessible :ended_at, :maxdisciplines, :maxseasons, :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id, :course_id
 
   def model_custom_name
-       self.id.to_s+ ' - ' + self.course.name + ' - '  + self.course.dept.acronym
+      self.id.to_s+' - Matriz ' + self.started_at.strftime('%d/%m/%Y') + ' - '+ self.course.try(:name) + ' - '  + self.course.dept.try(:acronym)
   end  
   
   def matrix_status_desc
