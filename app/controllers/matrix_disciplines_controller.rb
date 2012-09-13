@@ -36,6 +36,7 @@ class MatrixDisciplinesController < ApplicationController
 
   # GET /matrix_disciplines/1/edit
   def edit
+    @matrix = Matrix.find(params[:matrix_id])
     @matrix_discipline = MatrixDiscipline.find(params[:id])
   end
 
@@ -60,6 +61,7 @@ class MatrixDisciplinesController < ApplicationController
   # PUT /matrix_disciplines/1
   # PUT /matrix_disciplines/1.json
   def update
+    @matrix = Matrix.find(params[:matrix_id])
     @matrix_discipline = MatrixDiscipline.find(params[:id])
 
     respond_to do |format|
