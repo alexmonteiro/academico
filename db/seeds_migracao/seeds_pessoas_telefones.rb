@@ -18,4 +18,4 @@ ActiveRecord::Migration.execute("SELECT SETVAL('people_telephones_id_seq', 1, fa
 
 
 #Atualiza sequence
-ActiveRecord::Migration.execute("SELECT SETVAL('people_telephones_id_seq', (select max(id) from people_telephones), true);")
+#ActiveRecord::Migration.execute("SELECT SETVAL('people_telephones_id_seq', (select max(id) from people_telephones), true);")

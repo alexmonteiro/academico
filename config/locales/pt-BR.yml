@@ -115,7 +115,7 @@ pt-BR:
         matrix_id: "Matriz"
         discipline_id: "Disciplina"
         matrix_discipline_group_id: "Grupo"
-        maxseasons: "No. Períodos"
+        maxseasons: "Período"
         isoptative: "Optativa?"
         isdependence: "Dependencia?"
       teaching_equipament:
@@ -157,6 +157,9 @@ pt-BR:
         person_id: "Professor"
         discipline_class_id: "Turma/Classe/Disciplina"
         dept_id: "Ambiente de aprendizagem"
+      timetable: 
+        matrix_id: "Matriz"
+        day_week_id: "Dia da semana"
                    
     models:
       person: "Pessoa"  
@@ -174,7 +177,8 @@ pt-BR:
       person_address: "Endereço"
       dept_telephone: "Telefone"
       dept_address: "Endereço"  
-      class_teaching: "Docencias"  
+      class_teaching: "Docencias"
+      timetable: "Grade Horária"
 
 
   action:

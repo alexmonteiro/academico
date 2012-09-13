@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Started at:</b>
+  <%= @class_time.started_at %>
+</p>
+
+<p>
+  <b>Ended at:</b>
+  <%= @class_time.ended_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_class_time_path(@class_time) %> |
+<%= link_to 'Back', class_times_path %>

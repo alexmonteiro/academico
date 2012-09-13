@@ -28,7 +28,10 @@
   <div class="control-group">
     <%= f.label :maxseasons, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :maxseasons, :class => 'number_field' %>
+	  <% @seasons = [['...Selecione...', '']]
+     	(1..@matrix.maxseasons).each {|s| @seasons << [[s], s]}
+	   %>
+      <%= f.select :maxseasons, options_for_select(@seasons, @matrix_discipline.maxseasons) %>
     </div>
   </div>
   <div class="control-group">

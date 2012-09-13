@@ -13,19 +13,19 @@
   <dt><strong><%= model_class.human_attribute_name(:maxseasons) %>:</strong></dt>
   <dd><%= @matrix_discipline.maxseasons %></dd>
   <dt><strong><%= model_class.human_attribute_name(:isoptative) %>:</strong></dt>
-  <dd><%= @matrix_discipline.isoptative %></dd>
+  <dd><%= @matrix_discipline.isoptative_description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:isdependence) %>:</strong></dt>
-  <dd><%= @matrix_discipline.isdependence %></dd>
+  <dd><%= @matrix_discipline.isdependence_description %></dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              matrix_matrix_disciplines_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_matrix_matrix_discipline_path, :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              matrix_matrix_disciplines_path, :class => 'btn btn-large'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_matrix_matrix_discipline_path, :class => 'btn btn-large' %>
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               matrix_matrix_discipline_path(params[:matrix_id]),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger btn-large pull-right' %>
 </div>

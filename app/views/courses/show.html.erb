@@ -17,9 +17,9 @@
   <dt><strong><%= model_class.human_attribute_name(:mintime) %>:</strong></dt>
   <dd><%= @course.mintime %></dd>
   <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%= @course.started_at %></dd>
+  <dd><%=l @course.started_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ended_at) %>:</strong></dt>
-  <dd><%= @course.ended_at %></dd>
+  <dd><%=l @course.ended_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
   <dd><%= @course.dept.name if @course.dept_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:registration_scheme_id) %>:</strong></dt>

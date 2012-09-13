@@ -15,9 +15,9 @@
   <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
   <dd><%= @school_class.shift_type.try(:description) || '<sem registro>' %></dd>
   <dt><strong><%= model_class.human_attribute_name(:opening_at) %>:</strong></dt>
-  <dd><%= @school_class.opening_at %></dd>
+  <dd><%=l @school_class.opening_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:closing_at) %>:</strong></dt>
-  <dd><%= @school_class.closing_at %></dd>
+  <dd><%=l @school_class.closing_at %></dd>
 </dl>
 
 <div class="form-actions">
