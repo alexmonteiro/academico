@@ -6503,4 +6503,18 @@ class_times = ClassTime.create([
 {:started_at => '21:50', :ended_at => '22:30'},
 {:started_at => '21:50', :ended_at => '22:40'}])
 
+# Alimenta tabela status da matrícula do aluno
+puts 'Inserindo status da matrícula do aluno...'
+# select distinct '{:description => '''||descricao||'''},' from status_aluno_classe;
+class_student_statuses = ClassStudentStatus.create([
+  {:description => 'Aprovado/Apto'},
+  {:description => 'Aprovado no conselho'},
+  {:description => 'Aprovado por Aproveitamento de Crédito'},
+  {:description => 'Cancelado'},
+  {:description => 'Dispensado'},
+  {:description => 'Em Curso'},
+  {:description => 'Reprovado'},
+  {:description => 'Reprovado por Frequência'}
+  ])
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

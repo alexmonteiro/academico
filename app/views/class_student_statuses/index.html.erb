@@ -1,0 +1,23 @@
+<h1>Listing class_student_statuses</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @class_student_statuses.each do |class_student_status| %>
+  <tr>
+    <td><%= class_student_status.description %></td>
+    <td><%= link_to 'Show', class_student_status %></td>
+    <td><%= link_to 'Edit', edit_class_student_status_path(class_student_status) %></td>
+    <td><%= link_to 'Destroy', class_student_status, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Class student status', new_class_student_status_path %>
