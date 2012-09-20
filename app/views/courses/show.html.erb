@@ -17,9 +17,9 @@
   <dt><strong><%= model_class.human_attribute_name(:mintime) %>:</strong></dt>
   <dd><%= @course.mintime %></dd>
   <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%=l @course.started_at %></dd>
+  <dd> <%=l @course.started_at if @course.started_at %> </dd>
   <dt><strong><%= model_class.human_attribute_name(:ended_at) %>:</strong></dt>
-  <dd><%=l @course.ended_at %></dd>
+  <dd> <%=l @course.ended_at if @course.ended_at%> </dd>
   <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
   <dd><%= @course.dept.name if @course.dept_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:registration_scheme_id) %>:</strong></dt>
@@ -31,7 +31,7 @@
   <dt><strong><%= model_class.human_attribute_name(:knowledge_area_id) %>:</strong></dt>
   <dd><%= @course.knowledge_area.description if @course.knowledge_area_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:techaxes_id) %>:</strong></dt>
-  <dd><%= Techaxis.find(@course.techaxes_id).techaxis if @course.techaxes_id %></dd>
+  <dd><%= @course.techaxis.techaxis if @course.techaxes_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:education_modality_id) %>:</strong></dt>
   <dd><%= @course.education_modality.description if @course.education_modality_id %></dd>
 </dl>

@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :course_statuses
+
   resources :class_student_statuses
 
   resources :timetable_class_times, :path =>"horas"

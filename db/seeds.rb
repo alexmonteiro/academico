@@ -6517,4 +6517,14 @@ class_student_statuses = ClassStudentStatus.create([
   {:description => 'Reprovado por Frequência'}
   ])
 
+# Alimenta tabela status do Curso
+puts 'Inserindo status dos cursos...'
+# select distinct '{:description => '''||descricao||'''},' from situacao_curso;
+course_statuses = CourseStatus.create([
+  {:description => 'Ativo'},
+  {:description => 'Extinto'},
+  {:description => 'Outros'},
+  {:description => 'Suspenso'}
+])
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

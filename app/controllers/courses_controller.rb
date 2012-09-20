@@ -28,6 +28,11 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @course }
+      format.pdf do
+        #pdf = Prawn::Document.new
+        pdf = CoursePdf.new(@course)
+        send_data pdf.render, :filename => "curso_#{@course.id}", :type => "application/pdf", :disposition => "inline"
+      end
     end
   end
 

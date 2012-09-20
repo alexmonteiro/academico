@@ -43,10 +43,11 @@ gem 'rails-i18n'
 # To use debugger
 # gem 'ruby-debug'
 gem 'font-awesome-rails'
-gem 'bootstrap-will_paginate'
+gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
+gem 'prawn'
 
 group :development do
   gem 'sunspot_solr'
-    gem 'progress_bar' 
+  gem 'progress_bar' 
 end
