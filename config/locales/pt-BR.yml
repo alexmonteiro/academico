@@ -62,7 +62,7 @@ pt-BR:
         maxtime: "Tempo de máximo"
         mintime: "Tempo mínimo"
         started_at: "Abertura"
-        ENDED_at: "Encerramento"
+        ended_at: "Encerramento"
         dept_id: "UO"
         registration_scheme_id: "Forma de inscrição"
         class_season_type_id: "Período"
@@ -94,7 +94,7 @@ pt-BR:
         shift_type_id: "Turno"
         opening_at: "Abertura"
         closing_at: "Fechamento"                
-      matrix:
+      course_matrix:
         started_at: "Início"
         ended_at: "Fim"
         maxdisciplines: "No. Disciplinas"
@@ -170,7 +170,7 @@ pt-BR:
       course_vacancy: "Oferta de Vaga"      
       discipline: "Disciplina"
       school_class: "Turma"
-      matrix: "Matriz"
+      course_matrix: "Matriz"
       discipline_class: "Classe" 
       matrix_discipline: "Matriz de Disciplina"
       teaching_equipament: "Equipamento de Ensino"

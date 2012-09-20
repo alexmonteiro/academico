@@ -2,7 +2,7 @@ class MatrixDisciplinesController < ApplicationController
   # GET /matrix_disciplines
   # GET /matrix_disciplines.json
   def index
-    @matrix = Matrix.find(params[:matrix_id])
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
     @matrix_disciplines = MatrixDiscipline.where(:matrix_id => @matrix.id)
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class MatrixDisciplinesController < ApplicationController
   # GET /matrix_disciplines/new
   # GET /matrix_disciplines/new.json
   def new
-    @matrix = Matrix.find(params[:matrix_id])
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
     @matrix_discipline = MatrixDiscipline.new
 
     respond_to do |format|
@@ -36,14 +36,14 @@ class MatrixDisciplinesController < ApplicationController
 
   # GET /matrix_disciplines/1/edit
   def edit
-    @matrix = Matrix.find(params[:matrix_id])
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
     @matrix_discipline = MatrixDiscipline.find(params[:id])
   end
 
   # POST /matrix_disciplines
   # POST /matrix_disciplines.json
   def create
-    @matrix = Matrix.find(params[:matrix_id])
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
     @matrix_discipline = MatrixDiscipline.new(params[:matrix_discipline])
     @matrix_discipline.matrix_id = @matrix.id
 
@@ -61,7 +61,7 @@ class MatrixDisciplinesController < ApplicationController
   # PUT /matrix_disciplines/1
   # PUT /matrix_disciplines/1.json
   def update
-    @matrix = Matrix.find(params[:matrix_id])
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
     @matrix_discipline = MatrixDiscipline.find(params[:id])
 
     respond_to do |format|

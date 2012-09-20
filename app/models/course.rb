@@ -8,7 +8,7 @@ class Course < ActiveRecord::Base
   belongs_to :education_modality
   belongs_to :course_status
   has_many :disciplines
-  has_many :matrices
+  has_many :course_matrices
   attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
   
   

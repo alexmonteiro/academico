@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920121336) do
+ActiveRecord::Schema.define(:version => 20120920185305) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -78,6 +78,24 @@ ActiveRecord::Schema.define(:version => 20120920121336) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "course_matrices", :force => true do |t|
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.integer  "maxdisciplines"
+    t.integer  "maxseasons"
+    t.integer  "course_id"
+    t.integer  "matrix_evaluation_type_id"
+    t.integer  "matrix_status_id"
+    t.integer  "class_season_type_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "course_matrices", ["class_season_type_id"], :name => "index_course_matrices_on_class_season_type_id"
+  add_index "course_matrices", ["course_id"], :name => "index_course_matrices_on_course_id"
+  add_index "course_matrices", ["matrix_evaluation_type_id"], :name => "index_course_matrices_on_matrix_evaluation_type_id"
+  add_index "course_matrices", ["matrix_status_id"], :name => "index_course_matrices_on_matrix_status_id"
 
   create_table "course_statuses", :force => true do |t|
     t.string   "description"

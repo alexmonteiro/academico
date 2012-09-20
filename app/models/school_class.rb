@@ -1,5 +1,5 @@
 class SchoolClass < ActiveRecord::Base
-  belongs_to :matrix
+  belongs_to :course_matrix, :foreign_key => "matrix_id"
   belongs_to :class_season
   belongs_to :shift_type
   has_many   :matrix_disciplines, :foreign_key => "matrix_id"
