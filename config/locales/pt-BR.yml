@@ -115,7 +115,7 @@ pt-BR:
         matrix_id: "Matriz"
         discipline_id: "Disciplina"
         matrix_discipline_group_id: "Grupo"
-        maxseasons: "No. Períodos"
+        maxseasons: "Período"
         isoptative: "Optativa?"
         isdependence: "Dependencia?"
       teaching_equipament:
@@ -182,6 +182,9 @@ pt-BR:
         vr_section: "Seção"
         vr_uf: "UF do Título de Eleitor"
         vr_date_issuance: "Data de Expedição"
+      timetable: 
+        matrix_id: "Matriz"
+        day_week_id: "Dia da semana"
 
     models:
       person: "Pessoa"  
@@ -201,6 +204,7 @@ pt-BR:
       dept_address: "Endereço"  
       class_teaching: "Docencias"
       person_identification_doc: "Documentação de Identificação"
+      timetable: "Grade Horária"
 
 
   action:

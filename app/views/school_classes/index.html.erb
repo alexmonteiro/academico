@@ -25,8 +25,8 @@
         <td><%= school_class.matrix.try(:model_custom_name) %></td>
         <td><%= school_class.class_season.try(:model_custom_name) %></td>
         <td><%= school_class.shift_type.try(:description) %></td>
-        <td><%= school_class.opening_at %></td>
-        <td><%= school_class.closing_at %></td>
+        <td><%=l school_class.opening_at %></td>
+        <td><%=l school_class.closing_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_school_class_path(school_class), :class => 'btn btn-mini' %>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  started_at: MyString
+  ended_at: MyString
+
+two:
+  started_at: MyString
+  ended_at: MyString

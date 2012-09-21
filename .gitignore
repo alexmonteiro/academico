@@ -20,3 +20,5 @@ Gemfile.lock
 sunspot-solr.pid
 
 *.iml
+
+.idea/workspace.xml
