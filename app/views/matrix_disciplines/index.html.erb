@@ -30,7 +30,7 @@
         <td><%= matrix_discipline.isdependence_description %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_matrix_matrix_discipline_path(:id => matrix_discipline.id), :class => 'btn btn-mini' %>
+                      edit_course_matrix_matrix_discipline_path(:id => matrix_discipline.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       [@matrix, matrix_discipline],
                       :method => :delete,
@@ -43,5 +43,5 @@
 </table>
 </fieldset>
 <%= link_to 'Incluir Disciplinas',
-            new_matrix_matrix_discipline_path,
+            new_course_matrix_matrix_discipline_path,
             :class => 'btn btn-primary' %>

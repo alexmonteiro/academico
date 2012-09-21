@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914140557) do
+ActiveRecord::Schema.define(:version => 20120920185305) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(:version => 20120914140557) do
   add_index "class_seasons", ["class_season_type_id"], :name => "index_class_seasons_on_class_season_type_id"
   add_index "class_seasons", ["dept_id"], :name => "index_class_seasons_on_dept_id"
 
+  create_table "class_student_statuses", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "class_teachings", :force => true do |t|
     t.integer  "discipline_class_id"
     t.integer  "person_id"
@@ -69,6 +75,30 @@ ActiveRecord::Schema.define(:version => 20120914140557) do
   create_table "countries", :force => true do |t|
     t.string   "name"
     t.string   "nationality"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "course_matrices", :force => true do |t|
+    t.date     "started_at"
+    t.date     "ended_at"
+    t.integer  "maxdisciplines"
+    t.integer  "maxseasons"
+    t.integer  "course_id"
+    t.integer  "matrix_evaluation_type_id"
+    t.integer  "matrix_status_id"
+    t.integer  "class_season_type_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "course_matrices", ["class_season_type_id"], :name => "index_course_matrices_on_class_season_type_id"
+  add_index "course_matrices", ["course_id"], :name => "index_course_matrices_on_course_id"
+  add_index "course_matrices", ["matrix_evaluation_type_id"], :name => "index_course_matrices_on_matrix_evaluation_type_id"
+  add_index "course_matrices", ["matrix_status_id"], :name => "index_course_matrices_on_matrix_status_id"
+
+  create_table "course_statuses", :force => true do |t|
+    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -104,9 +134,11 @@ ActiveRecord::Schema.define(:version => 20120914140557) do
     t.integer  "education_modality_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.integer  "course_status_id"
   end
 
   add_index "courses", ["class_season_type_id"], :name => "index_courses_on_class_season_type_id"
+  add_index "courses", ["course_status_id"], :name => "index_courses_on_course_status_id"
   add_index "courses", ["dept_id"], :name => "index_courses_on_dept_id"
   add_index "courses", ["education_modality_id"], :name => "index_courses_on_education_modality_id"
   add_index "courses", ["knowledge_area_id"], :name => "index_courses_on_knowledge_area_id"

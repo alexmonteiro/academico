@@ -10,7 +10,7 @@
   </div>
 <% end %>
 <%= form_for ([@matrix, @matrix_discipline], :html => { :class => 'form-horizontal' }) do |f| %>
-  <%matrix = Matrix.find(params[:matrix_id])%>
+  <%matrix = CouserMatrix.find(params[:matrix_id])%>
   <h2>Matriz: <%= matrix.model_custom_name%></h2>
 
   <div class="control-group">

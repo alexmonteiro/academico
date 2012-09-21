@@ -22,7 +22,7 @@
         <td><%= link_to school_class.id, school_class_path(school_class) %></td>
         <td><%= school_class.identifier %></td>
         <td><%= school_class.period %></td>
-        <td><%= school_class.matrix.try(:model_custom_name) %></td>
+        <td><%= school_class.course_matrix.try(:model_custom_name) %></td>
         <td><%= school_class.class_season.try(:model_custom_name) %></td>
         <td><%= school_class.shift_type.try(:description) %></td>
         <td><%=l school_class.opening_at %></td>

@@ -2,15 +2,15 @@
 =begin
 -- Select de Instituicoes
 select ('
-matriz = Matrix.new(
-         {:started_at => \''||data_inicio||'\', 
-          :ended_at => \''||coalesce(data_fim, '01/01/2050')||'\', 
-          :maxdisciplines => \''||numero_maximo_elemento_acursar||'\',  
-          :course_id => \''||curso_id||'\', 
-          :matrix_evaluation_type_id => \''||forma_avaliacao_id||'\',   
-          :matrix_status_id => \''||situacao_matriz_curricular_id||'\',
-          :maxseasons => \''||numero_periodos||'\',  
-          :class_season_type_id => '||tipo_periodo_matriz_curricular_id||'
+matriz = CourseMatrix.new(
+         {:started_at => '''||ARRAY_TO_STRING(ARRAY[data_inicio],' ')||''', 
+          :ended_at => '''||ARRAY_TO_STRING(ARRAY[data_fim],' ')||''', 
+          :maxdisciplines => '''||ARRAY_TO_STRING(ARRAY[numero_maximo_elemento_acursar],' ')||''',  
+          :course_id => '''||ARRAY_TO_STRING(ARRAY[curso_id],' ')||''', 
+          :matrix_evaluation_type_id => '''||forma_avaliacao_id||''',   
+          :matrix_status_id => '''||ARRAY_TO_STRING(ARRAY[forma_avaliacao_id],' ')||''',
+          :maxseasons => '''||ARRAY_TO_STRING(ARRAY[numero_periodos],' ')||''',  
+          :class_season_type_id => '||ARRAY_TO_STRING(ARRAY[tipo_periodo_matriz_curricular_id],' ')||'
          })
 matriz.id = '||id||'
 matriz.save!         
@@ -19,22 +19,36 @@ from matriz_curricular
 order by matriz_curricular.id;
 
 -- Comando reduzido
-
-select ('matriz = Matrix.new({:started_at => \''||data_inicio||'\', :ended_at => \''||coalesce(data_fim, '01/01/2050')||'\', :maxdisciplines => \''||numero_maximo_elemento_acursar||'\', :course_id => \''||curso_id||'\', :matrix_evaluation_type_id => \''||forma_avaliacao_id||'\', :matrix_status_id => \''||situacao_matriz_curricular_id||'\', :maxseasons => \''||numero_periodos||'\', :class_season_type_id => '||tipo_periodo_matriz_curricular_id||'})
+select ('
+matriz = CourseMatrix.new({:started_at => '''||ARRAY_TO_STRING(ARRAY[data_inicio],' ')||''', :ended_at => '''||ARRAY_TO_STRING(ARRAY[data_fim],' ')||''', :maxdisciplines => '''||ARRAY_TO_STRING(ARRAY[numero_maximo_elemento_acursar],' ')||''',  :course_id => '''||ARRAY_TO_STRING(ARRAY[curso_id],' ')||''', :matrix_evaluation_type_id => '''||forma_avaliacao_id||''',   :matrix_status_id => '''||ARRAY_TO_STRING(ARRAY[forma_avaliacao_id],' ')||''',:maxseasons => '''||ARRAY_TO_STRING(ARRAY[numero_periodos],' ')||''',  :class_season_type_id => '||ARRAY_TO_STRING(ARRAY[tipo_periodo_matriz_curricular_id],' ')||'})
 matriz.id = '||id||'
-matriz.save! ') as comando
+matriz.save!         
+       ') as comando
 from matriz_curricular
 order by matriz_curricular.id;
+
+-- Comando shell
+psql -U postgres -h localhost -d dbsiga-edu -c "select ('
+matriz = CourseMatrix.new({:started_at => '''||ARRAY_TO_STRING(ARRAY[data_inicio],' ')||''', :ended_at => '''||ARRAY_TO_STRING(ARRAY[data_fim],' ')||''', :maxdisciplines => '''||ARRAY_TO_STRING(ARRAY[numero_maximo_elemento_acursar],' ')||''',  :course_id => '''||ARRAY_TO_STRING(ARRAY[curso_id],' ')||''', :matrix_evaluation_type_id => '''||forma_avaliacao_id||''',   :matrix_status_id => '''||ARRAY_TO_STRING(ARRAY[forma_avaliacao_id],' ')||''',:maxseasons => '''||ARRAY_TO_STRING(ARRAY[numero_periodos],' ')||''',  :class_season_type_id => '||ARRAY_TO_STRING(ARRAY[tipo_periodo_matriz_curricular_id],' ')||'})
+matriz.id = '||id||'
+matriz.save!         
+       ') as comando
+from matriz_curricular
+order by matriz_curricular.id;" > matrizes
+
+
+-- Comando no postgres para solucionar o problema de concatenação com valor nulo
+ARRAY_TO_STRING(ARRAY[],' ')
+
 
 
 =end
 
-Matrix.delete_all
-ActiveRecord::Migration.execute("SELECT SETVAL('matrices_id_seq', 1, false);")
+CourseMatrix.delete_all
+ActiveRecord::Migration.execute("SELECT SETVAL('course_matrices_id_seq', 1, false);")
 
 ## Colar o código aqui
 
 
-
 #Atualiza sequence
-ActiveRecord::Migration.execute("SELECT SETVAL('matrices_id_seq', (select max(id) from matrices), true);")
+ActiveRecord::Migration.execute("SELECT SETVAL('course_matrices_id_seq', (select max(id) from course_matrices), true);")

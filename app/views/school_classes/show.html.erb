@@ -9,7 +9,7 @@
   <dt><strong><%= model_class.human_attribute_name(:period) %>:</strong></dt>
   <dd><%= @school_class.period %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_id) %>:</strong></dt>
-  <dd><%= @school_class.matrix.model_custom_name if @school_class.matrix_id %></dd>
+  <dd><%= @school_class.course_matrix.model_custom_name if @school_class.matrix_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_season_id) %>:</strong></dt>
   <dd><%= @school_class.class_season.model_custom_name if @school_class.class_season_id %></dd>
   <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>

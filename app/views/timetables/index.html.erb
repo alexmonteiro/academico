@@ -15,7 +15,7 @@
     <% @timetables.each do |timetable| %>
       <tr>
         <td><%= link_to timetable.id, timetable_path(timetable) %></td>
-        <td><%= timetable.matrix.try(:model_custom_name) %></td>
+        <td><%= timetable.course_matrix.try(:model_custom_name) %></td>
         <td><%= timetable.day_week.try(:description) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

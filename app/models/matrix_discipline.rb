@@ -1,5 +1,5 @@
 class MatrixDiscipline < ActiveRecord::Base
-  belongs_to :matrix
+  belongs_to :course_matrix, :foreign_key => :matrix_id
   belongs_to :discipline
   belongs_to :matrix_discipline_group
   default_scope :order => :maxseasons
