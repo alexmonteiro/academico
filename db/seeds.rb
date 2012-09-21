@@ -6263,7 +6263,7 @@ situation_teaching_equipament = SituationTeachingEquipament.create([
  {:description => 'Defeituoso'}
   ])
 
-# Alimenta tabela com as Situações dos Equipamentos de Ensino
+# Alimenta tabela com os Tipos de Equipamentos de Ensino
 puts 'Inserindo dados nos Tipos de Equipamento...'
 equipament_type = EquipamentType.create([
   {:description => 'Aparelho de DVD'},
@@ -6281,6 +6281,43 @@ equipament_type = EquipamentType.create([
   {:description => 'Televisăo'}
   ])
 
+#Alimenta a tabela Órgãos Expedidor
+puts 'Inserindo dados na tabela Órgãos Expedidor...'
+issuing_institution = IssuingInstitution.create([
+  {:description => 'Carteira de Tabalho e Previdęncia Social', :acronym => 'CTPS'},
+  {:description => 'Carteira Nacional de Estrangeiro', :acronym => 'CNE'},
+  {:description => 'Carteira Nacional de Habilitaçăo', :acronym => 'CNH'},
+  {:description => 'Conselho Regional de Administraçăo', :acronym => 'CRA'},
+  {:description => 'Conselho Regional de Contabilidade', :acronym => 'CRC'},
+  {:description => 'Conselho Regional de Corretor de Imóveis', :acronym => 'CRECI'},
+  {:description => 'Conselho Regional de Enfermagem', :acronym => 'COREN'},
+  {:description => 'Conselho Regional de Eng. Arq. e Agronomia', :acronym => 'CREA'},
+  {:description => 'Conselho Regional de Farmácia', :acronym => 'CRF'},
+  {:description => 'Conselho Regional de Medicina', :acronym => 'CRM'},
+  {:description => 'Conselho Regional de Medicina Veterinária', :acronym => 'CRMV'},
+  {:description => 'Conselho Regional de Odontologia', :acronym => 'CRO'},
+  {:description => 'Conselho Regional de Prof. Relaçőes Públicas', :acronym => 'CRPRP'},
+  {:description => 'Conselho Regional de Psicologia', :acronym => 'CRP'},
+  {:description => 'Conselho Regional de Química', :acronym => 'CRQ'},
+  {:description => 'Conselho Regional de Serviço Social', :acronym => 'CRESS'},
+  {:description => 'DETRAN', :acronym => 'DETRAN'},
+  {:description => 'Forças Armadas', :acronym => 'FM'},
+  {:description => 'Ministério da Aeronáutica', :acronym => 'AE'},
+  {:description => 'Ministério da Marinha', :acronym => 'MR'},
+  {:description => 'Ministério do Exército', :acronym => 'EX'},
+  {:description => 'Ordem dos Advogados do Brasil', :acronym => 'OAB'},
+  {:description => 'Outros Emissores', :acronym => 'OE'},
+  {:description => 'Polícia Federal', :acronym => 'PF'},
+  {:description => 'Secretaria de Segurança Pública', :acronym => 'SSP'},
+  ])
+
+#Alimenta a tabela Órgãos Expedidor
+puts 'Inserindo dados na tabela Tipo de Documento ...'
+military_document_type = MilitaryDocumentType.create([
+  {:description => 'Comprovante de Alistamento Militar'},
+  {:description => 'Certificado Militar'},
+  ])
+
 # Alimenta tabela com os dias da semana
 puts 'Inserindo dados dos dias da semana...'
 
@@ -6292,9 +6329,7 @@ day_weeks = DayWeek.create([
   {:description => 'Quinta-Feira'},
   {:description => 'Sexta-Feira'},
   {:description => 'Sábado'}
-  ])  
-  
-class_times
+  ])
 
 # Alimenta tabela com os horários das aulas
 puts 'Inserindo dados os horários das aulas...'

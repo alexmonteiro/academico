@@ -1,0 +1,54 @@
+<%- model_class = PersonIdentificationDoc.new.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-paste"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @person.name, person_path(@person) %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:cpf) %></th>
+      <th><%= model_class.human_attribute_name(:rg) %></th>
+      <th><%= model_class.human_attribute_name(:birth_certificate) %></th>
+      <th><%= model_class.human_attribute_name(:ctps) %></th>
+      <th><%= model_class.human_attribute_name(:pis_pasep) %></th>
+      <th><%= model_class.human_attribute_name(:cnh) %></th>
+      <th><%= model_class.human_attribute_name(:military_document) %></th>
+      <th><%= model_class.human_attribute_name(:voter_registration) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @person_identification_docs.each do |person_identification_doc| %>
+      <tr>
+        <td><%= verifica_registro(:campo => person_identification_doc.cpf, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.rg, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.birth_certificate, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.ctps, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.pis_pasep, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.cnh, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.military_document, :mensagem => "-") %></td>
+        <td><%= verifica_registro(:campo => person_identification_doc.voter_registration, :mensagem => "-") %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_person_person_identification_doc_path(:id => person_identification_doc), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      [@person, person_identification_doc],
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+          <%= link_to "Detalhes...", [@person, person_identification_doc], :class => 'btn btn-mini btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if !@person_identification_docs.exists? %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_person_person_identification_doc_path,
+            :class => 'btn btn-primary' %>
+<% else %>
+    <!-- <td><%= link_to 'Edit Person Identification Docs', edit_person_person_identification_doc_path(@person,@person_identification_docs[0]) %></td> -->
+<%end%>

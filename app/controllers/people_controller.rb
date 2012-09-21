@@ -23,7 +23,8 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
-
+    @person_address = PersonAddress.where(:person_id => params[:id])
+    @people_telephones = PeopleTelephone.where("people_id = ?", params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @person }

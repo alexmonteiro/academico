@@ -1,5 +1,9 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :military_document_types
+
+  resources :issuing_institutions
+
   resources :timetable_class_times, :path =>"horas"
 
   resources :timetables, :path =>"gradehoraria"
@@ -98,6 +102,7 @@ AcademicoRails::Application.routes.draw do
   resources :people, :path =>"pessoas" do
     resources :people_telephones, :path =>"telefones"
     resources :person_addresses, :path =>"enderecos"
+    resources :person_identification_docs, :path => "documentacao"
   end
 
   resources :special_needs_types

@@ -1,0 +1,9 @@
+<tbody>
+  <table>
+    <% @people_telephones.each do |people_telephone| %>
+       <tr>
+        <td><%= "#{verifica_registro(:campo => people_telephone.telephone_type, :atributo => "telephone_type", :mensagem => "Outro")}: (#{verifica_registro(:campo => people_telephone.area_code)}) #{people_telephone.branch.blank? || people_telephone.branch == 0 ? verifica_registro(:campo => people_telephone.number) : "#{verifica_registro(:campo => people_telephone.number)} com ramal: #{verifica_registro(:campo => people_telephone.branch)}"}"%></td>
+       </tr>
+    <%end%>
+  </table>
+</tbody>

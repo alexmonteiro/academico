@@ -1,0 +1,23 @@
+<h1>Listing military_document_types</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @military_document_types.each do |military_document_type| %>
+  <tr>
+    <td><%= military_document_type.description %></td>
+    <td><%= link_to 'Show', military_document_type %></td>
+    <td><%= link_to 'Edit', edit_military_document_type_path(military_document_type) %></td>
+    <td><%= link_to 'Destroy', military_document_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Military document type', new_military_document_type_path %>

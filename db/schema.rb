@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911120152) do
+ActiveRecord::Schema.define(:version => 20120914140557) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -403,6 +403,42 @@ ActiveRecord::Schema.define(:version => 20120911120152) do
   add_index "person_addresses", ["person_id"], :name => "index_person_addresses_on_person_id"
   add_index "person_addresses", ["provenance_area_id"], :name => "index_person_addresses_on_provenance_area_id"
   add_index "person_addresses", ["street_type_id"], :name => "index_person_addresses_on_street_type_id"
+
+  create_table "person_identification_docs", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "cpf"
+    t.string   "rg"
+    t.integer  "rg_issuing_institution"
+    t.date     "rg_date_issuance"
+    t.integer  "rg_uf"
+    t.string   "birth_certificate"
+    t.string   "bc_notarys_office"
+    t.string   "bc_book"
+    t.string   "bc_sheet"
+    t.date     "bc_date_issuance"
+    t.string   "ctps"
+    t.string   "ctps_series"
+    t.string   "pis_pasep"
+    t.string   "cnh"
+    t.date     "cnh_date_issuance"
+    t.string   "military_document"
+    t.integer  "military_document_type_id"
+    t.string   "military_document_region"
+    t.string   "voter_registration"
+    t.string   "vr_zone"
+    t.string   "vr_section"
+    t.integer  "vr_uf"
+    t.date     "vr_date_issuance"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.date     "cnh_expiration_date"
+  end
+
+  add_index "person_identification_docs", ["military_document_type_id"], :name => "index_person_identification_docs_on_military_document_type_id"
+  add_index "person_identification_docs", ["person_id"], :name => "index_person_identification_docs_on_person_id"
+  add_index "person_identification_docs", ["rg_issuing_institution"], :name => "index_person_identification_docs_on_rg_issuing_institution"
+  add_index "person_identification_docs", ["rg_uf"], :name => "index_person_identification_docs_on_rg_uf"
+  add_index "person_identification_docs", ["vr_uf"], :name => "index_person_identification_docs_on_vr_uf"
 
   create_table "person_person_types", :force => true do |t|
     t.integer  "person_id"

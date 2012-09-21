@@ -56,7 +56,7 @@ class PeopleTelephonesController < ApplicationController
 
     respond_to do |format|
       if @people_telephone.save
-        format.html { redirect_to [@people,@people_telephone], :notice => 'People telephone was successfully created.' }
+        format.html { redirect_to person_people_telephone_path(:id => @people_telephone.id), :notice => 'People telephone was successfully created.' }
         format.json { render :json => [@people,@people_telephone], :status => :created, :location => @people_telephone }
       else
         format.html { render :action => "new" }

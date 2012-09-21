@@ -1,0 +1,232 @@
+<div class="row-fluid">
+<%- model_class = @person_identification_doc.class -%>
+<%= form_for [@person,@person_identification_doc], :html => { :class => 'form-inline' } do |f| %>
+  <div class="well pagination-centered span12">
+      <h2><%= @person.name %></h2><br />
+      <%= f.hidden_field :person_id, :value => params[:person_id] %>
+  </div>
+    <!-- CPF -->
+  <div class="control-group span12">
+  <div class="well well-large span6">
+    <fieldset>
+      <legend>Cadastro de Pessoa Física</legend>
+      <div class="pagination-centered clearfix">
+        <div class="pull-left">
+            <div class="well well-large">
+            <%= f.label :cpf, model_class.human_attribute_name(:cpf), :class => 'control-label' %>
+            <%= f.text_field :cpf, :class => 'text_field'%>
+            </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+    <!-- CPF -->
+
+      <!-- PIS/PASEP -->
+  <div class="well well-large span6 pull-right">
+    <fieldset>
+      <legend>PIS/PASEP</legend>
+      <div class="pagination-centered clearfix">
+        <div class="pull-left">
+            <div class="well well-large">
+            <%= f.label :pis_pasep, model_class.human_attribute_name(:pis_pasep), :class => 'control-label' %>
+            <%= f.text_field :pis_pasep, :class => 'text_field' %>
+            </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+    <!-- PIS/PASEP -->
+  </div>
+
+    <!-- RG -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Registro Geral</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :rg, model_class.human_attribute_name(:rg), :class => 'control-label' %>
+                <%= f.text_field :rg, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :rg_issuing_institution, model_class.human_attribute_name(:rg_issuing_institution), :class => 'control-label ' %>
+                <%= f.collection_select :rg_issuing_institution, IssuingInstitution.find(:all) , :id, :description , :prompt => "Select a Issuing Institution", :class => 'control-label ' %>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="well">
+                <%= f.label :rg_uf, model_class.human_attribute_name(:rg_uf), :class => 'control-label' %>
+                <%= f.collection_select :rg_uf, State.find(:all) , :id, :name, :prompt => "Select a State", :prompt => "Select a Country", :class => 'control-label ' %>
+            </div>
+          </div>
+      </div>
+      <div class="pagination-centered clearfix">
+            <div class="well">
+                <%= f.label :rg_date_issuance, model_class.human_attribute_name(:rg_date_issuance), :class => 'control-label' %>
+                <%= f.date_select :rg_date_issuance, :start_year => 1900, :end_year => Time.now.year, :include_blank => true, :style => "width:auto;" %>
+            </div>
+          </div>
+    </fieldset>
+  </div>
+    <!-- RG -->
+
+    <!-- Certidão de Nascimento -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Certidão de Nascimento</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :birth_certificate, model_class.human_attribute_name(:birth_certificate), :class => 'control-label' %>
+                <%= f.text_field :birth_certificate, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :bc_notarys_office, model_class.human_attribute_name(:bc_notarys_office), :class => 'control-label' %>
+                <%= f.text_field :bc_notarys_office, :class => 'text_field' %>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="well">
+                <%= f.label :bc_book, model_class.human_attribute_name(:bc_book), :class => 'control-label' %>
+                <%= f.text_field :bc_book, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :bc_sheet, model_class.human_attribute_name(:bc_sheet), :class => 'control-label' %>
+                <%= f.text_field :bc_sheet, :class => 'text_field' %>
+            </div>
+          </div>
+      </div>
+      <div class="pagination-centered clearfix">
+            <div class="well">
+                <%= f.label :bc_date_issuance, model_class.human_attribute_name(:bc_date_issuance), :class => 'control-label' %>
+                <%= f.date_select :bc_date_issuance, :class => 'date_select', :include_blank => true, :start_year => 1900, :end_year => Time.now.year %>
+            </div>
+          </div>
+    </fieldset>
+  </div>
+
+    <!-- Certidão de Nascimento -->
+
+    <!-- Carteira de Trabalho e Previdencia Social -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Carteira de Trabalho e Previdencia Social</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :ctps, model_class.human_attribute_name(:ctps), :class => 'control-label' %>
+                <%= f.text_field :ctps, :class => 'text_field' %>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="well">
+                <%= f.label :ctps_series, model_class.human_attribute_name(:ctps_series), :class => 'control-label' %>
+                <%= f.text_field :ctps_series, :class => 'text_field' %>
+            </div>
+          </div>
+      </div>
+    </fieldset>
+  </div>
+    <!-- Carteira de Trabalho e Previdencia Social -->
+
+    <!-- Carteira de Habilitação Nacional -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Carteira Nacional de Habilitação</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :cnh, model_class.human_attribute_name(:cnh), :class => 'control-label' %>
+                <%= f.text_field :cnh, :class => 'text_field' %>
+            </div>
+          </div>
+      </div>
+      <div class="pagination-centered clearfix">
+            <div class="well">
+                <%= f.label :cnh_date_issuance, model_class.human_attribute_name(:cnh_date_issuance), :class => 'control-label' %>
+                <%= f.date_select :cnh_date_issuance, :class => 'date_select', :include_blank => true, :start_year => 1900, :end_year => Time.now.year %>
+            </div>
+      </div>
+      <div class="pagination-centered clearfix">
+            <div class="well">
+                <%= f.label :cnh_expiration_date, model_class.human_attribute_name(:cnh_expiration_date), :class => 'control-label' %>
+                <%= f.date_select :cnh_expiration_date, :class => 'date_select', :include_blank => true, :start_year => 1900, :end_year => Time.now.year %>
+            </div>
+      </div>
+    </fieldset>
+  </div>
+    <!-- Carteira de Habilitação Nacional -->
+
+
+    <!-- Documento Militar -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Documento Militar</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :military_document, model_class.human_attribute_name(:military_document), :class => 'control-label' %>
+                <%= f.text_field :military_document, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :military_document_type_id, model_class.human_attribute_name(:military_document_type_id), :class => 'control-label' %>
+                <%= f.collection_select :military_document_type_id, MilitaryDocumentType.find(:all) , :id, :description , :prompt => "Select the Document Type" %>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="well">
+                <%= f.label :military_document_region, model_class.human_attribute_name(:military_document_region), :class => 'control-label' %>
+                <%= f.text_field :military_document_region, :class => 'text_field' %>
+            </div>
+          </div>
+      </div>
+    </fieldset>
+  </div>
+    <!-- Documento Militar -->
+
+    <!-- Titulo de Eleitor -->
+  <div class="well well-large span12">
+    <fieldset>
+      <legend>Título de Eleitor</legend>
+      <div class="pagination-centered clearfix">
+          <div class="pull-left">
+            <div class="well">
+                <%= f.label :voter_registration, model_class.human_attribute_name(:voter_registration), :class => 'control-label' %>
+                <%= f.text_field :voter_registration, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :vr_zone, model_class.human_attribute_name(:vr_zone), :class => 'control-label' %>
+                <%= f.text_field :vr_zone, :class => 'text_field' %>
+            </div>
+          </div>
+          <div class="pull-right">
+            <div class="well">
+                <%= f.label :vr_section, model_class.human_attribute_name(:vr_section), :class => 'control-label' %>
+                <%= f.text_field :vr_section, :class => 'text_field' %>
+            </div>
+            <div class="well">
+                <%= f.label :vr_uf, model_class.human_attribute_name(:vr_uf), :class => 'control-label' %>
+                <%= f.collection_select :vr_uf, State.find(:all) , :id, :name , :prompt => "Select a State" %>
+            </div>
+          </div>
+      </div>
+      <div class="pagination-centered clearfix">
+            <div class="well">
+                <%= f.label :vr_date_issuance, model_class.human_attribute_name(:vr_date_issuance), :class => 'control-label' %>
+                <%= f.date_select :vr_date_issuance, :class => 'date_select', :include_blank => true, :start_year => 1900, :end_year => Time.now.year %>
+            </div>
+          </div>
+    </fieldset>
+  </div>
+    <!-- Titulo de Eleitor -->
+
+
+
+  <div class="form-actions span12">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                person_person_identification_docs_path, :class => 'btn' %>
+  </div>
+<% end %>
+</div>

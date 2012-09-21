@@ -1,0 +1,79 @@
+<%- model_class = @person_identification_doc.class -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h1><i class="icon-paste"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  </div>
+   <h3><%= link_to @person.name, person_path(@person) %></h3>
+</div>
+<div class="container">
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:cpf) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.cpf) %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:rg) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.rg, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rg_issuing_institution) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.rg_issuing_institution.description, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rg_date_issuance) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.rg_date_issuance, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rg_uf) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.rg_uf, :atributo => "name", :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:birth_certificate) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.birth_certificate, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bc_notarys_office) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.bc_notarys_office, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bc_book) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.bc_book, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bc_sheet) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.bc_sheet, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bc_date_issuance) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.bc_date_issuance, :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:ctps) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.ctps, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:ctps_series) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.ctps_series, :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:pis_pasep) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.pis_pasep, :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:cnh) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.cnh, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cnh_date_issuance) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.cnh_date_issuance, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cnh_expiration_date) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.cnh_expiration_date, :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:military_document) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.military_document, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:military_document_type_id) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.military_document_type, :atributo => "description", :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:military_document_region) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.military_document_region, :mensagem => " - ") %></dd>
+  <hr/>
+  <dt><strong><%= model_class.human_attribute_name(:voter_registration) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.voter_registration, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vr_zone) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.vr_zone, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vr_section) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.vr_section, :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vr_uf) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.vr_uf, :atributo => "name", :mensagem => " - ") %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vr_date_issuance) %>:</strong></dt>
+  <dd><%= verifica_registro(:campo => @person_identification_doc.vr_date_issuance, :mensagem => " - ") %></dd>
+</dl>
+</div>
+<div class="form-actions">
+    <div class="pagination-centered">
+      <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+                  person_person_identification_docs_path, :class => 'btn btn-large pull-left'  %>
+      <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+                  edit_person_person_identification_doc_path, :class => 'btn btn-large pull-left' %>
+      <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
+                  person_person_identification_doc_path,
+                  :method => 'delete',
+                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                  :class => 'btn btn-danger btn-large pull-right' %>
+    </div>
+</div>
