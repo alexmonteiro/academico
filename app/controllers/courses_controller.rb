@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
       format.pdf do
         #pdf = Prawn::Document.new
         pdf = CoursePdf.new(@course)
-        send_data pdf.render, :filename => "curso_#{@course.id}", :type => "application/pdf", :disposition => "inline"
+        send_data pdf.render, :filename => "curso_#{@course.id}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf"#, :disposition => "inline"
       end
     end
   end

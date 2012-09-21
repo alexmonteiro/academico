@@ -44,10 +44,12 @@
               edit_course_path(@course), :class => 'btn btn-large pull-left' %>
   <%= link_to "<i class='icon-book'></i> ".html_safe + 'Disciplinas',
               course_disciplines_path(@course), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-print'></i> ".html_safe + t('.print', :default => t("helpers.links.print")), course_path(@course, :format =>  "pdf"), :class => 'btn btn-large pull-left' %>
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               course_path(@course),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger btn-large pull-right' %>
+
   </div>
 </div>

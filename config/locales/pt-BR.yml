@@ -191,6 +191,7 @@ pt-BR:
       cancel: "Cancelar"
       create: "Cadastrar "
       back: "Voltar"
+      print: "Imprimir"
 
   date:
     abbr_day_names:
@@ -330,6 +331,7 @@ pt-BR:
       destroy: Destruir
       cancel: Cancelar
       new: Criar
+      print: Imprimir
     titles:
       new: Criação de %{model}
       edit: Edição de %{model}
