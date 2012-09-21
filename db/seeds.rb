@@ -6171,8 +6171,7 @@ puts 'Inserindo dados na tabela de Tipo de Elemento Curricular (Disciplina)...'
 discipline_types = DisciplineType.create([
     {:description => 'Atividade Complementar'},
     {:description => 'Disciplina'},
-    {:description => 'Estágio'},
-    {:description => 'Trabalho de Conclusão'}])           
+    {:description => 'Elemento Curricular'}])           
 
 # Alimenta tabela de Matriz Status (Situação da Matriz Curricular)
 puts 'Inserindo dados na tabela de Matriz Status (Situação da Matriz Curricular)...'
