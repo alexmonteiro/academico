@@ -4,41 +4,67 @@
     <h1><i class="icon-user"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
   </div>
 </div>
-<div class="container">
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.name) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
-  <dd><%=l verifica_registro(:campo => @person.birth_date) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:father_name) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.father_name) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:mom_name) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.mom_name) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.email) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lattes_url) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.lattes_url) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:gender_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.gender, :atributo => "gender") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:education_degree_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.education_degree, :atributo => "degree") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:race_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.race, :atributo => "race") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.marital_status, :atributo => "status") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:blood_type_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.blood_type, :atributo => "type")%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:country_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.country, :atributo => "name") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.state, :atributo => "name")%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.city, :atributo => "name") %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:number_children) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person.number_children) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:person_types) %>:</strong></dt>
-  <dd><%= get_person_types(@person) %></dd>
-</dl>
+<div class="row-fluid">
+<div class="control-group span12">
+    <div class="span4">
+    <dl class="dl-horizontal">
+      <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.name) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
+      <dd><%=l verifica_registro(:campo => @person.birth_date) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:father_name) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.father_name) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:mom_name) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.mom_name) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.email) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:lattes_url) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.lattes_url) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:gender_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.gender, :atributo => "gender") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:education_degree_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.education_degree, :atributo => "degree") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:race_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.race, :atributo => "race") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:marital_status_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.marital_status, :atributo => "status") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:blood_type_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.blood_type, :atributo => "type")%></dd>
+      <dt><strong><%= model_class.human_attribute_name(:country_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.country, :atributo => "name") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.state, :atributo => "name")%></dd>
+      <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.city, :atributo => "name") %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:number_children) %>:</strong></dt>
+      <dd><%= verifica_registro(:campo => @person.number_children) %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:person_types) %>:</strong></dt>
+      <dd><%= get_person_types(@person) %></dd>
+    </dl>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <fieldset>
+          <legend class="">
+            <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-home'></i> #{@person_address.count <= 1 ? "Endereço" : "Endereços"}</div>".html_safe,
+              person_person_addresses_path(@person), :class => 'btn btn-inverse span12' %>
+          </legend>
+          <%= render :partial => "address" %>
+        </fieldset>
+      </div>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <fieldset>
+          <legend>
+            <%= link_to "<div style='font-size: 16px; padding-top:4px;'><i class='icon-phone'></i> #{@people_telephones.count <= 1 ? "Telefone" : "Telefones"}</div>".html_safe,
+              person_people_telephones_path(@person), :class => 'btn btn-inverse span12 bnt-link' %><%=  %>
+          </legend>
+          <%= render :partial => "telephones" %>
+        </fieldset>
+      </div>
+    </div>
+    </div>
 </div>
 
 <div class="form-actions">
@@ -52,6 +78,8 @@
               person_person_addresses_path(@person), :class => 'btn btn-large  pull-left' %>
   <%= link_to "<i class='icon-phone'></i>".html_safe + t('.telephones', :default => t("helpers.others_links.telephones")),
               person_people_telephones_path(@person), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-paste'></i>".html_safe + t('.identification_doc', :default => t("helpers.others_links.identification_doc")),
+              person_person_identification_docs_path(@person), :class => 'btn btn-large pull-left' %>
 
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               person_path(@person),

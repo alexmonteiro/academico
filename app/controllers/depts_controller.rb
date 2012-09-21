@@ -22,7 +22,8 @@ class DeptsController < ApplicationController
   # GET /depts/1.json
   def show
     @dept = Dept.find(params[:id])
-
+    @dept_address = PersonAddress.where(:person_id => params[:id])
+    @dept_telephones = PeopleTelephone.where("people_id = ?", params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @dept }

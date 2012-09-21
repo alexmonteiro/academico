@@ -1,0 +1,34 @@
+<tbody>
+    <table>
+        <% @dept_address.each do |dept_address| %>
+            <%- model_class = dept_address.class -%>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:street_type_id) %>:</strong>  <%= verifica_registro(:campo => dept_address.street_type, :atributo => "description") %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:city_id) %>:</strong>  <%= verifica_registro(:campo => dept_address.city, :atributo => "name")%></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:street_name) %>:</strong>  <%= verifica_registro(:campo => dept_address.street_name) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:complement) %>:</strong>  <%= verifica_registro(:campo => dept_address.complement) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:post_office_box) %>:</strong>  <%= verifica_registro(:campo => dept_address.post_office_box) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:neighborhood) %>:</strong>  <%= verifica_registro(:campo => dept_address.neighborhood) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:zip_code) %>:</strong>  <%= verifica_registro(:campo => dept_address.zip_code) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:number) %>:</strong>  <%= verifica_registro(:campo => dept_address.number) %></td>
+            </tr>
+            <tr>
+              <td><strong><%= model_class.human_attribute_name(:provenance_area_id) %>:</strong>  <%= verifica_registro(:campo => dept_address.provenance_area, :atributo => "description") %></td>
+            </tr>
+        <%end%>
+    </table>
+</tbody>
