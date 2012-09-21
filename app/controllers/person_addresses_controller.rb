@@ -77,6 +77,7 @@ class PersonAddressesController < ApplicationController
   # PUT /person_addresses/1
   # PUT /person_addresses/1.json
   def update
+    @person = Person.find((params[:person_id]))
     @person_address = PersonAddress.find(params[:id])
 
     respond_to do |format|
@@ -93,6 +94,7 @@ class PersonAddressesController < ApplicationController
   # DELETE /person_addresses/1
   # DELETE /person_addresses/1.json
   def destroy
+    @person = Person.find((params[:person_id]))
     @person_address = PersonAddress.find(params[:id])
     @person_address.destroy
 

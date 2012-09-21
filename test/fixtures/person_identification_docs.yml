@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  person: 
+  cpf: MyString
+  rg: MyString
+  rg_issuing_institution: 1
+  rg_date_issuance: 2012-09-11
+  rg_uf: 1
+  birth_certificate: MyString
+  bc_notarys_office: MyString
+  bc_book: MyString
+  bc_sheet: MyString
+  bc_date_issuance: 2012-09-11
+  ctps: MyString
+  ctps_series: MyString
+  pis_pasep: MyString
+  cnh: MyString
+  cnh_date_issuance: 2012-09-11
+  cnh_expiration_date: MyString
+  military_document: MyString
+  military_document_type: 
+  military_document_region: MyString
+  voter_registration: MyString
+  vr_zone: MyString
+  vr_section: MyString
+  vr_uf: 1
+  vr_date_issuance: 2012-09-11
+
+two:
+  person: 
+  cpf: MyString
+  rg: MyString
+  rg_issuing_institution: 1
+  rg_date_issuance: 2012-09-11
+  rg_uf: 1
+  birth_certificate: MyString
+  bc_notarys_office: MyString
+  bc_book: MyString
+  bc_sheet: MyString
+  bc_date_issuance: 2012-09-11
+  ctps: MyString
+  ctps_series: MyString
+  pis_pasep: MyString
+  cnh: MyString
+  cnh_date_issuance: 2012-09-11
+  cnh_expiration_date: MyString
+  military_document: MyString
+  military_document_type: 
+  military_document_region: MyString
+  voter_registration: MyString
+  vr_zone: MyString
+  vr_section: MyString
+  vr_uf: 1
+  vr_date_issuance: 2012-09-11

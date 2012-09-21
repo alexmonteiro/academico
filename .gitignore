@@ -18,3 +18,5 @@ Gemfile.lock
 
 /solr/*
 sunspot-solr.pid
+
+*.iml

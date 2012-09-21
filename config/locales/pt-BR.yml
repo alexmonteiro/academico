@@ -157,7 +157,32 @@ pt-BR:
         person_id: "Professor"
         discipline_class_id: "Turma/Classe/Disciplina"
         dept_id: "Ambiente de aprendizagem"
-                   
+      person_identification_doc:
+        cpf: "CPF"
+        rg: "RG"
+        rg_issuing_institution: "Órgão Expedidor"
+        rg_date_issuance: "Data de Expedição"
+        rg_uf: "UF do RG"
+        birth_certificate: "Certidão de Nascimento"
+        bc_notarys_office: "Cartório"
+        bc_book: "Livro"
+        bc_sheet: "Folha"
+        bc_date_issuance: "Data de Expedição"
+        ctps: "CTPS"
+        ctps_series: "Série CTPS"
+        pis_pasep: "PIS/PASEP"
+        cnh: "CNH"
+        cnh_date_issuance: "Data de Expedição"
+        cnh_expiration_date: "Data de Validade"
+        military_document: "Documento Militar"
+        military_document_type_id: "Tipo do Documento"
+        military_document_region: "Região"
+        voter_registration: "Título de Eleitor"
+        vr_zone: "Zona"
+        vr_section: "Seção"
+        vr_uf: "UF do Título de Eleitor"
+        vr_date_issuance: "Data de Expedição"
+
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -174,7 +199,8 @@ pt-BR:
       person_address: "Endereço"
       dept_telephone: "Telefone"
       dept_address: "Endereço"  
-      class_teaching: "Docencias"  
+      class_teaching: "Docencias"
+      person_identification_doc: "Documentação de Identificação"
 
 
   action:
@@ -333,6 +359,7 @@ pt-BR:
       telephones: Telefones
       address: Endereço
       teaching_equipaments: Equipamentos
+      identification_doc: Documentos de Identificação
   number:
     currency:
       format:

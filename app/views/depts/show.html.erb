@@ -4,31 +4,58 @@
     <h1><i class="icon-sitemap"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
   </div>
 </div>
-<div class="container">
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.name, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.acronym, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:cnpj) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.cnpj, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.started_at, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:finished_at) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.finished_at, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:site) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.site, :mensagem => "<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.email, :mensagem =>"<<Sem Registro>>"%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.description, :mensagem => "<<Sem Registro>>"  %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.dept_type, :mensagem => "<<Sem Registro>>",  :atributo => "dept_type" %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @dept.dept, :mensagem => "<<Sem Registro>>",  :atributo => "name"  %></dd>
-</dl>
-<br/>
-</div>
+<div class="row-fluid">
+  <div class="control-group span12">
+    <div class="span4">
+      <dl class="dl-horizontal">
+          <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.name, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.acronym, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:cnpj) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.cnpj, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.started_at, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:finished_at) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.finished_at, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:site) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.site, :mensagem => "<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.email, :mensagem =>"<<Sem Registro>>"%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.description, :mensagem => "<<Sem Registro>>"  %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.dept_type, :mensagem => "<<Sem Registro>>",  :atributo => "dept_type" %></dd>
+          <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
+          <dd><%= verifica_registro :campo => @dept.dept, :mensagem => "<<Sem Registro>>",  :atributo => "name"  %></dd>
+      </dl>
+    <br/>
+    </div>
+    <div class="span4">
+          <div class="well">
+            <fieldset>
+              <legend class="">
+                <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-home'></i> #{@dept_address.count <= 1 ? "Endereço" : "Endereços"}</div>".html_safe,
+                  dept_dept_addresses_path(@dept), :class => 'btn btn-inverse span12' %>
+              </legend>
+              <%= render :partial => "address" %>
+            </fieldset>
+          </div>
+        </div>
+        <div class="span4">
+          <div class="well">
+            <fieldset>
+              <legend>
+                <%= link_to "<div style='font-size: 16px; padding-top:4px;'><i class='icon-phone'></i> #{@dept_telephones.count <= 1 ? "Telefone" : "Telefones"}</div>".html_safe,
+                  dept_dept_telephones_path(@dept), :class => 'btn btn-inverse span12 bnt-link' %><%=  %>
+              </legend>
+              <%= render :partial => "telephones" %>
+            </fieldset>
+          </div>
+        </div>
+        </div>
+  </div>
+
 <div class="form-actions">
   <div class="pagination-centered">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),

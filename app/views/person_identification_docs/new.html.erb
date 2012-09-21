@@ -1,0 +1,10 @@
+<div class="row-fluid">
+    <div class="row-fluid">
+        <%- model_class = @person_identification_doc.class -%>
+        <div class="page-header hero-unit">
+          <h1><i class="icon-paste"></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                         :default => "New #{model_class.model_name.human}") %></h1>
+        </div>
+    </div>
+    <%= render :partial => 'form' %>
+</div>
