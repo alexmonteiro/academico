@@ -45,22 +45,22 @@
     <div class="span4">
       <div class="well">
         <fieldset>
-          <legend class="">
             <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-home'></i> #{@person_address.count <= 1 ? "Endereço" : "Endereços"}</div>".html_safe,
               person_person_addresses_path(@person), :class => 'btn btn-inverse span12' %>
-          </legend>
-          <%= render :partial => "address" %>
+           <div style="padding-top: 60px">
+            <%= render :partial => "address" %>
+           </div>
         </fieldset>
       </div>
     </div>
     <div class="span4">
       <div class="well">
         <fieldset>
-          <legend>
             <%= link_to "<div style='font-size: 16px; padding-top:4px;'><i class='icon-phone'></i> #{@people_telephones.count <= 1 ? "Telefone" : "Telefones"}</div>".html_safe,
               person_people_telephones_path(@person), :class => 'btn btn-inverse span12 bnt-link' %><%=  %>
-          </legend>
-          <%= render :partial => "telephones" %>
+          <div style="padding-top: 60px">
+            <%= render :partial => "telephones" %>
+          </div>
         </fieldset>
       </div>
     </div>
