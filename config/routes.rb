@@ -1,5 +1,9 @@
 AcademicoRails::Application.routes.draw do
   
+  resources :registrations, :path =>"matriculas"
+
+  resources :registration_statuses
+
   resources :course_statuses
 
   resources :class_student_statuses

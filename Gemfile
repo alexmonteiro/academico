@@ -20,7 +20,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'twitter-bootstrap-rails', '2.0.8'
+  gem 'twitter-bootstrap-rails'
   
 end
 

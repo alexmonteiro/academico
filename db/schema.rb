@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920185305) do
+ActiveRecord::Schema.define(:version => 20120924140144) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -505,6 +505,27 @@ ActiveRecord::Schema.define(:version => 20120920185305) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "registration_statuses", :force => true do |t|
+    t.string   "description"
+    t.boolean  "is_attending", :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "registrations", :force => true do |t|
+    t.date     "registration_at"
+    t.integer  "course_matrix_id"
+    t.integer  "person_id"
+    t.string   "registration_number"
+    t.integer  "registration_status_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "registrations", ["course_matrix_id"], :name => "index_registrations_on_course_matrix_id"
+  add_index "registrations", ["person_id"], :name => "index_registrations_on_person_id"
+  add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
 
   create_table "school_classes", :force => true do |t|
     t.string   "identifier"
