@@ -6171,8 +6171,7 @@ puts 'Inserindo dados na tabela de Tipo de Elemento Curricular (Disciplina)...'
 discipline_types = DisciplineType.create([
     {:description => 'Atividade Complementar'},
     {:description => 'Disciplina'},
-    {:description => 'Estágio'},
-    {:description => 'Trabalho de Conclusão'}])           
+    {:description => 'Elemento Curricular'}])           
 
 # Alimenta tabela de Matriz Status (Situação da Matriz Curricular)
 puts 'Inserindo dados na tabela de Matriz Status (Situação da Matriz Curricular)...'
@@ -6560,6 +6559,25 @@ course_statuses = CourseStatus.create([
   {:description => 'Extinto'},
   {:description => 'Outros'},
   {:description => 'Suspenso'}
+])
+
+# Alimenta tabela status da Matrícula
+puts 'Inserindo status da matrícula...'
+# select distinct '{:description => '''||descricao||'''},' from situacao_curso;
+registration_statuses = RegistrationStatus.create([
+  {:description => 'Associado', :is_attending => true},
+  {:description => 'Cancelado a Pedido'},
+  {:description => 'Cancelado de Ofício'},
+  {:description => 'Egresso', :is_attending => true},
+  {:description => 'Falecido'},
+  {:description => 'Integralizado', :is_attending => true},
+  {:description => 'Matriculado', :is_attending => true},
+  {:description => 'Reopção', :is_attending => true},
+  {:description => 'Trancado'},        
+  {:description => 'Transferido Externamente'},        
+  {:description => 'Transferido Internamente'},        
+  {:description => 'Associado Ingresso', :is_attending => true},        
+  {:description => 'Sem Direito de Matrícula'},                
 ])
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
