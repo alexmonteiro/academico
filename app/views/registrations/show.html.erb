@@ -16,6 +16,9 @@
   <dd><%= @registration.registration_status.try(:description) %></dd>
 </dl>
 
+  <h4><strong>  <%= link_to "<i class='icon-print'></i> ".html_safe + "Declaração de Escolaridade", registration_path(@registration, :format =>  "pdf") %> </strong></h4>
+
+
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
               registrations_path, :class => 'btn btn-large'  %>
