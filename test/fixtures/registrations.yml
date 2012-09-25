@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  registration_at: 2012-09-24
+  course_matrix: 
+  person_id: 
+  registration_number: MyString
+  registration_status: 
+
+two:
+  registration_at: 2012-09-24
+  course_matrix: 
+  person_id: 
+  registration_number: MyString
+  registration_status: 

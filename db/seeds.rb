@@ -6561,4 +6561,23 @@ course_statuses = CourseStatus.create([
   {:description => 'Suspenso'}
 ])
 
+# Alimenta tabela status da Matrícula
+puts 'Inserindo status da matrícula...'
+# select distinct '{:description => '''||descricao||'''},' from situacao_curso;
+registration_statuses = RegistrationStatus.create([
+  {:description => 'Associado', :is_attending => true},
+  {:description => 'Cancelado a Pedido'},
+  {:description => 'Cancelado de Ofício'},
+  {:description => 'Egresso', :is_attending => true},
+  {:description => 'Falecido'},
+  {:description => 'Integralizado', :is_attending => true},
+  {:description => 'Matriculado', :is_attending => true},
+  {:description => 'Reopção', :is_attending => true},
+  {:description => 'Trancado'},        
+  {:description => 'Transferido Externamente'},        
+  {:description => 'Transferido Internamente'},        
+  {:description => 'Associado Ingresso', :is_attending => true},        
+  {:description => 'Sem Direito de Matrícula'},                
+])
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
