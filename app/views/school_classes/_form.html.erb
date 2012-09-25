@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :matrix_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.grouped_collection_select :matrix_id, Course.order(:name), :matrices, :name, :id, :model_custom_name, :prompt => "...Selecione..." %>
+      <%= f.grouped_collection_select :matrix_id, Course.order(:name), :course_matrices, :name, :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">

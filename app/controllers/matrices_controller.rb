@@ -10,6 +10,7 @@ class MatricesController < ApplicationController
      @matrices = @search.results
     else
      @matrices = Matrix.paginate(:page => params[:page], :per_page => 10)
+
     end
 
     respond_to do |format|
