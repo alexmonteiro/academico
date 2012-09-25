@@ -50,7 +50,8 @@
 	            <ul class="nav nav-list">
 	              <li class="nav-header">Infraestrutura</li>
 		          <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i>Estrutura Organizacional</a></li>
-			      <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>				 
+			      <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>
+                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i>Matrículas</a></li>							 
 
 	              <li class="nav-header">Registros Acadêmicos</li>
              	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><a href=<%= courses_path%> ><i class="icon-book"></i>Cursos & Disciplinas</a></li>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @registration_status.description %>
+</p>
+
+<p>
+  <b>Is attending:</b>
+  <%= @registration_status.is_attending %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_status_path(@registration_status) %> |
+<%= link_to 'Back', registration_statuses_path %>

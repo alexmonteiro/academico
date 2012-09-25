@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MatrixTest < ActiveSupport::TestCase
+class RegistrationStatusTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -186,6 +186,12 @@ pt-BR:
       timetable: 
         matrix_id: "Matriz"
         day_week_id: "Dia da semana"
+      registration: 
+        registration_at: "Data"
+        course_matrix_id: "Matriz/Curso"        
+        person_id: "Aluno"
+        registration_number: "Código"
+        registration_status_id: "Situação"
 
     models:
       person: "Pessoa"  
@@ -206,6 +212,7 @@ pt-BR:
       class_teaching: "Docencias"
       person_identification_doc: "Documentação de Identificação"
       timetable: "Grade Horária"
+      registration: "Matrícula"
 
 
   action:
