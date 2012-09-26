@@ -8,8 +8,11 @@ cademico_rails_development=# select * from person_types;
 -- Prepara vinculos
 select ('{:person_id => '||pessoa_fisica_id||', :person_type_id => 2 }, ') as comando from funcionario union select ('{:person_id => '||pessoa_fisica_id||', :person_type_id => 1 }, ') as comando from aluno;
 
-psql -U postgres -h localhost -d dbsiga-edu -c "" > vinculos
+psql -U postgres -h localhost -d dbsiga-edu -c "select ('{:person_id => '||pessoa_fisica_id||', :person_type_id => 2 }, ') as comando from funcionario union select ('{:person_id => '||pessoa_fisica_id||', :person_type_id => 1 }, ') as comando from aluno;" > vinculos
 
+-- Comando console de load
+
+load "db/seeds_migracao/seeds_pessoas_vinculos.rb"
 =end
 
 # Alimenta tabela de vinculos

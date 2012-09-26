@@ -6283,32 +6283,33 @@ equipament_type = EquipamentType.create([
 #Alimenta a tabela Órgãos Expedidor
 puts 'Inserindo dados na tabela Órgãos Expedidor...'
 issuing_institution = IssuingInstitution.create([
-  {:description => 'Carteira de Tabalho e Previdęncia Social', :acronym => 'CTPS'},
+  {:description => 'Secretaria de Segurança Pública', :acronym => 'SSP'},
+  {:description => 'Ordem dos Advogados do Brasil', :acronym => 'OAB'},
+  {:description => 'Conselho Regional de Medicina', :acronym => 'CRM'},
+  {:description => 'Forças Armadas', :acronym => 'FM'},
+  {:description => 'Polícia Federal', :acronym => 'PF'},
+  {:description => 'DETRAN', :acronym => 'DETRAN'},
   {:description => 'Carteira Nacional de Estrangeiro', :acronym => 'CNE'},
   {:description => 'Carteira Nacional de Habilitaçăo', :acronym => 'CNH'},
+  {:description => 'Carteira de Tabalho e Previdęncia Social', :acronym => 'CTPS'},
   {:description => 'Conselho Regional de Administraçăo', :acronym => 'CRA'},
   {:description => 'Conselho Regional de Contabilidade', :acronym => 'CRC'},
   {:description => 'Conselho Regional de Corretor de Imóveis', :acronym => 'CRECI'},
   {:description => 'Conselho Regional de Enfermagem', :acronym => 'COREN'},
   {:description => 'Conselho Regional de Eng. Arq. e Agronomia', :acronym => 'CREA'},
   {:description => 'Conselho Regional de Farmácia', :acronym => 'CRF'},
-  {:description => 'Conselho Regional de Medicina', :acronym => 'CRM'},
   {:description => 'Conselho Regional de Medicina Veterinária', :acronym => 'CRMV'},
   {:description => 'Conselho Regional de Odontologia', :acronym => 'CRO'},
   {:description => 'Conselho Regional de Prof. Relaçőes Públicas', :acronym => 'CRPRP'},
   {:description => 'Conselho Regional de Psicologia', :acronym => 'CRP'},
   {:description => 'Conselho Regional de Química', :acronym => 'CRQ'},
   {:description => 'Conselho Regional de Serviço Social', :acronym => 'CRESS'},
-  {:description => 'DETRAN', :acronym => 'DETRAN'},
-  {:description => 'Forças Armadas', :acronym => 'FM'},
   {:description => 'Ministério da Aeronáutica', :acronym => 'AE'},
   {:description => 'Ministério da Marinha', :acronym => 'MR'},
   {:description => 'Ministério do Exército', :acronym => 'EX'},
-  {:description => 'Ordem dos Advogados do Brasil', :acronym => 'OAB'},
-  {:description => 'Outros Emissores', :acronym => 'OE'},
-  {:description => 'Polícia Federal', :acronym => 'PF'},
-  {:description => 'Secretaria de Segurança Pública', :acronym => 'SSP'},
+  {:description => 'Outros Emissores', :acronym => 'OE'} 
   ])
+
 
 #Alimenta a tabela Órgãos Expedidor
 puts 'Inserindo dados na tabela Tipo de Documento ...'
