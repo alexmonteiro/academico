@@ -51,13 +51,13 @@
             </div>
             <div class="well">
                 <%= f.label :rg_issuing_institution, model_class.human_attribute_name(:rg_issuing_institution), :class => 'control-label ' %>
-                <%= f.collection_select :rg_issuing_institution, IssuingInstitution.find(:all) , :id, :description , :prompt => "Select a Issuing Institution", :class => 'control-label ' %>
+                <%= select("person_identification_doc", "rg_issuing_institution", IssuingInstitution.all.collect {|p| [ p.description, p.id ] }, { :selected => @person_identification_doc.rg_issuing_institution.id ,:include_blank => true }) %>
             </div>
           </div>
           <div class="pull-right">
             <div class="well">
                 <%= f.label :rg_uf, model_class.human_attribute_name(:rg_uf), :class => 'control-label' %>
-                <%= f.collection_select :rg_uf, State.find(:all) , :id, :name, :prompt => "Select a State", :prompt => "Select a Country", :class => 'control-label ' %>
+                <%= select("person_identification_doc", "rg_uf", State.all.collect {|p| [ p.name, p.id ] }, { :selected => @person_identification_doc.rg_uf.id ,:include_blank => true }) %>
             </div>
           </div>
       </div>
@@ -171,7 +171,7 @@
             </div>
             <div class="well">
                 <%= f.label :military_document_type_id, model_class.human_attribute_name(:military_document_type_id), :class => 'control-label' %>
-                <%= f.collection_select :military_document_type_id, MilitaryDocumentType.find(:all) , :id, :description , :prompt => "Select the Document Type" %>
+                <%= f.collection_select :military_document_type_id, MilitaryDocumentType.find(:all) , :id, :description , :prompt => "Select the Document Type"%>
             </div>
           </div>
           <div class="pull-right">
@@ -207,7 +207,7 @@
             </div>
             <div class="well">
                 <%= f.label :vr_uf, model_class.human_attribute_name(:vr_uf), :class => 'control-label' %>
-                <%= f.collection_select :vr_uf, State.find(:all) , :id, :name , :prompt => "Select a State" %>
+                <%= select("person_identification_doc", "vr_uf", State.all.collect {|p| [ p.name, p.id ] }, { :selected => @person_identification_doc.vr_uf.id ,:include_blank => true }) %>
             </div>
           </div>
       </div>
