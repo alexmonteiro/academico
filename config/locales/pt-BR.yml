@@ -112,6 +112,7 @@ pt-BR:
         started_at: "Dt. Abertura"
         ending_at: "Dt. Fechamento"
         timetable_started_at: "Vg. Grade Horária"
+        class_records: "Aulas"
       matrix_discipline:
         matrix_id: "Matriz"
         discipline_id: "Disciplina"
@@ -192,6 +193,22 @@ pt-BR:
         person_id: "Aluno"
         registration_number: "Código"
         registration_status_id: "Situação"
+      class_record:
+        recorded_at: "Data"
+        record: "Conteúdo"
+        note: "Observação"
+        justification: "Justificativa"
+        class_time_id: "Horário"
+        discipline_class_id: "Classe"
+        person_id: "Professor"                                
+        class_time: "Horário"                                
+        class_record_type_id: "Tipo"  
+        class_record_presence: "Chamada"
+      class_record_presence:
+        id: "#"
+        class_record_id: "Aula"
+        registration_class_id: "Aluno"
+        is_present: "Presença"                                                      
 
     models:
       person: "Pessoa"  
@@ -213,6 +230,8 @@ pt-BR:
       person_identification_doc: "Documentação de Identificação"
       timetable: "Grade Horária"
       registration: "Matrícula"
+      class_record: "Aulas"
+      class_record_presence: "Presenças"
 
 
   action:

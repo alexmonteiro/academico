@@ -1,0 +1,25 @@
+<h1>Listing registration_class_statuses</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Is approved</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registration_class_statuses.each do |registration_class_status| %>
+  <tr>
+    <td><%= registration_class_status.description %></td>
+    <td><%= registration_class_status.is_approved %></td>
+    <td><%= link_to 'Show', registration_class_status %></td>
+    <td><%= link_to 'Edit', edit_registration_class_status_path(registration_class_status) %></td>
+    <td><%= link_to 'Destroy', registration_class_status, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Registration class status', new_registration_class_status_path %>

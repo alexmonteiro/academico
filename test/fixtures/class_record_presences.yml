@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  class_record: 
+  registration_class: 
+  is_present: false
+
+two:
+  class_record: 
+  registration_class: 
+  is_present: false

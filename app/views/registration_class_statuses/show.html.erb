@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @registration_class_status.description %>
+</p>
+
+<p>
+  <b>Is approved:</b>
+  <%= @registration_class_status.is_approved %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_class_status_path(@registration_class_status) %> |
+<%= link_to 'Back', registration_class_statuses_path %>

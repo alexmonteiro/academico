@@ -2,6 +2,7 @@ class Registration < ActiveRecord::Base
   belongs_to :course_matrix
   belongs_to :person
   belongs_to :registration_status
+  has_many :registration_classes
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
   

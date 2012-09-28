@@ -1,0 +1,25 @@
+<%= form_for(@registration_class_status) do |f| %>
+  <% if @registration_class_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_class_status.errors.count, "error") %> prohibited this registration_class_status from being saved:</h2>
+
+      <ul>
+      <% @registration_class_status.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :is_approved %><br />
+    <%= f.check_box :is_approved %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

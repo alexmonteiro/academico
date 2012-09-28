@@ -1,6 +1,6 @@
 <%- model_class = @discipline_class.class -%>
 <div class="page-header">
-  <h1><i class="icon-book"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-pencil"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -13,11 +13,11 @@
   <dt><strong><%= model_class.human_attribute_name(:vancancies) %>:</strong></dt>
   <dd><%= @discipline_class.vancancies %></dd>
   <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%=l @discipline_class.started_at %></dd>
+  <dd><%=l @discipline_class.started_at if @discipline_class.started_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ending_at) %>:</strong></dt>
-  <dd><%=l @discipline_class.ending_at %></dd>
+  <dd><%=l @discipline_class.ending_at if @discipline_class.ending_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:timetable_started_at) %>:</strong></dt>
-  <dd><%=l @discipline_class.timetable_started_at %></dd>
+  <dd><%=l @discipline_class.timetable_started_at if @discipline_class.timetable_started_at %></dd>
 </dl>
 
 <dl class="dl-horizontal">

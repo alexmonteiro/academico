@@ -6581,4 +6581,29 @@ registration_statuses = RegistrationStatus.create([
   {:description => 'Sem Direito de Matrícula'},                
 ])
 
+# Alimenta tabela status da Matrícula
+puts 'Inserindo status do aluno na classe...'
+# select distinct '{:description => '''||descricao||'''},' from status_aluno_classe order by id;
+registration_class_statuses = RegistrationClassStatus.create([
+  {:description => 'Aprovado/Apto', :is_approved => true},
+  {:description => 'Aprovado por Aproveitamento de Crédito', :is_approved => true},
+  {:description => 'Cancelado', :is_approved => false},
+  {:description => 'Dispensado', :is_approved => true},
+  {:description => 'Em Curso', :is_approved => false},
+  {:description => 'Reprovado', :is_approved => false},
+  {:description => 'Reprovado por Frequência', :is_approved => false},
+  {:description => 'Aprovado no conselho', :is_approved => false}  
+])
+
+# Alimenta tabela tipo do Registro da Aula
+puts 'Inserindo tipo do Registro da Aula...'
+class_record_types = ClassRecordType.create([
+  {:description => 'Normal'},
+  {:description => 'Antecipação'},
+  {:description => 'Reposição'}
+])
+
+
+
+
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

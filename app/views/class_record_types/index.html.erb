@@ -1,0 +1,23 @@
+<h1>Listing class_record_types</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @class_record_types.each do |class_record_type| %>
+  <tr>
+    <td><%= class_record_type.description %></td>
+    <td><%= link_to 'Show', class_record_type %></td>
+    <td><%= link_to 'Edit', edit_class_record_type_path(class_record_type) %></td>
+    <td><%= link_to 'Destroy', class_record_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Class record type', new_class_record_type_path %>
