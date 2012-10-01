@@ -1,7 +1,7 @@
 class ClassRecordsController < ApplicationController
   # GET /class_records
   # GET /class_records.json
-  def index
+  def index    
     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
     @class_records = ClassRecord.where(:discipline_class_id => params[:discipline_class_id])
 

@@ -1,3 +1,4 @@
+require 'extend_string'
 class Person < ActiveRecord::Base
   belongs_to :gender
   belongs_to :education_degree
@@ -22,6 +23,10 @@ class Person < ActiveRecord::Base
   validates :name, :presence => true
   validates :number_children, :numericality => { :only_integer => true }
   #validates :email, :uniqueness => true
+
+  def model_name_whitout_accents
+    self.registration_class.registration.person.try(:name).removeaccents
+  end
 
   searchable do
     text :birth_date, :email, :name, :number_children

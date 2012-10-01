@@ -25,7 +25,7 @@
     <% @discipline_classes.each do |discipline_class| %>
       <tr>
         <td><%= link_to discipline_class.id, discipline_class_path(discipline_class) %></td>
-        <td><%= discipline_class.school_class.try(:model_custom_tiny_name) %></td>
+        <td><%= link_to discipline_class.school_class.try(:model_custom_tiny_name), discipline_class_path(discipline_class) %></td>
         <td><%= discipline_class.matrix_discipline.try(:discipline_name) %></td>
         <td><%= link_to "<i class='icon-user'></i> ".html_safe + discipline_class.class_teachings.count.to_s, discipline_class_class_teachings_path(discipline_class) %></td>
         <td><%= link_to "<i class='icon-pencil'></i> ".html_safe + discipline_class.class_records.count.to_s, discipline_class_class_records_path(discipline_class) %></td>

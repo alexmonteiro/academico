@@ -6,7 +6,7 @@ class SchoolClass < ActiveRecord::Base
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
   
   def model_custom_name
-    'Turma: ' + self.identifier.to_s+ '  Matriz: ' + self.course_matrix.model_custom_name + ' Período: '  + self.class_season.model_custom_name 
+    'Turma: ' + (self.identifier.to_s ? self.identifier.to_s : '')+ '  Matriz: ' + (self.course_matrix.try(:model_custom_name) ?  self.course_matrix.try(:model_custom_name) : '') + ' Período: '  + (self.class_season.try(:model_custom_name) ? self.class_season.try(:model_custom_name) : '')
   end
 
   def model_custom_tiny_name

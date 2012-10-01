@@ -88,5 +88,19 @@ class ClassRecordPresencesController < ApplicationController
     ClassRecordPresence.update_all(["is_present = ?", true], :id => params[:class_record_presence_ids])
     redirect_to discipline_class_class_record_class_record_presences_path, :notice => 'Chamada atualizada com sucesso.'
   end
+
+  def import_registration_to_presence
+    @class_record = ClassRecord.find(params[:class_record_id])
+    @class_record.discipline_class.registration_classes.each do |enturmation|      
+      presence = ClassRecordPresence.find_or_initialize_by_registration_class_id_and_class_record_id(enturmation.id, @class_record.id) do |p|
+          if p.is_present.blank?
+            p.is_present = true
+          end
+          p.save!
+      end
+    end
+
+    redirect_to discipline_class_class_record_class_record_presences_path, :notice => 'Importação realizada com sucesso.'
+  end
   
 end

@@ -35,6 +35,7 @@ AcademicoRails::Application.routes.draw do
     resources :class_records, :path =>"aulas" do
         resources :class_record_presences, :path => "presencas"
           match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
+          match 'import', :controller=>'class_record_presences', :method => :put, :action => 'import_registration_to_presence'
     end
   end
 
