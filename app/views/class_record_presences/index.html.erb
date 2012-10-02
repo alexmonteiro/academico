@@ -49,10 +49,9 @@
     </tr>
   </thead>
   <tbody>
-	<%ct = 0 %>
-    <% @class_record_presences.sort_by(&:model_student_name_whitout_accents).each do |class_record_presence| %>
+    <% @class_record_presences.sort_by(&:model_student_name_whitout_accents).each_with_index do |class_record_presence, i| %>
       <tr>
-        <td><%= ct += 1%></td>
+        <td><%= i+1%></td>
         <td><h3><%= check_box_tag "class_record_presence_ids[]", class_record_presence.id, class_record_presence.is_present %>  <%= class_record_presence.model_student_name %></h3></td>
 
       </tr>

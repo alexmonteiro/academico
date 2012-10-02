@@ -6,7 +6,9 @@ AcademicoRails::Application.routes.draw do
 
   resources :registration_class_statuses
 
-  resources :registrations, :path =>"matriculas"
+  resources :registrations, :path =>"matriculas" do
+      resources :registration_classes
+  end
 
   resources :registration_statuses
 

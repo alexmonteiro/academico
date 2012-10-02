@@ -5,6 +5,20 @@ class SchoolClass < ActiveRecord::Base
   has_many   :matrix_disciplines, :foreign_key => "matrix_id"
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
   
+  validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
+  validates_uniqueness_of :identifier
+  
+  # 20121001101A onde 2012 ano 1 período do ano 001 código sequencial do curso 1 turno (pode ser 1 2 ou 3 para mat vesp. E noturno) e 01 para o módulo do curso e o A para turma A, B, C
+  def auto_identifier
+    year = self.class_season.try(:year).to_s
+    number = self.class_season.try(:number).to_s
+    code = self.course_matrix.course.try(:code)
+    turno = self.shift_type_id.to_s
+    modulo = self.period.to_s.rjust(2,'0')
+    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier.chop}_'").count
+    year + number + code + turno  + modulo + ('A'..'Z').to_a[ct]
+  end
+  
   def model_custom_name
     'Turma: ' + (self.identifier.to_s ? self.identifier.to_s : '')+ '  Matriz: ' + (self.course_matrix.try(:model_custom_name) ?  self.course_matrix.try(:model_custom_name) : '') + ' Período: '  + (self.class_season.try(:model_custom_name) ? self.class_season.try(:model_custom_name) : '')
   end

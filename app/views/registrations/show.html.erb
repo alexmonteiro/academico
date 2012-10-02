@@ -1,8 +1,11 @@
 <%- model_class = @registration.class -%>
 <div class="page-header">
-  <h1><i class="icon-barcode"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-barcode"></i> <%=t '.title', :default => model_class.model_name.human %> <%= @registration.registration_number%></h1>
 </div>
 
+<div class="row-fluid">
+<div class="control-group span12">
+    <div class="span4">
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:registration_at) %>:</strong></dt>
   <dd><%=l @registration.registration_at if @registration.registration_at %></dd>
@@ -15,6 +18,32 @@
   <dt><strong><%= model_class.human_attribute_name(:registration_status_id) %>:</strong></dt>
   <dd><%= @registration.registration_status.try(:description) %></dd>
 </dl>
+
+     </div>
+	<!-- Aulas -->
+	<div class="span6">
+	  <div class="well">
+	      <fieldset>
+	          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-group'></i> Turmas & Classes </div>".html_safe,
+	            registration_registration_classes_path(@registration), :class => 'btn btn-inverse span12' %>
+	         <div style="padding-top: 60px">
+				
+		        <% @registration.registration_classes.group_by(&:school_class_identifier).each do |turma, classes| %>
+  		        <strong><%=link_to SchoolClass.find_by_identifier(turma).model_custom_tiny_name, school_class_path(:id => turma)%></strong>
+                <ul class="nav nav-list"> 
+		          <%classes.each do |classe|%>
+		             <li><%=link_to classe.discipline_class.discipline_name, discipline_class_path(:id => classe.discipline_class.id)%></li>
+		          <%end%>
+                  <li class="divider"></li>
+			     </ul>
+		        <%end%>
+	         </div>
+	      </fieldset>
+	  </div>
+	</div>	
+
+  </div>
+</div>
 
   <h4><strong>  <%= link_to "<i class='icon-print'></i> ".html_safe + "Declaração de Escolaridade", registration_path(@registration, :format =>  "pdf") %> </strong></h4>
 

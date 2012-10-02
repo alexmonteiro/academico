@@ -19,17 +19,17 @@
   <tbody>
     <% @school_classes.each do |school_class| %>
       <tr>
-        <td><%= link_to school_class.id, school_class_path(school_class) %></td>
-        <td><%= school_class.identifier %></td>
+        <td><%= link_to school_class.id, school_class_path(:id => school_class.identifier) %></td>
+        <td><%= link_to school_class.identifier, school_class_path(:id => school_class.identifier) %></td>
         <td><%= school_class.period %></td>
         <td><%= school_class.course_matrix.try(:model_custom_name) %></td>
         <td><%= school_class.class_season.try(:model_custom_name) %></td>
         <td><%= school_class.shift_type.try(:description) %></td>
-        <td><%=l school_class.opening_at %></td>
-        <td><%=l school_class.closing_at %></td>
+        <td><%=l school_class.opening_at if school_class.opening_at %></td>
+        <td><%=l school_class.closing_at if school_class.closing_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_school_class_path(school_class), :class => 'btn btn-mini' %>
+                      edit_school_class_path(:id => school_class.identifier), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       school_class_path(school_class),
                       :method => :delete,
