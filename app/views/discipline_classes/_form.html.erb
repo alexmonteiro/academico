@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :school_class_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :school_class_id, SchoolClass.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
+    <%= select_tag :school_class_id, options_from_collection_for_select(SchoolClass.find(:all), "id", "model_custom_name"), :class => 'select_field', :prompt => "...Selecione...", :class => 'field span6', :id => "discipline_class_school_class_id" %>
     </div>
   </div>
   <div class="control-group">
@@ -26,7 +26,7 @@
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :code, :class => 'text_field' %>
+      <%= f.text_field :code, :class => 'text_field', :class => 'field span3'  %>
     </div>
   </div>
   <div class="control-group">

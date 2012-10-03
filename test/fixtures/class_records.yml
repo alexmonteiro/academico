@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  recorded_at: 2012-09-27
+  record: MyText
+  note: MyString
+  justification: MyString
+  discipline_class: 
+  person: 
+  class_time: 
+  class_record_type: 
+
+two:
+  recorded_at: 2012-09-27
+  record: MyText
+  note: MyString
+  justification: MyString
+  discipline_class: 
+  person: 
+  class_time: 
+  class_record_type: 

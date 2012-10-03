@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  registration: 
+  discipline_class: 
+  registered_at: 2012-09-26
+  registration_class_status: 
+
+two:
+  registration: 
+  discipline_class: 
+  registered_at: 2012-09-26
+  registration_class_status: 

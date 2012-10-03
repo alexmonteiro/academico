@@ -1,6 +1,14 @@
 AcademicoRails::Application.routes.draw do
 
-  resources :registrations, :path =>"matriculas"
+  resources :class_record_types
+
+  resources :registration_classes
+
+  resources :registration_class_statuses
+
+  resources :registrations, :path =>"matriculas" do
+      resources :registration_classes
+  end
 
   resources :registration_statuses
 
@@ -22,13 +30,23 @@ AcademicoRails::Application.routes.draw do
 
   resources :class_teachings, :path =>"docencias"
 
+  resources :class_records, :path =>"aulas"  
+
   resources :discipline_classes, :path =>"classes" do
     resources :class_teachings, :path =>"docencias"
+    resources :class_records, :path =>"aulas" do
+        resources :class_record_presences, :path => "presencas"
+          match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
+          match 'import', :controller=>'class_record_presences', :method => :put, :action => 'import_registration_to_presence'
+    end
   end
 
   resources :school_classes, :path =>"turmas" do
     resources :discipline_classes, :path =>"classes" do
       resources :class_teachings, :path =>"docencias"
+      resources :class_records, :path =>"aulas" do
+          resources :class_record_presences, :path => "presencas"
+      end
     end
   end
 
@@ -128,10 +146,11 @@ AcademicoRails::Application.routes.draw do
   resources :cities
 
   resources :states
+  
+  resources :countries
 
   match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
   match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'
-  resources :countries
 
 
   # The priority is based upon order of creation:

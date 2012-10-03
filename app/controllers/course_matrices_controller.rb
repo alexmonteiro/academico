@@ -3,7 +3,7 @@ class CourseMatricesController < ApplicationController
 # GET /matrices.json
 def index
   if params[:search]
-   @search = CourseMatrix..search do
+   @search = CourseMatrix.search do
      fulltext params[:search]
      paginate :page => params[:page] || 1, :per_page => 10
    end

@@ -25,7 +25,7 @@
     <% @registrations.each do |registration| %>
       <tr>
         <td><%= link_to registration.id, registration_path(registration) %></td>
-        <td><%= registration.registration_number %></td>
+        <td><%= link_to registration.registration_number, registration_path(registration) %></td>
         <td><%= registration.person.try(:name) %></td>
         <td><%=l registration.registration_at if registration.registration_at %></td>
         <td><%= registration.course_matrix.try(:course_name) %></td>

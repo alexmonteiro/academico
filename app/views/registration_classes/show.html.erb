@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Registration:</b>
+  <%= @registration_class.registration %>
+</p>
+
+<p>
+  <b>Discipline class:</b>
+  <%= @registration_class.discipline_class %>
+</p>
+
+<p>
+  <b>Registered at:</b>
+  <%= @registration_class.registered_at %>
+</p>
+
+<p>
+  <b>Registration class status:</b>
+  <%= @registration_class.registration_class_status %>
+</p>
+
+
+<%= link_to 'Edit', edit_registration_class_path(@registration_class) %> |
+<%= link_to 'Back', registration_classes_path %>

@@ -1,0 +1,2 @@
+module ClassRecordTypesHelper
+end

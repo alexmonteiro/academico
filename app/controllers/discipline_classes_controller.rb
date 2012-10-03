@@ -91,7 +91,7 @@ class DisciplineClassesController < ApplicationController
 
   def update_discipline_select
 
-      disciplinas = SchoolClass.find(params[:id]).matrix.matrix_disciplines unless params[:id] == "0"
+      disciplinas = SchoolClass.find(params[:id]).course_matrix.matrix_disciplines unless params[:id] == "0"
 
       
       render :partial => "disciplines", :locals => { :disciplines => disciplinas }      

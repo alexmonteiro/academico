@@ -21,5 +21,9 @@ class MatrixDiscipline < ActiveRecord::Base
     self.isdependence ? "Sim" : "Não"
   end  
   
+  #carga horária da disciplina da matriz
+  def workload
+    self.discipline.try(:workload)
+  end
   
 end
