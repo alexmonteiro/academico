@@ -19,6 +19,11 @@ class CourseMatrix < ActiveRecord::Base
     self.course.name
   end
   
+  #soma a carga horaria da disciplina da matriz
+  def matrix_workload 
+    self.matrix_disciplines.sum(&:workload)
+  end
+  
   searchable do
     text :matrix_status_desc, :course_name, :model_custom_name
     

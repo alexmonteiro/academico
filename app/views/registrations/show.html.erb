@@ -5,21 +5,29 @@
 
 <div class="row-fluid">
 <div class="control-group span12">
-    <div class="span4">
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:registration_at) %>:</strong></dt>
-  <dd><%=l @registration.registration_at if @registration.registration_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:course_matrix_id) %>:</strong></dt>
-  <dd><%= @registration.course_matrix.try(:model_custom_name) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:person_id) %>:</strong></dt>
-  <dd><%= @registration.person.try(:name) %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:registration_number) %>:</strong></dt>
-  <dd><%= @registration.registration_number %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:registration_status_id) %>:</strong></dt>
-  <dd><%= @registration.registration_status.try(:description) %></dd>
-</dl>
-
-     </div>
+    <!--Dados da Matrícula -->
+    <div class="span6">
+		  <div class="well">
+	        <fieldset>
+				<dl class="dl-horizontal">	
+				<h4>
+				  <h3>	
+				   <dt><strong><%= model_class.human_attribute_name(:person_id) %>:</strong></dt>
+				   <dd><%= @registration.person.try(:name) %></dd>
+				  </h3>
+				  <dt><strong><%= model_class.human_attribute_name(:registration_at) %>:</strong></dt>
+				  <dd><%=l @registration.registration_at if @registration.registration_at %></dd>
+				  <dt><strong><%= model_class.human_attribute_name(:course_matrix_id) %>:</strong></dt>
+				  <dd><%= @registration.course_matrix.try(:model_custom_name) %></dd>
+				  <dt><strong><%= model_class.human_attribute_name(:registration_number) %>:</strong></dt>
+				  <dd><%= @registration.registration_number %></dd>
+				  <dt><strong><%= model_class.human_attribute_name(:registration_status_id) %>:</strong></dt>
+				  <dd><%= @registration.registration_status.try(:description) %></dd>
+				</h4>
+				</dl>
+           </fieldset>
+         </div>
+    </div>
 	<!-- Aulas -->
 	<div class="span6">
 	  <div class="well">
@@ -45,7 +53,7 @@
   </div>
 </div>
 
-  <h4><strong>  <%= link_to "<i class='icon-print'></i> ".html_safe + "Declaração de Escolaridade", registration_path(@registration, :format =>  "pdf") %> </strong></h4>
+  <h4><strong><h2>  <%= link_to "<i class='icon-print'></i> ".html_safe + "Declaração de Escolaridade", registration_path(@registration, :format =>  "pdf") %> </h2></strong></h4>
 
 
 <div class="form-actions">

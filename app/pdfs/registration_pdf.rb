@@ -28,7 +28,7 @@ class RegistrationPdf < Prawn::Document
             end
             stroke_horizontal_line 0, 550, :at => 470
             font("Courier", :size => 12) do
-              text_box "#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) #{@registration.person.try(:name)} está regularmente matriculado(a) para o X semestre de 20XX, no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - Campus XXX, no X módulo do Curso  XXXXXX, com aulas de segunda a sexta-feira, das XXh00 às XXh-00.",
+              text_box "#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) #{@registration.person.try(:name)} está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}.",
               :at => [30, 430],
               :leading => 5,
               :align => :justify
@@ -36,8 +36,8 @@ class RegistrationPdf < Prawn::Document
             stroke_horizontal_line 0, 550, :at => 300
             font("Courier", :size => 12) do
              text_box "Informações complementares:
-                       • Semestre Letivo: XX/XX a XX/XX/20XX.
-                       • Carga horária total do curso: XXX horas.",
+                       • Período Letivo: XX/XX a XX/XX/20XX.
+                       • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.",
              :at => [30, 290],
              :leading => 5    
             end                    
