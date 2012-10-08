@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :discipline_class_exam_types
+
   resources :class_record_types
 
   resources :registration_classes
@@ -36,8 +38,12 @@ AcademicoRails::Application.routes.draw do
     resources :class_teachings, :path =>"docencias"
     resources :class_records, :path =>"aulas" do
         resources :class_record_presences, :path => "presencas"
-          match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
-          match 'import', :controller=>'class_record_presences', :method => :put, :action => 'import_registration_to_presence'
+        match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
+        match 'import', :controller=>'class_record_presences', :method => :put, :action => 'import_registration_to_presence'
+    end
+    resources :discipline_class_exams, :path => "avaliacoes" do
+        resources :discipline_class_exam_results, :path => "notas"
+        match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
     end
   end
 
@@ -46,6 +52,11 @@ AcademicoRails::Application.routes.draw do
       resources :class_teachings, :path =>"docencias"
       resources :class_records, :path =>"aulas" do
           resources :class_record_presences, :path => "presencas"
+          resources :discipline_class_exam_results, :path => "notas"
+      end
+      resources :discipline_class_exams, :path => "avaliacoes" do
+          resources :discipline_class_exam_results, :path => "notas"
+          match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
       end
     end
   end

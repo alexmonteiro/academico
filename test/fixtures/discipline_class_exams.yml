@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  applied_at: 2012-10-03
+  title: MyString
+  weight: 
+  real_value: 
+  discipline_class: 
+  discipline_class_exam_type: 
+  is_mandatory: false
+
+two:
+  applied_at: 2012-10-03
+  title: MyString
+  weight: 
+  real_value: 
+  discipline_class: 
+  discipline_class_exam_type: 
+  is_mandatory: false

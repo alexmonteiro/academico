@@ -6603,6 +6603,14 @@ class_record_types = ClassRecordType.create([
   {:description => 'Reposição'}
 ])
 
+# Alimenta tabela tipo do Tipos de exames
+puts 'Inserindo tipo do Tipos de exames...'
+discipline_class_exam_types = DisciplineClassExamType.create([
+  {:description => 'Prova'},
+  {:description => 'Trabalhos'},
+  {:description => 'Seminários'},
+  {:description => 'Outros'}  
+])
 
 
 

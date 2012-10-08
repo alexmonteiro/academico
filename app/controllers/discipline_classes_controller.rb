@@ -52,7 +52,7 @@ class DisciplineClassesController < ApplicationController
 
     respond_to do |format|
       if @discipline_class.save
-        format.html { redirect_to @discipline_class, :notice => 'Discipline class was successfully created.' }
+        format.html { redirect_to @discipline_class, :notice => 'Classe criada com sucesso.' }
         format.json { render :json => @discipline_class, :status => :created, :location => @discipline_class }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class DisciplineClassesController < ApplicationController
 
     respond_to do |format|
       if @discipline_class.update_attributes(params[:discipline_class])
-        format.html { redirect_to @discipline_class, :notice => 'Discipline class was successfully updated.' }
+        format.html { redirect_to @discipline_class, :notice => 'Classe atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -81,12 +81,21 @@ class DisciplineClassesController < ApplicationController
   # DELETE /discipline_classes/1.json
   def destroy
     @discipline_class = DisciplineClass.find(params[:id])
-    @discipline_class.destroy
-
-    respond_to do |format|
-      format.html { redirect_to discipline_classes_url }
-      format.json { head :no_content }
+    if @discipline_class.destroy
+      respond_to do |format|
+        format.html { redirect_to discipline_classes_url }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+      respond_to do |format|
+        @discipline_class.errors[:base].each do |error|
+         error_message += "<li>#{error}</li>"
+        format.html { redirect_to request.referer, :alert => error_message}
+        format.json { render :json => @discipline_class.errors, :status => :unprocessable_entity }
+       end
     end
+   end
   end
 
   def update_discipline_select

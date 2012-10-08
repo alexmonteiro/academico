@@ -76,9 +76,18 @@
                 <% relative_path += "/"+path %>
                 <% add_breadcrumb path.to_s, relative_path %>
                <% end %>
-
             	<%= render_breadcrumbs %>
-	           <div class="hero-unit">
+				
+				<%if flash[:alert]%>
+				  <div id="error_explanation" class="alert alert-error">
+				    <h2>Problemas ao executar comando:</h2>
+				    <ul>
+				      <%= flash[:alert].html_safe %>
+				    </ul>
+				  </div>
+				<%end%>
+				
+	           <div class="hero-unit">		
 	            <%= yield %>
 	            </div><!--/span-->
 	          </div><!--/row-->

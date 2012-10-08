@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  registration_class: 
+  discipline_class_exam: 
+  concept: MyString
+  result: 9.99
+
+two:
+  registration_class: 
+  discipline_class_exam: 
+  concept: MyString
+  result: 9.99

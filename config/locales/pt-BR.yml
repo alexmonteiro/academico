@@ -113,6 +113,7 @@ pt-BR:
         ending_at: "Dt. Fechamento"
         timetable_started_at: "Vg. Grade Horária"
         class_records: "Aulas"
+        discipline_class_exams: "Avaliações"
       matrix_discipline:
         matrix_id: "Matriz"
         discipline_id: "Disciplina"
@@ -209,7 +210,20 @@ pt-BR:
         class_record_id: "Aula"
         registration_class_id: "Aluno"
         is_present: "Presença"                                                      
-
+      discipline_class_exam:
+        applied_at: "Aplicação"
+        title: "Título"
+        weight: "Peso"
+        real_value: "Valor"
+        discipline_class_id: "Classe"
+        discipline_class_exam_type_id: "Tipo"
+        is_mandatory: "Obrigatório?"   
+      discipline_class_exam_result:
+        registration_class_id: "Aluno"
+        discipline_class_exam_id: "Exame"
+        concept: "Conceito"
+        result: "Nota"        
+        
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -232,6 +246,8 @@ pt-BR:
       registration: "Matrícula"
       class_record: "Aulas"
       class_record_presence: "Presenças"
+      discipline_class_exam: "Avaliações"
+      discipline_class_exam_result: "Resultados"
 
 
   action:
