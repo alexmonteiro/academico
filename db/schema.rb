@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927195003) do
+ActiveRecord::Schema.define(:version => 20121004185330) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -243,6 +243,39 @@ ActiveRecord::Schema.define(:version => 20120927195003) do
 
   add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
   add_index "depts", ["dept_type_id"], :name => "index_depts_on_dept_type_id"
+
+  create_table "discipline_class_exam_results", :force => true do |t|
+    t.integer  "registration_class_id"
+    t.integer  "discipline_class_exam_id"
+    t.string   "concept"
+    t.decimal  "result"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "discipline_class_exam_results", ["discipline_class_exam_id"], :name => "index_discipline_class_exam_results_on_discipline_class_exam_id"
+  add_index "discipline_class_exam_results", ["registration_class_id"], :name => "index_discipline_class_exam_results_on_registration_class_id"
+
+  create_table "discipline_class_exam_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "discipline_class_exams", :force => true do |t|
+    t.date     "applied_at"
+    t.string   "title"
+    t.decimal  "weight"
+    t.decimal  "real_value"
+    t.integer  "discipline_class_id"
+    t.integer  "discipline_class_exam_type_id"
+    t.boolean  "is_mandatory"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "discipline_class_exams", ["discipline_class_exam_type_id"], :name => "index_discipline_class_exams_on_discipline_class_exam_type_id"
+  add_index "discipline_class_exams", ["discipline_class_id"], :name => "index_discipline_class_exams_on_discipline_class_id"
 
   create_table "discipline_classes", :force => true do |t|
     t.integer  "school_class_id"

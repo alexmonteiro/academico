@@ -93,7 +93,8 @@ pt-BR:
         class_season_id: "Período Letivo"
         shift_type_id: "Turno"
         opening_at: "Abertura"
-        closing_at: "Fechamento"                
+        closing_at: "Fechamento" 
+        discipline_classes: "Classes"               
       course_matrix:
         started_at: "Início"
         ended_at: "Fim"
@@ -113,6 +114,7 @@ pt-BR:
         ending_at: "Dt. Fechamento"
         timetable_started_at: "Vg. Grade Horária"
         class_records: "Aulas"
+        discipline_class_exams: "Avaliações"
       matrix_discipline:
         matrix_id: "Matriz"
         discipline_id: "Disciplina"
@@ -209,7 +211,25 @@ pt-BR:
         class_record_id: "Aula"
         registration_class_id: "Aluno"
         is_present: "Presença"                                                      
-
+      discipline_class_exam:
+        applied_at: "Aplicação"
+        title: "Título"
+        weight: "Peso"
+        real_value: "Valor"
+        discipline_class_id: "Classe"
+        discipline_class_exam_type_id: "Tipo"
+        is_mandatory: "Obrigatório?"   
+      discipline_class_exam_result:
+        registration_class_id: "Aluno"
+        discipline_class_exam_id: "Exame"
+        concept: "Conceito"
+        result: "Nota"
+      registration_class:
+        registration_id: "Matrícula"
+        discipline_class_id: "Disciplina"
+        registered_at: "Data"
+        registration_class_status_id: "Situação"                
+        
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -232,6 +252,9 @@ pt-BR:
       registration: "Matrícula"
       class_record: "Aulas"
       class_record_presence: "Presenças"
+      discipline_class_exam: "Avaliações"
+      discipline_class_exam_result: "Notas"
+      registration_class: "Enturmação"
 
 
   action:
@@ -380,7 +403,7 @@ pt-BR:
     links:
       back: Voltar
       edit: Editar
-      destroy: Destruir
+      destroy: Excluir
       cancel: Cancelar
       new: Criar
       print: Imprimir

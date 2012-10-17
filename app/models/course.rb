@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
   has_many :disciplines
   has_many :course_matrices
   attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
+  before_destroy :has_children?
   
   
   def dept_acronym
@@ -28,6 +29,17 @@ class Course < ActiveRecord::Base
   searchable do
     text :code, :name, :nickname, :dept_acronym, :dept_name
     
+  end
+  
+  def has_children?
+    errors.add(:base, "Existem Disciplinas associadas a este Curso") unless disciplines.count == 0
+    errors.add(:base, "Existem Matrizes associadas a este Curso") unless course_matrices.count == 0  
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
   end
   
 end

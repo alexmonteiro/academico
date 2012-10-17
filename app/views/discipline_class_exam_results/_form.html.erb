@@ -1,0 +1,21 @@
+<%= form_for [@discipline_class, @discipline_class_exam, @discipline_class_exam_result], :html => { :class => 'form-horizontal' } do |f| %>
+<div class="control-group">
+  <%= f.label :result, :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :result, :class => 'text_field' %>
+  </div>
+</div>
+
+  <div class="control-group">
+    <%= f.label :concept, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :concept, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                discipline_class_discipline_class_exam_discipline_class_exam_results_path, :class => 'btn' %>
+  </div>
+<% end %>

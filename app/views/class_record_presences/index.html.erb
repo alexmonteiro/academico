@@ -25,11 +25,11 @@
  <p id="notice"><%= notice %></p>
 </div>
 <%end%>
-<div class="form-actions">
-	
+
+<div class="form-actions">	
 <%= form_tag 'import', :method => :put, :action => 'import_registration_to_presence' do %>
 <button type="submit" class="btn btn-success btn-large pull-right">
-  <i class="icon-download-alt"></i> Importar Enturmação
+ <%= @class_record.count_class_registrations_without_results %> <i class="icon-download-alt"></i> Importar Enturmação
 </button>
 <%end%>
 
@@ -52,7 +52,7 @@
     <% @class_record_presences.sort_by(&:model_student_name_whitout_accents).each_with_index do |class_record_presence, i| %>
       <tr>
         <td><%= i+1%></td>
-        <td><h3><%= check_box_tag "class_record_presence_ids[]", class_record_presence.id, class_record_presence.is_present %>  <%= class_record_presence.model_student_name %></h3></td>
+        <td><h4><%= check_box_tag "class_record_presence_ids[]", class_record_presence.id, class_record_presence.is_present %>  <%= class_record_presence.model_student_name %></h4></td>
 
       </tr>
     <% end %>

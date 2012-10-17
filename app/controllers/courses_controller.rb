@@ -88,11 +88,22 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
-    @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to courses_url }
-      format.json { head :no_content }
+    if @course.destroy
+      respond_to do |format|
+        format.html { redirect_to courses_url }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+      respond_to do |format|
+        @course.errors[:base].each do |error|
+         error_message += "<li>#{error}</li>"
+        format.html { redirect_to request.referer, :alert => error_message}
+        format.json { render :json => @course.errors, :status => :unprocessable_entity }
+       end
     end
-  end
+   end
+  end  
+  
+  
 end

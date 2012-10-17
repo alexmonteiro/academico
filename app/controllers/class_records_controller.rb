@@ -77,13 +77,24 @@ class ClassRecordsController < ApplicationController
 
   # DELETE /class_records/1
   # DELETE /class_records/1.json
-  def destroy
+  def destroy    
     @class_record = ClassRecord.find(params[:id])
-    @class_record.destroy
-
-    respond_to do |format|
-      format.html { redirect_to class_records_url }
-      format.json { head :no_content }
+    @discipline_class =  @class_record.discipline_class
+    if @class_record.destroy
+      respond_to do |format|
+        format.html { redirect_to discipline_class_class_records_path(@discipline_class), :notice => 'Aula excluída.' }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+      respond_to do |format|
+        @class_record.errors[:base].each do |error|
+         error_message += "<li>#{error}</li>"
+        format.html { redirect_to request.referer, :alert => error_message}
+        format.json { render :json => @class_record.errors, :status => :unprocessable_entity }
+       end
     end
+   end
   end
+    
 end

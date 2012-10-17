@@ -1,0 +1,58 @@
+<%= form_for [@discipline_class, @discipline_class_exam], :html => { :class => 'form-horizontal' } do |f| %>
+<% if @discipline_class_exam.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@discipline_class_exam.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
+
+    <ul>
+    <% @discipline_class_exam.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+  <div class="control-group">
+    <%= f.label :applied_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_select :applied_at, :class => 'date_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :weight, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :weight, :class => 'number_field', :value => 1.0, :type => "number",  :step => "any", :min => "1.0" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :real_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :real_value, :class => 'number_field', :value => 0.0 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :discipline_class_exam_type_id, :class => 'control-label' %>
+    <div class="controls">
+        <%= f.collection_select :discipline_class_exam_type_id, DisciplineClassExamType.find(:all), :id, :description %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :is_mandatory, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :is_mandatory, :class => 'check_box' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                discipline_class_discipline_class_exams_path, :class => 'btn' %>
+  </div>
+<% end %>

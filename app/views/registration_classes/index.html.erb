@@ -1,29 +1,5 @@
-<h1>Listing registration_classes</h1>
-
-<table>
-  <tr>
-    <th>Registration</th>
-    <th>Discipline class</th>
-    <th>Registered at</th>
-    <th>Registration class status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @registration_classes.each do |registration_class| %>
-  <tr>
-    <td><%= registration_class.registration %></td>
-    <td><%= registration_class.discipline_class %></td>
-    <td><%= registration_class.registered_at %></td>
-    <td><%= registration_class.registration_class_status %></td>
-    <td><%= link_to 'Show', registration_class %></td>
-    <td><%= link_to 'Edit', edit_registration_class_path(registration_class) %></td>
-    <td><%= link_to 'Destroy', registration_class, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Registration class', new_registration_class_path %>
+<% if params[:registration_id] %>
+ <%= render 'byregistration'%>
+<%else%>
+ <%= render 'bydisciplineclass'%>
+<%end if%>

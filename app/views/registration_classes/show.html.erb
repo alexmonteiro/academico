@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = RegistrationClass -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Registration:</b>
-  <%= @registration_class.registration %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:registration_id) %>:</strong></dt>
+  <dd><%= @registration_class.registration_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discipline_class_id) %>:</strong></dt>
+  <dd><%= @registration_class.discipline_class_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:registered_at) %>:</strong></dt>
+  <dd><%= @registration_class.registered_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:registration_class_status_id) %>:</strong></dt>
+  <dd><%= @registration_class.registration_class_status_id %></dd>
+</dl>
 
-<p>
-  <b>Discipline class:</b>
-  <%= @registration_class.discipline_class %>
-</p>
-
-<p>
-  <b>Registered at:</b>
-  <%= @registration_class.registered_at %>
-</p>
-
-<p>
-  <b>Registration class status:</b>
-  <%= @registration_class.registration_class_status %>
-</p>
-
-
-<%= link_to 'Edit', edit_registration_class_path(@registration_class) %> |
-<%= link_to 'Back', registration_classes_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              registration_classes_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_registration_class_path(@registration_class), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              registration_class_path(@registration_class),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
