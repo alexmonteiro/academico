@@ -3,7 +3,9 @@ class SchoolClass < ActiveRecord::Base
   belongs_to :class_season
   belongs_to :shift_type
   has_many   :matrix_disciplines, :foreign_key => "matrix_id"
+  has_many   :discipline_classes
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
+  default_scope :order => 'identifier DESC'
   
   validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
   validates_uniqueness_of :identifier
@@ -26,5 +28,15 @@ class SchoolClass < ActiveRecord::Base
   def model_custom_tiny_name
     self.identifier.to_s+ ' / ' + self.course_matrix.try(:model_custom_name)
   end  
+
+  def model_identifier_and_period
+    'Turma: ' + (self.identifier.to_s ? self.identifier.to_s : '')+' Período: '  + (self.class_season.try(:model_custom_name) ? self.class_season.try(:model_custom_name) : '')
+  end  
+
+  
+  searchable do
+    text :id, :identifier, :opening_at, :opening_at
+    
+  end
   
 end

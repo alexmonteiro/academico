@@ -12,20 +12,36 @@ class DisciplineClass < ActiveRecord::Base
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
   validates :school_class_id, :matrix_discipline_id, :code, :presence => true
 
+  def vacancies
+    self.vancancies
+  end
+  
+  def vacancies_left
+    self.vancancies - self.registration_classes.count
+  end
+  
   def model_custom_name
-    self.school_class.try(:model_custom_tiny_name)+" - "+self.matrix_discipline.id.to_s || "null" +" - "+self.matrix_discipline.try(:discipline_name)
+    self.school_class.try(:model_custom_tiny_name)+" - "+ (self.id.to_s || "null") +" - "+self.matrix_discipline.try(:discipline_name)
   end
   
   def discipline_name
     self.matrix_discipline.try(:discipline_name)
-  end
+  end  
   
-  def school_class_code
+  def school_class_identifier
     self.school_class.try(:identifier)
+  end
+
+  def school_class_period
+    self.school_class.try(:period)
+  end  
+  
+  def school_class_identifier_period
+    self.school_class.try(:identifier) + " período: " + self.school_class.try(:period).to_s
   end
   
   searchable do
-    text :discipline_name, :code, :school_class_code
+    text :id, :discipline_name, :code, :school_class_identifier
     
   end  
   

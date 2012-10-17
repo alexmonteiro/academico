@@ -1,6 +1,6 @@
 <%- model_class = @matrix.class -%>
 <div class="page-header">
-  <h1><i class="icon-table"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-table"></i> <%= @matrix.model_id_and_course_name%></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -50,6 +50,20 @@
 
 
 <br/>
+
+<div class="span8">		
+<h2><%=link_to "<i class='icon-group'></i> Turmas".html_safe, '#' %></h2>
+ <%@matrix.school_classes.group_by(&:period).each do |periodo, turmas|%>
+   <dt>Período: <%= periodo %></dt>
+   <%turmas.each do | turma |%>
+     <dd><%= turma.model_identifier_and_period %></dd>
+   <%end%>
+ <%end%>
+</div>
+
+
+<br/>
+
 </div>
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")), course_matrices_path, :class => 'btn btn-large'  %>

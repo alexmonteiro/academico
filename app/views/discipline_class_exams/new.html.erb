@@ -1,6 +1,7 @@
 <%- model_class = @discipline_class_exam.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+  <h1><i class='icon-align-justify'></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
+  <h2>Classe: <%= @discipline_class.model_custom_name%></h2>
 </div>
 <%= render :partial => 'form' %>

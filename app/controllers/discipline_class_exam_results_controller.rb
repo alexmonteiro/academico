@@ -22,35 +22,13 @@ class DisciplineClassExamResultsController < ApplicationController
     end
   end
 
-  # GET /discipline_class_exam_results/new
-  # GET /discipline_class_exam_results/new.json
-  def new
-    @discipline_class_exam_result = DisciplineClassExamResult.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @discipline_class_exam_result }
-    end
-  end
 
   # GET /discipline_class_exam_results/1/edit
   def edit
     @discipline_class_exam_result = DisciplineClassExamResult.find(params[:id])
-  end
-
-  # POST /discipline_class_exam_results
-  # POST /discipline_class_exam_results.json
-  def create
-    @discipline_class_exam_result = DisciplineClassExamResult.new(params[:discipline_class_exam_result])
-
-    respond_to do |format|
-      if @discipline_class_exam_result.save
-        format.html { redirect_to @discipline_class_exam_result, :notice => 'Discipline class exam result was successfully created.' }
-        format.json { render :json => @discipline_class_exam_result, :status => :created, :location => @discipline_class_exam_result }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @discipline_class_exam_result.errors, :status => :unprocessable_entity }
-      end
+    if params[:discipline_class_exam_id]
+     @discipline_class_exam = DisciplineClassExam.find(params[:discipline_class_exam_id])
+     @discipline_class = @discipline_class_exam.discipline_class
     end
   end
 
@@ -61,7 +39,7 @@ class DisciplineClassExamResultsController < ApplicationController
 
     respond_to do |format|
       if @discipline_class_exam_result.update_attributes(params[:discipline_class_exam_result])
-        format.html { redirect_to @discipline_class_exam_result, :notice => 'Discipline class exam result was successfully updated.' }
+        format.html { redirect_to discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class_exam_result.discipline_class_exam.discipline_class, @discipline_class_exam_result.discipline_class_exam), :notice => 'Nota alterada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -91,6 +69,27 @@ class DisciplineClassExamResultsController < ApplicationController
       end
     end
 
-    redirect_to discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class_exam), :notice => 'Importação realizada com sucesso.'
+    redirect_to discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class_exam.discipline_class, @discipline_class_exam), :notice => 'Importação realizada com sucesso.'
   end  
+
+  def update_results
+    # DisciplineClassExamResult.update(params[:discipline_class_exam_results].keys, params[:discipline_class_exam_results].values)
+    erros = ""
+    params[:discipline_class_exam_results].keys.each do |k|
+      r = DisciplineClassExamResult.find(k)
+      r.result = params[:discipline_class_exam_results][k][:result]
+      if !r.save
+        r.errors.full_messages.each do |msg|
+          erros +=  msg+': '+ params[:discipline_class_exam_results][k][:result] + ' para '+r.try(:model_student_name) +'</br>'
+        end
+      end
+    end
+         
+    if erros.blank?
+      redirect_to discipline_class_discipline_class_exam_discipline_class_exam_results_path, :notice => 'Notas atualizadas com sucesso!'
+    else  
+      redirect_to discipline_class_discipline_class_exam_discipline_class_exam_results_path, :alert => erros
+    end
+  end  
+  
 end

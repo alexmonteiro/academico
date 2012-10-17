@@ -52,10 +52,14 @@ class DisciplineClassExamsController < ApplicationController
   # POST /discipline_class_exams.json
   def create
     @discipline_class_exam = DisciplineClassExam.new(params[:discipline_class_exam])
+    if params[:discipline_class_id]
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+     @discipline_class_exam.discipline_class_id = @discipline_class.id
+    end
 
     respond_to do |format|
       if @discipline_class_exam.save
-        format.html { redirect_to @discipline_class_exam, :notice => 'Discipline class exam was successfully created.' }
+        format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação criada com sucesso.' }
         format.json { render :json => @discipline_class_exam, :status => :created, :location => @discipline_class_exam }
       else
         format.html { render :action => "new" }
@@ -71,7 +75,7 @@ class DisciplineClassExamsController < ApplicationController
 
     respond_to do |format|
       if @discipline_class_exam.update_attributes(params[:discipline_class_exam])
-        format.html { redirect_to @discipline_class_exam, :notice => 'Discipline class exam was successfully updated.' }
+        format.html { redirect_to @discipline_class_exam, :notice => 'Avaliação atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -83,12 +87,29 @@ class DisciplineClassExamsController < ApplicationController
   # DELETE /discipline_class_exams/1
   # DELETE /discipline_class_exams/1.json
   def destroy
-    @discipline_class_exam = DisciplineClassExam.find(params[:id])
-    @discipline_class_exam.destroy
-
-    respond_to do |format|
-      format.html { redirect_to discipline_class_exams_url }
-      format.json { head :no_content }
-    end
-  end
+     @discipline_class_exam = DisciplineClassExam.find(params[:id])
+     
+     if params[:discipline_class_id]
+      @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+     end
+     
+     if @discipline_class_exam.destroy
+       respond_to do |format|
+         format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação excluída .' }
+         format.json { head :no_content }
+       end
+     else
+       error_message = ""
+       respond_to do |format|
+           @discipline_class_exam.errors[:base].each do |error|
+            error_message += "<li>#{error}</li>"
+           format.html { redirect_to request.referer, :alert => error_message}
+           format.json { render :json => @discipline_class_exam.errors, :status => :unprocessable_entity }
+          end
+       end
+     end
+  end  
+  
+  
+  
 end

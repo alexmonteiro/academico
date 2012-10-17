@@ -1,25 +1,23 @@
 <%- model_class = DisciplineClassExamResult.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-  <h2>Avaliação: <%=l @discipline_class_exam.applied_at %> - <%= @discipline_class_exam.title %><h2>
-  <h3>Classe:<%= @discipline_class_exam.discipline_class.model_custom_name %><h3>
-  <h4>Prof.:<% @discipline_class_exam.discipline_class.class_teachings.each do |teacher| %>
+  <h1><i class='icon-list'></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h2>Avaliação: <%= (@discipline_class_exam.applied_at ? @discipline_class_exam.applied_at.strftime("%d/%m/%Y") : 'sem data')  %> - <%= @discipline_class_exam.title %><h2>
+  <h3>Classe: <%= @discipline_class_exam.discipline_class.model_custom_name %><h3>
+  <h4>Prof.: <% @discipline_class_exam.discipline_class.class_teachings.each do |teacher| %>
 	            <%= teacher.name %> 
 	        <% end %><h4>	
 </div>
 
-<%if notice%>
-<div id="error_explanation" class="alert alert-info">
- <p id="notice"><%= notice %></p>
-</div>
-<%end%>
 <div class="form-actions">
+
 	
 <%= form_tag 'import_registration_to_exam_result', :method => :put, :action => 'import_registration_to_exam_result' do %>
 <button type="submit" class="btn btn-success btn-large pull-right">
 <%= @discipline_class_exam.count_class_registrations_without_results %>  <i class="icon-download-alt"></i> Importar Enturmação
 </button>
 <%end%>
+
+<%= form_tag discipline_class_discipline_class_exam_discipline_class_exam_results_path, :method => :put, :id => 'form_results' do %>
 
 <table class="table table-striped">
   <thead>
@@ -35,7 +33,8 @@
       <tr>
         <td><%= link_to i+1, discipline_class_discipline_class_exam_discipline_class_exam_result_path(:id => discipline_class_exam_result.id) %></td>
         <td><%= discipline_class_exam_result.model_student_name %></td>
-        <td><%= discipline_class_exam_result.result %></td>
+         <td><%= text_field_tag "discipline_class_exam_results[#{discipline_class_exam_result.id}][result]]", discipline_class_exam_result.result, :class => 'input-mini', :type => "number",  :step => "any", :min => "0.0"%>
+	     </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_discipline_class_discipline_class_exam_discipline_class_exam_result_path(:id => discipline_class_exam_result.id), :class => 'btn btn-mini' %>
@@ -49,7 +48,5 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_discipline_class_discipline_class_exam_discipline_class_exam_result_path,
-            :class => 'btn btn-primary' %>
+<%= submit_tag "Salvar notas",:class => 'btn btn-primary btn-large  pull-left' %>	
+<%end%>

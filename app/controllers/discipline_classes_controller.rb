@@ -9,7 +9,12 @@ class DisciplineClassesController < ApplicationController
      end
      @discipline_classes = @search.results
     else
-     @discipline_classes = DisciplineClass.paginate(:page => params[:page], :per_page => 10)
+     if params[:school_class_id] 
+      school_class_id =  SchoolClass.find_by_identifier(params[:school_class_id])
+      @discipline_classes = DisciplineClass.where(:school_class_id => school_class_id).paginate(:page => params[:page], :per_page => 10) 
+     else
+      @discipline_classes = DisciplineClass.paginate(:page => params[:page], :per_page => 10)
+     end
     end    
 
     respond_to do |format|

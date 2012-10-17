@@ -74,21 +74,21 @@
 					   <th><center>#</center></th>	
 					   <th><center>Aluno</center></th>	
 		               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
-					      <th><center><%=l exam.applied_at if exam.applied_at%><br/><%= exam.title%></center></th>
+					      <th><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
 				       <%end%>
 	   			       <th><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>	
 					 </tr>
 				    </thead>
 				    <tbody>
-		               <% @discipline_class.registration_classes.sort_by(&:model_student_name).each_with_index do |rclass, i| %>
+		               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
 					      <tr class= <%= rclass.model_student_result_average >= 5 ? "info" : "error" %> >
 	    					<td><%= i+1 %></td>
-						    <td><%= rclass.model_student_name%></td>
+						    <td><%= rclass.student_name%></td>
 							<% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
 							   <%nota = DisciplineClassExamResult.where(:discipline_class_exam_id => exam.id).where(:registration_class_id => rclass.id).first.try(:result) %>
 							   <td><center> <h5><%= (nota.blank? ? '0.0' : nota.to_s) %> <small>x<%=exam.weight%></small></h5> </center></td>
 						    <%end%>
-						       <td><center> <h5><%= rclass.model_student_result_average %></center></h5></center></td>	
+						       <td><center> <h5><%= rclass.model_student_result_average.round(2) %></center></h5></center></td>	
 						  </tr>
 				       <%end%>				
 					</tbody>

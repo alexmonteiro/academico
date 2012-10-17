@@ -29,7 +29,7 @@ class Person < ActiveRecord::Base
   end
 
   searchable do
-    text :birth_date, :email, :name, :number_children
+    text :id, :birth_date, :email, :name, :number_children
     string :name
     
   end  

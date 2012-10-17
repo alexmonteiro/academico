@@ -1,6 +1,6 @@
 <%- model_class = @discipline_class_exam.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class='icon-align-justify'></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -24,7 +24,13 @@
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
               discipline_class_discipline_class_exams_path, :class => 'btn btn-large pull-left'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
-              edit_discipline_class_discipline_class_exam_path(@discipline_class_exam), :class => 'btn btn-large pull-left' %>
+              edit_discipline_class_discipline_class_exam_path(@discipline_class), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-list'></i> ".html_safe + 'Notas',   
+	          discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class,  @discipline_class_exam), :class => 'btn btn-large pull-left' %>
+
+
+
+
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               discipline_class_discipline_class_exams_path(@discipline_class_exam),
               :method => 'delete',

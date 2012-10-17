@@ -86,6 +86,12 @@
 				    </ul>
 				  </div>
 				<%end%>
+
+				<%if flash[:notice]%>
+				  <div id="error_explanation" class="alert alert-info">
+				      <%= flash[:notice].html_safe %>
+				  </div>
+				<%end%>				
 				
 	           <div class="hero-unit">		
 	            <%= yield %>

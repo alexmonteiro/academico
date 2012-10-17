@@ -47,6 +47,13 @@
   </tbody>
 </table>
 <center><%= will_paginate @discipline_classes %></center>
+
+<%if params[:school_class_id]%>
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_discipline_class_path,
+            new_school_class_discipline_class_path,
             :class => 'btn btn-primary' %>
+<%else%>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_discipline_class_path,
+	            :class => 'btn btn-primary' %>
+<%end%>

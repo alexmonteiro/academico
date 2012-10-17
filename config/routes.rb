@@ -4,12 +4,12 @@ AcademicoRails::Application.routes.draw do
 
   resources :class_record_types
 
-  resources :registration_classes
+  resources :registration_classes, :path =>"enturmacoes"
 
   resources :registration_class_statuses
 
   resources :registrations, :path =>"matriculas" do
-      resources :registration_classes
+      resources :registration_classes, :path =>"enturmacoes"
   end
 
   resources :registration_statuses
@@ -43,8 +43,13 @@ AcademicoRails::Application.routes.draw do
     end
     resources :discipline_class_exams, :path => "avaliacoes" do
         resources :discipline_class_exam_results, :path => "notas"
+        match 'notas', :controller=>'discipline_class_exam_results', :method => :put, :action => 'update_results'
         match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
     end
+    resources :registration_classes, :path =>"enturmacoes"
+    match 'enturmacoes', :controller=>'registration_classes', :method => :put, :action => 'create_registration_classes'
+
+
   end
 
   resources :school_classes, :path =>"turmas" do
@@ -52,7 +57,6 @@ AcademicoRails::Application.routes.draw do
       resources :class_teachings, :path =>"docencias"
       resources :class_records, :path =>"aulas" do
           resources :class_record_presences, :path => "presencas"
-          resources :discipline_class_exam_results, :path => "notas"
       end
       resources :discipline_class_exams, :path => "avaliacoes" do
           resources :discipline_class_exam_results, :path => "notas"
@@ -76,6 +80,20 @@ AcademicoRails::Application.routes.draw do
     resources :timetables, :path =>"gradehoraria" do
       resources :timetable_class_times, :path =>"horas"
     end
+
+    resources :school_classes, :path =>"turmas" do
+      resources :discipline_classes, :path =>"classes" do
+        resources :class_teachings, :path =>"docencias"
+        resources :class_records, :path =>"aulas" do
+            resources :class_record_presences, :path => "presencas"
+        end
+        resources :discipline_class_exams, :path => "avaliacoes" do
+            resources :discipline_class_exam_results, :path => "notas"
+            match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
+        end
+      end
+    end
+
   end
   
 
