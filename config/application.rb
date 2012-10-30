@@ -60,5 +60,7 @@ module AcademicoRails
     config.assets.version = '2.0'
     #config.assets.initialize_on_precompile = false
     #config.assets.logger = false
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| "<i>#{html_tag}</i>".html_safe }
   end
 end

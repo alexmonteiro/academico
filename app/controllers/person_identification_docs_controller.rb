@@ -5,6 +5,8 @@ class PersonIdentificationDocsController < ApplicationController
     @person = Person.find((params[:person_id]))
     @person_identification_docs = PersonIdentificationDoc.where("person_id = ?", params[:person_id])
 
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @person_identification_docs }
@@ -24,7 +26,7 @@ class PersonIdentificationDocsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to person_person_identification_docs_path, :notice => "This record doesn`t exists."}
+        format.html { redirect_to person_person_identification_docs_path, :notice => "Este registro não existe."}
         format.json { render :json => @person_identification_doc }
       end
     end
@@ -68,7 +70,7 @@ class PersonIdentificationDocsController < ApplicationController
 
     respond_to do |format|
       if @person_identification_doc.save
-        format.html { redirect_to [@person,@person_identification_doc], :notice => 'Person identification doc was successfully created.' }
+        format.html { redirect_to [@person,@person_identification_doc], :notice => 'Documentação criada.' }
         format.json { render :json => [@person,@person_identification_doc], :status => :created, :location => @person_identification_doc }
       else
         format.html { render :action => "new" }
@@ -88,7 +90,7 @@ class PersonIdentificationDocsController < ApplicationController
 
     respond_to do |format|
       if @person_identification_doc.update_attributes(params[:person_identification_doc])
-        format.html { redirect_to [@person,@person_identification_doc], :notice => 'Person identification doc was successfully updated.' }
+        format.html { redirect_to [@person,@person_identification_doc], :notice => 'Documentação atualizada.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

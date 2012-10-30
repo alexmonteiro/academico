@@ -11,7 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require bootstrap-datepicker
 //= require twitter/bootstrap
 //= require_tree .
 /*
@@ -64,4 +66,10 @@ jQuery(function($) {
     })
     return false;
   });
-})
+});
+
+function limparCampo(campoId){
+  document.getElementById(campoId).value = '';
+}
+
+$.datepicker.setDefaults( $.datepicker.regional["pt-BR"] );
