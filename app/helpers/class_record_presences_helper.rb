@@ -1,0 +1,2 @@
+module ClassRecordPresencesHelper
+end

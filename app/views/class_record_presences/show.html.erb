@@ -1,0 +1,25 @@
+<%- model_class = @class_record_presence.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:class_record_id) %>:</strong></dt>
+  <dd><%= @class_record_presence.class_record_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:registration_class_id) %>:</strong></dt>
+  <dd><%= @class_record_presence.registration_class_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_present) %>:</strong></dt>
+  <dd><%= @class_record_presence.is_present %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              class_record_presences_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_class_record_presence_path(@class_record_presence), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              class_record_presence_path(@class_record_presence),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

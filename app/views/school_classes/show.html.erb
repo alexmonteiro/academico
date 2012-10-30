@@ -1,33 +1,64 @@
 <%- model_class = @school_class.class -%>
-<div class="page-header">
-  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+<div class="row-fluid">
+  <div class="control-group span12">
+  <div class="span8">
+	      <fieldset>	
+			<div class="page-header">
+			  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human %> <%= @school_class.identifier %></h1>
+			</div>
+			<dl class="dl-horizontal">
+			  <dt><strong><%= model_class.human_attribute_name(:identifier) %>:</strong></dt>
+			  <dd><%= @school_class.identifier %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:period) %>:</strong></dt>
+			  <dd><%= @school_class.period %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:matrix_id) %>:</strong></dt>
+			  <dd><%= @school_class.course_matrix.model_custom_name if @school_class.matrix_id %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:class_season_id) %>:</strong></dt>
+			  <dd><%= @school_class.class_season.model_custom_name if @school_class.class_season_id %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
+			  <dd><%= @school_class.shift_type.try(:description) || '<sem registro>' %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:opening_at) %>:</strong></dt>
+			  <dd><%=l @school_class.opening_at if @school_class.opening_at %></dd>
+			  <dt><strong><%= model_class.human_attribute_name(:closing_at) %>:</strong></dt>
+			  <dd><%=l @school_class.closing_at if @school_class.closing_at%></dd>
+			</dl>
+		 </fieldset>	
+	 </div>
+	
+	
+	<!-- Aulas -->
+	<div class="span4">
+	  <div class="well">
+	      <fieldset>
+	          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Classes </div>".html_safe,
+	            school_class_discipline_classes_path(@school_class.identifier), :class => 'btn btn-inverse span12' %>
+	         <div style="padding-top: 60px">
+			    <%if @school_class.discipline_classes.count > 0%>
+			     <table class="table table-striped table-condensed">
+		           <% @school_class.discipline_classes.each_with_index do |dclass, i| %>
+				    <tr><td><%= dclass.model_custom_name %></td></tr>
+				    <% break if i == 5 %>
+				  <%end%>
+	    			<tr><td><%= link_to "...mais...", school_class_discipline_classes_path(@school_class.identifier) %></td></tr>
+				  </table> 
+			    <%else%>
+			      <dd><center><%= '...sem classe cadastrada...' if @school_class.discipline_classes.count == 0 %></center></dd>
+			    <%end%>
+	         </div>
+	      </fieldset>
+	  </div>
+	</div>
+	
+  </div>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:identifier) %>:</strong></dt>
-  <dd><%= @school_class.identifier %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:period) %>:</strong></dt>
-  <dd><%= @school_class.period %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:matrix_id) %>:</strong></dt>
-  <dd><%= @school_class.course_matrix.model_custom_name if @school_class.matrix_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:class_season_id) %>:</strong></dt>
-  <dd><%= @school_class.class_season.model_custom_name if @school_class.class_season_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:shift_type_id) %>:</strong></dt>
-  <dd><%= @school_class.shift_type.try(:description) || '<sem registro>' %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:opening_at) %>:</strong></dt>
-  <dd><%=l @school_class.opening_at %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:closing_at) %>:</strong></dt>
-  <dd><%=l @school_class.closing_at %></dd>
-</dl>
-
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              school_classes_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_school_class_path(@school_class), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              school_classes_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_school_class_path(:id => @school_class.identifier), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               school_class_path(@school_class),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger btn-large pull-right' %>
 </div>

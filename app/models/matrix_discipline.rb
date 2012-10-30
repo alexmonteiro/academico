@@ -2,6 +2,7 @@ class MatrixDiscipline < ActiveRecord::Base
   belongs_to :course_matrix, :foreign_key => :matrix_id
   belongs_to :discipline
   belongs_to :matrix_discipline_group
+  has_many   :discipline_classes
   default_scope :order => :maxseasons
   attr_accessible :isdependence, :isoptative, :maxseasons, :discipline_id, :matrix_discipline_group_id, :matrix_id
   
@@ -21,5 +22,9 @@ class MatrixDiscipline < ActiveRecord::Base
     self.isdependence ? "Sim" : "Não"
   end  
   
+  #carga horária da disciplina da matriz
+  def workload
+    self.discipline.try(:workload)
+  end
   
 end

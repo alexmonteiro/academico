@@ -1,0 +1,52 @@
+<%- model_class = DisciplineClassExamResult.new.class -%>
+<div class="page-header">
+  <h1><i class='icon-list'></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h2>Avaliação: <%= (@discipline_class_exam.applied_at ? @discipline_class_exam.applied_at.strftime("%d/%m/%Y") : 'sem data')  %> - <%= @discipline_class_exam.title %><h2>
+  <h3>Classe: <%= @discipline_class_exam.discipline_class.model_custom_name %><h3>
+  <h4>Prof.: <% @discipline_class_exam.discipline_class.class_teachings.each do |teacher| %>
+	            <%= teacher.name %> 
+	        <% end %><h4>	
+</div>
+
+<div class="form-actions">
+
+	
+<%= form_tag 'import_registration_to_exam_result', :method => :put, :action => 'import_registration_to_exam_result' do %>
+<button type="submit" class="btn btn-success btn-large pull-right">
+<%= @discipline_class_exam.count_class_registrations_without_results %>  <i class="icon-download-alt"></i> Importar Enturmação
+</button>
+<%end%>
+
+<%= form_tag discipline_class_discipline_class_exam_discipline_class_exam_results_path, :method => :put, :id => 'form_results' do %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= model_class.human_attribute_name(:registration_class_id) %></th>
+      <th><%= model_class.human_attribute_name(:result) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @discipline_class_exam_results.sort_by(&:model_student_name_whitout_accents).each_with_index do |discipline_class_exam_result , i| %>
+      <tr>
+        <td><%= link_to i+1, discipline_class_discipline_class_exam_discipline_class_exam_result_path(:id => discipline_class_exam_result.id) %></td>
+        <td><%= discipline_class_exam_result.model_student_name %></td>
+         <td><%= text_field_tag "discipline_class_exam_results[#{discipline_class_exam_result.id}][result]]", discipline_class_exam_result.result, :class => 'input-mini', :type => "number",  :step => "any", :min => "0.0"%>
+	     </td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_discipline_class_discipline_class_exam_discipline_class_exam_result_path(:id => discipline_class_exam_result.id), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      discipline_class_discipline_class_exam_discipline_class_exam_result_path(:id => discipline_class_exam_result.id),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja excluir?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= submit_tag "Salvar notas",:class => 'btn btn-primary btn-large  pull-left' %>	
+<%end%>

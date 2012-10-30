@@ -61,7 +61,7 @@
 	              <li class="nav-header">Perído Letivo</li>
              	  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
              	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i>Período Letivo</a></li>
-                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes</a></li>
+                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes & Aulas</a></li>
 
 	            </ul>
 	          </div><!--/.well -->
@@ -71,7 +71,29 @@
 	       <%else%>
         	<div class="span10">
 	       <%end%> 
-	           <div class="hero-unit">
+	           <% relative_path = ""%>
+	           <% "#{request.fullpath}"[1..-1].split('/').each do |path| %>
+                <% relative_path += "/"+path %>
+                <% add_breadcrumb path.to_s, relative_path %>
+               <% end %>
+            	<%= render_breadcrumbs %>
+				
+				<%if flash[:alert]%>
+				  <div id="error_explanation" class="alert alert-error">
+				    <h2>Problemas ao executar comando:</h2>
+				    <ul>
+				      <%= flash[:alert].html_safe %>
+				    </ul>
+				  </div>
+				<%end%>
+
+				<%if flash[:notice]%>
+				  <div id="error_explanation" class="alert alert-info">
+				      <%= flash[:notice].html_safe %>
+				  </div>
+				<%end%>				
+				
+	           <div class="hero-unit">		
 	            <%= yield %>
 	            </div><!--/span-->
 	          </div><!--/row-->

@@ -2,15 +2,28 @@ class SchoolClassesController < ApplicationController
   # GET /school_classes
   # GET /school_classes.json
   def index
-    if params[:search]
-     @search = SchoolClass.search do
-       fulltext params[:search]
-       paginate :page => params[:page] || 1, :per_page => 10
-     end
-     @school_classes = @search.results
+    if params[:course_matrix_id]
+      if params[:search]
+       @search = SchoolClass.search do
+         fulltext params[:search]
+         paginate :page => params[:page] || 1, :per_page => 10
+       end
+       @school_classes = @search.results
+      else
+       @school_classes = SchoolClass.where(:matrix_id => params[:course_matrix_id]).paginate(:page => params[:page], :per_page => 10)
+      end
+
     else
-     @school_classes = SchoolClass.paginate(:page => params[:page], :per_page => 10)
-    end    
+      if params[:search]
+       @search = SchoolClass.search do
+         fulltext params[:search]
+         paginate :page => params[:page] || 1, :per_page => 10
+       end
+       @school_classes = @search.results
+      else
+       @school_classes = SchoolClass.paginate(:page => params[:page], :per_page => 10)
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +34,7 @@ class SchoolClassesController < ApplicationController
   # GET /school_classes/1
   # GET /school_classes/1.json
   def show
-    @school_class = SchoolClass.find(params[:id])
+    @school_class = SchoolClass.find_by_identifier(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,14 +55,21 @@ class SchoolClassesController < ApplicationController
 
   # GET /school_classes/1/edit
   def edit
-    @school_class = SchoolClass.find(params[:id])
+    @school_class = SchoolClass.find_by_identifier(params[:id])
   end
 
   # POST /school_classes
   # POST /school_classes.json
   def create
     @school_class = SchoolClass.new(params[:school_class])
-
+    
+    #gera identificador único
+    if @school_class.identifier.blank?
+      if  @school_class.matrix_id && @school_class.period && @school_class.shift_type_id && @school_class.class_season_id
+       @school_class.identifier = @school_class.try(:auto_identifier)
+      end
+    end
+    
     respond_to do |format|
       if @school_class.save
         format.html { redirect_to @school_class, :notice => 'School class was successfully created.' }
@@ -68,7 +88,7 @@ class SchoolClassesController < ApplicationController
 
     respond_to do |format|
       if @school_class.update_attributes(params[:school_class])
-        format.html { redirect_to @school_class, :notice => 'School class was successfully updated.' }
+        format.html { redirect_to  school_class_path(:id => @school_class.identifier), :notice => 'School class was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

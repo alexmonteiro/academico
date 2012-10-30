@@ -1,0 +1,52 @@
+<%- model_class = ClassRecord.new.class -%>
+<div class="page-header">
+  <h1><i class="icon-pencil"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h2><%= @discipline_class.try(:model_custom_name)%><h2>
+</div>
+<%if notice%>
+<div id="error_explanation" class="alert alert-info">
+ <p id="notice"><%= notice %></p>
+</div>
+<%end%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:recorded_at) %></th>
+      <th><%= model_class.human_attribute_name(:class_time_id) %></th>
+      <th><%= model_class.human_attribute_name(:class_record_presence) %></th>
+      <th><%= model_class.human_attribute_name(:record) %></th>
+      <th><%= model_class.human_attribute_name(:person_id) %></th>
+      <th><%= model_class.human_attribute_name(:class_record_type_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @class_records.each do |class_record| %>
+      <tr>
+        <td><%= link_to class_record.id, discipline_class_class_record_path(:id => class_record.id) %></td>
+        <td><%=l class_record.recorded_at if class_record.recorded_at %></td>
+        <td><%= class_record.class_time.try(:model_custom_name) %></td>
+        <td><h4><%= link_to "<i class='icon-check'></i> ".html_safe + class_record.class_record_presences.where(:is_present => true).count.to_s + "|"+ class_record.class_record_presences.where(:is_present => false).count.to_s, discipline_class_class_record_class_record_presences_path(:class_record_id => class_record.id) %></h4></td>
+        <td><%= class_record.record %></td>
+        <td><%= class_record.person.try(:name) %></td>
+
+        <td><%= class_record.class_record_type.try(:description) %></td>
+
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_discipline_class_class_record_path(:id => class_record.id), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      class_record_path(class_record),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_discipline_class_class_record_path,
+            :class => 'btn btn-primary' %>

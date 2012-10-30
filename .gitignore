@@ -21,4 +21,4 @@ sunspot-solr.pid
 
 *.iml
 
-.idea/workspace.xml
+.idea/*

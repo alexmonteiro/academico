@@ -1,0 +1,39 @@
+<%- model_class = @discipline_class_exam.class -%>
+<div class="page-header">
+  <h1><i class='icon-align-justify'></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:applied_at) %>:</strong></dt>
+  <dd><%=l @discipline_class_exam.applied_at if @discipline_class_exam.applied_at%></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weight) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.weight %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:real_value) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.real_value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discipline_class_id) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.discipline_class.try(:model_custom_name) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discipline_class_exam_type_id) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.discipline_class_exam_type.try(:description) %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_mandatory) %>:</strong></dt>
+  <dd><%= @discipline_class_exam.is_mandatory? %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              discipline_class_discipline_class_exams_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_discipline_class_discipline_class_exam_path(@discipline_class), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-list'></i> ".html_safe + 'Notas',   
+	          discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class,  @discipline_class_exam), :class => 'btn btn-large pull-left' %>
+
+
+
+
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
+              discipline_class_discipline_class_exams_path(@discipline_class_exam),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger btn-large pull-right' %>
+</div>

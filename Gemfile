@@ -46,6 +46,7 @@ gem 'font-awesome-rails'
 gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
 gem 'prawn'
+gem "breadcrumbs_on_rails"
 
 group :development do
   gem 'sunspot_solr'

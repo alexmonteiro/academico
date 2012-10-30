@@ -1,6 +1,6 @@
 # Alimenta tabela de Matrizes
 =begin
--- Select de Instituicoes
+-- Select de Matrizes
 select ('
 matriz = CourseMatrix.new(
          {:started_at => '''||ARRAY_TO_STRING(ARRAY[data_inicio],' ')||''', 

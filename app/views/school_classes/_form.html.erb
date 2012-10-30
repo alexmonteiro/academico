@@ -1,8 +1,20 @@
 <%= form_for @school_class, :html => { :class => 'form-horizontal' } do |f| %>
+<% if @school_class.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@school_class.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
+
+    <ul>
+    <% @school_class.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
   <div class="control-group">
-    <%= f.label :identifier, :class => 'control-label' %>
+    <%= f.label :identifier, :class => 'control-label'%>
     <div class="controls">
-      <%= f.text_field :identifier, :class => 'text_field' %>
+      <%= f.text_field :identifier, :class => 'text_field', :placeholder => "Criado pelo sistema", :disabled => true  %>
     </div>
   </div>
   <div class="control-group">

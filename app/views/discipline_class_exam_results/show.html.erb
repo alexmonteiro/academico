@@ -1,0 +1,27 @@
+<%- model_class = @discipline_class_exam_result.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:registration_class_id) %>:</strong></dt>
+  <dd><%= @discipline_class_exam_result.registration_class_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:discipline_class_exam_id) %>:</strong></dt>
+  <dd><%= @discipline_class_exam_result.discipline_class_exam_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:concept) %>:</strong></dt>
+  <dd><%= @discipline_class_exam_result.concept %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:result) %>:</strong></dt>
+  <dd><%= @discipline_class_exam_result.result %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              discipline_class_exam_results_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_discipline_class_exam_result_path(@discipline_class_exam_result), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              discipline_class_exam_result_path(@discipline_class_exam_result),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

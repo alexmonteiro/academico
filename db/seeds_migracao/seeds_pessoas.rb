@@ -2,34 +2,62 @@
 -- Select de Pessoas Físicas
 select ('
 person = Person.new(
-         {:name => \''||nome||'\', 
-          :birth_date => \''||data_nascimento||'\', 
-          :father_name => \''||coalesce(nome_pai,'não informado')||'\',  
-          :mom_name => \''||nome_mae||'\', 
-          :email => \''||coalesce(email,'não informado')||'\',  
-          :lattes_url => \''||coalesce(endereco_lattes,'em branco')||'\',  
-          :gender_id => '||coalesce(sexo_id,0)||',  
-          :education_degree_id => '||grau_formacao_id||',  
-          :race_id => '||coalesce(raca_id,0)||',
-          :marital_status_id => '||estado_civil_id||',
-          :blood_type_id => '||coalesce(tipo_sanguineo_id,0)||',
-          :country_id => '||coalesce(pais_id,24)||',                                                  
-          :city_id => '||coalesce(municipio_id,0)||',                              
-          :number_children => '||coalesce(numero_filhos,0)||'                                                            
+         {:name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome],'')||'{#aspas#},
+          :birth_date => {#aspas#}'||ARRAY_TO_STRING(ARRAY[data_nascimento],'')||'{#aspas#},
+          :father_name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome_pai],'')||'{#aspas#},  
+          :mom_name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome_mae],'')||'{#aspas#}, 
+          :email => {#aspas#}'||ARRAY_TO_STRING(ARRAY[email],'')||'{#aspas#},  
+          :lattes_url => {#aspas#}'||ARRAY_TO_STRING(ARRAY[endereco_lattes],'')||'{#aspas#},
+          :gender_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[sexo_id],'')||'{#aspas#},
+          :education_degree_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[grau_formacao_id],'')||'{#aspas#},
+          :race_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[raca_id],'')||'{#aspas#},
+          :marital_status_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[estado_civil_id],'')||'{#aspas#},
+          :blood_type_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[tipo_sanguineo_id],'')||'{#aspas#},
+          :country_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[pais_id],'24')||'{#aspas#},
+          :city_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[municipio_id],'')||'{#aspas#},
+          :number_children => {#aspas#}'||ARRAY_TO_STRING(ARRAY[numero_filhos],'')||'{#aspas#}
          })
 person.id = '||pessoa_fisica.id||'
 person.save!         
        ') as comando
-from pessoa_fisica order by id;
+from pessoa_fisica 
+order by id;
 
---Comando em poucas linhas
-select ('person = Person.new({:name => \''||nome||'\', :birth_date => \''||data_nascimento||'\', :father_name => \''||coalesce(nome_pai,'não informado')||'\', :mom_name => \''||nome_mae||'\', :email => \''||coalesce(email,'não informado')||'\', :lattes_url => \''||coalesce(endereco_lattes,'em branco')||'\', :gender_id => '||coalesce(sexo_id,0)||', :education_degree_id => '||grau_formacao_id||', :race_id => '||coalesce(raca_id,0)||', :marital_status_id => '||estado_civil_id||', :blood_type_id => '||coalesce(tipo_sanguineo_id,0)||', :country_id => '||coalesce(pais_id,24)||', :city_id => '||coalesce(municipio_id,0)||', :number_children => '||coalesce(numero_filhos,0)||'})
-person.id = '||pessoa_fisica.id||'
-person.save! ') as comando from pessoa_fisica order by id;
+--Comando em arquivo
 
-psql -U postgres -h localhost -d dbsiga-edu -c "select ('person = Person.new({:name => \''||nome||'\', :birth_date => \''||data_nascimento||'\', :father_name => \''||coalesce(nome_pai,'não informado')||'\', :mom_name => \''||nome_mae||'\', :email => \''||coalesce(email,'não informado')||'\', :lattes_url => \''||coalesce(endereco_lattes,'em branco')||'\', :gender_id => '||coalesce(sexo_id,0)||', :education_degree_id => '||grau_formacao_id||', :race_id => '||coalesce(raca_id,0)||', :marital_status_id => '||estado_civil_id||', :blood_type_id => '||coalesce(tipo_sanguineo_id,0)||', :country_id => '||coalesce(pais_id,24)||', :city_id => '||coalesce(municipio_id,0)||', :number_children => '||coalesce(numero_filhos,0)||'})
+psql -U postgres -h localhost -d dbsiga-edu -c "
+select ('
+person = Person.new(
+         {:name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome],'')||'{#aspas#},
+          :birth_date => {#aspas#}'||ARRAY_TO_STRING(ARRAY[data_nascimento],'')||'{#aspas#},
+          :father_name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome_pai],'')||'{#aspas#},  
+          :mom_name => {#aspas#}'||ARRAY_TO_STRING(ARRAY[nome_mae],'')||'{#aspas#}, 
+          :email => {#aspas#}'||ARRAY_TO_STRING(ARRAY[email],'')||'{#aspas#},  
+          :lattes_url => {#aspas#}'||ARRAY_TO_STRING(ARRAY[endereco_lattes],'')||'{#aspas#},
+          :gender_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[sexo_id],'')||'{#aspas#},
+          :education_degree_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[grau_formacao_id],'')||'{#aspas#},
+          :race_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[raca_id],'')||'{#aspas#},
+          :marital_status_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[estado_civil_id],'')||'{#aspas#},
+          :blood_type_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[tipo_sanguineo_id],'')||'{#aspas#},
+          :country_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[pais_id],'24')||'{#aspas#},
+          :city_id => {#aspas#}'||ARRAY_TO_STRING(ARRAY[municipio_id],'')||'{#aspas#},
+          :number_children => {#aspas#}'||ARRAY_TO_STRING(ARRAY[numero_filhos],'')||'{#aspas#}
+         })
 person.id = '||pessoa_fisica.id||'
-person.save! ') as comando from pessoa_fisica order by id;" > pessoas
+person.save!         
+       ') as comando
+from pessoa_fisica 
+order by id;" > pessoas
+
+order by id) To '/home/minastirith/pessoas' With CSV DELIMITER ',';
+
+-- Comando no postgres para solucionar o problema de concatenação com valor nulo
+ARRAY_TO_STRING(ARRAY[],'')
+
+
+-- Comando console de load
+
+load "db/seeds_migracao/seeds_pessoas.rb"
 
 =end
 

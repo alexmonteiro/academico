@@ -1,0 +1,2 @@
+module DisciplineClassExamsHelper
+end

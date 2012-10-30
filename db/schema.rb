@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924140144) do
+ActiveRecord::Schema.define(:version => 20121004185330) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -26,6 +26,41 @@ ActiveRecord::Schema.define(:version => 20120924140144) do
   end
 
   add_index "cities", ["state_id"], :name => "index_cities_on_state_id"
+
+  create_table "class_record_presences", :force => true do |t|
+    t.integer  "class_record_id"
+    t.integer  "registration_class_id"
+    t.boolean  "is_present"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "class_record_presences", ["class_record_id"], :name => "index_class_record_presences_on_class_record_id"
+  add_index "class_record_presences", ["registration_class_id"], :name => "index_class_record_presences_on_registration_class_id"
+
+  create_table "class_record_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "class_records", :force => true do |t|
+    t.date     "recorded_at"
+    t.text     "record"
+    t.text     "note"
+    t.text     "justification"
+    t.integer  "discipline_class_id"
+    t.integer  "person_id"
+    t.integer  "class_time_id"
+    t.integer  "class_record_type_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "class_records", ["class_record_type_id"], :name => "index_class_records_on_class_record_type_id"
+  add_index "class_records", ["class_time_id"], :name => "index_class_records_on_class_time_id"
+  add_index "class_records", ["discipline_class_id"], :name => "index_class_records_on_discipline_class_id"
+  add_index "class_records", ["person_id"], :name => "index_class_records_on_person_id"
 
   create_table "class_season_types", :force => true do |t|
     t.string   "description"
@@ -208,6 +243,39 @@ ActiveRecord::Schema.define(:version => 20120924140144) do
 
   add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
   add_index "depts", ["dept_type_id"], :name => "index_depts_on_dept_type_id"
+
+  create_table "discipline_class_exam_results", :force => true do |t|
+    t.integer  "registration_class_id"
+    t.integer  "discipline_class_exam_id"
+    t.string   "concept"
+    t.decimal  "result"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "discipline_class_exam_results", ["discipline_class_exam_id"], :name => "index_discipline_class_exam_results_on_discipline_class_exam_id"
+  add_index "discipline_class_exam_results", ["registration_class_id"], :name => "index_discipline_class_exam_results_on_registration_class_id"
+
+  create_table "discipline_class_exam_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "discipline_class_exams", :force => true do |t|
+    t.date     "applied_at"
+    t.string   "title"
+    t.decimal  "weight"
+    t.decimal  "real_value"
+    t.integer  "discipline_class_id"
+    t.integer  "discipline_class_exam_type_id"
+    t.boolean  "is_mandatory"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "discipline_class_exams", ["discipline_class_exam_type_id"], :name => "index_discipline_class_exams_on_discipline_class_exam_type_id"
+  add_index "discipline_class_exams", ["discipline_class_id"], :name => "index_discipline_class_exams_on_discipline_class_id"
 
   create_table "discipline_classes", :force => true do |t|
     t.integer  "school_class_id"
@@ -499,6 +567,26 @@ ActiveRecord::Schema.define(:version => 20120924140144) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "registration_class_statuses", :force => true do |t|
+    t.string   "description"
+    t.boolean  "is_approved"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "registration_classes", :force => true do |t|
+    t.integer  "registration_id"
+    t.integer  "discipline_class_id"
+    t.date     "registered_at"
+    t.integer  "registration_class_status_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "registration_classes", ["discipline_class_id"], :name => "index_registration_classes_on_discipline_class_id"
+  add_index "registration_classes", ["registration_class_status_id"], :name => "index_registration_classes_on_registration_class_status_id"
+  add_index "registration_classes", ["registration_id"], :name => "index_registration_classes_on_registration_id"
 
   create_table "registration_schemes", :force => true do |t|
     t.string   "description"

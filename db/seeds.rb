@@ -6223,9 +6223,9 @@ street_types = StreetType.create([
  {:description => 'Avenida'},
  {:description => 'Beco'},
  {:description => 'Caminho'},
- {:description => 'Ch√°cara'},
+ {:description => 'Chácara'},
  {:description => 'Escadinha'},
- {:description => 'Esta√ßƒÉo'},
+ {:description => 'Estação'},
  {:description => 'Estrada'},
  {:description => 'Fazenda'},
  {:description => 'Fortaleza'},
@@ -6234,10 +6234,10 @@ street_types = StreetType.create([
  {:description => 'Largo'},
  {:description => 'Outros'},
  {:description => 'Parque'},
- {:description => 'Pra√ßa'},
+ {:description => 'Praça'},
  {:description => 'Praia'},
  {:description => 'Quadra'},
- {:description => 'Quil√¥metro'},
+ {:description => 'Quilômetro'},
  {:description => 'Quinta'},
  {:description => 'Rodovia'},
  {:description => 'Rua'},
@@ -6283,32 +6283,33 @@ equipament_type = EquipamentType.create([
 #Alimenta a tabela Órgãos Expedidor
 puts 'Inserindo dados na tabela Órgãos Expedidor...'
 issuing_institution = IssuingInstitution.create([
-  {:description => 'Carteira de Tabalho e Previdęncia Social', :acronym => 'CTPS'},
+  {:description => 'Secretaria de Segurança Pública', :acronym => 'SSP'},
+  {:description => 'Ordem dos Advogados do Brasil', :acronym => 'OAB'},
+  {:description => 'Conselho Regional de Medicina', :acronym => 'CRM'},
+  {:description => 'Forças Armadas', :acronym => 'FM'},
+  {:description => 'Polícia Federal', :acronym => 'PF'},
+  {:description => 'DETRAN', :acronym => 'DETRAN'},
   {:description => 'Carteira Nacional de Estrangeiro', :acronym => 'CNE'},
   {:description => 'Carteira Nacional de Habilitaçăo', :acronym => 'CNH'},
+  {:description => 'Carteira de Tabalho e Previdęncia Social', :acronym => 'CTPS'},
   {:description => 'Conselho Regional de Administraçăo', :acronym => 'CRA'},
   {:description => 'Conselho Regional de Contabilidade', :acronym => 'CRC'},
   {:description => 'Conselho Regional de Corretor de Imóveis', :acronym => 'CRECI'},
   {:description => 'Conselho Regional de Enfermagem', :acronym => 'COREN'},
   {:description => 'Conselho Regional de Eng. Arq. e Agronomia', :acronym => 'CREA'},
   {:description => 'Conselho Regional de Farmácia', :acronym => 'CRF'},
-  {:description => 'Conselho Regional de Medicina', :acronym => 'CRM'},
   {:description => 'Conselho Regional de Medicina Veterinária', :acronym => 'CRMV'},
   {:description => 'Conselho Regional de Odontologia', :acronym => 'CRO'},
   {:description => 'Conselho Regional de Prof. Relaçőes Públicas', :acronym => 'CRPRP'},
   {:description => 'Conselho Regional de Psicologia', :acronym => 'CRP'},
   {:description => 'Conselho Regional de Química', :acronym => 'CRQ'},
   {:description => 'Conselho Regional de Serviço Social', :acronym => 'CRESS'},
-  {:description => 'DETRAN', :acronym => 'DETRAN'},
-  {:description => 'Forças Armadas', :acronym => 'FM'},
   {:description => 'Ministério da Aeronáutica', :acronym => 'AE'},
   {:description => 'Ministério da Marinha', :acronym => 'MR'},
   {:description => 'Ministério do Exército', :acronym => 'EX'},
-  {:description => 'Ordem dos Advogados do Brasil', :acronym => 'OAB'},
-  {:description => 'Outros Emissores', :acronym => 'OE'},
-  {:description => 'Polícia Federal', :acronym => 'PF'},
-  {:description => 'Secretaria de Segurança Pública', :acronym => 'SSP'},
+  {:description => 'Outros Emissores', :acronym => 'OE'} 
   ])
+
 
 #Alimenta a tabela Órgãos Expedidor
 puts 'Inserindo dados na tabela Tipo de Documento ...'
@@ -6579,5 +6580,38 @@ registration_statuses = RegistrationStatus.create([
   {:description => 'Associado Ingresso', :is_attending => true},        
   {:description => 'Sem Direito de Matrícula'},                
 ])
+
+# Alimenta tabela status da Matrícula
+puts 'Inserindo status do aluno na classe...'
+# select distinct '{:description => '''||descricao||'''},' from status_aluno_classe order by id;
+registration_class_statuses = RegistrationClassStatus.create([
+  {:description => 'Aprovado/Apto', :is_approved => true},
+  {:description => 'Aprovado por Aproveitamento de Crédito', :is_approved => true},
+  {:description => 'Cancelado', :is_approved => false},
+  {:description => 'Dispensado', :is_approved => true},
+  {:description => 'Em Curso', :is_approved => false},
+  {:description => 'Reprovado', :is_approved => false},
+  {:description => 'Reprovado por Frequência', :is_approved => false},
+  {:description => 'Aprovado no conselho', :is_approved => false}  
+])
+
+# Alimenta tabela tipo do Registro da Aula
+puts 'Inserindo tipo do Registro da Aula...'
+class_record_types = ClassRecordType.create([
+  {:description => 'Normal'},
+  {:description => 'Antecipação'},
+  {:description => 'Reposição'}
+])
+
+# Alimenta tabela tipo do Tipos de exames
+puts 'Inserindo tipo do Tipos de exames...'
+discipline_class_exam_types = DisciplineClassExamType.create([
+  {:description => 'Prova'},
+  {:description => 'Trabalhos'},
+  {:description => 'Seminários'},
+  {:description => 'Outros'}  
+])
+
+
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

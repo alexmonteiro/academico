@@ -1,6 +1,13 @@
 <%- model_class = SchoolClass.new.class -%>
 <div class="page-header">
-  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %>
+	<%= form_tag school_classes_path, :method => :get, :class => 'form-search pull-right' do %>
+	    <%= text_field_tag :search, params[:search], :placeholder => "Pesquisar...", :class => 'search-query' %>
+		<button type="submit" class="btn">
+		  <i class='icon-search'></i> Ok
+		</button>
+	<% end %>
+	</h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -11,6 +18,7 @@
       <th><%= model_class.human_attribute_name(:matrix_id) %></th>
       <th><%= model_class.human_attribute_name(:class_season_id) %></th>
       <th><%= model_class.human_attribute_name(:shift_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:discipline_classes) %></th>
       <th><%= model_class.human_attribute_name(:opening_at) %></th>
       <th><%= model_class.human_attribute_name(:closing_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -19,17 +27,18 @@
   <tbody>
     <% @school_classes.each do |school_class| %>
       <tr>
-        <td><%= link_to school_class.id, school_class_path(school_class) %></td>
-        <td><%= school_class.identifier %></td>
+        <td><%= link_to school_class.id, school_class_path(:id => school_class.identifier) %></td>
+        <td><%= link_to school_class.identifier, school_class_path(:id => school_class.identifier) %></td>
         <td><%= school_class.period %></td>
         <td><%= school_class.course_matrix.try(:model_custom_name) %></td>
         <td><%= school_class.class_season.try(:model_custom_name) %></td>
         <td><%= school_class.shift_type.try(:description) %></td>
-        <td><%=l school_class.opening_at %></td>
-        <td><%=l school_class.closing_at %></td>
+        <td><%= link_to "<i class='icon-pencil'></i> ".html_safe + school_class.discipline_classes.count.to_s, school_class_discipline_classes_path(school_class.identifier) %></td>
+        <td><%=l school_class.opening_at if school_class.opening_at %></td>
+        <td><%=l school_class.closing_at if school_class.closing_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_school_class_path(school_class), :class => 'btn btn-mini' %>
+                      edit_school_class_path(:id => school_class.identifier), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       school_class_path(school_class),
                       :method => :delete,

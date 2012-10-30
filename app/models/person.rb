@@ -1,3 +1,4 @@
+require 'extend_string'
 class Person < ActiveRecord::Base
   belongs_to :gender
   belongs_to :education_degree
@@ -12,6 +13,8 @@ class Person < ActiveRecord::Base
   has_many :people_telephone
   has_one :person_address
   has_one :person_identification_doc
+  has_many :registrations
+  default_scope :order => :name
 
   attr_accessible :birth_date, :email, :father_name, :lattes_url, :mom_name, :name, :number_children,
                   :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids
@@ -21,8 +24,12 @@ class Person < ActiveRecord::Base
   validates :number_children, :numericality => { :only_integer => true }
   #validates :email, :uniqueness => true
 
+  def model_name_whitout_accents
+    self.registration_class.registration.person.try(:name).removeaccents
+  end
+
   searchable do
-    text :birth_date, :email, :name, :number_children
+    text :id, :birth_date, :email, :name, :number_children
     string :name
     
   end  
