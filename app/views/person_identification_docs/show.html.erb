@@ -15,7 +15,7 @@
   <dt><strong><%= model_class.human_attribute_name(:rg_issuing_institution) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.rg_issuing_institution.description, :mensagem => " - ") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:rg_date_issuance) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person_identification_doc.rg_date_issuance, :mensagem => " - ") %></dd>
+  <dd><%= @person_identification_doc.rg_date_issuance.blank? ? " - " : @person_identification_doc.rg_date_issuance.strftime("%d/%m/%Y") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:rg_uf) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.rg_uf, :atributo => "name", :mensagem => " - ") %></dd>
   <hr/>
@@ -28,7 +28,7 @@
   <dt><strong><%= model_class.human_attribute_name(:bc_sheet) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.bc_sheet, :mensagem => " - ") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:bc_date_issuance) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person_identification_doc.bc_date_issuance, :mensagem => " - ") %></dd>
+  <dd><%= @person_identification_doc.bc_date_issuance.blank? ? " - " : @person_identification_doc.bc_date_issuance.strftime("%d/%m/%Y")%></dd>
   <hr/>
   <dt><strong><%= model_class.human_attribute_name(:ctps) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.ctps, :mensagem => " - ") %></dd>
@@ -41,10 +41,9 @@
   <dt><strong><%= model_class.human_attribute_name(:cnh) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.cnh, :mensagem => " - ") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:cnh_date_issuance) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person_identification_doc.cnh_date_issuance, :mensagem => " - ") %></dd>
+  <dd><%= @person_identification_doc.cnh_date_issuance.blank? ? " - " : @person_identification_doc.cnh_date_issuance.strftime("%d/%m/%Y") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:cnh_expiration_date) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person_identification_doc.cnh_expiration_date, :mensagem => " - ") %></dd>
-  <hr/>
+  <dd><%= @person_identification_doc.cnh_expiration_date.blank? ? " - " : @person_identification_doc.cnh_expiration_date.strftime("%d/%m/%Y")%></dd>
   <dt><strong><%= model_class.human_attribute_name(:military_document) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.military_document, :mensagem => " - ") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:military_document_type_id) %>:</strong></dt>
@@ -61,7 +60,7 @@
   <dt><strong><%= model_class.human_attribute_name(:vr_uf) %>:</strong></dt>
   <dd><%= verifica_registro(:campo => @person_identification_doc.vr_uf, :atributo => "name", :mensagem => " - ") %></dd>
   <dt><strong><%= model_class.human_attribute_name(:vr_date_issuance) %>:</strong></dt>
-  <dd><%= verifica_registro(:campo => @person_identification_doc.vr_date_issuance, :mensagem => " - ") %></dd>
+  <dd><%= @person_identification_doc.vr_date_issuance.blank? ? " - " : @person_identification_doc.vr_date_issuance.strftime("%d/%m/%Y") %></dd>
 </dl>
 </div>
 <div class="form-actions">
