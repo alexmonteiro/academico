@@ -193,7 +193,7 @@ pt-BR:
         registration_at: "Data"
         course_matrix_id: "Matriz/Curso"        
         person_id: "Aluno"
-        registration_number: "Código"
+        registration_number: "Matrícula"
         registration_status_id: "Situação"
       class_record:
         recorded_at: "Data"

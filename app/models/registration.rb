@@ -6,6 +6,8 @@ class Registration < ActiveRecord::Base
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
   
+  validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso."
+  
 
   def student_name
     self.person.try(:name)
@@ -50,9 +52,22 @@ class Registration < ActiveRecord::Base
     ccc  = self.course_matrix.course.id.to_s.rjust(3, '0')
     sss  = (Registration.where('registration_number like ?',(aaaa + p + uu + ccc + "%")).count+1).to_s.rjust(3, '0')
     #TODO cálculo do DV
-    v    = '00'
+    v    = calculate_v(aaaa + p + uu + ccc + sss)
     
     aaaa + p + uu + ccc + sss + '-' + v
+  end
+  
+  #calcula dv - Módulo 11
+  def calculate_v(registration_number)
+    array_number = registration_number.split(//)
+    v = 0    
+    array_number.each_with_index do |n, i|
+      v += n.to_i * ((array_number.length.to_i+1) - i).to_i
+    end    
+    v = 11 - (v%11)
+    v = 0 if v >= 10
+
+    v.to_s
   end
   
 end
