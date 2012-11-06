@@ -6,6 +6,8 @@ class Registration < ActiveRecord::Base
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
   
+  validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso."
+  
 
   def student_name
     self.person.try(:name)
