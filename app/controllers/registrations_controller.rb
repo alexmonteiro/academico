@@ -55,10 +55,11 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(params[:registration])
+    @registration.registration_number =  @registration.generate_registration_number
 
     respond_to do |format|
       if @registration.save
-        format.html { redirect_to @registration, :notice => 'Registration was successfully created.' }
+        format.html { redirect_to @registration, :notice => 'Matrícula criada com sucesso.' }
         format.json { render :json => @registration, :status => :created, :location => @registration }
       else
         format.html { render :action => "new" }
@@ -74,7 +75,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.update_attributes(params[:registration])
-        format.html { redirect_to @registration, :notice => 'Registration was successfully updated.' }
+        format.html { redirect_to @registration, :notice => 'Matrícula atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
