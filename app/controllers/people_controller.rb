@@ -25,9 +25,14 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @person_address = PersonAddress.where(:person_id => params[:id])
     @people_telephones = PeopleTelephone.where("people_id = ?", params[:id])
+    @person_identification_doc = PersonIdentificationDoc.where(:person_id => params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @person }
+      format.pdf do
+        pdf = PersonPdf.new(:person => @person, :people_telephones => @people_telephones, :person_address => @person_address, :person_identification_doc => @person_identification_doc)
+        send_data pdf.render, :filename => "pessoa_#{@person.name}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+      end
     end
   end
 

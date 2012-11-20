@@ -80,6 +80,8 @@
               person_people_telephones_path(@person), :class => 'btn btn-large pull-left' %>
   <%= link_to "<i class='icon-paste'></i>".html_safe + t('.identification_doc', :default => t("helpers.others_links.identification_doc")),
               person_person_identification_docs_path(@person), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-print'></i>".html_safe + t('.print', :default => t("helpers.links.print")),
+              person_path(@person, :format =>  "pdf"), :class => 'btn btn-large pull-left' %>
 
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               person_path(@person),
