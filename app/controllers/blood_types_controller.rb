@@ -1,6 +1,7 @@
 class BloodTypesController < ApplicationController
   # GET /blood_types
   # GET /blood_types.json
+
   def index
     @blood_types = BloodType.all
 
