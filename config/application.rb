@@ -61,6 +61,6 @@ module AcademicoRails
     #config.assets.initialize_on_precompile = false
     #config.assets.logger = false
 
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| "<i>#{html_tag}</i>".html_safe }
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
   end
 end

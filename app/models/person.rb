@@ -20,7 +20,8 @@ class Person < ActiveRecord::Base
                   :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids
 
   #Validações
-  validates :name, :presence => true
+  validates :name, :birth_date, :mom_name, :gender_id, :education_degree_id, :presence => {:message => "deve ser informado."}
+  validates :city_id, :state_id, :race_id, :presence => {:message => "deve ser informado."}
   validates :number_children, :numericality => { :only_integer => true }
   #validates :email, :uniqueness => true
 

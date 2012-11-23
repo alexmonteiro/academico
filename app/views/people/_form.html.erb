@@ -13,7 +13,6 @@
 	  </div>
 	</div>
 	<% end %>
-
 </div>
 <div class="container">
 <fieldset>
@@ -38,7 +37,7 @@
 
    <div class="span7">
     <%= f.label :birth_date, :class => 'control-label' %>
-    <%= f.date_select :birth_date, :class => 'text_field'%>
+    <%= f.date_select :birth_date, :class => 'text_field', :include_blank => true %>
   
     <%= f.label :email, :class => 'control-label' %>    
     <%= f.text_field :email, :class => 'text_field' %>
@@ -51,7 +50,6 @@
 
     <%= f.label :number_children, :class => 'control-label' %>
     <%= f.number_field :number_children, :class => 'number_field', :value => 0 %>
-
 
    </div>
 </fieldset>
@@ -76,7 +74,7 @@
   <!-- País Cidade e Estado -->
   <%= f.label :country_id, :class => 'control-label' %>
   <div class="controls" id="addressCountry">
-     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
+     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Selecione o país" %>
   </div>
 <div class="control-group">
   <%= f.label :state_id, :class => 'control-label' %>
