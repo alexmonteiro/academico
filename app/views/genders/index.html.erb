@@ -1,25 +1,36 @@
-<h1>Listing genders</h1>
-
-<table>
-  <tr>
-    <th>Gender</th>
-    <th>Acronym</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @genders.each do |gender| %>
-  <tr>
-    <td><%= gender.gender %></td>
-    <td><%= gender.acronym %></td>
-    <td><%= link_to 'Show', gender %></td>
-    <td><%= link_to 'Edit', edit_gender_path(gender) %></td>
-    <td><%= link_to 'Destroy', gender, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Gender.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:gender) %></th>
+      <th><%= model_class.human_attribute_name(:acronym) %></th>      
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genders.each do |gender| %>
+      <tr>
+        <td><%= link_to gender.id, gender_path(gender) %></td>
+        <td><%= gender.gender %></td>
+        <td><%= gender.acronym %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_gender_path(gender), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      gender_path(gender),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Gender', new_gender_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_gender_path,
+            :class => 'btn btn-primary' %>

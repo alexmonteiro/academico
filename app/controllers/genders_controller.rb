@@ -44,7 +44,7 @@ class GendersController < ApplicationController
 
     respond_to do |format|
       if @gender.save
-        format.html { redirect_to @gender, :notice => 'Gender was successfully created.' }
+        format.html { redirect_to @gender, :notice => t('controllermessage.insert') }
         format.json { render :json => @gender, :status => :created, :location => @gender }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class GendersController < ApplicationController
 
     respond_to do |format|
       if @gender.update_attributes(params[:gender])
-        format.html { redirect_to @gender, :notice => 'Gender was successfully updated.' }
+        format.html { redirect_to @gender, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class GendersController < ApplicationController
     @gender.destroy
 
     respond_to do |format|
-      format.html { redirect_to genders_url }
+      format.html { redirect_to genders_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end
