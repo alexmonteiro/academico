@@ -5,7 +5,9 @@ class Registration < ActiveRecord::Base
   has_many :registration_classes
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
+  before_save :set_registration_number
   
+  validates_presence_of :person_id, :course_matrix_id, :registration_status_id
   validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso."
   
 
@@ -68,6 +70,10 @@ class Registration < ActiveRecord::Base
     v = 0 if v >= 10
 
     v.to_s
+  end
+  
+  def set_registration_number
+    self.registration_number = generate_registration_number
   end
   
 end
