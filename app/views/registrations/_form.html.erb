@@ -5,7 +5,7 @@
 
     <ul>
     <% @registration.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <li><%= msg.html_safe %></li>
     <% end %>
     </ul>
   </div>
