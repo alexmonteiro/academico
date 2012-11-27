@@ -168,7 +168,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :education_degrees
 
-  resources :genders
+  resources :genders, :path => 'sexo'
 
   resources :blood_types
 

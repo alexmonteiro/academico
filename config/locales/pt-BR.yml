@@ -23,7 +23,7 @@ pt-BR:
         lattes_url:  "Lattes" 
         gender_id:  "Sexo" 
         education_degree_id:  "Formação" 
-        race_id:  "Raça" 
+        race_id:  "Etnia" 
         marital_status_id:  "Estado Civil" 
         blood_type_id:  "Tipo Snguíneo" 
         country_id:  "País" 
@@ -228,7 +228,10 @@ pt-BR:
         registration_id: "Matrícula"
         discipline_class_id: "Disciplina"
         registered_at: "Data"
-        registration_class_status_id: "Situação"                
+        registration_class_status_id: "Situação"  
+      gender:
+        acronym: "Sigla"
+        gender: "Descrição"                 
         
     models:
       person: "Pessoa"  
@@ -255,6 +258,7 @@ pt-BR:
       discipline_class_exam: "Avaliações"
       discipline_class_exam_result: "Notas"
       registration_class: "Enturmação"
+      gender: "Sexos"
 
 
   action:
@@ -267,6 +271,11 @@ pt-BR:
       create: "Cadastrar "
       back: "Voltar"
       print: "Imprimir"
+      
+  controllermessage:
+      update: "Registro atualizado com sucesso."
+      insert: "Registro gravado com sucesso."
+      delete: "Registro excluído com sucesso."
 
   date:
     abbr_day_names:
@@ -408,7 +417,7 @@ pt-BR:
       new: Criar
       print: Imprimir
     titles:
-      new: Criação de %{model}
+      new: Cadastro de %{model}
       edit: Edição de %{model}
     actions: "Ações"
     others_links:

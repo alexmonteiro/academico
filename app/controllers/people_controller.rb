@@ -25,9 +25,14 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @person_address = PersonAddress.where(:person_id => params[:id])
     @people_telephones = PeopleTelephone.where("people_id = ?", params[:id])
+    @person_identification_doc = PersonIdentificationDoc.where(:person_id => params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @person }
+      format.pdf do
+        pdf = PersonPdf.new(:person => @person, :people_telephones => @people_telephones, :person_address => @person_address, :person_identification_doc => @person_identification_doc)
+        send_data pdf.render, :filename => "pessoa_#{@person.name}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+      end
     end
   end
 
@@ -73,8 +78,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        flash[:success] = 'Person was successfully updated.'
-        format.html { redirect_to @person }
+        flash[:success] = t('controllermessage.update')
+        format.html { redirect_to @person, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

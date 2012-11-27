@@ -1,15 +1,23 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @gender.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Gender:</b>
-  <%= @gender.gender %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:gender) %>:</strong></dt>
+  <dd><%= @gender.gender %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
+  <dd><%= @gender.acronym %></dd>
+</dl>
 
-<p>
-  <b>Acronym:</b>
-  <%= @gender.acronym %>
-</p>
-
-
-<%= link_to 'Edit', edit_gender_path(@gender) %> |
-<%= link_to 'Back', genders_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              genders_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_gender_path(@gender), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              gender_path(@gender),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
