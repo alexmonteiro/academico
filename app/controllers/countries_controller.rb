@@ -2,8 +2,8 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @countries = Country.all
-
+    @countries = Country.search(params[:search], params[:page])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @countries }
