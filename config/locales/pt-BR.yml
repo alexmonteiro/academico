@@ -23,7 +23,7 @@ pt-BR:
         lattes_url:  "Lattes" 
         gender_id:  "Sexo" 
         education_degree_id:  "Formação" 
-        race_id:  "Raça" 
+        race_id:  "Etnia" 
         marital_status_id:  "Estado Civil" 
         blood_type_id:  "Tipo Snguíneo" 
         country_id:  "País" 
@@ -228,7 +228,20 @@ pt-BR:
         registration_id: "Matrícula"
         discipline_class_id: "Disciplina"
         registered_at: "Data"
-        registration_class_status_id: "Situação"                
+        registration_class_status_id: "Situação"  
+      gender:
+        acronym: "Sigla"
+        gender: "Descrição"
+      country:
+        name: "Nome"
+        nationality: "Nacionalidade"   
+      state:
+        name: "Nome"
+        acronym: "Sigla"
+        country_id: "País"          
+      city:
+        name: "Nome"
+        state_id: "Estado"                    
         
     models:
       person: "Pessoa"  
@@ -255,7 +268,10 @@ pt-BR:
       discipline_class_exam: "Avaliações"
       discipline_class_exam_result: "Notas"
       registration_class: "Enturmação"
-
+      gender: "Sexo"
+      country: "País"
+      state: "Estados"
+      city: "Cidades"
 
   action:
       actions: "Ações"
@@ -267,6 +283,11 @@ pt-BR:
       create: "Cadastrar "
       back: "Voltar"
       print: "Imprimir"
+      
+  controllermessage:
+      update: "Registro atualizado com sucesso."
+      insert: "Registro gravado com sucesso."
+      delete: "Registro excluído com sucesso."
 
   date:
     abbr_day_names:
@@ -370,15 +391,15 @@ pt-BR:
       accepted: deve ser aceito.
       blank: não pode ficar em branco.
       confirmation: não está de acordo com a confirmação.
-      empty: não pode ficar vazio.
+      empty: não pode ficar vazio.  
       equal_to: deve ser igual a %{count}.
       even: deve ser par.
       exclusion: não está disponível.
-      greater_than: deve ser maior que %{count}.
+      greater_than: deve ser maior que %{count}. 
       greater_than_or_equal_to: deve ser maior ou igual a %{count}.
       inclusion: não está incluído na lista.
       invalid: não é válido.
-      less_than: deve ser menor que %{count}.
+      less_than: deve ser menor que %{count}.    
       less_than_or_equal_to: deve ser menor ou igual a %{count}.
       not_a_number: não é um número.
       not_an_integer: não é um número inteiro.
@@ -408,7 +429,7 @@ pt-BR:
       new: Criar
       print: Imprimir
     titles:
-      new: Criação de %{model}
+      new: Cadastro de %{model}
       edit: Edição de %{model}
     actions: "Ações"
     others_links:

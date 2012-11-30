@@ -78,8 +78,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        flash[:success] = 'Person was successfully updated.'
-        format.html { redirect_to @person }
+        flash[:success] = t('controllermessage.update')
+        format.html { redirect_to @person, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
