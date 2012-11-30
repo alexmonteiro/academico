@@ -31,6 +31,10 @@ class DisciplineClassesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @discipline_class }
+      format.pdf do
+        pdf = DisciplineClassPDF.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
+        send_data pdf.render, :filename => "Diário_#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}", :type => "application/pdf", :disposition => "inline"
+      end
     end
   end
 
