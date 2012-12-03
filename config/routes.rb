@@ -171,12 +171,12 @@ AcademicoRails::Application.routes.draw do
   resources :genders, :path => 'sexos'
 
   resources :blood_types
-
-  resources :cities, :path => 'cidades'
-
-  resources :states
-  
-  resources :countries, :path => 'paises'
+ 
+  resources :countries, :path => 'paises' do
+     resources :states, :path => 'estados' do
+        resources :cities, :path => 'cidades'
+     end
+  end
 
   match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
   match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'

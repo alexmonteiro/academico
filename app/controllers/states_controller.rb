@@ -2,7 +2,8 @@ class StatesController < ApplicationController
   # GET /states
   # GET /states.json
   def index
-    @states = State.order(:name)
+    @country = Country.find(params[:country_id])
+    @states = State.where("country_id = ?", params[:country_id])    
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,7 +24,8 @@ class StatesController < ApplicationController
 
   # GET /states/new
   # GET /states/new.json
-  def new
+  def new 
+    @country = Country.find(params[:country_id])
     @state = State.new
 
     respond_to do |format|
@@ -35,16 +37,18 @@ class StatesController < ApplicationController
   # GET /states/1/edit
   def edit
     @state = State.find(params[:id])
+    @country = Country.find(@state.country_id)
   end
 
   # POST /states
   # POST /states.json
   def create
     @state = State.new(params[:state])
+    @state.country_id = params[:country_id]
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to @state, :notice => 'State was successfully created.' }
+        format.html { redirect_to country_states_path, :notice => 'State was successfully created.' }
         format.json { render :json => @state, :status => :created, :location => @state }
       else
         format.html { render :action => "new" }
@@ -57,10 +61,10 @@ class StatesController < ApplicationController
   # PUT /states/1.json
   def update
     @state = State.find(params[:id])
-
+    
     respond_to do |format|
       if @state.update_attributes(params[:state])
-        format.html { redirect_to @state, :notice => 'State was successfully updated.' }
+        format.html { redirect_to country_state_path, :notice => 'State was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +80,7 @@ class StatesController < ApplicationController
     @state.destroy
 
     respond_to do |format|
-      format.html { redirect_to states_url }
+      format.html { redirect_to country_states_url, :notice => 'State was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -234,11 +234,13 @@ pt-BR:
         gender: "Descrição"
       country:
         name: "Nome"
-        nationality: "Nacionalidade"   
+        nationality: "Nacionalidade"
+        state: "Estados"   
       state:
         name: "Nome"
         acronym: "Sigla"
-        country_id: "País"          
+        country_id: "País"
+        city: "Cidades"          
       city:
         name: "Nome"
         state_id: "Estado"                    
@@ -270,8 +272,8 @@ pt-BR:
       registration_class: "Enturmação"
       gender: "Sexo"
       country: "País"
-      state: "Estados"
-      city: "Cidades"
+      state: "Estado"
+      city: "Cidade"
 
   action:
       actions: "Ações"
