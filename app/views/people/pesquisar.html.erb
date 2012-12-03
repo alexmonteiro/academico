@@ -1,0 +1,37 @@
+<%- model_class = Person -%>
+<div class="page-header">
+  <div style="font-size: 24px;">
+    <h2><i class='icon-search'></i> Pesquisar pessoa:
+	</h2>
+  </div>
+
+<%= form_tag pesquisar_people_path, :method => :get, :class => 'form-search' do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Digite o nome, parte do nome, CPF, parte do CPF ou RG", :class => 'search-query span8' %>
+	<button type="submit" class="btn">
+	  <i class='icon-search'></i> Ok
+	</button>
+<% end %>
+</div>
+<%if @people %>
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>CPF | RG | Nome</th>
+      <th><%=t 'action.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= link_to person.try(:cpf) + ' | ' + person.try(:rg) + ' | ' + person.name, person_path(person) %></td>
+        <td>
+          <%= link_to "<i class='icon-barcode'></i> Matricular".html_safe,
+                      new_person_registration_path(person), :class => 'btn btn-large' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<center><%= will_paginate @people %></center>
+
+<%end%>
