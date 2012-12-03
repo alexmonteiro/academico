@@ -67,6 +67,10 @@ class DisciplineClass < ActiveRecord::Base
     "#{self.records_taught_count}/#{self.records_planned_count}"
   end
   
+  def discipline_year
+    self.started_at
+  end
+  
   #Retorna String com professor(es)
   def discipline_teaches
     @teachings = ""

@@ -38,7 +38,8 @@ class SchoolClass < ActiveRecord::Base
   end  
 
   def school_class_year
-    self.class_season.try(:year)
+    #self.class_season.try(:year)
+    self.course_matrix.try(:started_at).strftime('%Y')
   end
   
   searchable do
