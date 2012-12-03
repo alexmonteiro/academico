@@ -158,6 +158,11 @@ AcademicoRails::Application.routes.draw do
     resources :people_telephones, :path =>"telefones"
     resources :person_addresses, :path =>"enderecos"
     resources :person_identification_docs, :path => "documentacao"
+
+    get :pesquisar, :on => :collection
+    resources :registrations, :path =>"matriculas" do
+        resources :registration_classes, :path =>"enturmacoes"
+    end
   end
 
   resources :special_needs_types

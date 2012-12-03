@@ -31,8 +31,15 @@ class SchoolClass < ActiveRecord::Base
 
   def model_identifier_and_period
     'Turma: ' + (self.identifier.to_s ? self.identifier.to_s : '')+' Período: '  + (self.class_season.try(:model_custom_name) ? self.class_season.try(:model_custom_name) : '')
+  end
+  
+  def model_course_matrix
+    self.course_matrix.try(:course_name)
   end  
 
+  def school_class_year
+    self.class_season.try(:year)
+  end
   
   searchable do
     text :id, :identifier, :opening_at, :opening_at

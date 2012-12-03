@@ -25,9 +25,14 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
     @person_address = PersonAddress.where(:person_id => params[:id])
     @people_telephones = PeopleTelephone.where("people_id = ?", params[:id])
+    @person_identification_doc = PersonIdentificationDoc.where(:person_id => params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @person }
+      format.pdf do
+        pdf = PersonPdf.new(:person => @person, :people_telephones => @people_telephones, :person_address => @person_address, :person_identification_doc => @person_identification_doc)
+        send_data pdf.render, :filename => "pessoa_#{@person.name}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+      end
     end
   end
 
@@ -103,6 +108,25 @@ class PeopleController < ApplicationController
   def update_city_select
       cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
       render :partial => "cities", :locals => { :cities => cities }
+  end
+  
+  #Pesquisar por pessoa para efetuar a matrícula
+  # GET /people
+  # GET /people.json
+  def pesquisar
+    if params[:search]
+     @search = Person.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 20
+       #order_by(:name, :asc)
+     end
+     @people = @search.results
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @people }
+    end
   end
   
 end
