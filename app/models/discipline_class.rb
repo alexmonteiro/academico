@@ -40,6 +40,44 @@ class DisciplineClass < ActiveRecord::Base
     self.school_class.try(:identifier) + " período: " + self.school_class.try(:period).to_s
   end
   
+  def discipline_class_dept
+    self.school_class.course_matrix.course.dept.dept.try(:name)
+  end
+  
+  def discipline_class_year
+    self.school_class.school_class_year
+  end
+  
+  def discipline_class_workload
+    self.matrix_discipline.discipline.try(:workload)
+  end
+  
+  # Retona count de aulas previstas
+  def records_planned_count
+    self.class_records.count
+  end
+  
+  # Retorna count de aulas ministradas
+  def records_taught_count
+    self.class_records.where("record <> ''").count
+  end
+  
+  # Retorna String de do tipo NN/MM onde NN = aulas ministradas e MM = aulas previstas
+  def discipline_class_classes_taught_planned
+    "#{self.records_taught_count}/#{self.records_planned_count}"
+  end
+  
+  #Retorna String com professor(es)
+  def discipline_teaches
+    @teachings = ""
+    @total_t = self.class_teachings.length
+    self.class_teachings.each_with_index do |teacher,i|
+      #(@total_t - 1) > i ? @teachings << "#{self.teacher.person.name} /" : "#{self.teacher.person.name}"
+      i < (@total_t - 1) ? @teachings << "#{teacher.person.name} /" : @teachings << "#{teacher.person.name}"
+    end
+    "#{@teachings}"
+  end
+
   searchable do
     text :id, :discipline_name, :code, :school_class_identifier
     

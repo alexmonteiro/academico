@@ -2,7 +2,7 @@ class StatesController < ApplicationController
   # GET /states
   # GET /states.json
   def index
-    @states = State.all
+    @states = State.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb

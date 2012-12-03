@@ -63,9 +63,12 @@
              	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i>Período Letivo</a></li>
                   <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes & Aulas</a></li>
 
-                  <li class="nav-header">Estrutura Básica</li>
-                  <li class="<%= ('genders' == params[:controller] ? 'active' : '')%>"><a href=<%= genders_path%> ><i class="icon-asterisk"></i>Tipos de Sexo</a></li>
-
+                  <li class="nav-header">Cadastros Básicos</li>
+                  <li class="<%= ('countries' == params[:controller] ? 'active' : '')%>"><a href=<%= countries_path%> ><i class="icon-file"></i>Países</a></li>
+                  <li class="<%= ('states' == params[:controller] ? 'active' : '')%>"><a href=<%= states_path%> ><i class="icon-file"></i>Estados</a></li>
+                  <li class="<%= ('cities' == params[:controller] ? 'active' : '')%>"><a href=<%= cities_path%> ><i class="icon-file"></i>Cidades</a></li>
+                  <li class="<%= ('genders' == params[:controller] ? 'active' : '')%>"><a href=<%= genders_path%> ><i class="icon-file"></i>Tipos de Sexo</a></li>
+               
 	            </ul>
 	          </div><!--/.well -->
 	        </div><!--/span-->

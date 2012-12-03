@@ -67,7 +67,7 @@ class GendersController < ApplicationController
         format.json { render :json => @gender.errors, :status => :unprocessable_entity }
       end
     end
-  end
+  end  
 
   # DELETE /genders/1
   # DELETE /genders/1.json
