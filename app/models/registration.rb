@@ -1,3 +1,4 @@
+include ActionView::Helpers::UrlHelper
 class Registration < ActiveRecord::Base
   belongs_to :course_matrix
   belongs_to :person
@@ -5,9 +6,17 @@ class Registration < ActiveRecord::Base
   has_many :registration_classes
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
+  #before_save :set_registration_number
   
-  validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso."
+  validates_presence_of :person_id, :course_matrix_id, :registration_status_id
+  #validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso pela matrícula: #{@course_matrix_id}."
   
+  validate :validates_uniqueness_of
+  
+  def validates_uniqueness_of
+    reg = Registration.find_by_person_id_and_course_matrix_id(self.person_id, self.course_matrix_id)
+    errors.add(:base, "Aluno já vinculado a este curso pela matrícula: #{(link_to reg.registration_number, 'matriculas/'+reg.id.to_s )}") unless !reg
+  end
 
   def student_name
     self.person.try(:name)
@@ -31,43 +40,33 @@ class Registration < ActiveRecord::Base
   end
   
 =begin
-  Matrícula: AAAAPUUCCCSSS-V
-  Exemplo: 2011201003009-8
+  Matrícula: AASUUCCCSSSS
+  Exemplo: 101010010001
   Onde: 
-  AAAA – Ano da matrícula do aluno na Instituição, no caso 2011.
-  P – Período de ingresso do aluno na Instituição, no caso 2ª semestre.
+  AA – Dois últimos do ano da matrícula do aluno na Instituição, no caso 2012 = 12.
+  S – Semestre
   UU - Unidade de Ensino (Campus)
-  CCC – Código do curso
-  SSS – É um número Sequencial que representa o número posterior ao último aluno incluído na 
+  CCC – Código do curso (Campo codigo preenchido manualmente pelo coordenador dos cursos)
+  SSSS – É um número Sequencial que representa o número posterior ao último aluno incluído na 
   matrícula do curso e sem limite.
-  V - Dígito verificador. O cálculo a ser feito deverá ser da 
-  mesma maneira como é gerado o DV do CPF.
-  Formato final: AAAAPUUCCCSSS-V
+
+  Formato final: AASUUCCCSSSS
 =end
+
   #generate registration_number   
   def generate_registration_number       
-    aaaa = Date.today.year.to_s
-    p    = (Date.today.month > 6 ? 2 : 1).to_s 
+    aa = Date.today.year.to_s[2..4]
+    s    = (Date.today.month > 6 ? 2 : 1).to_s 
     uu   = self.course_matrix.course.dept.id.to_s.rjust(2, '0')
-    ccc  = self.course_matrix.course.id.to_s.rjust(3, '0')
-    sss  = (Registration.where('registration_number like ?',(aaaa + p + uu + ccc + "%")).count+1).to_s.rjust(3, '0')
-    #TODO cálculo do DV
-    v    = calculate_v(aaaa + p + uu + ccc + sss)
+    ccc  = self.course_matrix.course.code.rjust(3, '0')
+    ssss  = (Registration.where('registration_number like ?',(aa + s + uu + ccc + "%")).count+1).to_s.rjust(4, '0')
     
-    aaaa + p + uu + ccc + sss + '-' + v
+    aa + s + uu + ccc + ssss
   end
   
-  #calcula dv - Módulo 11
-  def calculate_v(registration_number)
-    array_number = registration_number.split(//)
-    v = 0    
-    array_number.each_with_index do |n, i|
-      v += n.to_i * ((array_number.length.to_i+1) - i).to_i
-    end    
-    v = 11 - (v%11)
-    v = 0 if v >= 10
-
-    v.to_s
+    
+  def set_registration_number
+    self.registration_number = generate_registration_number
   end
-  
+    
 end

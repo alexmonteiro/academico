@@ -57,6 +57,18 @@
 			    <dd><center><%= '...sem aula cadastrada...' if @discipline_class.class_records.count == 0 %></center></dd>
 	         </div>
 	      </fieldset>
+	      <fieldset>
+	      <div class=" btn-group pull-right">
+			  <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+			    <i class='icon-print'></i>Imprimir
+			    <span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu">
+			    <li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf") + "?preenchido=true", :tabindex => "-1" %></li>
+				<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf"), :tabindex => "-1" %></li>
+			  </ul>
+		  </div>
+		  </fieldset>
 	  </div>
 	</div>	
 	
@@ -114,7 +126,7 @@
   <%= link_to "<i class='icon-pencil'></i> ".html_safe + t('Aulas'),
 			   discipline_class_class_teachings_path(@discipline_class), :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-align-justify'></i> ".html_safe + t('Avaliações'),
-			   discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-large' %>
+			   discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-large' %> 
 
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               discipline_class_path(@discipline_class),

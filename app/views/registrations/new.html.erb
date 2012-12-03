@@ -2,5 +2,9 @@
 <div class="page-header">
   <h1><i class="icon-barcode"></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
+  <%if params[:person_id]%>
+  <h2><i class="icon-user"></i> <%= Person.find(params[:person_id]).name%> </h2>
+
+  <%end%>
 </div>
 <%= render :partial => 'form' %>
