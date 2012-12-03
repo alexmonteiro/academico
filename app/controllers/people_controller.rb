@@ -110,4 +110,23 @@ class PeopleController < ApplicationController
       render :partial => "cities", :locals => { :cities => cities }
   end
   
+  #Pesquisar por pessoa para efetuar a matrícula
+  # GET /people
+  # GET /people.json
+  def pesquisar
+    if params[:search]
+     @search = Person.search do
+       fulltext params[:search]
+       paginate :page => params[:page] || 1, :per_page => 20
+       #order_by(:name, :asc)
+     end
+     @people = @search.results
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @people }
+    end
+  end
+  
 end
