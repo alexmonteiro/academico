@@ -38,6 +38,7 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   # GET /registrations/new.json
   def new
+    @person = Person.find(params[:person_id])
     @registration = Registration.new
 
     respond_to do |format|
@@ -55,11 +56,16 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(params[:registration])
-    #@registration.registration_number =  @registration.generate_registration_number
+    if params[:person_id]
+      @person = Person.find(params[:person_id])
+      @registration.person_id = @person.id
+    end
+    
+    @registration.registration_number = @registration.generate_registration_number
 
     respond_to do |format|
       if @registration.save
-        format.html { redirect_to @registration, :notice => 'Matrícula criada com sucesso.' }
+        format.html { redirect_to [@person, @registration], :notice => 'Matrícula criada com sucesso.' }
         format.json { render :json => @registration, :status => :created, :location => @registration }
       else
         format.html { render :action => "new" }

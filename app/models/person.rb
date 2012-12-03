@@ -28,10 +28,20 @@ class Person < ActiveRecord::Base
   def model_name_whitout_accents
     self.registration_class.registration.person.try(:name).removeaccents
   end
+  
+  #CPF
+  def cpf
+    self.person_identification_doc.try(:cpf)
+  end
+  
+  #RG
+  def rg
+    self.person_identification_doc.try(:model_rg_custom)
+  end
 
   searchable do
-    text :id, :birth_date, :email, :name, :number_children
-    string :name
-    
+    text :id, :birth_date, :email, :name, :number_children, :cpf, :rg
+    string :name    
   end  
+
 end

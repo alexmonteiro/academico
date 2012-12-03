@@ -19,7 +19,11 @@ class PersonIdentificationDoc < ActiveRecord::Base
   validates :vr_date_issuance, :presence => { :message => " O campo 'Data de Expedição' do 'Título de Eleitor' não foi preenchido!" }, :if => "!voter_registration.blank?"
 
 def model_rg_custom
-  self.rg + "-" + self.rg_uf.try(:acronym)
+  if !self.rg.blank?
+   self.rg + "-" + (self.rg_uf ? self.rg_uf.try(:acronym) : '' )
+  else
+    'sem identidade'
+  end
 end
 
 end

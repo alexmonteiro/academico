@@ -6,7 +6,7 @@ class Registration < ActiveRecord::Base
   has_many :registration_classes
   attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
   default_scope :order => "registration_at DESC"
-  before_save :set_registration_number
+  #before_save :set_registration_number
   
   validates_presence_of :person_id, :course_matrix_id, :registration_status_id
   #validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso pela matrícula: #{@course_matrix_id}."
@@ -58,7 +58,7 @@ class Registration < ActiveRecord::Base
     aa = Date.today.year.to_s[2..4]
     s    = (Date.today.month > 6 ? 2 : 1).to_s 
     uu   = self.course_matrix.course.dept.id.to_s.rjust(2, '0')
-    ccc  = self.course_matrix.course.codigo.rjust(3, '0')
+    ccc  = self.course_matrix.course.code.rjust(3, '0')
     ssss  = (Registration.where('registration_number like ?',(aa + s + uu + ccc + "%")).count+1).to_s.rjust(4, '0')
     
     aa + s + uu + ccc + ssss
