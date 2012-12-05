@@ -1,5 +1,5 @@
-<tbody>
   <table>
+   <tbody>
 	<% if @person.registrations.count >= 1 %>
 	    <% @person.registrations.each do |registration| %>
 	       <tr>
@@ -8,6 +8,6 @@
 	    <%end%>
 	<%else%>
 		    <center>Aluno sem matrícula registrada.</center>
-	<%end if%>
+	<%end%>
+   </tbody>
   </table>
-</tbody>
