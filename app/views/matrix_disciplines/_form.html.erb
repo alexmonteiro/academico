@@ -10,7 +10,7 @@
   </div>
 <% end %>
 <%= form_for ([@matrix, @matrix_discipline], :html => { :class => 'form-horizontal' }) do |f| %>
-  <%matrix = CouserMatrix.find(params[:matrix_id])%>
+  <%matrix = CourseMatrix.find(params[:course_matrix_id])%>
   <h2>Matriz: <%= matrix.model_custom_name%></h2>
 
   <div class="control-group">
@@ -48,8 +48,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit 'Incluir Disciplina', :class => 'btn btn-primary' %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                matrix_matrix_disciplines_path, :class => 'btn' %>
+                course_matrix_matrix_disciplines_path, :class => 'btn' %>
   </div>
 <% end %>

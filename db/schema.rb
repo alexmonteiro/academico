@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004185330) do
+ActiveRecord::Schema.define(:version => 20121205183238) do
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -407,6 +407,15 @@ ActiveRecord::Schema.define(:version => 20121004185330) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "matrix_discipline_prerequisites", :force => true do |t|
+    t.integer  "matrix_discipline_id"
+    t.integer  "pre_matrix_discipline_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "matrix_discipline_prerequisites", ["matrix_discipline_id"], :name => "index_matrix_discipline_prerequisites_on_matrix_discipline_id"
 
   create_table "matrix_disciplines", :force => true do |t|
     t.integer  "matrix_id"

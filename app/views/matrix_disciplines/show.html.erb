@@ -5,7 +5,7 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:matrix_id) %>:</strong></dt>
-  <dd><%= @matrix_discipline.matrix.model_custom_name %></dd>
+  <dd><%= @matrix_discipline.course_matrix.model_custom_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:discipline_id) %>:</strong></dt>
   <dd><%= @matrix_discipline.discipline.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_group_id) %>:</strong></dt>
@@ -20,11 +20,11 @@
 
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
-              matrix_matrix_disciplines_path, :class => 'btn btn-large'  %>
+              course_matrix_matrix_disciplines_path, :class => 'btn btn-large'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
-              edit_matrix_matrix_discipline_path, :class => 'btn btn-large' %>
+              edit_course_matrix_matrix_discipline_path, :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
-              matrix_matrix_discipline_path(params[:matrix_id]),
+              course_matrix_matrix_discipline_path(params[:course_matrix_id]),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger btn-large pull-right' %>
