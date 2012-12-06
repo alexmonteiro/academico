@@ -76,7 +76,9 @@ AcademicoRails::Application.routes.draw do
   resources :matrix_discipline_groups
 
   resources :course_matrices, :path => "matrizcurricular" do
-    resources :matrix_disciplines, :path => "disciplinas"
+    resources :matrix_disciplines, :path => "disciplinas" do
+      resources :matrix_discipline_prerequisites, :path => "prerequisitos"
+    end
     resources :timetables, :path =>"gradehoraria" do
       resources :timetable_class_times, :path =>"horas"
     end

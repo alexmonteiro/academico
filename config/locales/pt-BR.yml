@@ -122,6 +122,7 @@ pt-BR:
         maxseasons: "Período"
         isoptative: "Optativa?"
         isdependence: "Dependencia?"
+        pre_discipline_ids: "Pré Requisito"
       teaching_equipament:
         description: "Descrição"
         arrival_date: "Data de entrada"
@@ -241,7 +242,10 @@ pt-BR:
         country_id: "País"          
       city:
         name: "Nome"
-        state_id: "Estado"                    
+        state_id: "Estado"  
+      matrix_discipline_prerequisite:
+        matrix_discipline_id: "Disciplina"                
+        pre_matrix_discipline_id: "Requisito"                        
         
     models:
       person: "Pessoa"  
@@ -270,9 +274,10 @@ pt-BR:
       registration_class: "Enturmação"
       gender: "Sexo"
       country: "País"
-      state: "Estados"
+      state: "Estados"      
       city: "Cidades"
-
+      matrix_discipline_prerequisite: "Pré requisitos"      
+      
   action:
       actions: "Ações"
       new: "Novo"

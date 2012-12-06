@@ -20,6 +20,11 @@ class CourseMatrix < ActiveRecord::Base
     self.matrix_status.description
   end
   
+  # Id e data de vigência da matriz curricular
+  def matriz_name
+    self.id.to_s+' - ' + self.started_at.strftime('%d/%m/%Y')
+  end
+  
   def course_name
     self.course.name
   end
