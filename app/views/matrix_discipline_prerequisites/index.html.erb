@@ -33,4 +33,4 @@
             :class => 'btn btn-primary btn-large' %>
 
 		  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
-		              course_matrix_matrix_disciplines_path(@matrix_discipline.course_matrix), :class => 'btn btn-large'  %>
+		              request.referer, :class => 'btn btn-large'  %>
