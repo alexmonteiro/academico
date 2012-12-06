@@ -7,33 +7,31 @@ class DisciplineClassPDF < Prawn::Document
     #header
     title
     content
-    move_down(50)
+    move_down(4000)
     foot
+    #foot_for
   end
   
   
   def foot
       page_count.times do |i|
       go_to_page(i+1)
-      text_box "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, 10]
-      text_box "ACADEMICO - IFB", :at => [350, 10], :style => :bold
-      text_box "Página #{i+1} de #{page_count}", :at => [700, 10]
+      draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
+      draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
+      draw_text "Página #{i+1} de #{page_count}", :at => [700, -10]
     end
   end
   def footer
     string = "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'} ACADEMICO - IFB Página <page> de <total>" # Green page numbers 1 to 7
     options = {:at => [bounds.right - 550, 0], :start_count_at => 1} 
     number_pages string, options
-  end
-  
-  
-  
+  end 
   
   def title
-    image "#{Rails.root}/app/assets/images/logo-if.png", :at => [0,550], :width => 55, :height => 70
+    image "app/assets/images/logo-if.png", :at => [0,550], :width => 55, :height => 70
     text "Instituto Federal de Brasília", :align => :center, :size => 18
     text "Diário de Classe - Conteúdo Ministrado", :align => :center, :size => 12
-    text "#{@discipline.discipline_class_year}.#{@discipline.school_class_period}", :align => :center, :size => 14 #Modificar a Data
+    text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14 #Modificar a Data
     move_down(15)
   end
   
@@ -50,7 +48,7 @@ class DisciplineClassPDF < Prawn::Document
       data_content += [[" "," "," "," "," "]] * 14
     else
       @discipline.class_records.each do |class_record|
-        data_content += [["#{class_record.recorded_at.strftime("%d/%m/%Y") if class_record.recorded_at}","#{class_record.class_record_type.description}","#{class_record.class_time.model_custom_name}","#{class_record.record}","#{class_record.note}"]]
+        data_content += [["#{class_record.recorded_at.strftime("%d/%m/%Y") if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
       end
     end
     
