@@ -7,6 +7,7 @@ class CourseMatrix < ActiveRecord::Base
   has_many :timetables, :foreign_key => :matrix_id
   has_many :school_classes, :foreign_key => :matrix_id
   attr_accessible :ended_at, :maxdisciplines, :maxseasons, :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id, :course_id
+  default_scope :order => "id DESC"
 
   def model_custom_name
       self.id.to_s+' - Matriz ' + self.started_at.strftime('%d/%m/%Y') + ' - '+ self.course.try(:name)

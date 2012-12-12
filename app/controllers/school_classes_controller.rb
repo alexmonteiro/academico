@@ -66,7 +66,7 @@ class SchoolClassesController < ApplicationController
     #gera identificador único
     if @school_class.identifier.blank?
       if  @school_class.matrix_id && @school_class.period && @school_class.shift_type_id && @school_class.class_season_id
-       @school_class.identifier = @school_class.try(:auto_identifier)
+       @school_class.identifier = @school_class.auto_identifier
       end
     end
     

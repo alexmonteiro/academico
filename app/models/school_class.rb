@@ -17,7 +17,7 @@ class SchoolClass < ActiveRecord::Base
     code = self.course_matrix.course.try(:code)
     turno = self.shift_type_id.to_s
     modulo = self.period.to_s.rjust(2,'0')
-    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier.chop}_'").count
+    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier}_'").count
     year + number + code + turno  + modulo + ('A'..'Z').to_a[ct]
   end
   

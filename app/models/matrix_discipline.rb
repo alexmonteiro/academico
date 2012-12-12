@@ -6,6 +6,7 @@ class MatrixDiscipline < ActiveRecord::Base
   has_many   :matrix_discipline_prerequisites
   default_scope :order => :maxseasons
   attr_accessible :isdependence, :isoptative, :maxseasons, :discipline_id, :matrix_discipline_group_id, :matrix_id
+  before_destroy :has_children?
   
   validates_uniqueness_of :matrix_id, :scope => :discipline_id, :message => "já possui esta disciplina associada."
   validates :matrix_id, :discipline_id, :maxseasons, :presence => true
@@ -52,6 +53,17 @@ class MatrixDiscipline < ActiveRecord::Base
       pre += discipline.discipline_code+" "
     end
     pre
+  end
+  
+  def has_children?
+    errors.add(:base, "Existem Disciplinas pré requisito associadas a esta Disciplina") unless self.matrix_discipline_prerequisites.count == 0
+    errors.add(:base, "Existem Classes associadas a esta Disciplina") unless self.discipline_classes.count == 0  
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
   end
   
 end

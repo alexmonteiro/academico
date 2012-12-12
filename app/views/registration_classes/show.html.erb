@@ -1,6 +1,6 @@
 <%- model_class = RegistrationClass -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -15,13 +15,14 @@
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              registration_classes_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_registration_class_path(@registration_class), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              registration_class_path(@registration_class),
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              discipline_class_registration_classes_path, :class => 'btn btn-large pull-left'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_discipline_class_registration_class_path(@discipline_class), :class => 'btn btn-large pull-left' %>
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
+              discipline_class_registration_class_path(@registration_class),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-danger btn-large pull-right' %>
+
 </div>

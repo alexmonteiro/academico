@@ -10,6 +10,7 @@
  *
  *= require 'font-awesome'
  *= require_self
+ *= require modern-pictograms
  *= require bootstrap-datepicker
  *= require_tree .
  */

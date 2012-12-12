@@ -10,7 +10,7 @@ class DisciplineClass < ActiveRecord::Base
   before_destroy :has_children?
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
-  validates :school_class_id, :matrix_discipline_id, :code, :presence => true
+  validates :school_class_id, :matrix_discipline_id, :code, :vancancies, :presence => true
 
   def vacancies
     self.vancancies
