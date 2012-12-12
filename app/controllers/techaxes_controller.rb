@@ -80,7 +80,7 @@ class TechaxesController < ApplicationController
     @techaxis.destroy
 
     respond_to do |format|
-      format.html { redirect_to techaxis_type_techaxis_url, :notice => t('controllermessage.delete') }
+      format.html { redirect_to techaxis_type_techaxes_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end
