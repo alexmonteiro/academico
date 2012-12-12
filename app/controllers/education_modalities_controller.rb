@@ -41,10 +41,10 @@ class EducationModalitiesController < ApplicationController
   # POST /education_modalities.json
   def create
     @education_modality = EducationModality.new(params[:education_modality])
-
+    
     respond_to do |format|
       if @education_modality.save
-        format.html { redirect_to @education_modality, :notice => 'Education modality was successfully created.' }
+        format.html { redirect_to @education_modality, :notice => t('controllermessage.insert') }
         format.json { render :json => @education_modality, :status => :created, :location => @education_modality }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EducationModalitiesController < ApplicationController
 
     respond_to do |format|
       if @education_modality.update_attributes(params[:education_modality])
-        format.html { redirect_to @education_modality, :notice => 'Education modality was successfully updated.' }
+        format.html { redirect_to @education_modality, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class EducationModalitiesController < ApplicationController
     @education_modality.destroy
 
     respond_to do |format|
-      format.html { redirect_to education_modalities_url }
+      format.html { redirect_to education_modalities_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end

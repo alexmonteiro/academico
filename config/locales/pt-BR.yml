@@ -69,7 +69,7 @@ pt-BR:
         learning_modality_id: "Modalidade de aprendizagem"
         knowledge_area_id: "Área de conhecimento"
         techaxes_id: "Eixo tecnológico"
-        education_modality_id: "Modalidadce de ensino" 
+        education_modality_id: "Modalidade de ensino" 
         discipline: "Discplinas"
       course_vacancy:
         course_id: "Curso"
@@ -243,8 +243,24 @@ pt-BR:
         city: "Cidades"          
       city:
         name: "Nome"
-        state_id: "Estado"                    
-        
+        state_id: "Estado"
+      race:
+        race: "Nome"  
+      education_modality:
+        description: "Descrição" 
+        education_step_id: "Grau" 
+      education_step:
+        description: "Descrição"
+        education_level_id: "Nível"
+      education_level:
+        level: "Nível" 
+      techaxis_type:
+        techaxis_type: "Eixo"
+        techaxis: "Áreas"
+      techaxis:
+        techaxis: "Descrição"
+        techaxis_type_id: "Eixo"  
+                                 
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -274,7 +290,13 @@ pt-BR:
       country: "País"
       state: "Estado"
       city: "Cidade"
-
+      race: "Etnia"
+      education_step: "Grau"
+      education_level: "Nível"
+      education_modality: "Modalidade"
+      techaxis_type: "Eixo Tecnológico"
+      techaxis: "Área"
+      
   action:
       actions: "Ações"
       new: "Novo"

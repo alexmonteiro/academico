@@ -113,11 +113,11 @@ AcademicoRails::Application.routes.draw do
 
   resources :learning_modalities
 
-  resources :education_modalities
+  resources :education_modalities, :path => "modalidades"
 
-  resources :education_steps
+  resources :education_steps, :path => "graus" 
 
-  resources :education_levels
+  resources :education_levels, :path => "niveis"
 
   resources :person_addresses
 
@@ -169,7 +169,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :marital_statuses
 
-  resources :races
+  resources :races, :path => 'etnias'
 
   resources :education_degrees
 

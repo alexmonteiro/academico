@@ -1,25 +1,20 @@
-<%= form_for(@education_step) do |f| %>
-  <% if @education_step.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@education_step.errors.count, "error") %> prohibited this education_step from being saved:</h2>
-
-      <ul>
-      <% @education_step.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @education_step, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :education_level_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :education_level_id, EducationLevel.find(:all, :order => "level"), :id, :level %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :education_level %><br />
-    <%= f.text_field :education_level %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                education_steps_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -3,7 +3,7 @@ class CitiesController < ApplicationController
   # GET /cities.json
   def index
     @state = State.find(params[:state_id])
-    @cities = City.where(:state_id => params[:state_id]).paginate(:page => params[:page], :per_page => 10)
+    @cities = City.where(:state_id => params[:state_id]).paginate(:page => params[:page], :per_page => 10, :order => 'name')
     
     respond_to do |format|
       format.html # index.html.erb
@@ -50,7 +50,7 @@ class CitiesController < ApplicationController
     
     respond_to do |format|
       if @city.save
-        format.html { redirect_to country_state_cities_path, :notice => 'City was successfully created.' }
+        format.html { redirect_to country_state_cities_path, :notice => t('controllermessage.insert') }
         format.json { render :json => @city, :status => :created, :location => @city }
       else
         format.html { render :action => "new" }
@@ -66,7 +66,7 @@ class CitiesController < ApplicationController
 
     respond_to do |format|
       if @city.update_attributes(params[:city])
-        format.html { redirect_to country_state_city_path, :notice => 'City was successfully updated.' }
+        format.html { redirect_to country_state_city_path, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -82,7 +82,7 @@ class CitiesController < ApplicationController
     @city.destroy
 
     respond_to do |format|
-      format.html { redirect_to country_state_cities_url }
+      format.html { redirect_to country_state_cities_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end
