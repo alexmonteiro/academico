@@ -4,7 +4,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :class_record_types
 
-  resources :registration_classes, :path =>"enturmacoes"
+#  resources :registration_classes, :path =>"enturmacoes"
 
   resources :registration_class_statuses
 

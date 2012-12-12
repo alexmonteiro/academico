@@ -49,6 +49,34 @@
 	  </div>
 	</div>
 
+	<!-- Classes da Matriz -->
+	<div class="span4">
+	  <div class="well">
+	    <fieldset>
+	        <%= link_to "<i class='icon-pencil'></i> Classes".html_safe, course_matrix_matrix_disciplines_path(:matrix_discipline_id => @matrix_discipline.id), :class => 'btn btn-inverse span12' %>
+	      <div style="padding-top: 60px">
+				<% if @matrix_discipline.discipline_classes.count >= 1 %>
+				    <% @matrix_discipline.discipline_classes.group_by(&:school_class_identifier).each do |{id, school_class}, discipline_classes| %>
+				     Turma: <%= <%= link_to school_class, school_class_path(discipline_class)%>
+				     <table>
+ 	  			       <tbody>
+				         <%  discipline_classes.each do |discipline_class| %>
+				          <tr>
+						   <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				           <td><%= link_to discipline_class.code, discipline_class_path(discipline_class) %></td>
+				          </tr>
+				         <%end%>
+				       </tbody>
+				     </table>
+				
+				    <%end%>
+				<%else%>
+					    <center>Disciplina sem classes registradas.</center>
+				<%end%>
+	      </div>
+	    </fieldset>
+	  </div>
+	</div>
 
  </div>
 </div>

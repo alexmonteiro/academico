@@ -21,6 +21,14 @@ class RegistrationClassesController < ApplicationController
   # GET /registration_classes/1
   # GET /registration_classes/1.json
   def show
+    
+    if params.has_key?(:discipline_class_id)
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    end
+    if params.has_key?(:registration_id)
+     @registration = Registration.find(params[:registration_id])
+    end    
+    
     @registration_class = RegistrationClass.find(params[:id])
 
     respond_to do |format|
@@ -32,6 +40,14 @@ class RegistrationClassesController < ApplicationController
   # GET /registration_classes/new
   # GET /registration_classes/new.json
   def new
+
+    if params.has_key?(:discipline_class_id)
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    end
+    if params.has_key?(:registration_id)
+     @registration = Registration.find(params[:registration_id])
+    end
+        
     @registration_class = RegistrationClass.new
 
     respond_to do |format|
@@ -42,6 +58,13 @@ class RegistrationClassesController < ApplicationController
 
   # GET /registration_classes/1/edit
   def edit
+    if params.has_key?(:discipline_class_id)
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    end
+    if params.has_key?(:registration_id)
+     @registration = Registration.find(params[:registration_id])
+    end
+    
     @registration_class = RegistrationClass.find(params[:id])
   end
 

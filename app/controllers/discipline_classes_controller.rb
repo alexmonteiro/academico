@@ -10,7 +10,7 @@ class DisciplineClassesController < ApplicationController
      @discipline_classes = @search.results
     else
      if params[:school_class_id] 
-      school_class_id =  SchoolClass.find_by_identifier(params[:school_class_id])
+      school_class_id =  SchoolClass.find_by_identifier(params[:school_class_id]) || SchoolClass.find(params[:school_class_id])
       @discipline_classes = DisciplineClass.where(:school_class_id => school_class_id).paginate(:page => params[:page], :per_page => 10) 
      else
       @discipline_classes = DisciplineClass.paginate(:page => params[:page], :per_page => 10)
@@ -41,6 +41,10 @@ class DisciplineClassesController < ApplicationController
   # GET /discipline_classes/new
   # GET /discipline_classes/new.json
   def new
+    if params[:school_class_id] && !params[:school_class_id].blank?
+      @school_class = SchoolClass.find_by_identifier(params[:school_class_id]) || SchoolClass.find(params[:school_class_id])
+    end
+
     @discipline_class = DisciplineClass.new
 
     respond_to do |format|
@@ -58,13 +62,18 @@ class DisciplineClassesController < ApplicationController
   # POST /discipline_classes.json
   def create
     @discipline_class = DisciplineClass.new(params[:discipline_class])
+    
+    if (params[:school_class_id] && !params[:school_class_id].blank?)
+      @school_class = SchoolClass.find_by_identifier(params[:school_class_id]) || SchoolClass.find(params[:school_class_id])
+      @discipline_class.school_class_id = @school_class.id
+    end    
 
     respond_to do |format|
       if @discipline_class.save
-        format.html { redirect_to @discipline_class, :notice => 'Classe criada com sucesso.' }
+        format.html { redirect_to request.referer, :notice => 'Classe criada com sucesso.' }
         format.json { render :json => @discipline_class, :status => :created, :location => @discipline_class }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new"}
         format.json { render :json => @discipline_class.errors, :status => :unprocessable_entity }
       end
     end
@@ -93,7 +102,7 @@ class DisciplineClassesController < ApplicationController
     if @discipline_class.destroy
       respond_to do |format|
         format.html { redirect_to discipline_classes_url }
-        format.json { head :no_content }
+        format.json { head :no_content, :notice => 'Classe excluída com sucesso.' }
       end
     else
       error_message = ""
