@@ -30,8 +30,6 @@ AcademicoRails::Application.routes.draw do
 
   resources :day_weeks
 
-  resources :class_teachings, :path =>"docencias"
-
   resources :class_records, :path =>"aulas"  
 
   resources :discipline_classes, :path =>"classes" do

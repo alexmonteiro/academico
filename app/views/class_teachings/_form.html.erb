@@ -1,26 +1,25 @@
-<%= form_for @class_teaching, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :discipline_class_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :discipline_class_id, :class => 'number_field' %>
-    </div>
-  </div>
+<h2>Turma: <%=@discipline_class.school_class.identifier %> - <%=@discipline_class.course_name %></h2>
+<h2>Classe: <%=@discipline_class.code %></h2>
+
+<%= form_for [@discipline_class, @class_teaching], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :person_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :person_id, :class => 'number_field' %>
+      <%= f.collection_select :person_id, PersonPersonType.where(:person_type_id => 2).sort_by(&:person_name), :person_id, :person_name, {:prompt => "...Selecione..."}, {:class => "span8"} %>
     </div>
   </div>
+
+<!-- 
   <div class="control-group">
     <%= f.label :dept_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.number_field :dept_id, :class => 'number_field' %>
     </div>
   </div>
-
+-->
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                class_teachings_path, :class => 'btn' %>
+                discipline_class_class_teachings_path, :class => 'btn' %>
   </div>
 <% end %>

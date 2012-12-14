@@ -28,6 +28,11 @@ class DisciplineClass < ActiveRecord::Base
     self.matrix_discipline.try(:discipline_name)
   end  
   
+  def course_name
+    self.matrix_discipline.try(:course_name)
+  end  
+  
+  
   def school_class_identifier
     self.school_class.try(:identifier)
   end
