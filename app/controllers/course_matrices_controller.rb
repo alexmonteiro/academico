@@ -49,11 +49,11 @@ end
 # POST /matrices
 # POST /matrices.json
 def create
-  @matrix = CourseMatrix.new(params[:matrix])
+  @matrix = CourseMatrix.new(params[:course_matrix])
 
   respond_to do |format|
     if @matrix.save
-      format.html { redirect_to @matrix, :notice => 'Matrix was successfully created.' }
+      format.html { redirect_to @matrix, :notice => 'Matriz criada com sucesso.' }
       format.json { render :json => @matrix, :status => :created, :location => @matrix }
     else
       format.html { render :action => "new" }
@@ -69,7 +69,7 @@ def update
 
   respond_to do |format|
     if @matrix.update_attributes(params[:matrix])
-      format.html { redirect_to @matrix, :notice => 'Matrix was successfully updated.' }
+      format.html { redirect_to @matrix, :notice => 'Matriz atualizada com sucesso.' }
       format.json { head :no_content }
     else
       format.html { render :action => "edit" }
@@ -82,12 +82,22 @@ end
 # DELETE /matrices/1.json
 def destroy
   @matrix = CourseMatrix.find(params[:id])
-  @matrix.destroy
-
-  respond_to do |format|
-    format.html { redirect_to matrices_url }
-    format.json { head :no_content }
-  end
+  if @matrix.destroy
+    respond_to do |format|
+      format.html { redirect_to course_matrices_url, :notice => 'Matriz excluída com sucesso.'  }
+      format.json { head :no_content }
+    end
+  else
+    error_message = ""
+    respond_to do |format|
+      @matrix.errors[:base].each do |error|
+       error_message += "<li>#{error}</li>"
+      format.html { redirect_to request.referer, :alert => error_message}
+      format.json { render :json => @matrix.errors, :status => :unprocessable_entity }
+     end
+    end
+  end  
+  
 end
 
 end
