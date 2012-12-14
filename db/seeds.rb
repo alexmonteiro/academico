@@ -6612,6 +6612,13 @@ discipline_class_exam_types = DisciplineClassExamType.create([
   {:description => 'Outros'}  
 ])
 
+# Alimenta tabela tipo do Tipos de pessoas
+puts 'Inserindo tipo do Tipos de pessoas...'
+person_types = PersonType.create([
+  {:description => 'Aluno'},
+  {:description => 'Servidor'}
+])
+
 
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
