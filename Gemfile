@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'modern-pictograms-rails', :git => 'https://github.com/hylozero/modern-pictograms-rails.git'
-
 gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
