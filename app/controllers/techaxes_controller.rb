@@ -3,7 +3,7 @@ class TechaxesController < ApplicationController
   # GET /techaxes.json
   def index
     @techaxis_type = TechaxisType.find(params[:techaxis_type_id])
-    @techaxes = Techaxis.where("techaxis_type_id = ?", params[:techaxis_type_id])
+    @techaxes = Techaxis.where("techaxis_type_id = ?", params[:techaxis_type_id]) 
      
     respond_to do |format|
       format.html # index.html.erb
