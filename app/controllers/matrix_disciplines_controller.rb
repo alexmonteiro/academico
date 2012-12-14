@@ -49,7 +49,7 @@ class MatrixDisciplinesController < ApplicationController
 
     respond_to do |format|
       if @matrix_discipline.save
-        format.html { redirect_to matrix_matrix_disciplines_path, :notice => 'Disciplina cadastrada na matriz com sucesso.' }
+        format.html { redirect_to course_matrix_matrix_disciplines_path, :notice => 'Disciplina cadastrada na matriz com sucesso.' }
         format.json { render :json => @matrix_discipline, :status => :created, :location => @matrix_discipline }
       else
         format.html { render :action => "new" }
