@@ -72,7 +72,7 @@ class SchoolClassesController < ApplicationController
     
     respond_to do |format|
       if @school_class.save
-        format.html { redirect_to @school_class, :notice => 'School class was successfully created.' }
+        format.html { redirect_to school_class_path(:id => @school_class.identifier), :notice => 'Turma criada com sucesso.' }
         format.json { render :json => @school_class, :status => :created, :location => @school_class }
       else
         format.html { render :action => "new" }
@@ -88,7 +88,7 @@ class SchoolClassesController < ApplicationController
 
     respond_to do |format|
       if @school_class.update_attributes(params[:school_class])
-        format.html { redirect_to  school_class_path(:id => @school_class.identifier), :notice => 'School class was successfully updated.' }
+        format.html { redirect_to  school_class_path(:id => @school_class.identifier), :notice => 'Turma atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -104,7 +104,7 @@ class SchoolClassesController < ApplicationController
     @school_class.destroy
 
     respond_to do |format|
-      format.html { redirect_to school_classes_url }
+      format.html { redirect_to school_classes_url, :notice => 'Turma excluida com sucesso.' }
       format.json { head :no_content }
     end
   end

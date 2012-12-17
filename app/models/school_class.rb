@@ -5,7 +5,7 @@ class SchoolClass < ActiveRecord::Base
   has_many   :matrix_disciplines, :foreign_key => "matrix_id"
   has_many   :discipline_classes
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
-  default_scope :order => 'identifier DESC'
+  default_scope :order => 'id DESC'
   
   validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
   validates_uniqueness_of :identifier
