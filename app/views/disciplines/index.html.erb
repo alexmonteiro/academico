@@ -3,11 +3,6 @@
   <h1><i class="icon-book"></i> <%= @course.name%></h1>
   <h2><%=t '.title', :default => model_class.model_name.human.pluralize %></h2>
 </div>
-<%if notice%>
-<div id="error_explanation" class="alert alert-info">
- <p id="notice"><%= notice %></p>
-</div>
-<%end%>
 <table class="table table-striped">
   <thead>
     <tr>
