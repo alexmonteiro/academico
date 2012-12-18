@@ -1,0 +1,9 @@
+<%- model_class = @matrix_discipline_prerequisite.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+  <h2><%= @matrix_discipline.discipline.try(:code) %> - <%= @matrix_discipline.try(:discipline_name) %> - Período <%= @matrix_discipline.try(:maxseasons)%></h2>
+  <h3>Curso: <%= @matrix_discipline.course_name%></h3>
+  <h3>Matriz: <%= @matrix_discipline.try(:matrix_name)%></h3>
+</div>
+<%= render :partial => 'form' %>

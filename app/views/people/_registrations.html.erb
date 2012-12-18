@@ -1,0 +1,13 @@
+  <table>
+   <tbody>
+	<% if @person.registrations.count >= 1 %>
+	    <% @person.registrations.each do |registration| %>
+	       <tr>
+	        <td><%= link_to registration.registration_number + ' - ' + registration.course_name, registration_path(registration) %></td>
+	       </tr>
+	    <%end%>
+	<%else%>
+		    <center>Aluno sem matrícula registrada.</center>
+	<%end%>
+   </tbody>
+  </table>

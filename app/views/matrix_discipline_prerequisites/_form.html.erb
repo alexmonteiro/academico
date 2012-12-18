@@ -1,0 +1,36 @@
+<% if @matrix_discipline_prerequisite.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@matrix_discipline_prerequisite.errors.count, "error") %> impediu a gravação:</h2>
+
+    <ul>
+    <% @matrix_discipline_prerequisite.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for [@course_matrix, @matrix_discipline, @matrix_discipline_prerequisite], :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="control-group">
+    <%= f.label :pre_matrix_discipline_id, :class => 'control-label' %>
+    <div class="controls">
+	 <select name="matrix_discipline_prerequisite[pre_matrix_discipline_id]" class="span8">
+		<option value="">Selecione a disciplina pré requisito</option>
+		<% @course_matrix.matrix_disciplines.group_by(&:maxseasons).each do |group, matrix_disciplines|%>
+          <optgroup label="Período <%= group.to_s%>">
+	         <% matrix_disciplines.each do |discipline|%>
+	          <option value="<%= discipline.id.to_s%>"  <%= h_disable_select(discipline)%> ><%= discipline.discipline.code%> - <%= discipline.discipline_name%></option>
+		     <% end %>
+	      </optgroup>
+		<% end %>
+	 </select>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                course_matrix_matrix_disciplines_path(@course_matrix), :class => 'btn' %>
+  </div>
+<% end %>

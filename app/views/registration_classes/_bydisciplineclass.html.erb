@@ -3,13 +3,13 @@
 <div class="control-group span12">
 	
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1> 
+  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1> 
 </div>
 <% @registration_classes.sort_by(&:model_student_name_whitout_accents).group_by(&:school_class_identifier).each do |turma, classes| %>
-<h2>Disciplina: <%= @discipline_class.discipline_name%></h2>
+<h2>Disciplina: <%= @discipline_class.try(:discipline_name)%></h2>
 <h2>Turma: <%= turma%></h2>
-<h2>Classe: <%= @discipline_class.code%></h2>
-<h3>Vagas: <%= @discipline_class.vacancies_left %> de  <%= @discipline_class.vacancies%></h3>
+<h2>Classe: <%= @discipline_class.try(:code)%></h2>
+<h3>Vagas: <%= @discipline_class.try(:vacancies_left) %> de  <%= @discipline_class.try(:vacancies)%></h3>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -23,7 +23,7 @@
   <tbody>
       <%classes.each do |classe|%>
       <tr>
-        <td><%= link_to classe.id, registration_class_path(classe) %></td>
+        <td><%= link_to classe.id, discipline_class_registration_class_path(:id => classe.id) %></td>
         <td><%= classe.registration.try(:student_name)%></td>
         <td><%=l classe.registered_at if classe.registered_at %></td>
         <td><%= classe.registration_class_status.try(:description) %></td>

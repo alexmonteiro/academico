@@ -1,5 +1,5 @@
- <%= form_for [(@registration || @discipline_class), @registration_class], :html => { :class => 'form-horizontal' } do |f| %>
-   <%= %>@registration %>
+ <%= form_for [@discipline_class, @registration_class], :html => { :class => 'form-horizontal' } do |f| %>
+
    <h2>Aluno: <%= @registration_class.registration.try(:registration_number) %> - <%= @registration_class.registration.try(:student_name) %> </h2>
    <h5>Classe: <%= @registration_class.discipline_class.try(:model_custom_name) %></h5>
 
@@ -18,13 +18,6 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-
-   
-   <!-- Link caso venha de matrícula -->
-   <% unless @registration.blank? %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                registration_registration_classes_path, :class => 'btn' %>
-   <% end %>
 
    <!-- Link caso venha de classe -->
    <% unless @discipline_class.blank? %>

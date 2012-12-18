@@ -1,6 +1,11 @@
 <%- model_class = RegistrationClass -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+  <h1><i class="icon-group"></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
-<%= render :partial => 'form' %>
+<% if params.has_key?(:discipline_class_id) %>
+  <%= render :partial => 'formbydisciplineclass' %>
+<% end %>
+<% if params.has_key?(:registration_id) %>
+  <%= render :partial => 'formbyregistration' %>
+<% end %>

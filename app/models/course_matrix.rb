@@ -6,7 +6,11 @@ class CourseMatrix < ActiveRecord::Base
   has_many :matrix_disciplines, :foreign_key => :matrix_id
   has_many :timetables, :foreign_key => :matrix_id
   has_many :school_classes, :foreign_key => :matrix_id
+  before_destroy :has_children?
   attr_accessible :ended_at, :maxdisciplines, :maxseasons, :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id, :course_id
+  default_scope :order => "id DESC"
+  
+  validates :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id,  :course_id, :presence => true
 
   def model_custom_name
       self.id.to_s+' - Matriz ' + self.started_at.strftime('%d/%m/%Y') + ' - '+ self.course.try(:name)
@@ -18,6 +22,11 @@ class CourseMatrix < ActiveRecord::Base
   
   def matrix_status_desc
     self.matrix_status.description
+  end
+  
+  # Id e data de vigência da matriz curricular
+  def matriz_name
+    self.id.to_s+' - ' + self.started_at.strftime('%d/%m/%Y')
   end
   
   def course_name
@@ -33,4 +42,17 @@ class CourseMatrix < ActiveRecord::Base
     text :matrix_status_desc, :course_name, :model_custom_name
     
   end
+  
+  def has_children?
+    errors.add(:base, "Existem Disciplinas associadas a esta Matriz") unless matrix_disciplines.count == 0
+    errors.add(:base, "Existem Grades Horárias associadas a esta Matriz") unless timetables.count == 0  
+    errors.add(:base, "Existem Turmas associadas a esta Matriz") unless school_classes.count == 0  
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
+  end  
+  
 end
