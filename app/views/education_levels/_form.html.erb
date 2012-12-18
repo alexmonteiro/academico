@@ -1,21 +1,14 @@
-<%= form_for(@education_level) do |f| %>
-  <% if @education_level.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@education_level.errors.count, "error") %> prohibited this education_level from being saved:</h2>
-
-      <ul>
-      <% @education_level.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @education_level, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :level, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :level, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :level %><br />
-    <%= f.text_field :level %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                education_levels_path, :class => 'btn' %>
   </div>
 <% end %>

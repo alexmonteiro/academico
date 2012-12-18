@@ -14,11 +14,11 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              states_path, :class => 'btn'  %>
+              country_states_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_state_path(@state), :class => 'btn' %>
+              edit_country_state_path, :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              state_path(@state),
+              country_state_path,
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>

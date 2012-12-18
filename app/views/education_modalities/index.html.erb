@@ -1,25 +1,36 @@
-<h1>Listing education_modalities</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Education step</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @education_modalities.each do |education_modality| %>
-  <tr>
-    <td><%= education_modality.description %></td>
-    <td><%= education_modality.education_step %></td>
-    <td><%= link_to 'Show', education_modality %></td>
-    <td><%= link_to 'Edit', edit_education_modality_path(education_modality) %></td>
-    <td><%= link_to 'Destroy', education_modality, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = EducationModality.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:education_step_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @education_modalities.each do |education_modality| %>
+      <tr>
+        <td><%= link_to education_modality.id, education_modality_path(education_modality) %></td>
+        <td><%= education_modality.description %></td>
+        <td><%= education_modality.education_step.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_education_modality_path(education_modality), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      education_modality_path(education_modality),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Education modality', new_education_modality_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_education_modality_path,
+            :class => 'btn btn-primary' %>

@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:nationality) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,6 +18,12 @@
         <td><%= link_to country.id, country_path(country) %></td>
         <td><%= country.name %></td>
         <td><%= country.nationality %></td>
+        <td>
+          <%= link_to country_states_path(country) do %>
+            <% states = State.where("country_id = ?", country.id)%>
+            <i class="icon-globe"></i> <%= states.count %>
+          <%end%>
+        </td>        
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_country_path(country), :class => 'btn btn-mini' %>

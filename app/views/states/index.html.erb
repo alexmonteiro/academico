@@ -1,6 +1,7 @@
 <%- model_class = State.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h3><%= link_to @country.name, country_path(@country) %></h3>
 </div>
 <table class="table table-striped">
   <thead>
@@ -8,22 +9,24 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:acronym) %></th>
-      <th><%= model_class.human_attribute_name(:country_id) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>      
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @states.each do |state| %>
       <tr>
-        <td><%= link_to state.id, state_path(state) %></td>
+        <td><%= link_to state.id, country_state_path(:id => state.id) %></td>
         <td><%= state.name %></td>
         <td><%= state.acronym %></td>
-        <td><%= state.country.name %></td>
+        <td>
+         <%= link_to "<i class='icon-globe'></i> ".html_safe + state.cities.count.to_s, country_state_cities_path(:state_id => state.id) %>
+        </td>        
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_state_path(state), :class => 'btn btn-mini' %>
+                      edit_country_state_path(:id => state.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      state_path(state),
+                      country_state_path(:id => state.id),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -34,5 +37,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_state_path,
+            new_country_state_path,
             :class => 'btn btn-primary' %>

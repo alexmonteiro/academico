@@ -1,23 +1,34 @@
-<h1>Listing education_levels</h1>
-
-<table>
-  <tr>
-    <th>Level</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @education_levels.each do |education_level| %>
-  <tr>
-    <td><%= education_level.level %></td>
-    <td><%= link_to 'Show', education_level %></td>
-    <td><%= link_to 'Edit', edit_education_level_path(education_level) %></td>
-    <td><%= link_to 'Destroy', education_level, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = EducationLevel.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:level) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @education_levels.each do |education_level| %>
+      <tr>
+        <td><%= link_to education_level.id, education_level_path(education_level) %></td>
+        <td><%= education_level.level %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_education_level_path(education_level), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      education_level_path(education_level),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Education level', new_education_level_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_education_level_path,
+            :class => 'btn btn-primary' %>
