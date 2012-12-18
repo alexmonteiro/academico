@@ -1,4 +1,4 @@
-<%= form_for @discipline_class, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [@school_class, @discipline_class], :html => { :class => 'form-horizontal' } do |f| %>
 <% if @discipline_class.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
     <h2><%= pluralize(@discipline_class.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
@@ -11,19 +11,13 @@
   </div>
 <% end %>
 
-	<div class="control-group">
-	  <%= f.label :school_class_id, :class => 'control-label' %>
-	  <div class="controls">
-	  <%= select_tag 'discipline_class[school_class_id]', options_from_collection_for_select(SchoolClass.find(:all), "id", "model_custom_name",SchoolClass.find_by_identifier(params[:school_class_id]).try(:id)), :class => 'select_field', :prompt => "...Selecione...", :class => 'field span8', :id => "discipline_class_school_class_id", :disabled => false %>
-	  </div>
-	</div>
+<h2><%=  @school_class.model_custom_name %></h2>
 	<div class="control-group">
 	  <%= f.label :matrix_discipline_id, :class => 'control-label' %>
 	    <div class="controls"  id="turmaDisciplinas"> 
-		     <%= render :partial => 'disciplines'%>
+		     <%= select_tag 'discipline_class[matrix_discipline_id]', options_from_collection_for_select(@school_class.course_matrix.matrix_disciplines, "id", "discipline_name"), :class => 'select_field', :prompt => "...Selecione...", :class => 'field span8' %>
 	    </div>
 	</div>
-
 
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>
@@ -57,11 +51,12 @@
   </div>
 
 
-	<div class="form-actions">
-	  <%= f.submit nil, :class => 'btn btn-primary' %>
-	  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-	              discipline_classes_path, :class => 'btn' %>
-	</div>
+  <div class="form-actions">
+	<%= f.submit nil, :class => 'btn btn-primary' %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	              school_class_discipline_classes_path, :class => 'btn' %>
+  </div>
+
 
 
 <% end %>

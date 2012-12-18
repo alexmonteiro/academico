@@ -1,6 +1,6 @@
 <%- model_class = RegistrationClass -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1> 
+  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1> 
   <h2><%= @registration.registration_number %> - <%= @registration.student_name %></h2>
   <h3>Curso: <%= @registration.course_name %></h3>  
   <h4>Stiuação: <%= @registration.registration_status_description %></h4>  
@@ -104,5 +104,5 @@
 
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_registration_class_path,
+            new_registration_registration_class_path(@registration),
             :class => 'btn btn-primary' %>

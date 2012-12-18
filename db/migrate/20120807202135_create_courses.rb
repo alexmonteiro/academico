@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :code
       t.string :name
       t.string :nickname
-      t.string :goal
+      t.text :goal
       t.integer :maxtime
       t.integer :mintime
       t.date :started_at

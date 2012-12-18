@@ -122,6 +122,7 @@ pt-BR:
         maxseasons: "Período"
         isoptative: "Optativa?"
         isdependence: "Dependencia?"
+        pre_discipline_ids: "Pré Requisito"
       teaching_equipament:
         description: "Descrição"
         arrival_date: "Data de entrada"
@@ -260,7 +261,11 @@ pt-BR:
       techaxis:
         techaxis: "Descrição"
         techaxis_type_id: "Eixo"  
-                                 
+        state_id: "Estado"  
+      matrix_discipline_prerequisite:
+        matrix_discipline_id: "Disciplina"                
+        pre_matrix_discipline_id: "Requisito"                        
+        
     models:
       person: "Pessoa"  
       class_season: "Período Letivo"
@@ -296,6 +301,9 @@ pt-BR:
       education_modality: "Modalidade"
       techaxis_type: "Eixo Tecnológico"
       techaxis: "Área"
+      state: "Estados"      
+      city: "Cidades"
+      matrix_discipline_prerequisite: "Pré requisitos"      
       
   action:
       actions: "Ações"

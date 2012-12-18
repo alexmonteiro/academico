@@ -10,7 +10,7 @@ class DisciplineClass < ActiveRecord::Base
   before_destroy :has_children?
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
-  validates :school_class_id, :matrix_discipline_id, :code, :presence => true
+  validates :school_class_id, :matrix_discipline_id, :code, :vancancies, :presence => true
 
   def vacancies
     self.vancancies
@@ -27,6 +27,11 @@ class DisciplineClass < ActiveRecord::Base
   def discipline_name
     self.matrix_discipline.try(:discipline_name)
   end  
+  
+  def course_name
+    self.matrix_discipline.try(:course_name)
+  end  
+  
   
   def school_class_identifier
     self.school_class.try(:identifier)
@@ -65,6 +70,10 @@ class DisciplineClass < ActiveRecord::Base
   # Retorna String de do tipo NN/MM onde NN = aulas ministradas e MM = aulas previstas
   def discipline_class_classes_taught_planned
     "#{self.records_taught_count}/#{self.records_planned_count}"
+  end
+  
+  def discipline_year
+    self.started_at
   end
   
   #Retorna String com professor(es)

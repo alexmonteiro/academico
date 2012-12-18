@@ -5,7 +5,7 @@ class SchoolClass < ActiveRecord::Base
   has_many   :matrix_disciplines, :foreign_key => "matrix_id"
   has_many   :discipline_classes
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
-  default_scope :order => 'identifier DESC'
+  default_scope :order => 'id DESC'
   
   validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
   validates_uniqueness_of :identifier
@@ -17,7 +17,7 @@ class SchoolClass < ActiveRecord::Base
     code = self.course_matrix.course.try(:code)
     turno = self.shift_type_id.to_s
     modulo = self.period.to_s.rjust(2,'0')
-    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier.chop}_'").count
+    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier}_'").count
     year + number + code + turno  + modulo + ('A'..'Z').to_a[ct]
   end
   
@@ -38,7 +38,8 @@ class SchoolClass < ActiveRecord::Base
   end  
 
   def school_class_year
-    self.class_season.try(:year)
+    #self.class_season.try(:year)
+    self.course_matrix.try(:started_at).strftime('%Y')
   end
   
   searchable do
