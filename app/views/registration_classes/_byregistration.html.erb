@@ -6,41 +6,6 @@
   <h4>Stiuação: <%= @registration.registration_status_description %></h4>  
 
 </div>
-<% @registration_classes.group_by(&:school_class_identifier).each do |turma, classes| %>
-<h2>Turma: <%= turma%></h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:discipline_class_id) %></th>
-      <th><%= model_class.human_attribute_name(:registered_at) %></th>
-      <th><%= model_class.human_attribute_name(:registration_class_status_id) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-      <%classes.each do |classe|%>
-      <tr>
-        <td><%= link_to classe.id, registration_class_path(classe) %></td>
-        <td><%= classe.discipline_class.try(:discipline_name)%></td>
-        <td><%=l classe.registered_at if classe.registered_at %></td>
-        <td><%= classe.registration_class_status.try(:description) %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_registration_class_path(classe), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      registration_class_path(classe),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-     <%end%>
-  </tbody>
-</table>
-<br/>
-<% end %>
-
 
 <% @registration.course_matrix.matrix_disciplines.group_by(&:maxseasons).each do |periodo, disciplinas| %>
 <div class="row-fluid span12">
@@ -55,6 +20,8 @@
 		 <td><strong>Presenças</strong></td>	
 		 <td><strong>Fq (%)</strong></td>	
 		 <td><strong>Média</strong></td>
+		 <td><strong>Situação</strong></td>
+ 		 <td><strong>Ações</strong></td>
 		</tr>
 		<tbody>
 		 <% disciplinas.sort_by(&:discipline_name).each do |disciplina| %>
@@ -66,6 +33,17 @@
                <td><%= enturmacao.is_present_count %></td>
                <td><%= enturmacao.frequency %></td>
                <td><%= enturmacao.model_student_result_average %></td>
+               <td><%= enturmacao.registration_class_status.try(:description) %></td>
+               <td>
+		          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+		                      edit_registration_registration_class_path(:id => enturmacao.id), :class => 'btn btn-mini' %>
+		          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		                      registration_registration_class_path(:id => enturmacao.id),
+		                      :method => :delete,
+		                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+		                      :class => 'btn btn-mini btn-danger' %>               	
+
+               </td>
 		    <%end%>
 		  </tr>
 		 <% end %>
@@ -75,31 +53,6 @@
 </div>
 <% end %>
 <br/>
-
-
-<!-- 
-<% @registration.course_matrix.matrix_disciplines.group_by(&:maxseasons).each do |periodo, disciplinas| %>
-<div class="row-fluid span12">
-    <h2>Período: <%= periodo %> </h2>
-    <div class="span2">
-      <%disciplinas.sort_by(&:discipline_name).each do |disciplina|%>
-        <strong><%=disciplina.discipline_name%> </strong>
-	          <table class="table table-bordered table-condensed">
-	          <% disciplina.discipline_classes.each do |classe| %>
- 	            <% is_registred =  classe.registration_classes.where(:registration_id => @registration.id).count %>
-	            <tr class="<%= (is_registred > 0 ? 'success' : '')%>">
-				  <td>	
-					 <%= classe.school_class_identifier %>
-				  </td>	
-				</tr>
-	          <%end%>
-	         </table>
-      <%end%>
-    </div>
-</div>
-<% end %>
-<br/>
--->
 
 
 

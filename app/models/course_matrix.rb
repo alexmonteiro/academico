@@ -6,6 +6,7 @@ class CourseMatrix < ActiveRecord::Base
   has_many :matrix_disciplines, :foreign_key => :matrix_id
   has_many :timetables, :foreign_key => :matrix_id
   has_many :school_classes, :foreign_key => :matrix_id
+  has_many :course_matrix_academic_rules
   before_destroy :has_children?
   attr_accessible :ended_at, :maxdisciplines, :maxseasons, :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id, :course_id
   default_scope :order => "id DESC"
@@ -47,6 +48,8 @@ class CourseMatrix < ActiveRecord::Base
     errors.add(:base, "Existem Disciplinas associadas a esta Matriz") unless matrix_disciplines.count == 0
     errors.add(:base, "Existem Grades Horárias associadas a esta Matriz") unless timetables.count == 0  
     errors.add(:base, "Existem Turmas associadas a esta Matriz") unless school_classes.count == 0  
+    errors.add(:base, "Existem Regras Acadêmicas associadas a esta Matriz") unless course_matrix_academic_rules.count == 0  
+    
    
     if errors.size > 0
      false

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Academic rule type:</b>
+  <%= @academic_rule.academic_rule_type %>
+</p>
+
+<p>
+  <b>Operator:</b>
+  <%= @academic_rule.operator %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @academic_rule.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_academic_rule_path(@academic_rule) %> |
+<%= link_to 'Back', academic_rules_path %>

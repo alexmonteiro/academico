@@ -10,7 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205183238) do
+ActiveRecord::Schema.define(:version => 20121218134837) do
+
+  create_table "academic_rule_types", :force => true do |t|
+    t.string   "rule"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "academic_rules", :force => true do |t|
+    t.integer  "academic_rule_type_id"
+    t.string   "operator"
+    t.integer  "value"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "academic_rules", ["academic_rule_type_id"], :name => "index_academic_rules_on_academic_rule_type_id"
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -132,6 +148,16 @@ ActiveRecord::Schema.define(:version => 20121205183238) do
   add_index "course_matrices", ["matrix_evaluation_type_id"], :name => "index_course_matrices_on_matrix_evaluation_type_id"
   add_index "course_matrices", ["matrix_status_id"], :name => "index_course_matrices_on_matrix_status_id"
 
+  create_table "course_matrix_academic_rules", :force => true do |t|
+    t.integer  "course_matrix_id"
+    t.integer  "academic_rule_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "course_matrix_academic_rules", ["academic_rule_id"], :name => "index_course_matrix_academic_rules_on_academic_rule_id"
+  add_index "course_matrix_academic_rules", ["course_matrix_id"], :name => "index_course_matrix_academic_rules_on_course_matrix_id"
+
   create_table "course_statuses", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
@@ -155,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20121205183238) do
     t.string   "code"
     t.string   "name"
     t.string   "nickname"
-    t.string   "goal"
+    t.text     "goal"
     t.integer  "maxtime"
     t.integer  "mintime"
     t.date     "started_at"
