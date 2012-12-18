@@ -79,11 +79,21 @@ class DisciplinesController < ApplicationController
   # DELETE /disciplines/1.json
   def destroy
     @discipline = Discipline.find(params[:id])
-    @discipline.destroy
-
-    respond_to do |format|
-      format.html { redirect_to course_disciplines_path }
-      format.json { head :no_content }
+    if @discipline.destroy
+      respond_to do |format|
+        format.html { redirect_to course_disciplines_path, :notice => "Disciplina #{@discipline.name} excluida com sucesso." }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+        respond_to do |format|
+          @discipline.errors[:base].each do |error|
+           error_message += "<li>#{error}</li>"
+          format.html { redirect_to request.referer, :alert => error_message}
+          format.json { render :json => @discipline.errors, :status => :unprocessable_entity }
+         end
+      end
     end
-  end
+  end  
+  
 end

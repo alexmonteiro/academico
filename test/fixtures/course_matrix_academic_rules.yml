@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  course_matrix: 
+  academic_rule: 
+
+two:
+  course_matrix: 
+  academic_rule: 

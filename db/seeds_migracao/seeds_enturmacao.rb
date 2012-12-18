@@ -29,3 +29,5 @@ ActiveRecord::Migration.execute("SELECT SETVAL('registration_classes_id_seq', 1,
 
 RegistrationClass.create([])
 ## Colar o código aqui
+
+])

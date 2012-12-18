@@ -70,18 +70,44 @@ class RegistrationClassesController < ApplicationController
 
   # POST /registration_classes
   # POST /registration_classes.json
-  def create
+  def create        
     @registration_class = RegistrationClass.new(params[:registration_class])
 
-    respond_to do |format|
-      if @registration_class.save
-        format.html { redirect_to @registration_class, :notice => 'Enturmação criada com sucesso.' }
-        format.json { render :json => @registration_class, :status => :created, :location => @registration_class }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
-      end
+    if params.has_key?(:discipline_class_id)
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+     @registration_class.discipline_class_id = params[:discipline_class_id]
+
+
+     respond_to do |format|
+       if @registration_class.save
+         format.html { redirect_to @registration_class, :notice => 'Enturmação criada com sucesso.' }
+         format.json { render :json => @registration_class, :status => :created, :location => @registration_class }
+       else
+         format.html { render :action => "new" }
+         format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+       end
+     end
+
     end
+    
+    
+    if params.has_key?(:registration_id)
+     @registration = Registration.find(params[:registration_id])
+     @registration_class.registration_id = params[:registration_id]
+
+     respond_to do |format|
+       if @registration_class.save
+         format.html { redirect_to registration_registration_classes_path, :notice => 'Enturmação criada com sucesso.' }
+         format.json { render :json => @registration_class, :status => :created, :location => @registration_class }
+       else
+         format.html { render :action => "new" }
+         format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+       end
+     end
+     
+    end
+    
+    
   end
 
   # PUT /registration_classes/1
@@ -89,15 +115,41 @@ class RegistrationClassesController < ApplicationController
   def update
     @registration_class = RegistrationClass.find(params[:id])
 
-    respond_to do |format|
-      if @registration_class.update_attributes(params[:registration_class])
-        format.html { redirect_to discipline_class_registration_classes_path(@registration_class.discipline_class), :notice => 'Enturmação atualizada com sucesso.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
-      end
+    if params.has_key?(:discipline_class_id)
+     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+     @registration_class.discipline_class_id = params[:discipline_class_id]
+
+     respond_to do |format|
+       if @registration_class.update_attributes(params[:registration_class])
+         format.html { redirect_to discipline_class_registration_classes_path(@registration_class.discipline_class), :notice => 'Enturmação atualizada com sucesso.' }
+         format.json { head :no_content }
+       else
+         format.html { render :action => "edit" }
+         format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+       end
+     end
+     
     end
+    
+    
+    if params.has_key?(:registration_id)
+     @registration = Registration.find(params[:registration_id])
+     @registration_class.registration_id = params[:registration_id]
+
+     respond_to do |format|
+       if @registration_class.update_attributes(params[:registration_class])
+         format.html { redirect_to registration_registration_classes_path, :notice => 'Enturmação atualizada com sucesso.'}
+         format.json { render :json => @registration_class, :status => :created, :location => @registration_class }
+       else
+         format.html { render :action => "edit" }
+         format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+       end
+     end
+     
+    end    
+    
+    
+
   end
 
 
@@ -128,20 +180,52 @@ class RegistrationClassesController < ApplicationController
   # DELETE /registration_classes/1.json
   def destroy    
      @registration_class = RegistrationClass.find(params[:id])
-     if @registration_class.destroy
-       respond_to do |format|
-         format.html { redirect_to discipline_class_registration_classes_url, :notice => 'Enturmação excluída com sucesso.' }
-         format.json { head :no_content }
+     
+     if params.has_key?(:discipline_class_id)
+      @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+      @registration_class.discipline_class_id = params[:discipline_class_id]
+
+       if @registration_class.destroy
+         respond_to do |format|
+           format.html { redirect_to discipline_class_registration_classes_url, :notice => 'Enturmação excluída com sucesso.' }
+           format.json { head :no_content }
+         end
+       else
+         error_message = ""
+         respond_to do |format|
+           @registration_class.errors[:base].each do |error|
+            error_message += "<li>#{error}</li>"
+           format.html { redirect_to request.referer, :alert => error_message}
+           format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+          end
        end
-     else
-       error_message = ""
-       respond_to do |format|
-         @registration_class.errors[:base].each do |error|
-          error_message += "<li>#{error}</li>"
-         format.html { redirect_to request.referer, :alert => error_message}
-         format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
-        end
+      end
+      
      end
-    end    
+
+
+     if params.has_key?(:registration_id)
+      @registration = Registration.find(params[:registration_id])
+      @registration_class.registration_id = params[:registration_id]
+
+
+       if @registration_class.destroy
+         respond_to do |format|
+           format.html { redirect_to registration_registration_classes_path, :notice => 'Enturmação excluída com sucesso.' }
+           format.json { head :no_content }
+         end
+       else
+         error_message = ""
+         respond_to do |format|
+           @registration_class.errors[:base].each do |error|
+            error_message += "<li>#{error}</li>"
+           format.html { redirect_to request.referer, :alert => error_message}
+           format.json { render :json => @registration_class.errors, :status => :unprocessable_entity }
+          end
+       end
+      end      
+
+     end     
+        
   end
 end

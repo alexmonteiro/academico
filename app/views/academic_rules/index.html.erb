@@ -1,0 +1,27 @@
+<h1>Listing academic_rules</h1>
+
+<table>
+  <tr>
+    <th>Academic rule type</th>
+    <th>Operator</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @academic_rules.each do |academic_rule| %>
+  <tr>
+    <td><%= academic_rule.academic_rule_type %></td>
+    <td><%= academic_rule.operator %></td>
+    <td><%= academic_rule.value %></td>
+    <td><%= link_to 'Show', academic_rule %></td>
+    <td><%= link_to 'Edit', edit_academic_rule_path(academic_rule) %></td>
+    <td><%= link_to 'Destroy', academic_rule, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Academic rule', new_academic_rule_path %>

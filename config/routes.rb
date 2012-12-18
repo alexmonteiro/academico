@@ -1,5 +1,9 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :academic_rules
+
+  resources :academic_rule_types
+
   resources :discipline_class_exam_types
 
   resources :class_record_types
@@ -93,6 +97,7 @@ AcademicoRails::Application.routes.draw do
         end
       end
     end
+    resources :course_matrix_academic_rules, :path => "regrasacademicas"
 
   end
   
