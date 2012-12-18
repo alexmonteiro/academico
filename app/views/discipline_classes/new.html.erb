@@ -3,4 +3,8 @@
   <h1><i class="icon-pencil"></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
-<%= render :partial => 'form' %>
+<% if (params[:school_class_id] && !params[:school_class_id].blank?) %>
+ <%= render :partial => 'formbyschoolclass' %>
+<%else%>
+ <%= render :partial => 'form' %>
+<%end%>

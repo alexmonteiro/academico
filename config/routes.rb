@@ -4,7 +4,7 @@ AcademicoRails::Application.routes.draw do
 
   resources :class_record_types
 
-  resources :registration_classes, :path =>"enturmacoes"
+#  resources :registration_classes, :path =>"enturmacoes"
 
   resources :registration_class_statuses
 
@@ -29,8 +29,6 @@ AcademicoRails::Application.routes.draw do
   resources :class_times
 
   resources :day_weeks
-
-  resources :class_teachings, :path =>"docencias"
 
   resources :class_records, :path =>"aulas"  
 
@@ -76,7 +74,9 @@ AcademicoRails::Application.routes.draw do
   resources :matrix_discipline_groups
 
   resources :course_matrices, :path => "matrizcurricular" do
-    resources :matrix_disciplines, :path => "disciplinas"
+    resources :matrix_disciplines, :path => "disciplinas" do
+      resources :matrix_discipline_prerequisites, :path => "prerequisitos"
+    end
     resources :timetables, :path =>"gradehoraria" do
       resources :timetable_class_times, :path =>"horas"
     end
