@@ -7,7 +7,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:person_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,7 +14,6 @@
   <tbody>
     <% @class_teachings.each do |class_teaching| %>
       <tr>
-        <td><%= link_to class_teaching.id, class_teaching_path(class_teaching) %></td>
         <td><%= class_teaching.person.try(:name) %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
