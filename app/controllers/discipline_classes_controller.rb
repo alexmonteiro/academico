@@ -31,9 +31,16 @@ class DisciplineClassesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @discipline_class }
-      format.pdf do
-        pdf = DisciplineClassPDF.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
-        send_data pdf.render, :filename => "Diário_#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}", :type => "application/pdf", :disposition => "inline"
+      if params[:report_discipline] == "school_class"
+        format.pdf do
+          pdf = DisciplineClassPDF.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
+          send_data pdf.render, :filename => "Diário_de_Conteúdo_Ministrado_#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}", :type => "application/pdf", :disposition => "inline"
+        end
+      elsif params[:report_discipline] == "class_record"
+        format.pdf do
+          pdf = RegistrationClassPdf.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
+          send_data pdf.render, :filename => "Diário_de_Frequência#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}.#{Time.now.strftime("%d%m%Y")}", :type => "application/pdf", :disposition => "inline"
+        end
       end
     end
   end

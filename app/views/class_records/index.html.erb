@@ -50,3 +50,38 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_discipline_class_class_record_path,
             :class => 'btn btn-primary' %>
+            
+<div class="btn-group pull-right">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			<i class='icon-print'></i>Imprimir Conteúdo Ministrado
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "school_class", :preenchido => true ), :tabindex => "-1" %></li>
+		<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "school_class" ), :tabindex => "-1" %></li>
+	</ul>
+	
+</div>
+<div class=" btn-group pull-right">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		<i class='icon-print'></i>Imprimir Diário de Frequência
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_record", :preenchido => true ), :tabindex => "-1" %></li>
+		<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_record" ), :tabindex => "-1" %></li>
+	</ul>
+</div>
+<!-- <div class="btn-group pull-left">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			<i class='icon-print'></i>Imprimir
+		<span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+		<li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf") + "?preenchido=true", :tabindex => "-1" %></li>
+		<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf"), :tabindex => "-1" %></li>
+	</ul>
+	
+</div>
+           -->  
+
