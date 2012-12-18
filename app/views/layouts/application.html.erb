@@ -50,18 +50,16 @@
 	            <ul class="nav nav-list">
 	              <li class="nav-header">Infraestrutura</li>
 		          <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i>Estrutura Organizacional</a></li>
-			      <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>
-                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i>Matrículas</a></li>							 
+			      <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>                  							 
 
 	              <li class="nav-header">Registros Acadêmicos</li>
              	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><a href=<%= courses_path%> ><i class="icon-book"></i>Cursos & Disciplinas</a></li>
-                  <li class="<%= ('course_matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= course_matrices_path%> ><i class="icon-table"></i>Matriz Curricular</a></li>
-                  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><a href=<%= course_vacancies_path%> ><i class="icon-bullhorn"></i>Oferta de Vagas</a></li>
-
-	              <li class="nav-header">Perído Letivo</li>
-             	  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
              	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i>Período Letivo</a></li>
+             	  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><a href=<%= course_vacancies_path%> ><i class="icon-bullhorn"></i>Oferta de Vagas</a></li>
+                  <li class="<%= ('course_matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= course_matrices_path%> ><i class="icon-table"></i>Matriz Curricular</a></li>
+                  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
                   <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes & Aulas</a></li>
+                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i>Matrículas</a></li>
 
                   <li class="nav-header">Cadastros Básicos</li>
                   <li class="<%= ('countries' == params[:controller] ? 'active' : '')%>"><a href=<%= countries_path%> ><i class="icon-file"></i>Países/Estados/Cidades</a></li>                
@@ -70,7 +68,7 @@
                   <li class="<%= ('education_levels' == params[:controller] ? 'active' : '')%>"><a href=<%= education_levels_path%> ><i class="icon-file"></i>Níveis</a></li>
                   <li class="<%= ('techaxis_types' == params[:controller] ? 'active' : '')%>"><a href=<%= techaxis_types_path%> ><i class="icon-file"></i>Eixos Tecnológicos/Áreas</a></li>
                   <li class="<%= ('races' == params[:controller] ? 'active' : '')%>"><a href=<%= races_path%> ><i class="icon-file"></i>Etnias</a></li>
-               
+                   
 	            </ul>
 	          </div><!--/.well -->
 	        </div><!--/span-->
