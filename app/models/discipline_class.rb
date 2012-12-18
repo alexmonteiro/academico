@@ -81,6 +81,14 @@ class DisciplineClass < ActiveRecord::Base
     end
     "#{@teachings}"
   end
+  
+  def class_records_sort_by_name
+    students_sort_by_name = []
+    self.registration_classes.sort_by(&:model_student_name_whitout_accents).each_with_index do |class_record_presence, i|
+      students_sort_by_name << class_record_presence
+    end
+    students_sort_by_name
+  end
 
   searchable do
     text :id, :discipline_name, :code, :school_class_identifier

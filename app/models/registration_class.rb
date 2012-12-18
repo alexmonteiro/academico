@@ -22,10 +22,18 @@ class RegistrationClass < ActiveRecord::Base
   
   def student_name
     self.registration.person.try(:name)
-  end
+  end  
+  
+  def student_id
+    self.registration.person.try(:id)
+  end 
   
   def model_student_name_whitout_accents
     self.registration.person.try(:name).removeaccents
+  end
+    
+  def student_registration_number
+    self.registration.registration_number
   end
   
   #Calcula a média do aluno naquela classe (Turma+Disciplina)
@@ -57,6 +65,17 @@ class RegistrationClass < ActiveRecord::Base
   #Calcula quantidade de aulas
   def class_records_count
     self.discipline_class.class_records.count
+  end
+  
+  #Total de Faltas
+  def is_ausent_count
+    self.class_record_presences.where(:is_present => false).count
+  end
+  
+  #Porcentagens de Faltas
+  def is_ausent_percent
+    ap = ((self.is_ausent_count.to_f / self.class_records_count.to_f) * Float(100))
+    ap.round(2)
   end
   
   #Calcula frequencia

@@ -24,6 +24,10 @@ class ClassRecord < ActiveRecord::Base
     end    
   end
   
+  def students_class
+    self.discipline_class.registration_classes
+  end
+  
   # Retorna a quantidade de alunos inscritos na classe mas sem nota lançada
   def count_class_registrations_without_results
     self.discipline_class.registration_classes.count - self.class_record_presences.count

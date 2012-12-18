@@ -7,9 +7,7 @@ class DisciplineClassPDF < Prawn::Document
     #header
     title
     content
-    move_down(4000)
     foot
-    #foot_for
   end
   
   
@@ -42,6 +40,7 @@ class DisciplineClassPDF < Prawn::Document
                       ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline.discipline_class_classes_taught_planned}"],
                       ["<b>Carga Horária:</b> #{@discipline.discipline_class_workload}", ""]]
     data_content = [["Data","Tipo","Horário","Conteúdo Ministrado","Observações"]]
+    
     
     
     if @preenchido.blank? || @discipline.class_records.blank?
