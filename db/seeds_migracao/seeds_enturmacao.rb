@@ -27,5 +27,5 @@ ARRAY_TO_STRING(ARRAY[],'')
 RegistrationClass.delete_all
 ActiveRecord::Migration.execute("SELECT SETVAL('registration_classes_id_seq', 1, false);")
 
-RegistrationClass.create([
+RegistrationClass.create([])
 ## Colar o código aqui

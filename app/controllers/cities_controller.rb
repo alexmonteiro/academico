@@ -2,8 +2,9 @@ class CitiesController < ApplicationController
   # GET /cities
   # GET /cities.json
   def index
-    @cities = City.search(params[:search], params[:page])
-
+    @state = State.find(params[:state_id])
+    @cities = City.where(:state_id => params[:state_id]).paginate(:page => params[:page], :per_page => 10, :order => 'name')
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @cities }
@@ -24,6 +25,8 @@ class CitiesController < ApplicationController
   # GET /cities/new
   # GET /cities/new.json
   def new
+    @country = Country.find(params[:country_id])
+    @state = State.find(params[:state_id])
     @city = City.new
 
     respond_to do |format|
@@ -35,16 +38,19 @@ class CitiesController < ApplicationController
   # GET /cities/1/edit
   def edit
     @city = City.find(params[:id])
+    @state = State.find(@city.state_id)
+    @country = Country.find(@state.country_id)
   end
 
   # POST /cities
   # POST /cities.json
   def create
     @city = City.new(params[:city])
-
+    @city.state_id = params[:state_id]
+    
     respond_to do |format|
       if @city.save
-        format.html { redirect_to @city, :notice => 'City was successfully created.' }
+        format.html { redirect_to country_state_cities_path, :notice => t('controllermessage.insert') }
         format.json { render :json => @city, :status => :created, :location => @city }
       else
         format.html { render :action => "new" }
@@ -60,7 +66,7 @@ class CitiesController < ApplicationController
 
     respond_to do |format|
       if @city.update_attributes(params[:city])
-        format.html { redirect_to @city, :notice => 'City was successfully updated.' }
+        format.html { redirect_to country_state_city_path, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +82,7 @@ class CitiesController < ApplicationController
     @city.destroy
 
     respond_to do |format|
-      format.html { redirect_to cities_url }
+      format.html { redirect_to country_state_cities_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end

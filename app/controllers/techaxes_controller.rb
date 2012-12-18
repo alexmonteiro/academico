@@ -2,8 +2,9 @@ class TechaxesController < ApplicationController
   # GET /techaxes
   # GET /techaxes.json
   def index
-    @techaxes = Techaxis.all(:conditions => {:techaxis_type_id => params[:techaxis_type_id]})
-
+    @techaxis_type = TechaxisType.find(params[:techaxis_type_id])
+    @techaxes = Techaxis.where("techaxis_type_id = ?", params[:techaxis_type_id]) 
+     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @techaxes }
@@ -24,6 +25,7 @@ class TechaxesController < ApplicationController
   # GET /techaxes/new
   # GET /techaxes/new.json
   def new
+    @techaxis_type = TechaxisType.find(params[:techaxis_type_id])
     @techaxis = Techaxis.new
 
     respond_to do |format|
@@ -35,16 +37,18 @@ class TechaxesController < ApplicationController
   # GET /techaxes/1/edit
   def edit
     @techaxis = Techaxis.find(params[:id])
+    @techaxis_type = TechaxisType.find(params[:techaxis_type_id])
   end
 
   # POST /techaxes
   # POST /techaxes.json
   def create
     @techaxis = Techaxis.new(params[:techaxis])
-
+    @techaxis.techaxis_type_id = params[:techaxis_type_id]
+    
     respond_to do |format|
       if @techaxis.save
-        format.html { redirect_to @techaxis, :notice => 'Techaxis was successfully created.' }
+        format.html { redirect_to techaxis_type_techaxes_path, :notice => t('controllermessage.insert') }
         format.json { render :json => @techaxis, :status => :created, :location => @techaxis }
       else
         format.html { render :action => "new" }
@@ -60,7 +64,7 @@ class TechaxesController < ApplicationController
 
     respond_to do |format|
       if @techaxis.update_attributes(params[:techaxis])
-        format.html { redirect_to @techaxis, :notice => 'Techaxis was successfully updated.' }
+        format.html { redirect_to techaxis_type_techaxis_path, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +80,7 @@ class TechaxesController < ApplicationController
     @techaxis.destroy
 
     respond_to do |format|
-      format.html { redirect_to techaxes_url }
+      format.html { redirect_to techaxis_type_techaxes_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end

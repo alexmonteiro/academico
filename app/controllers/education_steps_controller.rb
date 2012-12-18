@@ -44,7 +44,7 @@ class EducationStepsController < ApplicationController
 
     respond_to do |format|
       if @education_step.save
-        format.html { redirect_to @education_step, :notice => 'Education step was successfully created.' }
+        format.html { redirect_to @education_step, :notice => t('controllermessage.insert') }
         format.json { render :json => @education_step, :status => :created, :location => @education_step }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EducationStepsController < ApplicationController
 
     respond_to do |format|
       if @education_step.update_attributes(params[:education_step])
-        format.html { redirect_to @education_step, :notice => 'Education step was successfully updated.' }
+        format.html { redirect_to @education_step, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class EducationStepsController < ApplicationController
     @education_step.destroy
 
     respond_to do |format|
-      format.html { redirect_to education_steps_url }
+      format.html { redirect_to education_steps_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end

@@ -69,7 +69,7 @@ pt-BR:
         learning_modality_id: "Modalidade de aprendizagem"
         knowledge_area_id: "Área de conhecimento"
         techaxes_id: "Eixo tecnológico"
-        education_modality_id: "Modalidadce de ensino" 
+        education_modality_id: "Modalidade de ensino" 
         discipline: "Discplinas"
       course_vacancy:
         course_id: "Curso"
@@ -235,13 +235,32 @@ pt-BR:
         gender: "Descrição"
       country:
         name: "Nome"
-        nationality: "Nacionalidade"   
+        nationality: "Nacionalidade"
+        state: "Estados"   
       state:
         name: "Nome"
         acronym: "Sigla"
-        country_id: "País"          
+        country_id: "País"
+        city: "Cidades"          
       city:
         name: "Nome"
+        state_id: "Estado"
+      race:
+        race: "Nome"  
+      education_modality:
+        description: "Descrição" 
+        education_step_id: "Grau" 
+      education_step:
+        description: "Descrição"
+        education_level_id: "Nível"
+      education_level:
+        level: "Nível" 
+      techaxis_type:
+        techaxis_type: "Eixo"
+        techaxis: "Áreas"
+      techaxis:
+        techaxis: "Descrição"
+        techaxis_type_id: "Eixo"  
         state_id: "Estado"  
       matrix_discipline_prerequisite:
         matrix_discipline_id: "Disciplina"                
@@ -274,6 +293,14 @@ pt-BR:
       registration_class: "Enturmação"
       gender: "Sexo"
       country: "País"
+      state: "Estado"
+      city: "Cidade"
+      race: "Etnia"
+      education_step: "Grau"
+      education_level: "Nível"
+      education_modality: "Modalidade"
+      techaxis_type: "Eixo Tecnológico"
+      techaxis: "Área"
       state: "Estados"      
       city: "Cidades"
       matrix_discipline_prerequisite: "Pré requisitos"      

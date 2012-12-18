@@ -113,11 +113,11 @@ AcademicoRails::Application.routes.draw do
 
   resources :learning_modalities
 
-  resources :education_modalities
+  resources :education_modalities, :path => "modalidades"
 
-  resources :education_steps
+  resources :education_steps, :path => "graus" 
 
-  resources :education_levels
+  resources :education_levels, :path => "niveis"
 
   resources :person_addresses
 
@@ -169,19 +169,19 @@ AcademicoRails::Application.routes.draw do
 
   resources :marital_statuses
 
-  resources :races
+  resources :races, :path => 'etnias'
 
   resources :education_degrees
 
   resources :genders, :path => 'sexos'
 
   resources :blood_types
-
-  resources :cities, :path => 'cidades'
-
-  resources :states
-  
-  resources :countries, :path => 'paises'
+ 
+  resources :countries, :path => 'paises' do
+     resources :states, :path => 'estados' do
+        resources :cities, :path => 'cidades'
+     end
+  end
 
   match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
   match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'

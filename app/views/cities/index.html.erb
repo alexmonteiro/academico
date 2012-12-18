@@ -1,27 +1,26 @@
 <%- model_class = City.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h3><%= link_to @state.name, country_state_path(:id => @state.id) %></h3>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:state_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @cities.each do |city| %>
       <tr>
-        <td><%= link_to city.id, city_path(city) %></td>
+        <td><%= link_to city.id, country_state_city_path(:id => city.id) %></td>
         <td><%= city.name %></td>
-        <td><%= city.state.name %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_city_path(city), :class => 'btn btn-mini' %>
+                      edit_country_state_city_path(:id => city.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      city_path(city),
+                      country_state_city_path(:id => city.id),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -32,5 +31,5 @@
 </table>
 <center><%= will_paginate @cities %></center>
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_city_path,
+            new_country_state_city_path,
             :class => 'btn btn-primary' %>

@@ -44,7 +44,7 @@ class TechaxisTypesController < ApplicationController
 
     respond_to do |format|
       if @techaxis_type.save
-        format.html { redirect_to @techaxis_type, :notice => 'Techaxis type was successfully created.' }
+        format.html { redirect_to @techaxis_type, :notice => t('controllermessage.insert')  }
         format.json { render :json => @techaxis_type, :status => :created, :location => @techaxis_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TechaxisTypesController < ApplicationController
 
     respond_to do |format|
       if @techaxis_type.update_attributes(params[:techaxis_type])
-        format.html { redirect_to @techaxis_type, :notice => 'Techaxis type was successfully updated.' }
+        format.html { redirect_to @techaxis_type, :notice => t('controllermessage.update')}
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class TechaxisTypesController < ApplicationController
     @techaxis_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to techaxis_types_url }
+      format.html { redirect_to techaxis_types_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end

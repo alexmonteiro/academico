@@ -44,7 +44,7 @@ class EducationLevelsController < ApplicationController
 
     respond_to do |format|
       if @education_level.save
-        format.html { redirect_to @education_level, :notice => 'Education level was successfully created.' }
+        format.html { redirect_to @education_level, :notice => t('controllermessage.insert') }
         format.json { render :json => @education_level, :status => :created, :location => @education_level }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EducationLevelsController < ApplicationController
 
     respond_to do |format|
       if @education_level.update_attributes(params[:education_level])
-        format.html { redirect_to @education_level, :notice => 'Education level was successfully updated.' }
+        format.html { redirect_to @education_level, :notice => t('controllermessage.update') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class EducationLevelsController < ApplicationController
     @education_level.destroy
 
     respond_to do |format|
-      format.html { redirect_to education_levels_url }
+      format.html { redirect_to education_levels_url, :notice => t('controllermessage.delete') }
       format.json { head :no_content }
     end
   end
