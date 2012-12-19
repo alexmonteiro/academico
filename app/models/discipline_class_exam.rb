@@ -22,7 +22,7 @@ class DisciplineClassExam < ActiveRecord::Base
   end
   
   def has_children?
-    errors.add(:base, "Existem resultados lançados paraa esta avaliação.") unless discipline_class_exam_results.count == 0
+    errors.add(:base, "Existem resultados lançados para esta avaliação.") unless discipline_class_exam_results.count == 0
     if errors.size > 0
      false
     else

@@ -1,4 +1,4 @@
-class RegistrationClassPdf < Prawn::Document
+class ExamsClassPdf < Prawn::Document
   def initialize(params)
     super(:top_margin => 20, :page_layout => :landscape, :page_size => "A4")
     #super()
@@ -7,8 +7,8 @@ class RegistrationClassPdf < Prawn::Document
     #header
     
       #variaveis de Controle
-      qtd_aulas = @discipline.class_records.count
-      repeticoes = qtd_aulas.div 20
+      qtd_aulas = @discipline.discipline_class_exams.count
+      repeticoes = qtd_aulas.div 12
       paginacao_inicio = 0
       paginacao_fim = 0
       #Fim Variáveis de Controle
@@ -46,7 +46,7 @@ class RegistrationClassPdf < Prawn::Document
   def title
     image "app/assets/images/logo-if.png", :at => [0,550], :width => 55, :height => 70
     text "Instituto Federal de Brasília", :align => :center, :size => 18
-    text "Diário de Classe - Relatório de Frequência", :align => :center, :size => 12
+    text "Diário de Classe - Mapa de Notas", :align => :center, :size => 12
     text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14
     move_down(15)
   end
@@ -69,30 +69,32 @@ class RegistrationClassPdf < Prawn::Document
     font_size 9
     #Config do campo Datas e a Linha horizontal
     bounding_box([0, 400], :width => 2200, :font_style => :bold) do
-      vertical_line 0, -40, :at => 225
-      #horizontal_line 240, 640, :at => -31
-      rotate(90, :origin => [00, 00]) do
-        draw_text "Datas", :at => [-32,-235], :font_style => :bold
-      end
+      # vertical_line 0, -40, :at => 225
+      # #horizontal_line 240, 640, :at => -31
+      # rotate(90, :origin => [00, 00]) do
+        # draw_text "Datas", :at => [-32,-235], :font_style => :bold
+      # end
     #fim Config
     
     #Tabela de Cabecalho
     
     #Controle das datas das aulas
-    qtd_aulas = @discipline.class_records.count
-    repeticoes = qtd_aulas.div 20
+    qtd_aulas = @discipline.discipline_class_exams.count
+    repeticoes = qtd_aulas.div 12
     ite = opcoes[:iteracao]
     
     #Iteracoes para o controle das datas de aulas
+    if !@preenchido.blank?
       dates_classes = [] 
-      for i in (ite*20)..(20*(ite+1))-1
-        !@discipline.class_records[i].blank? ? dates_classes << I18n.l(@discipline.class_records[i].recorded_at, :format => "%d/%b") : dates_classes << " "
+      for i in (ite*12)..(12*(ite+1))-1
+        !@discipline.discipline_class_exams[i].blank? ? dates_classes << I18n.l(@discipline.discipline_class_exams[i].applied_at, :format => "%d/%b") : dates_classes << " "
       end
+    end
     #Fim da Iteraca
     #Fim do controle das datas de aulas
     
     # Definição e Desenho da Tabela Cabecalho
-    data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas"]]
+    data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
       
       table(data_head, :header => true) do
         row(0).height = (40)
@@ -104,16 +106,18 @@ class RegistrationClassPdf < Prawn::Document
         row(0).columns(23).padding = [10,0,0,0]
         row(0).columns(24).padding = [10,0,0,0]
         row(0).columns(25).padding = [10,0,0,0]
-        columns(3..34).width = 17
+        columns(3..34).width = 30
         columns(0).width = 25
         columns(1).width = 90
         columns(2).width = 125
-        columns(23).width = 60
-        columns(24).width = 35
-        columns(25).width = 35
+        columns(15).width = 60
+        columns(16).width = 35
+        columns(17).width = 35
+        columns(18).width = 35
         
-        row(0).column(3..22).rotate = 90
-        row(0).column(3..22).padding = [40,-35,-50,5]
+        row(0).column(3..14).rotate = 90
+        #influencia -> [esquerda, cima, direita, baixo]
+        row(0).column(3..14).padding = [45,-35,-35,10]
       end
       
       
@@ -127,7 +131,7 @@ class RegistrationClassPdf < Prawn::Document
     bounding_box([0, 360], :width => 2200) do
     font_size 9
 
-    data_type = [["Legenda para F e C: F - Falta e C - Comparecimento"]]
+    data_type = [["Legenda(s): S/N - Sem Nota"]]
     
     data_footer = [["Visto do Coordenador: ____________________________________ ","Assinatura do Professor: ____________________________________ "]]
     
@@ -168,7 +172,7 @@ class RegistrationClassPdf < Prawn::Document
     data_content = [[" "," "," "] + [" "]*20 + [" "," "," "]]
      if @preenchido.blank?
       @discipline.registration_classes.each_with_index do |student, i|
-        data_content += [["#{i + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*20 + [" "," "," "]]
+        data_content += [["#{i + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*12 + [" "," "," "," "]]
       end
     else
       quantidade_aulas = @discipline.records_planned_count
@@ -178,26 +182,26 @@ class RegistrationClassPdf < Prawn::Document
          ite = opcoes[:iteracao]
          @discipline.class_records_sort_by_name.each_with_index do |student, j|
           presencas = []
-          for i in (ite*20)..(20*(ite+1))-1
+          for i in (ite*12)..(12*(ite+1))-1
             presenca = nil
-            if !@discipline.class_records[i].blank?
-              if !@discipline.class_records[i].class_record_presences.any?
-                presencas << " "
-              else
-                @discipline.class_records[i].class_record_presences.each_with_index do |chamada, k| 
-                  if chamada.model_student_id == student.student_id and chamada.is_present == true
-                    presenca = "C"
-                    break
+            if !@discipline.discipline_class_exams[i].blank?
+              if !@discipline.discipline_class_exams[i].discipline_class_exam_results.any?
+                presenca << " "
+              else  
+                @discipline.discipline_class_exams[i].discipline_class_exam_results.each_with_index do |result, r|
+                  if student.student_id == result.student_id
+                   presenca = result.result.to_s.gsub('.',',')
+                   break;
                   end
                 end
-                presenca.nil? ? presencas << "F" : presencas << presenca
+                presenca.nil? ? presencas << "S/N" : presencas << presenca
               end
             else
-              presencas << " " 
+              presencas << " "
             end
+            
          end
-         
-          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%"]]
+          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%","#{student.model_student_result_average.to_s.gsub('.',',')}"]]
           repeticoes = repeticoes - 1
         end 
       
@@ -211,13 +215,13 @@ class RegistrationClassPdf < Prawn::Document
       # columns(2).width = 100
       
       # columns(3..34).padding = 3.5
-      columns(3..22).width = 17
-      columns(23).width = 60
-      columns(24).width = 35
-      columns(25).width = 35
-      
+      columns(3..22).width = 30
+      columns(15).width = 60
+      columns(16).width = 35
+      columns(17).width = 35
+      columns(18).width = 35
       columns(0..1).align = :center
-      columns(3..25).align = :center
+      columns(3..18).align = :center
     end
   end
   

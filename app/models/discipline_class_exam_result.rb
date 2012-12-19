@@ -14,4 +14,8 @@ class DisciplineClassExamResult < ActiveRecord::Base
     self.registration_class.registration.person.try(:name).removeaccents
   end
   
+  def student_id
+    self.registration_class.registration.person.try(:id)
+  end
+  
 end
