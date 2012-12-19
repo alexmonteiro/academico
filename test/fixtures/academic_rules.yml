@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  academic_rule_type: 
+  operator: MyString
+  value: 1
+
+two:
+  academic_rule_type: 
+  operator: MyString
+  value: 1

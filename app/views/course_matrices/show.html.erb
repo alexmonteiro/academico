@@ -51,13 +51,21 @@
 
 <br/>
 
-<div class="span8">		
-<h2><%=link_to "<i class='icon-group'></i> Turmas".html_safe, '#' %></h2>
- <%@matrix.school_classes.group_by(&:period).each do |periodo, turmas|%>
+<div class="span4">		
+<h2><%=link_to "<i class='icon-group'></i> Turmas".html_safe, course_matrix_school_classes_path(@matrix) %></h2>
+ <% @matrix.school_classes.group_by(&:period).each do |periodo, turmas| %>
    <dt>Período: <%= periodo %></dt>
    <%turmas.each do | turma |%>
      <dd><%= turma.model_identifier_and_period %></dd>
    <%end%>
+ <%end%>
+</div>
+
+
+<div class="span4">		
+<h2><%=link_to "<i class='icon-th-list'></i> Regras Acadêmicas".html_safe, course_matrix_course_matrix_academic_rules_path(@matrix) %></h2>
+ <%@matrix.course_matrix_academic_rules.each do |rules|%>
+     <dd><%= rules.academic_rule_type.try(:rule) %></dd>
  <%end%>
 </div>
 

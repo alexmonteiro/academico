@@ -6,7 +6,8 @@ class RegistrationClass < ActiveRecord::Base
   has_many :discipline_class_exam_results
   attr_accessible :registered_at, :discipline_class_id, :registration_class_status_id, :registration_id
   before_destroy :has_children?
-  validates_uniqueness_of :discipline_class_id, :scope => :registration_id, :message => "já possui esta matrícula associada a classe."
+  validates :registered_at, :discipline_class_id, :registration_class_status_id, :registration_id, :presence => true
+  validates_uniqueness_of :registration_id, :scope => :discipline_class_id, :message => "já possui esta matrícula associada a classe."
   
   def discipline_name
     self.discipline_class.try(:discipline_name)

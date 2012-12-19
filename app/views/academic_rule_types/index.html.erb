@@ -1,0 +1,23 @@
+<h1>Listing academic_rule_types</h1>
+
+<table>
+  <tr>
+    <th>Rule</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @academic_rule_types.each do |academic_rule_type| %>
+  <tr>
+    <td><%= academic_rule_type.rule %></td>
+    <td><%= link_to 'Show', academic_rule_type %></td>
+    <td><%= link_to 'Edit', edit_academic_rule_type_path(academic_rule_type) %></td>
+    <td><%= link_to 'Destroy', academic_rule_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Academic rule type', new_academic_rule_type_path %>

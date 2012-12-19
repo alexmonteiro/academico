@@ -3,9 +3,20 @@
   <h1><i class="icon-group"></i> <%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
                                    :default => "Edit #{model_class.model_name.human}") %></h1>
 </div>
+<% if @registration_class.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@registration_class.errors.count, "error impediu", "errors impediram") %> a gravação:</h2>
+
+    <ul>
+    <% @registration_class.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <% if params.has_key?(:discipline_class_id) %>
-  <%= render :partial => 'formdisciplineclass' %>
+  <%= render :partial => 'formbydisciplineclass' %>
 <% end %>
 <% if params.has_key?(:registration_id) %>
-  <%= render :partial => 'formregistration	' %>
+  <%= render :partial => 'formeditbyregistration' %>
 <% end %>
