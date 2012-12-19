@@ -97,7 +97,15 @@ AcademicoRails::Application.routes.draw do
         end
       end
     end
-    resources :course_matrix_academic_rules, :path => "regrasacademicas"
+    resources :course_matrix_academic_rules, :path => "regrasacademicas" do
+      put :register_rules, :on => :collection
+    end
+    #match 'register_rules', :controller=>'course_matrix_academic_rules', :method => :put, :action => 'register_rules'
+
+    
+
+    
+
 
   end
   

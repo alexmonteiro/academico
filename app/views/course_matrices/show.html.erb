@@ -65,7 +65,7 @@
 <div class="span4">		
 <h2><%=link_to "<i class='icon-th-list'></i> Regras Acadêmicas".html_safe, course_matrix_course_matrix_academic_rules_path(@matrix) %></h2>
  <%@matrix.course_matrix_academic_rules.each do |rules|%>
-     <dd><%= rules.academic_rule_type.try(:rule) %></dd>
+     <dd><%= rules.academic_rule.academic_rule_type.rule %> <%= rules.academic_rule.operator %> <%= rules.academic_rule.value %>%</dd>
  <%end%>
 </div>
 
