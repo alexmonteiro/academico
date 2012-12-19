@@ -88,7 +88,7 @@ class ExamsClassPdf < Prawn::Document
       dates_classes = [] 
       for i in (ite*12)..(12*(ite+1))-1
         !@discipline.discipline_class_exams[i].blank? ? dates_classes << I18n.l(@discipline.discipline_class_exams[i].applied_at, :format => "%d/%b") : dates_classes << " "
-      end
+      end 
       data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
     else
       data_head = [["Nº","Matrícula","Aluno"] + [" "]*12 + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
