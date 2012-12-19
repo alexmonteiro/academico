@@ -89,12 +89,15 @@ class ExamsClassPdf < Prawn::Document
       for i in (ite*12)..(12*(ite+1))-1
         !@discipline.discipline_class_exams[i].blank? ? dates_classes << I18n.l(@discipline.discipline_class_exams[i].applied_at, :format => "%d/%b") : dates_classes << " "
       end
+      data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
+    else
+      data_head = [["Nº","Matrícula","Aluno"] + [" "]*12 + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
     end
     #Fim da Iteraca
     #Fim do controle das datas de aulas
     
     # Definição e Desenho da Tabela Cabecalho
-    data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas","Média"]]
+    
       
       table(data_head, :header => true) do
         row(0).height = (40)
