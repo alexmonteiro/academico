@@ -21,26 +21,18 @@
   <div class="control-group">
     <%= f.label :discipline_class_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :discipline_class_id, @registration.course_matrix.school_classes, :id, :model_identifier_and_period, :prompt => "Classe" %>
-    </div>
-  </div>
-
-  <div class="control-group">
-    <%= f.label :discipline_class_id, :class => 'control-label' %>
-    <div class="controls">
 	 <select name="registration_class[discipline_class_id]" class="span8">
 		<option value="">Classe</option>
 		<% @registration.course_matrix.school_classes.each do |turmas|%>
           <optgroup label="<%= turmas.model_identifier_and_period%>">
-	         <% turmas.discipline_classes do |classe|%>
-	          <option value="<%= classe.id.to_s%>"><%= classe.code %> - <%= classe.discipline_name%></option>
+	         <% turmas.discipline_classes.each do |classe|%>
+	          <option value="<%= classe.id.to_s%>"> <%= classe.code %> - <%= classe.discipline_name%> </option>
 		     <% end %>
 	      </optgroup>
 		<% end %>
 	 </select>
     </div>
   </div>
-
 
 
   <div class="form-actions">

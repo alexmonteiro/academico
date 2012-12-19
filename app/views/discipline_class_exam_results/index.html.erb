@@ -9,15 +9,20 @@
 </div>
 
 <div class="form-actions">
+ <div class="pagination-centered">
+	<%= form_tag 'import_registration_to_exam_result', :method => :put, :action => 'import_registration_to_exam_result' do %>
+	<button type="submit" class="btn btn-success btn-large pull-right">
+	<%= @discipline_class_exam.count_class_registrations_without_results %>  <i class="icon-download-alt"></i> Importar Enturmação
+	</button>
+	<%end%>
 
-	
-<%= form_tag 'import_registration_to_exam_result', :method => :put, :action => 'import_registration_to_exam_result' do %>
-<button type="submit" class="btn btn-success btn-large pull-right">
-<%= @discipline_class_exam.count_class_registrations_without_results %>  <i class="icon-download-alt"></i> Importar Enturmação
-</button>
-<%end%>
+	<%= form_tag discipline_class_discipline_class_exam_discipline_class_exam_results_path, :method => :put, :id => 'form_results' do %>
 
-<%= form_tag discipline_class_discipline_class_exam_discipline_class_exam_results_path, :method => :put, :id => 'form_results' do %>
+		<%= submit_tag "Salvar notas",:class => 'btn btn-primary btn-large pull-left' %>
+		<%= link_to  "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+		discipline_class_path(:id => @discipline_class_exam.discipline_class_id), :class => 'btn btn-large pull-left'  %>
+ </div>
+</div>
 
 <table class="table table-striped">
   <thead>
@@ -48,5 +53,12 @@
     <% end %>
   </tbody>
 </table>
-<%= submit_tag "Salvar notas",:class => 'btn btn-primary btn-large  pull-left' %>	
+<div class="form-actions">
+ <div class="pagination-centered">
+	<%= submit_tag "Salvar notas",:class => 'btn btn-primary btn-large pull-left' %>
+	<%= link_to  "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+	discipline_class_path(:id => @discipline_class_exam.discipline_class_id), :class => 'btn btn-large pull-left'  %>
+ </div>
+</div>
+
 <%end%>

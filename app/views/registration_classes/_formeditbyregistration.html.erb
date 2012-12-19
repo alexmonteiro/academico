@@ -1,0 +1,35 @@
+ <%= form_for [@registration, @registration_class], :html => { :class => 'form-horizontal' } do |f| %>
+   <h2>Aluno:  <%= @registration.try(:student_name) %></h2>
+   <h2>Matrícula: <%= @registration.try(:registration_number) %> </h2>
+   <h2>Curso: <%= @registration.try(:course_name) %> </h2>
+   <h2>Classe: <%= @registration_class.discipline_class.try(:code) %> - <%= @registration_class.discipline_class.try(:discipline_name)%></h2>
+
+
+   <div class="control-group">
+     <%= f.label :registered_at, :class => 'control-label' %>
+     <div class="controls">
+      <%= f.date_select :registered_at, :class => 'date_select' %>
+    </div>
+   </div>
+
+  <div class="control-group">
+    <%= f.label :registration_class_status_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :registration_class_status_id, RegistrationClassStatus.find(:all), :id, :description, :prompt => "Situação" %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+
+   
+   <!-- Link caso venha de matrícula -->
+   <% unless @registration.blank? %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                registration_registration_classes_path, :class => 'btn' %>
+   <% end %>
+
+  </div>
+
+<% end %>

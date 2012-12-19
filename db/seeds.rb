@@ -6619,6 +6619,12 @@ person_types = PersonType.create([
   {:description => 'Servidor'}
 ])
 
+# Alimenta tabela tipo do Tipos de regras academicas
+puts 'Inserindo tipo do Tipos de regras academicas...'
+academic_rule_types = AcademicRuleType.create([
+  {:rule => 'Frequência'},
+  {:rule => 'Média Final'}
+])
 
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

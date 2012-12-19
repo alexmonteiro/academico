@@ -264,7 +264,10 @@ pt-BR:
         state_id: "Estado"  
       matrix_discipline_prerequisite:
         matrix_discipline_id: "Disciplina"                
-        pre_matrix_discipline_id: "Requisito"                        
+        pre_matrix_discipline_id: "Requisito"       
+      course_matrix_academic_rule:
+        course_matrix_id: "Curso"
+        academic_rule_id: "Regra"        
         
     models:
       person: "Pessoa"  
@@ -304,6 +307,7 @@ pt-BR:
       state: "Estados"      
       city: "Cidades"
       matrix_discipline_prerequisite: "Pré requisitos"      
+      course_matrix_academic_rule: "Regras Acadêmicas"      
       
   action:
       actions: "Ações"
