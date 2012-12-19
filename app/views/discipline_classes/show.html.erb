@@ -120,6 +120,18 @@
 			<% end %>			    
 	         </div>
 	      </fieldset>
+	      <fieldset>
+			  <div class=" btn-group pull-right">
+				  <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+				    <i class='icon-print'></i>Imprimir Mapa de Notas
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				    <li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_exams", :preenchido => true ), :tabindex => "-1" %></li>
+					<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_exams" ), :tabindex => "-1" %></li>
+				  </ul>
+			  </div>
+		  </fieldset>
 	  </div>
 	</div>	
 
