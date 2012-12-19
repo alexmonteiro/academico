@@ -3,12 +3,13 @@ class CourseMatrixAcademicRulesController < ApplicationController
   # GET /course_matrix_academic_rules.json
   def index
     @matrix = CourseMatrix.find(params[:course_matrix_id])
-    academic_rule_ids = CourseMatrixAcademicRule.where(:course_matrix_id => params[:course_matrix_id]).pluck(:academic_rule_id)
+    @course_matrix_academic_rules = CourseMatrixAcademicRule.where(:course_matrix_id => params[:course_matrix_id])
+    academic_rule_ids = @course_matrix_academic_rules.pluck(:academic_rule_id)
     if academic_rule_ids.blank?
       academic_rule_ids = 0
     end
     @academic_rules = AcademicRule.where("id not in (?)", academic_rule_ids)
-    @course_matrix_academic_rules = CourseMatrixAcademicRule.all
+
   
 
     respond_to do |format|
