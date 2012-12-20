@@ -11,19 +11,23 @@
   </div>
 <% end %>
 
-	<div class="control-group">
-	  <%= f.label :school_class_id, :class => 'control-label' %>
-	  <div class="controls">
-	  <%= select_tag 'discipline_class[school_class_id]', options_from_collection_for_select(SchoolClass.find(:all), "id", "model_custom_name",SchoolClass.find_by_identifier(params[:school_class_id]).try(:id)), :class => 'select_field', :prompt => "...Selecione...", :class => 'field span8', :id => "discipline_class_school_class_id", :disabled => false %>
-	  </div>
-	</div>
-	<div class="control-group">
-	  <%= f.label :matrix_discipline_id, :class => 'control-label' %>
-	    <div class="controls"  id="turmaDisciplinas"> 
-		     <%= render :partial => 'disciplines'%>
-	    </div>
-	</div>
-
+<% if (params[:action] == 'edit' || params[:action] == 'update') %>
+<h2>Turma: <%= @discipline_class.try(:school_class_identifier) %> - <%= @discipline_class.try(:course_name) %> </h2>
+<h2>Classe: <%= @discipline_class.try(:code) %> - <%= @discipline_class.try(:discipline_name) %> </h2>
+<%else%>
+<div class="control-group">
+  <%= f.label :school_class_id, :class => 'control-label' %>
+  <div class="controls">
+  <%= select_tag 'discipline_class[school_class_id]', options_from_collection_for_select(SchoolClass.find(:all), "id", "model_custom_name",SchoolClass.find_by_identifier(params[:school_class_id]).try(:id)), :class => 'select_field', :prompt => "...Selecione...", :class => 'field span8', :id => "discipline_class_school_class_id", :disabled => false %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :matrix_discipline_id, :class => 'control-label' %>
+    <div class="controls"  id="turmaDisciplinas"> 
+	     <%= render :partial => 'disciplines'%>
+    </div>
+</div>
+<%end%>
 
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>
