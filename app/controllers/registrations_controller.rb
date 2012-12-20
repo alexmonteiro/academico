@@ -28,7 +28,7 @@ class RegistrationsController < ApplicationController
       format.json { render :json => @registration }
       format.pdf do
         #pdf = Prawn::Document.new
-        pdf = RegistrationPdf.new(@registration)
+        pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
         send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
       end
       
