@@ -1,10 +1,11 @@
 class RegistrationPdf < Prawn::Document
-  def initialize(registration)
+  def initialize(opcoes)
     #template with header
     template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
     super(:top_margin => 110, :template => template_filename)
     #super()
-    @registration = registration
+    @registration = opcoes[:registration]
+    @type_document = opcoes[:type_document]
     header_complement
     stroke_horizontal_line 0, 550, :at => 655
     title
@@ -60,7 +61,13 @@ class RegistrationPdf < Prawn::Document
   
   def title
     font("Times-Roman", :size => 20, :style => :bold ) do
-     text_box "Declaração de Escolaridade", 
+      documento = ""
+      if @type_document == "escolaridade"
+        documento = "de Escolaridade"
+      elsif @type_document == "passe_estudandil"
+        documento = "para Aquisição de Passe Estudantil"
+      end
+     text_box "Declaração #{documento}", 
      :at => [45, 645], 
      :align => :center
     end
