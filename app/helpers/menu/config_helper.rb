@@ -1,0 +1,2 @@
+module Menu::ConfigHelper
+end
