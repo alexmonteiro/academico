@@ -37,7 +37,7 @@
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_discipline_class_class_record_path(:id => class_record.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      class_record_path(class_record),
+                      discipline_class_class_record_path(:id => class_record.id),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
