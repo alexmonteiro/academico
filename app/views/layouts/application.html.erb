@@ -68,13 +68,14 @@
 		              <%end%>
 
 	                  <% if fullpath.include?('configuracoes') %>
-		                  <li class="nav-header">Cadastros Básicos</li>
+		                  <!-- <li class="nav-header">Cadastros Básicos</li>
 		                  <li class="<%= ('countries' == params[:controller] ? 'active' : '')%>"><a href=<%= countries_path%> ><i class="icon-file"></i>Países/Estados/Cidades</a></li>                
 		                  <li class="<%= ('education_modalities' == params[:controller] ? 'active' : '')%>"><a href=<%= education_modalities_path%> ><i class="icon-file"></i>Modalidades</a></li>
 		                  <li class="<%= ('education_steps' == params[:controller] ? 'active' : '')%>"><a href=<%= education_steps_path%> ><i class="icon-file"></i>Graus</a></li>
 		                  <li class="<%= ('education_levels' == params[:controller] ? 'active' : '')%>"><a href=<%= education_levels_path%> ><i class="icon-file"></i>Níveis</a></li>
 		                  <li class="<%= ('techaxis_types' == params[:controller] ? 'active' : '')%>"><a href=<%= techaxis_types_path%> ><i class="icon-file"></i>Eixos Tecnológicos/Áreas</a></li>
-		                  <li class="<%= ('races' == params[:controller] ? 'active' : '')%>"><a href=<%= races_path%> ><i class="icon-file"></i>Etnias</a></li>
+		                  <li class="<%= ('races' == params[:controller] ? 'active' : '')%>"><a href=<%= races_path%> ><i class="icon-file"></i>Etnias</a></li> -->
+		                  <%= menu_config %>
 	                  <%end%>
                    
 		            </ul>
