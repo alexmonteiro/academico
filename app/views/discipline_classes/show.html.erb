@@ -143,9 +143,9 @@
               discipline_classes_path, :class => 'btn btn-large'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
               edit_discipline_class_path(@discipline_class), :class => 'btn btn-large' %>
-  <%= link_to "<i class='icon-user'></i> ".html_safe + t('Docentes'),
-			   discipline_class_class_records_path(@discipline_class), :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-pencil'></i> ".html_safe + t('Aulas'),
+			   discipline_class_class_records_path(@discipline_class), :class => 'btn btn-large' %>
+  <%= link_to "<i class='icon-user'></i> ".html_safe + t('Docentes'),
 			   discipline_class_class_teachings_path(@discipline_class), :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-align-justify'></i> ".html_safe + t('Avaliações'),
 			   discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-large' %> 
