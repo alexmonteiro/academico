@@ -204,7 +204,7 @@ class ExamsClassPdf < Prawn::Document
             end
             
          end
-          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%","#{student.model_student_result_average.to_s.gsub('.',',')}"]]
+          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%","#{student.model_student_result_average.round(2).to_s.gsub('.',',')}"]]
           repeticoes = repeticoes - 1
         end 
       
