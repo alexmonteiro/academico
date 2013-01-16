@@ -1,6 +1,6 @@
 class DisciplineClass < ActiveRecord::Base
   belongs_to :school_class
-  belongs_to :matrix_discipline
+  belongs_to :matrix_discipline #Verificar esse parâmetro pois a turma está relacionada a uma matriz | Uma razão para isto ocorrer é alunos matriculados na mesma turma porém de matrizes diferentes.
   has_many :class_teachings, :foreign_key => "discipline_class_id"
   has_many :class_records, :order => 'recorded_at DESC'
   has_many :registration_classes

@@ -7,12 +7,14 @@
     <div class="span4">
 
 	<dl class="dl-horizontal">
+	  <dt><strong><%= SchoolClass.human_attribute_name(:matrix_id) %>:</strong></dt>
+	  <dd><%=link_to "#{@discipline_class.school_class.course_matrix.id} - #{@discipline_class.school_class.course_matrix.started_at_formatted}", course_matrix_path(@discipline_class.school_class.course_matrix) %></dd>		
 	  <dt><strong><%= model_class.human_attribute_name(:school_class_id) %>:</strong></dt>
-	  <dd><%= @discipline_class.school_class.model_custom_tiny_name %></dd>
+	  <dd><%= link_to "#{@discipline_class.school_class.identifier}", school_class_path(@discipline_class.school_class.identifier) %> </dd>
 	  <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_id) %>:</strong></dt>
 	  <dd><%= @discipline_class.matrix_discipline.discipline_name if @discipline_class.matrix_discipline_id %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
-	  <dd><%= @discipline_class.code %></dd>
+	  <dd><strong><%= @discipline_class.code %></strong></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:vancancies) %>:</strong></dt>
 	  <dd><%= @discipline_class.vancancies %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
