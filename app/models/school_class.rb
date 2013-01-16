@@ -6,6 +6,7 @@ class SchoolClass < ActiveRecord::Base
   has_many   :discipline_classes
   attr_accessible :closing_at, :identifier, :opening_at, :period, :matrix_id, :class_season_id, :shift_type_id
   default_scope :order => 'id DESC'
+  before_destroy :has_children?
   
   validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
   validates_uniqueness_of :identifier
@@ -17,7 +18,7 @@ class SchoolClass < ActiveRecord::Base
     code = self.course_matrix.course.try(:code)
     turno = self.shift_type_id.to_s
     modulo = self.period.to_s.rjust(2,'0')
-    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{self.identifier}_'").count
+    ct = SchoolClass.find_by_sql("SELECT * FROM school_classes where identifier like '#{year + number + code + turno  + modulo}_'").count
     year + number + code + turno  + modulo + ('A'..'Z').to_a[ct]
   end
   
@@ -46,5 +47,15 @@ class SchoolClass < ActiveRecord::Base
     text :id, :identifier, :opening_at, :opening_at
     
   end
+
+  def has_children?
+    errors.add(:base, "Existem Classes associadas a esta Turma") unless discipline_classes.count == 0
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
+  end  
   
 end

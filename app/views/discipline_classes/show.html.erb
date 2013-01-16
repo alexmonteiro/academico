@@ -7,12 +7,14 @@
     <div class="span4">
 
 	<dl class="dl-horizontal">
+	  <dt><strong><%= SchoolClass.human_attribute_name(:matrix_id) %>:</strong></dt>
+	  <dd><%=link_to "#{@discipline_class.school_class.course_matrix.id} - #{@discipline_class.school_class.course_matrix.started_at_formatted}", course_matrix_path(@discipline_class.school_class.course_matrix) %></dd>		
 	  <dt><strong><%= model_class.human_attribute_name(:school_class_id) %>:</strong></dt>
-	  <dd><%= @discipline_class.school_class.model_custom_tiny_name %></dd>
+	  <dd><%= link_to "#{@discipline_class.school_class.identifier}", school_class_path(@discipline_class.school_class.identifier) %> </dd>
 	  <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_id) %>:</strong></dt>
 	  <dd><%= @discipline_class.matrix_discipline.discipline_name if @discipline_class.matrix_discipline_id %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:code) %>:</strong></dt>
-	  <dd><%= @discipline_class.code %></dd>
+	  <dd><strong><%= @discipline_class.code %></strong></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:vancancies) %>:</strong></dt>
 	  <dd><%= @discipline_class.vancancies %></dd>
 	  <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
@@ -95,6 +97,7 @@
 					 <tr>	
 					   <th><center>#</center></th>	
 					   <th><center>Aluno</center></th>	
+					   <th><center>%</center></th>	
 		               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
 					      <th><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
 				       <%end%>
@@ -106,6 +109,7 @@
 					      <tr class= <%= rclass.model_student_result_average >= 5 ? "info" : "error" %> >
 	    					<td><%= i+1 %></td>
 						    <td><%= rclass.student_name%></td>
+						    <td>0.1</td>
 							<% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
 							   <%nota = DisciplineClassExamResult.where(:discipline_class_exam_id => exam.id).where(:registration_class_id => rclass.id).first.try(:result) %>
 							   <td><center> <h5><%= (nota.blank? ? '0.0' : nota.to_s) %> <small>x<%=exam.weight%></small></h5> </center></td>
