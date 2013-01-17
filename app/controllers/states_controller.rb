@@ -51,6 +51,7 @@ class StatesController < ApplicationController
         format.html { redirect_to country_states_path, :notice => t('controllermessage.insert') }
         format.json { render :json => @state, :status => :created, :location => @state }
       else
+        @country = Country.find(params[:country_id])
         format.html { render :action => "new" }
         format.json { render :json => @state.errors, :status => :unprocessable_entity }
       end
