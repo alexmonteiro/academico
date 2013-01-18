@@ -1,3 +1,14 @@
+<% if @country.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@country.errors.count, "error impediu", "errors impediram") %> impediu a gravação:</h2>
+
+    <ul>
+    <% @country.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for @country, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>

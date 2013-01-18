@@ -63,10 +63,11 @@ class PersonIdentificationDocsController < ApplicationController
   # POST /person_identification_docs.json
   def create
     @person = Person.find((params[:person_id]))
-    params[:person_identification_doc][:rg_uf] = State.find(params[:person_identification_doc][:rg_uf])
-    params[:person_identification_doc][:vr_uf] = State.find(params[:person_identification_doc][:vr_uf])
-    params[:person_identification_doc][:rg_issuing_institution] = IssuingInstitution.find(params[:person_identification_doc][:rg_issuing_institution])
+    params[:person_identification_doc][:rg_uf] = (params[:person_identification_doc][:rg_uf].blank? ? nil : State.find(params[:person_identification_doc][:rg_uf]) )
+    params[:person_identification_doc][:vr_uf] = (params[:person_identification_doc][:vr_uf].blank? ? nil : State.find(params[:person_identification_doc][:vr_uf]))
+    params[:person_identification_doc][:rg_issuing_institution] = (params[:person_identification_doc][:rg_issuing_institution].blank? ? nil : IssuingInstitution.find(params[:person_identification_doc][:rg_issuing_institution]))
     @person_identification_doc = PersonIdentificationDoc.new(params[:person_identification_doc])
+     
 
     respond_to do |format|
       if @person_identification_doc.save
