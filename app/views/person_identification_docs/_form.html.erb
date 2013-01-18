@@ -63,13 +63,13 @@
             </div>
             <div class="well">
                 <%= f.label :rg_issuing_institution, model_class.human_attribute_name(:rg_issuing_institution), :class => 'control-label ' %>
-                <%= select("person_identification_doc", "rg_issuing_institution", IssuingInstitution.all.collect {|p| [ p.description, p.id ] }, { :selected => @person_identification_doc.rg_issuing_institution.blank? ? "" : @person_identification_doc.rg_issuing_institution.id ,:include_blank => true }) %>
+                <%= f.collection_select :rg_issuing_institution, IssuingInstitution.find(:all, :order => "description"), :id, :description, {:prompt => "Selecione o Órgão Emissor", :selected => @person_identification_doc.rg_issuing_institution.blank? ? nil : @person_identification_doc.rg_issuing_institution.id } %>           
             </div>
           </div>
           <div class="pull-right span6">
             <div class="well">
                 <%= f.label :rg_uf, model_class.human_attribute_name(:rg_uf), :class => 'control-label' %>
-                <%= select("person_identification_doc", "rg_uf", State.all.collect {|p| [ p.name, p.id ] }, { :selected => @person_identification_doc.rg_uf.blank? ? "" : @person_identification_doc.rg_uf.id ,:include_blank => true }) %>
+                <%= f.collection_select :rg_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.rg_uf.blank? ? nil : @person_identification_doc.rg_uf.id } %>
             </div>
             <div class="well">
               <div id="person_identification_doc_rg_date_issuance_div" class="input-append date">
@@ -273,7 +273,7 @@
           <div class="pull-right span4">
             <div class="well">
                 <%= f.label :vr_uf, model_class.human_attribute_name(:vr_uf), :class => 'control-label' %>
-                <%= select("person_identification_doc", "vr_uf", State.all.collect {|p| [ p.name, p.id ] }, { :selected => @person_identification_doc.vr_uf.id ,:include_blank => true }) %>
+                <%= f.collection_select :vr_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.vr_uf.blank? ? nil : @person_identification_doc.vr_uf.id } %>
             </div>
           </div>
       </div>
