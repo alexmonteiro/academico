@@ -100,12 +100,21 @@ class SchoolClassesController < ApplicationController
   # DELETE /school_classes/1
   # DELETE /school_classes/1.json
   def destroy
-    @school_class = SchoolClass.find(params[:id])
-    @school_class.destroy
-
-    respond_to do |format|
-      format.html { redirect_to school_classes_url, :notice => 'Turma excluida com sucesso.' }
-      format.json { head :no_content }
-    end
+   @school_class = SchoolClass.find(params[:id])
+   if @school_class.destroy
+     respond_to do |format|
+       format.html { redirect_to school_classes_url, :notice => 'Turma excluida com sucesso.' }
+       format.json { head :no_content }
+     end
+   else
+     error_message = ""
+     respond_to do |format|
+       @school_class.errors[:base].each do |error|
+        error_message += "<li>#{error}</li>"
+       end
+       format.html { redirect_to request.referer, :alert => error_message}
+       format.json { render :json => @school_class.errors, :status => :unprocessable_entity }
+     end
+   end
   end
 end

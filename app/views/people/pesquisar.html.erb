@@ -23,7 +23,7 @@
   <tbody>
     <% @people.each do |person| %>
       <tr>
-        <td><%= link_to person.try(:cpf) + ' | ' + person.try(:rg) + ' | ' + person.name, person_path(person) %></td>
+        <td><%= link_to "#{person.try(:cpf)} | #{person.try(:rg)} | #{person.name}}", person_path(person) %></td>
         <td>
           <%= link_to "<i class='icon-barcode'></i> Matricular".html_safe,
                       new_person_registration_path(person), :class => 'btn btn-large' %>
