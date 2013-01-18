@@ -1,20 +1,29 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @academic_rule.class -%>
+<div class="page-header">
+  <h1><i class="icon-th-list"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Academic rule type:</b>
-  <%= @academic_rule.academic_rule_type %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:academic_rule_type_id) %>:</strong></dt>
+  <dd><%= @academic_rule.academic_rule_type.rule %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:operator) %>:</strong></dt>
+  <dd><%= @academic_rule.operator %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value) %>:</strong></dt>
+  <dd><%= @academic_rule.value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rclass_status_true_id) %>:</strong></dt>
+  <dd><%= @academic_rule.rclass_status_true.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:rclass_status_false_id) %>:</strong></dt>
+  <dd><%= @academic_rule.rclass_status_false.description %></dd>
+</dl>
 
-<p>
-  <b>Operator:</b>
-  <%= @academic_rule.operator %>
-</p>
-
-<p>
-  <b>Value:</b>
-  <%= @academic_rule.value %>
-</p>
-
-
-<%= link_to 'Edit', edit_academic_rule_path(@academic_rule) %> |
-<%= link_to 'Back', academic_rules_path %>
+<div class="form-actions">
+  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+              academic_rules_path, :class => 'btn btn-large'  %>
+  <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
+              edit_academic_rule_path(@academic_rule), :class => 'btn btn-large' %>
+  <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
+              academic_rule_path(@academic_rule),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+              :class => 'btn btn-danger btn-large pull-right' %>
+</div>

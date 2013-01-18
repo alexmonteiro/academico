@@ -83,11 +83,17 @@ class RegistrationClass < ActiveRecord::Base
   def frequency
    fq = '0.0'
    if class_records_count > 0  
-    fq = ("%0.2f"  % ((is_present_count.to_f / class_records_count.to_f) * Float(100)))
+    fq = ("%0.2f"  % ((is_present_count.to_f / class_records_count.to_f) ))
    end if
    fq
   end
   
+  #Retorna a situação atual do aluno conforme a regra acadêmica
+  def registration_class_status_with_academic_rule
+  end
+  
+  
+  private
   def has_children?
     errors.add(:base, "Existem Presenças associadas a esta Matrícula") unless class_record_presences.count == 0
     errors.add(:base, "Existem Avaliações associadas a esta Matrícula") unless discipline_class_exam_results.count == 0  

@@ -108,6 +108,8 @@ AcademicoRails::Application.routes.draw do
   resources :courses, :path => "registro_academico/cursos" do
       resources :disciplines, :path => "registro_academico/disciplinas"
   end
+  # Regras acadêmicas
+  resources :academic_rules, :path => 'registro_academico/regras_academicas'
   
   
   
@@ -153,7 +155,7 @@ AcademicoRails::Application.routes.draw do
   resources :equipament_types
   resources :situation_teaching_equipaments
   resources :shift_types, :path => "turnos"
-  resources :academic_rules
+  
 
   resources :academic_rule_types
   resources :discipline_class_exam_types
