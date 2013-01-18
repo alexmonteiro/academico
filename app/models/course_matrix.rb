@@ -34,6 +34,10 @@ class CourseMatrix < ActiveRecord::Base
     self.course.name
   end
   
+  def started_at_formatted
+    self.started_at.strftime('%d/%m/%Y')
+  end
+  
   #soma a carga horaria da disciplina da matriz
   def matrix_workload 
     self.matrix_disciplines.sum(&:workload)
