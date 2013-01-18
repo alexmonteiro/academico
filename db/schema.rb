@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218134837) do
+ActiveRecord::Schema.define(:version => 20130118213357) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(:version => 20121218134837) do
     t.integer  "academic_rule_type_id"
     t.string   "operator"
     t.integer  "value"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.integer  "rclass_status_true_id"
+    t.integer  "rclass_status_false_id"
   end
 
   add_index "academic_rules", ["academic_rule_type_id"], :name => "index_academic_rules_on_academic_rule_type_id"
