@@ -1,5 +1,5 @@
 class AcademicRule < ActiveRecord::Base
-  OPERATOR_TYPES = [">=", ">", "<=", "<", "="]
+  OPERATOR_TYPES = [">=", ">", "<=", "<", "=="]
   belongs_to :academic_rule_type
   belongs_to :rclass_status_false, :class_name => "RegistrationClassStatus"
   belongs_to :rclass_status_true, :class_name => "RegistrationClassStatus"

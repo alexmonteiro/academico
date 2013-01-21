@@ -88,8 +88,29 @@ class RegistrationClass < ActiveRecord::Base
    fq
   end
   
-  #Retorna a situação atual do aluno conforme a regra acadêmica
-  def registration_class_status_with_academic_rule
+  #Retorna a situação prevista do aluno conforme aplicação das regras acadêmicas regra acadêmica
+  def registration_class_status_situations
+    if self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.count <= 0
+      return "sem regra"
+    end
+    situations = []
+
+    self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|
+      #verifica regra para Frequencia
+      if rules.academic_rule_id == 1
+       if !do_logical_operation(rules.academic_rule.operator, (self.frequency.to_f*100).to_s, rules.academic_rule.value.to_s) 
+         return situations.push(rules.academic_rule.rclass_status_false.description)
+       end
+      end
+      #verifica regra para Nota
+      if rules.academic_rule_id == 2
+       do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f*100).to_s, rules.academic_rule.value.to_s) ? situations.push(rules.academic_rule.rclass_status_true.description) : situations.push(rules.academic_rule.rclass_status_false.description)
+      end
+
+        
+        
+    end
+    situations
   end
   
   
@@ -104,4 +125,9 @@ class RegistrationClass < ActiveRecord::Base
     end
     
   end  
+  
+  def do_logical_operation(operator, value_one, value_two)
+     eval(value_one + operator + value_two)
+  end
+  
 end
