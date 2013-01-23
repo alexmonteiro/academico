@@ -129,10 +129,38 @@ class DisciplineClassesController < ApplicationController
   end
 
   def update_discipline_select
-
       disciplinas = SchoolClass.find(params[:id]).course_matrix.matrix_disciplines unless params[:id] == "0"
-
-      
       render :partial => "disciplines", :locals => { :disciplines => disciplinas }      
   end  
+
+  def close
+    @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    
+    if @discipline_class.ending_at.blank?
+      #atualiza data de fechamento
+      @discipline_class.ending_at = Time.zone.now
+      #atualiza status do aluno na emturmação
+      @discipline_class.registration_classes.each do |r|
+        r.registration_class_status_id = r.registration_class_status_id_by_rules
+        r.save
+      end
+      
+      
+      if @discipline_class.save
+        respond_to do |format|
+         format.html { redirect_to  @discipline_class, :notice => "Classe fechada com sucesso" }
+         format.json { render :json => @discipline_class }
+        end
+      end
+    else
+      @discipline_class.errors.add(:base, "Esta classe encontra-se fechada.")
+      respond_to do |format|
+       format.html { redirect_to  @discipline_class, :alert => "Esata classe já se encontra fechada" }
+       format.json { render :json => @discipline_class.errors, :status => :unprocessable_entity }
+      end
+    end      
+    
+
+  end
+      
 end

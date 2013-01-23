@@ -88,7 +88,7 @@ class RegistrationClass < ActiveRecord::Base
    fq
   end
   
-  #Retorna a situação prevista do aluno conforme aplicação das regras acadêmicas regra acadêmica
+  #Retorna um vetor com as situações prevista do aluno conforme aplicação das regras acadêmicas regra acadêmica
   def registration_class_status_situations
     if self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.count <= 0
       return "sem regra"
@@ -104,13 +104,31 @@ class RegistrationClass < ActiveRecord::Base
       end
       #verifica regra para Nota
       if rules.academic_rule_id == 2
-       do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f*100).to_s, rules.academic_rule.value.to_s) ? situations.push(rules.academic_rule.rclass_status_true.description) : situations.push(rules.academic_rule.rclass_status_false.description)
+       do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, rules.academic_rule.value.to_s) ? situations.push(rules.academic_rule.rclass_status_true.description) : situations.push(rules.academic_rule.rclass_status_false.description)
       end
-
-        
         
     end
     situations
+  end
+  
+  #Retorna o id da situação conforme regra academica
+  def registration_class_status_id_by_rules
+    #Nota
+    rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 2)
+    rule = AcademicRule.find(rule[0][:academic_rule_id])
+    if do_logical_operation(rule.operator, (self.model_student_result_average.to_f*100).to_s, rule.value.to_s)
+       id = rule.rclass_status_true_id
+       #verifica frequencia e seta id como reprovado na frequencia senao atender a regra
+       rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 1)
+       rule = AcademicRule.find(rule[0][:academic_rule_id])
+       if !do_logical_operation(rule.operator, (self.frequency.to_f*100).to_s, rule.value.to_s) 
+         return rule.rclass_status_false_id
+       end
+       return id
+    else
+       #reprovado na nota
+       return rule.rclass_status_false_id
+    end
   end
   
   
@@ -129,5 +147,5 @@ class RegistrationClass < ActiveRecord::Base
   def do_logical_operation(operator, value_one, value_two)
      eval(value_one + operator + value_two)
   end
-  
+    
 end

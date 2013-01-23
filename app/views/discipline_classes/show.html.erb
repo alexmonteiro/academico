@@ -94,7 +94,7 @@
  		     <% if @discipline_class.discipline_class_exams.count > 0 %>
 			       <table class="table table-condensed table-bordered table-hover">
 					<thead>
-					 <tr>	
+					 <tr> 	
 					   <th rowspan="2"><center>#</center></th>	
 					   <th rowspan="2"><center>Aluno</center></th>	
 					   <th rowspan="2"><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
@@ -114,7 +114,7 @@
 				    </thead>
 				    <tbody>
 		               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
-					      <tr class= <%= rclass.model_student_result_average >= 5 ? "info" : "error" %> >
+					      <tr class="<%= h_status_color(rclass)%>">
 	    					<td><%= i+1 %></td>
 						    <td><%= rclass.student_name%></td>
 						    <td><center><%= rclass.frequency %></center></td>
@@ -152,7 +152,11 @@
 					      <li><%= rules.academic_rule.academic_rule_type.rule %> <%= rules.academic_rule.operator %> <%= rules.academic_rule.value %>%</li>
 					     <%end%>					     
 						  <ul class="unstyled">
-							<li class=""><a class="btn btn btn-success" href="#" disabled="1">Fechar classe</a></li>
+							 <%= form_for @discipline_class, :url => discipline_class_close_path(@discipline_class), :html => { :class => 'form-horizontal'} do |f| %>
+							      <% classe_fechada = (@discipline_class.ending_at? ? "Classe fechada" : "Fechar classe") %>
+						       	  <%= f.submit classe_fechada, :class => 'btn btn-primary', :class => "btn btn btn-success", :disabled => (true if @discipline_class.ending_at?) %>
+						     <%end%>
+						    
 						  </ul>
 					  <%else%>
 					      <div class="alert alert-error">
