@@ -116,7 +116,7 @@
 		               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
 					      <tr class="<%= h_status_color(rclass)%>">
 	    					<td><%= i+1 %></td>
-						    <td><%= rclass.student_name%></td>
+						    <td> <%= link_to rclass.student_name, discipline_class_registration_class_path(@discipline_class,rclass) %></td>
 						    <td><center><%= rclass.frequency %></center></td>
 							<% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
 							   <%nota = DisciplineClassExamResult.where(:discipline_class_exam_id => exam.id).where(:registration_class_id => rclass.id).first.try(:result) %>
