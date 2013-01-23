@@ -81,8 +81,10 @@ AcademicoRails::Application.routes.draw do
     end
   end  
 
-  # Classes
+  # Classes  
   resources :discipline_classes, :path =>"registro_academico/classes" do
+    #match 'close', :controller=>'discipline_classes', :method => :put, :action => 'close'
+    put 'close'
     resources :class_teachings, :path =>"docencias"
     # Aulas ministradas
     resources :class_records, :path =>"aulas" do

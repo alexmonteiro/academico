@@ -94,23 +94,29 @@
  		     <% if @discipline_class.discipline_class_exams.count > 0 %>
 			       <table class="table table-condensed table-bordered table-hover">
 					<thead>
-					 <tr>	
-					   <th><center>#</center></th>	
-					   <th><center>Aluno</center></th>	
-					   <th><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
+					 <tr> 	
+					   <th rowspan="2"><center>#</center></th>	
+					   <th rowspan="2"><center>Aluno</center></th>	
+					   <th rowspan="2"><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
 		               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
-					      <th><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
+					      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
 				       <%end%>
-				       <th><center><%= link_to 'C', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Nota de Conselho", :disabled => true %></center></th>
-	   			       <th><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>
-       	               <th><center>Situação</center></th>	
+				       <th rowspan="2"><center><%= link_to 'C', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Nota de Conselho", :disabled => true %></center></th>
+	   			       <th rowspan="2"><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>
+       	               <th colspan="2">
+	                     <center>Situação</center>
+	                   </th>	
 					 </tr>
+					<tr>
+					     <th><center>Prevista</center></th>
+					     <th><center>Atual</center></th>
+					</tr>					
 				    </thead>
 				    <tbody>
 		               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
-					      <tr class= <%= rclass.model_student_result_average >= 5 ? "info" : "error" %> >
+					      <tr class="<%= h_status_color(rclass)%>">
 	    					<td><%= i+1 %></td>
-						    <td><%= rclass.student_name%></td>
+						    <td> <%= link_to rclass.student_name, discipline_class_registration_class_path(@discipline_class,rclass) %></td>
 						    <td><center><%= rclass.frequency %></center></td>
 							<% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
 							   <%nota = DisciplineClassExamResult.where(:discipline_class_exam_id => exam.id).where(:registration_class_id => rclass.id).first.try(:result) %>
@@ -118,6 +124,13 @@
 						    <%end%>
  						       <td><center> <h5>0.0</h5> </center></td>	
 						       <td><center> <h5> <%= rclass.model_student_result_average.round(2) %> </h5></center></td>	
+						       <td>
+	                            <center> 
+                                    <% rclass.registration_class_status_situations.each do |situation| %>            
+ 	                                  <div> <small> <%= situation %> </small></div>
+                                    <%end%>
+	                            </center>
+	                          </td>
  						       <td><center> <h6> <%= rclass.registration_class_status.description %> </h6></center></td>	
 						  </tr>
 				       <%end%>				
@@ -139,7 +152,11 @@
 					      <li><%= rules.academic_rule.academic_rule_type.rule %> <%= rules.academic_rule.operator %> <%= rules.academic_rule.value %>%</li>
 					     <%end%>					     
 						  <ul class="unstyled">
-							<li class=""><a class="btn btn btn-success" href="#" disabled="1">Fechar classe</a></li>
+							 <%= form_for @discipline_class, :url => discipline_class_close_path(@discipline_class), :html => { :class => 'form-horizontal'} do |f| %>
+							      <% classe_fechada = (@discipline_class.ending_at? ? "Classe fechada" : "Fechar classe") %>
+						       	  <%= f.submit classe_fechada, :class => 'btn btn-primary', :class => "btn btn btn-success", :disabled => (true if @discipline_class.ending_at?) %>
+						     <%end%>
+						    
 						  </ul>
 					  <%else%>
 					      <div class="alert alert-error">

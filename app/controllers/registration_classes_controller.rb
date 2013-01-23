@@ -228,4 +228,5 @@ class RegistrationClassesController < ApplicationController
      end     
         
   end
+    
 end
