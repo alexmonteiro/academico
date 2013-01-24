@@ -44,7 +44,7 @@ class AcademicRulesController < ApplicationController
 
     respond_to do |format|
       if @academic_rule.save
-        format.html { redirect_to @academic_rule, :notice => 'Academic rule was successfully created.' }
+        format.html { redirect_to @academic_rule, :notice => 'Regra acadêmica criada com sucesso.' }
         format.json { render :json => @academic_rule, :status => :created, :location => @academic_rule }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class AcademicRulesController < ApplicationController
 
     respond_to do |format|
       if @academic_rule.update_attributes(params[:academic_rule])
-        format.html { redirect_to @academic_rule, :notice => 'Academic rule was successfully updated.' }
+        format.html { redirect_to @academic_rule, :notice => 'Regra acadêmica ataulizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

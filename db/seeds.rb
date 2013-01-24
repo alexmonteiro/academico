@@ -6623,7 +6623,7 @@ person_types = PersonType.create([
 puts 'Inserindo tipo do Tipos de regras academicas...'
 academic_rule_types = AcademicRuleType.create([
   {:rule => 'Frequência'},
-  {:rule => 'Média Final'}
+  {:rule => 'Nota'}
 ])
 
 

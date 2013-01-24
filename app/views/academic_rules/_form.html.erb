@@ -1,29 +1,52 @@
-<%= form_for(@academic_rule) do |f| %>
-  <% if @academic_rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@academic_rule.errors.count, "error") %> prohibited this academic_rule from being saved:</h2>
+<%= form_for @academic_rule, :html => { :class => 'form-horizontal' } do |f| %>
+<% if @academic_rule.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@academic_rule.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
 
-      <ul>
-      <% @academic_rule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <ul>
+    <% @academic_rule.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  <div class="control-group">
+    <%= f.label :academic_rule_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :academic_rule_type_id, AcademicRuleType.find(:all, :order => :rule), :id, :rule, :prompt => "Selecione"%>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :operator, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :operator, AcademicRule::OPERATOR_TYPES%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :value, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :academic_rule_type %><br />
-    <%= f.text_field :academic_rule_type_id %>
+  <div class="control-group">
+    <%= f.label :rclass_status_true_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :rclass_status_true_id, RegistrationClassStatus.where(:is_approved => true), :id, :description, :prompt => "Selecione"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :operator %><br />
-    <%= f.text_field :operator %>
+
+  <div class="control-group">
+    <%= f.label :rclass_status_false_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :rclass_status_false_id, RegistrationClassStatus.where(:is_approved => false), :id, :description, :prompt => "Selecione"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.number_field :value %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                academic_rules_path, :class => 'btn' %>
   </div>
 <% end %>
