@@ -1,23 +1,34 @@
-<h1>Listing knowledge_areas</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @knowledge_areas.each do |knowledge_area| %>
-  <tr>
-    <td><%= knowledge_area.description %></td>
-    <td><%= link_to 'Show', knowledge_area %></td>
-    <td><%= link_to 'Edit', edit_knowledge_area_path(knowledge_area) %></td>
-    <td><%= link_to 'Destroy', knowledge_area, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = KnowledgeArea.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @knowledge_areas.each do |knowledge_area| %>
+      <tr>
+        <td><%= link_to knowledge_area.id, knowledge_area_path(knowledge_area) %></td>
+        <td><%= knowledge_area.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_knowledge_area_path(knowledge_area), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      knowledge_area_path(knowledge_area),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Knowledge area', new_knowledge_area_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_knowledge_area_path,
+            :class => 'btn btn-primary' %>

@@ -44,7 +44,7 @@ class LearningModalitiesController < ApplicationController
 
     respond_to do |format|
       if @learning_modality.save
-        format.html { redirect_to @learning_modality, :notice => 'Learning modality was successfully created.' }
+        format.html { redirect_to @learning_modality, :notice => 'Modalidade de aprendizagem criada com sucesso.' }
         format.json { render :json => @learning_modality, :status => :created, :location => @learning_modality }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class LearningModalitiesController < ApplicationController
 
     respond_to do |format|
       if @learning_modality.update_attributes(params[:learning_modality])
-        format.html { redirect_to @learning_modality, :notice => 'Learning modality was successfully updated.' }
+        format.html { redirect_to @learning_modality, :notice => 'Modalidade de aprendizagem atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -73,11 +73,20 @@ class LearningModalitiesController < ApplicationController
   # DELETE /learning_modalities/1.json
   def destroy
     @learning_modality = LearningModality.find(params[:id])
-    @learning_modality.destroy
-
-    respond_to do |format|
-      format.html { redirect_to learning_modalities_url }
-      format.json { head :no_content }
+    if @learning_modality.destroy
+      respond_to do |format|
+        format.html { redirect_to learning_modalities_url, :notice => "Modalidade de aprendizagem excluída com sucesso." }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+      respond_to do |format|
+        @learning_modality.errors[:base].each do |error|
+         error_message += "<li>#{error}</li>"
+        format.html { redirect_to request.referer, :alert => error_message}
+        format.json { render :json => @learning_modality.errors, :status => :unprocessable_entity }
+       end
     end
+   end
   end
 end

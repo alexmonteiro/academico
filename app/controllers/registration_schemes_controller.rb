@@ -44,7 +44,7 @@ class RegistrationSchemesController < ApplicationController
 
     respond_to do |format|
       if @registration_scheme.save
-        format.html { redirect_to @registration_scheme, :notice => 'Registration scheme was successfully created.' }
+        format.html { redirect_to @registration_scheme, :notice => 'Sistema de Registro criado com sucesso.' }
         format.json { render :json => @registration_scheme, :status => :created, :location => @registration_scheme }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class RegistrationSchemesController < ApplicationController
 
     respond_to do |format|
       if @registration_scheme.update_attributes(params[:registration_scheme])
-        format.html { redirect_to @registration_scheme, :notice => 'Registration scheme was successfully updated.' }
+        format.html { redirect_to @registration_scheme, :notice => 'Sistema de Registro atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class RegistrationSchemesController < ApplicationController
     @registration_scheme.destroy
 
     respond_to do |format|
-      format.html { redirect_to registration_schemes_url }
+      format.html { redirect_to registration_schemes_url, :notice => 'Sistema de Registro excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

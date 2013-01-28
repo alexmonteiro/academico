@@ -1,41 +1,16 @@
-<%= form_for [@person,@person_address], :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-      <h3><%= Person.find(params[:person_id]).name %></h3><br />
-      <%= f.hidden_field :person_id, :value => params[:person_id] %>
-  </div>
+<%= form_for @person_address, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :street_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Select a Street Type" %>
+      <%= f.number_field :street_type_id, :class => 'number_field' %>
     </div>
   </div>
-<div class="control-group">
-<!-- País Cidade e Estado -->
-  <!--
-  Tag Hidden atributos:
-  # id = nome_view -> Variavel para o JS application - Não muda
-  # value = person_addresses -> nome da view em que se encontra o codigo - Aqui muda de acordo com a view em que se encontra
-  -->
-  <input type="hidden" id="nome_view" value="person_addresses">
-  <%= f.label :country_id, :class => 'control-label' %>
-  <div class="controls" id="addressCountry">
-    <%= render :partial =>'country' %>
+  <div class="control-group">
+    <%= f.label :city_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :city_id, :class => 'number_field' %>
+    </div>
   </div>
-</div>
-<div class="control-group">
-  <%= f.label :state_id, :class => 'control-label' %>
-  <div class="controls"  id="addressStates">
-	 <%= render :partial => 'states'%>
-  </div>
-</div>
-<div class="control-group">
-  <%= f.label :city_id, :class => 'control-label' %>
-  <div class="controls"  id="addressCities">
-	 <%= render :partial => 'cities'  %>
-  </div>
-</div>
-<!-- Fim -->
-
   <div class="control-group">
     <%= f.label :street_name, :class => 'control-label' %>
     <div class="controls">
@@ -75,13 +50,19 @@
   <div class="control-group">
     <%= f.label :provenance_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Zone" %>
+      <%= f.number_field :provenance_area_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :person_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :person_id, :class => 'number_field' %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                person_person_addresses_path, :class => 'btn' %>
+                person_addresses_path, :class => 'btn' %>
   </div>
 <% end %>

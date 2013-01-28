@@ -44,7 +44,7 @@ class EducationDegreesController < ApplicationController
 
     respond_to do |format|
       if @education_degree.save
-        format.html { redirect_to @education_degree, :notice => 'Education degree was successfully created.' }
+        format.html { redirect_to @education_degree, :notice => 'Nível Educacional criado com sucesso.' }
         format.json { render :json => @education_degree, :status => :created, :location => @education_degree }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EducationDegreesController < ApplicationController
 
     respond_to do |format|
       if @education_degree.update_attributes(params[:education_degree])
-        format.html { redirect_to @education_degree, :notice => 'Education degree was successfully updated.' }
+        format.html { redirect_to @education_degree, :notice => 'Nível Educacional atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class EducationDegreesController < ApplicationController
     @education_degree.destroy
 
     respond_to do |format|
-      format.html { redirect_to education_degrees_url }
+      format.html { redirect_to education_degrees_url, :notice => 'Nível Educacional excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

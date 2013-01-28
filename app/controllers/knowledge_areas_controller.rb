@@ -44,7 +44,7 @@ class KnowledgeAreasController < ApplicationController
 
     respond_to do |format|
       if @knowledge_area.save
-        format.html { redirect_to @knowledge_area, :notice => 'Knowledge area was successfully created.' }
+        format.html { redirect_to @knowledge_area, :notice => 'Área do conhecimento criada com sucesso.' }
         format.json { render :json => @knowledge_area, :status => :created, :location => @knowledge_area }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class KnowledgeAreasController < ApplicationController
 
     respond_to do |format|
       if @knowledge_area.update_attributes(params[:knowledge_area])
-        format.html { redirect_to @knowledge_area, :notice => 'Knowledge area was successfully updated.' }
+        format.html { redirect_to @knowledge_area, :notice => 'Área do conhecimento atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class KnowledgeAreasController < ApplicationController
     @knowledge_area.destroy
 
     respond_to do |format|
-      format.html { redirect_to knowledge_areas_url }
+      format.html { redirect_to knowledge_areas_url, :notice => 'Área do conhecimento excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

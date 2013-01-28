@@ -1,9 +1,6 @@
-<%- model_class = PersonAddress.new.class -%>
+<%- model_class = PersonAddres.new.class -%>
 <div class="page-header">
-  <div style="font-size: 24px;">
-    <h1><i class="icon-home"></i> <%=t '.title', :default => model_class.model_name.human %></h1>
-  </div>
-   <h3><%= link_to @person.name, person_path(@person) %></h3>
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -18,27 +15,31 @@
       <th><%= model_class.human_attribute_name(:zip_code) %></th>
       <th><%= model_class.human_attribute_name(:number) %></th>
       <th><%= model_class.human_attribute_name(:provenance_area_id) %></th>
+      <th><%= model_class.human_attribute_name(:person_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @person_addresses.each do |person_address| %>
       <tr>
-        <td><%= link_to person_address.id, [@person,person_address] %></td>
-        <td><%= verifica_registro(:campo => person_address.street_type, :atributo => "description") %></td>
-        <td><%= verifica_registro(:campo => person_address.city, :atributo => "name") %></td>
-        <td><%= verifica_registro(:campo => person_address.street_name) %></td>
-        <td><%= verifica_registro(:campo => person_address.complement) %></td>
-        <td><%= verifica_registro(:campo => person_address.post_office_box) %></td>
-        <td><%= verifica_registro(:campo => person_address.neighborhood) %></td>
-        <td><%= verifica_registro(:campo => person_address.zip_code) %></td>
-        <td><%= verifica_registro(:campo => person_address.number) %></td>
-        <td><%= verifica_registro(:campo => person_address.provenance_area, :atributo => "description") %></td>
+        <td><%= link_to person_address.id, person_address_path(person_address) %></td>
+        <td><%= person_address.street_type_id %></td>
+        <td><%= person_address.city_id %></td>
+        <td><%= person_address.street_name %></td>
+        <td><%= person_address.complement %></td>
+        <td><%= person_address.post_office_box %></td>
+        <td><%= person_address.neighborhood %></td>
+        <td><%= person_address.zip_code %></td>
+        <td><%= person_address.number %></td>
+        <td><%= person_address.provenance_area_id %></td>
+        <td><%= person_address.person_id %></td>
+        <td><%=l person_address.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_person_person_address_path(:id => person_address), :class => 'btn btn-mini' %>
+                      edit_person_address_path(person_address), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      [@person,person_address],
+                      person_address_path(person_address),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -48,10 +49,6 @@
   </tbody>
 </table>
 
-<% if !@person_addresses.exists? %>
-    <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_person_person_address_path,
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_person_address_path,
             :class => 'btn btn-primary' %>
-<% else %>
-    <!-- <td><%= link_to 'Edit Person address', edit_person_person_address_path(@person,@person_addresses[0]) %></td> -->
-<%end%>

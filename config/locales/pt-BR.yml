@@ -274,6 +274,25 @@ pt-BR:
         value: "Valor (%)"
         rclass_status_true_id: "Se verdadeiro"
         rclass_status_false_id: "Senão"
+      learning_modality:
+        description: "Descrição"
+      education_degree:
+        degree: "Nível"
+      blood_type:
+        type: "Tipo"
+      marital_status:
+        status: "Estado"
+      knowledge_area:
+        description: "Descrição"
+      special_needs_type:
+      registration_scheme:
+        description: "Descrição"
+      person_address:
+      matrix_status:
+        description: "Descrição"
+      street_type:
+        description: "Descrição"
+        
         
     models:
       person: "Pessoa"  
@@ -314,7 +333,17 @@ pt-BR:
       city: "Cidades"
       matrix_discipline_prerequisite: "Pré requisitos"      
       course_matrix_academic_rule: "Regras Acadêmicas"  
-      academic_rule: "Regras Acadêmicas"    
+      academic_rule: "Regras Acadêmicas"
+      learning_modality: "Modalidade de Ensino"
+      knowledge_area: "Áreas do Conhecimento"
+      blood_type: "Tipos Sanguíneos"
+      marital_status: "Estados Civis"
+      special_needs_type: "Tipos de Necessidade Especial"
+      education_degree: "Níveis Educacionais"
+      registration_scheme: "Sistemas de Registro"
+      person_address: "Endereços Pessoais"
+      street_type: "Tipos de Rua"
+      matrix_status: "Estados das Matriz"
       
   action:
       actions: "Ações"

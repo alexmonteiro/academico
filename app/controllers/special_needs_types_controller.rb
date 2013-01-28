@@ -44,7 +44,7 @@ class SpecialNeedsTypesController < ApplicationController
 
     respond_to do |format|
       if @special_needs_type.save
-        format.html { redirect_to @special_needs_type, :notice => 'Special needs type was successfully created.' }
+        format.html { redirect_to @special_needs_type, :notice => 'Tipo de necessidade especial criada com sucesso.' }
         format.json { render :json => @special_needs_type, :status => :created, :location => @special_needs_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class SpecialNeedsTypesController < ApplicationController
 
     respond_to do |format|
       if @special_needs_type.update_attributes(params[:special_needs_type])
-        format.html { redirect_to @special_needs_type, :notice => 'Special needs type was successfully updated.' }
+        format.html { redirect_to @special_needs_type, :notice => 'Tipo de necessidade especial atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class SpecialNeedsTypesController < ApplicationController
     @special_needs_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to special_needs_types_url }
+      format.html { redirect_to special_needs_types_url, :notice => 'Tipo de necessidade especial excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
