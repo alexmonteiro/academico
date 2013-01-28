@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,7 +15,7 @@
     <% @special_needs_types.each do |special_needs_type| %>
       <tr>
         <td><%= link_to special_needs_type.id, special_needs_type_path(special_needs_type) %></td>
-        <td></td>
+        <td><%= special_needs_type.description %></td>
         <td><%=l special_needs_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

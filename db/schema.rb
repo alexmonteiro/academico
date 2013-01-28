@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118213357) do
+ActiveRecord::Schema.define(:version => 20130128183206) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -681,9 +681,9 @@ ActiveRecord::Schema.define(:version => 20130118213357) do
   end
 
   create_table "special_needs_types", :force => true do |t|
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "states", :force => true do |t|

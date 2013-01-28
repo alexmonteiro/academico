@@ -285,6 +285,7 @@ pt-BR:
       knowledge_area:
         description: "Descrição"
       special_needs_type:
+        description: "Descrição"
       registration_scheme:
         description: "Descrição"
       person_address:
