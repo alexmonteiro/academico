@@ -1,10 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @knowledge_area.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @knowledge_area.description %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @knowledge_area.description %></dd>
+</dl>
 
-
-<%= link_to 'Edit', edit_knowledge_area_path(@knowledge_area) %> |
-<%= link_to 'Back', knowledge_areas_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              knowledge_areas_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_knowledge_area_path(@knowledge_area), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              knowledge_area_path(@knowledge_area),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

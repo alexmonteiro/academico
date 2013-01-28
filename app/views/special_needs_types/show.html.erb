@@ -1,10 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @special_needs_type.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Type:</b>
-  <%= @special_needs_type.type %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
+  <dd><%= @special_needs_type.type %></dd>
+</dl>
 
-
-<%= link_to 'Edit', edit_special_needs_type_path(@special_needs_type) %> |
-<%= link_to 'Back', special_needs_types_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              special_needs_types_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_special_needs_type_path(@special_needs_type), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              special_needs_type_path(@special_needs_type),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

@@ -50,7 +50,13 @@ module ApplicationHelper
                          ['education_steps','Graus','Itens de Institucional'], 
                          ['education_levels','Níveis','Itens de Matriz'], 
                          ['techaxis_types','Eixos Tecnológicos / Áreas','Itens de Institucional'], 
-                         ['races','Etnias','Itens de Pessoas']]
+                         ['races','Etnias','Itens de Pessoas'],
+                         ['learning_modalities','Modalidades de Ensino','Itens de Institucional'],
+                         ['education_degrees','Níveis Educacionais','Itens de Institucional'],
+                         ['marital_statuses','Estados Civis','Itens de Pessoas'],
+                         ['blood_types','Tipos Sanguíneos','Itens de Pessoas'],
+                         ['registration_schemes','Sistemas de Registros','Itens de Institucional'],
+                         ['knowledge_areas','Áreas do Conhecimento','Itens de Institucional']]
     #Ordena o Array de controllers e Grupos
     array_controllers = array_controllers.sort {|x,y| y <=> x }
     array_groups = array_groups.sort

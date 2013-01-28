@@ -1,21 +1,14 @@
-<%= form_for(@blood_type) do |f| %>
-  <% if @blood_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@blood_type.errors.count, "error") %> prohibited this blood_type from being saved:</h2>
-
-      <ul>
-      <% @blood_type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @blood_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :type, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                blood_types_path, :class => 'btn' %>
   </div>
 <% end %>

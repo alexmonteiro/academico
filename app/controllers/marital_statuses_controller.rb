@@ -44,7 +44,7 @@ class MaritalStatusesController < ApplicationController
 
     respond_to do |format|
       if @marital_status.save
-        format.html { redirect_to @marital_status, :notice => 'Marital status was successfully created.' }
+        format.html { redirect_to @marital_status, :notice => 'Estado Civil criado com sucesso.' }
         format.json { render :json => @marital_status, :status => :created, :location => @marital_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class MaritalStatusesController < ApplicationController
 
     respond_to do |format|
       if @marital_status.update_attributes(params[:marital_status])
-        format.html { redirect_to @marital_status, :notice => 'Marital status was successfully updated.' }
+        format.html { redirect_to @marital_status, :notice => 'Estado Civil atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class MaritalStatusesController < ApplicationController
     @marital_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to marital_statuses_url }
+      format.html { redirect_to marital_statuses_url, :notice => 'Estado Civil excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

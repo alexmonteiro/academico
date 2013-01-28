@@ -45,7 +45,7 @@ class BloodTypesController < ApplicationController
 
     respond_to do |format|
       if @blood_type.save
-        format.html { redirect_to @blood_type, :notice => 'Blood type was successfully created.' }
+        format.html { redirect_to @blood_type, :notice => 'Tipo sanguíneo criado com sucesso.' }
         format.json { render :json => @blood_type, :status => :created, :location => @blood_type }
       else
         format.html { render :action => "new" }
@@ -61,7 +61,7 @@ class BloodTypesController < ApplicationController
 
     respond_to do |format|
       if @blood_type.update_attributes(params[:blood_type])
-        format.html { redirect_to @blood_type, :notice => 'Blood type was successfully updated.' }
+        format.html { redirect_to @blood_type, :notice => 'Tipo sanguíneo atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -77,7 +77,7 @@ class BloodTypesController < ApplicationController
     @blood_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to blood_types_url }
+      format.html { redirect_to blood_types_url, :notice => 'Tipo sanguíneo excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

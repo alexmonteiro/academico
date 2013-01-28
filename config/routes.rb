@@ -122,18 +122,18 @@ AcademicoRails::Application.routes.draw do
   #################################
   resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
   resources :races, :path => 'configuracoes/etnias'
-  resources :special_needs_types
-  resources :marital_statuses
-  resources :education_degrees
+  resources :special_needs_types, :path => 'configuracoes/tipo_necessidade_especial'
+  resources :marital_statuses, :path => 'configuracoes/estado_civil'
+  resources :education_degrees, :path => 'configuracoes/niveis_educacionais'
   resources :genders, :path => 'configuracoes/sexos'
-  resources :blood_types  
-  resources :knowledge_areas
-  resources :registration_schemes
-  resources :learning_modalities
+  resources :blood_types, :path => 'configuracoes/tipos_sanguineos'
+  resources :knowledge_areas, :path => "configuracoes/areas_conhecimento"
+  resources :registration_schemes, :path => "configuracoes/sistema_registro"
+  resources :learning_modalities, :path => "configuracoes/modalidades_ensino"
   resources :education_modalities, :path => "configuracoes/modalidades"
   resources :education_steps, :path => "configuracoes/graus" 
   resources :education_levels, :path => "configuracoes/niveis"
-  resources :person_addresses
+  resources :person_addresses, :path =>  'configuracoes/enderecos'
   resources :techaxis_types, :path => "configuracoes/eixos" do
    resources :techaxes, :path => "areas"
   end
