@@ -1,23 +1,34 @@
-<h1>Listing class_record_types</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @class_record_types.each do |class_record_type| %>
-  <tr>
-    <td><%= class_record_type.description %></td>
-    <td><%= link_to 'Show', class_record_type %></td>
-    <td><%= link_to 'Edit', edit_class_record_type_path(class_record_type) %></td>
-    <td><%= link_to 'Destroy', class_record_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = ClassRecordType.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @class_record_types.each do |class_record_type| %>
+      <tr>
+        <td><%= link_to class_record_type.id, class_record_type_path(class_record_type) %></td>
+        <td><%= class_record_type.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_class_record_type_path(class_record_type), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      class_record_type_path(class_record_type),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Class record type', new_class_record_type_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_class_record_type_path,
+            :class => 'btn btn-primary' %>

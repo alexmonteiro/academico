@@ -1,23 +1,34 @@
-<h1>Listing matrix_discipline_groups</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @matrix_discipline_groups.each do |matrix_discipline_group| %>
-  <tr>
-    <td><%= matrix_discipline_group.description %></td>
-    <td><%= link_to 'Show', matrix_discipline_group %></td>
-    <td><%= link_to 'Edit', edit_matrix_discipline_group_path(matrix_discipline_group) %></td>
-    <td><%= link_to 'Destroy', matrix_discipline_group, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = MatrixDisciplineGroup.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matrix_discipline_groups.each do |matrix_discipline_group| %>
+      <tr>
+        <td><%= link_to matrix_discipline_group.id, matrix_discipline_group_path(matrix_discipline_group) %></td>
+        <td><%= matrix_discipline_group.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_matrix_discipline_group_path(matrix_discipline_group), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      matrix_discipline_group_path(matrix_discipline_group),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Matrix discipline group', new_matrix_discipline_group_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_matrix_discipline_group_path,
+            :class => 'btn btn-primary' %>

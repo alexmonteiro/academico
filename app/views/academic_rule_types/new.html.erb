@@ -1,5 +1,6 @@
-<h1>New academic_rule_type</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', academic_rule_types_path %>
+<%- model_class = @academic_rule_type.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+</div>
+<%= render :partial => 'form' %>

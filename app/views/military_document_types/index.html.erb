@@ -1,23 +1,34 @@
-<h1>Listing military_document_types</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @military_document_types.each do |military_document_type| %>
-  <tr>
-    <td><%= military_document_type.description %></td>
-    <td><%= link_to 'Show', military_document_type %></td>
-    <td><%= link_to 'Edit', edit_military_document_type_path(military_document_type) %></td>
-    <td><%= link_to 'Destroy', military_document_type, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = MilitaryDocumentType.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @military_document_types.each do |military_document_type| %>
+      <tr>
+        <td><%= link_to military_document_type.id, military_document_type_path(military_document_type) %></td>
+        <td><%= military_document_type.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_military_document_type_path(military_document_type), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      military_document_type_path(military_document_type),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Military document type', new_military_document_type_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_military_document_type_path,
+            :class => 'btn btn-primary' %>

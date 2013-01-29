@@ -1,23 +1,34 @@
-<h1>Listing course_statuses</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @course_statuses.each do |course_status| %>
-  <tr>
-    <td><%= course_status.description %></td>
-    <td><%= link_to 'Show', course_status %></td>
-    <td><%= link_to 'Edit', edit_course_status_path(course_status) %></td>
-    <td><%= link_to 'Destroy', course_status, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = CourseStatus.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @course_statuses.each do |course_status| %>
+      <tr>
+        <td><%= link_to course_status.id, course_status_path(course_status) %></td>
+        <td><%= course_status.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_course_status_path(course_status), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      course_status_path(course_status),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Course status', new_course_status_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_course_status_path,
+            :class => 'btn btn-primary' %>

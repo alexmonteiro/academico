@@ -1,21 +1,14 @@
-<%= form_for(@situation_teaching_equipament) do |f| %>
-  <% if @situation_teaching_equipament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@situation_teaching_equipament.errors.count, "error") %> prohibited this situation_teaching_equipament from being saved:</h2>
-
-      <ul>
-      <% @situation_teaching_equipament.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @situation_teaching_equipament, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                situation_teaching_equipaments_path, :class => 'btn' %>
   </div>
 <% end %>
