@@ -1,21 +1,14 @@
-<%= form_for(@telephone_type) do |f| %>
-  <% if @telephone_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@telephone_type.errors.count, "error") %> prohibited this telephone_type from being saved:</h2>
-
-      <ul>
-      <% @telephone_type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @telephone_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :telephone_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :telephone_type, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :telephone_type %><br />
-    <%= f.text_field :telephone_type %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                telephone_types_path, :class => 'btn' %>
   </div>
 <% end %>

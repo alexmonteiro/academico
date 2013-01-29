@@ -293,6 +293,50 @@ pt-BR:
         description: "Descrição"
       street_type:
         description: "Descrição"
+      class_season_type:
+        description: "Descrição"
+      matrix_evaluation_type:
+        description: "Descrição"
+      telephone_type:
+        telephone_type: "Tipo"
+      provenance_area:
+        description: "Descrição"
+      discipline_type:
+        description: "Descrição"
+      class_time:
+        started_at: "Início"
+        ended_at: "Término"
+      day_week:
+        description: "Descrição"
+      equipament_type:
+        description: "Descrição"
+      situation_teaching_equipament:
+        description: "Descrição"
+      academic_rule_type:
+        rule: "Regra"
+      discipline_class_exam_type:
+        description: "Descrição"
+      class_record_type:
+        description: "Descrição"
+      registration_class_status:
+        description: "Descrição"
+        is_approved: "Está aprovado?"
+      registration_status:
+        description: "Descrição"
+        is_attending: "Está comparecendo?"
+      course_status:
+        description: "Descrição"
+      class_student_status:
+        description: "Descrição"
+      military_document_type:
+        description: "Descrição"
+      issuing_institution:
+        description: "Descrição"
+        acronym: "Acrónimo"
+      matrix_discipline_group:
+        description: "Descrição"
+      dept_type:
+        dept_type: "Departamento"
         
         
     models:
@@ -344,7 +388,27 @@ pt-BR:
       registration_scheme: "Sistemas de Registro"
       person_address: "Endereços Pessoais"
       street_type: "Tipos de Rua"
-      matrix_status: "Estados das Matriz"
+      matrix_status: "Estados das Matrizes"
+      class_season_type: "Tipos de Sessão de Classe"
+      matrix_evaluation_type: "Tipos de Avaliação de Matrizes"
+      telephone_type: "Tipos de Telefone"
+      discipline_type: "Tipo de Disciplina"
+      provenance_area: "Área de Procedência"
+      class_time: "Horários de Classe"
+      day_week: "Dias da Semana"
+      equipament_type: "Tipos de Equipamento"
+      situation_teaching_equipament: "Estados de Equipamento"
+      academic_rule_type: "Tipo de regras acadêmicas"
+      discipline_class_exam_type: "Tipos de exame de classe nas disciplinas"
+      class_record_type: "Tipos de registro de classe"
+      registration_class_status: "Estados de registro de classe"
+      registration_status: "Estados de registro"
+      course_status: "Estados de curso"
+      class_student_status: "Estados do estudante da classe"
+      military_document_type: "Tipos de documento militar"
+      issuing_institution: "Instituições emissoras"
+      matrix_discipline_group: "Grupos de matriz de disciplinas"
+      dept_type: "Tipos de Departamento"
       
   action:
       actions: "Ações"

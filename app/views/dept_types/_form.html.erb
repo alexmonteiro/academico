@@ -1,21 +1,14 @@
-<%= form_for(@dept_type) do |f| %>
-  <% if @dept_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dept_type.errors.count, "error") %> prohibited this dept_type from being saved:</h2>
-
-      <ul>
-      <% @dept_type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @dept_type, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :dept_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :dept_type, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :dept_type %><br />
-    <%= f.text_field :dept_type %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                dept_types_path, :class => 'btn' %>
   </div>
 <% end %>

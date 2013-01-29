@@ -1,23 +1,34 @@
-<h1>Listing situation_teaching_equipaments</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @situation_teaching_equipaments.each do |situation_teaching_equipament| %>
-  <tr>
-    <td><%= situation_teaching_equipament.description %></td>
-    <td><%= link_to 'Show', situation_teaching_equipament %></td>
-    <td><%= link_to 'Edit', edit_situation_teaching_equipament_path(situation_teaching_equipament) %></td>
-    <td><%= link_to 'Destroy', situation_teaching_equipament, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = SituationTeachingEquipament.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @situation_teaching_equipaments.each do |situation_teaching_equipament| %>
+      <tr>
+        <td><%= link_to situation_teaching_equipament.id, situation_teaching_equipament_path(situation_teaching_equipament) %></td>
+        <td><%= situation_teaching_equipament.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_situation_teaching_equipament_path(situation_teaching_equipament), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      situation_teaching_equipament_path(situation_teaching_equipament),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Voçê tem certeza?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Situation teaching equipament', new_situation_teaching_equipament_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_situation_teaching_equipament_path,
+            :class => 'btn btn-primary' %>

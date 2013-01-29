@@ -1,25 +1,20 @@
-<%= form_for(@registration_status) do |f| %>
-  <% if @registration_status.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@registration_status.errors.count, "error") %> prohibited this registration_status from being saved:</h2>
-
-      <ul>
-      <% @registration_status.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @registration_status, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :is_attending, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :is_attending, :class => 'check_box' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :is_attending %><br />
-    <%= f.check_box :is_attending %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                registration_statuses_path, :class => 'btn' %>
   </div>
 <% end %>
