@@ -138,7 +138,7 @@ AcademicoRails::Application.routes.draw do
    resources :techaxes, :path => "areas"
   end
   resources :provenance_areas, :path => 'configuracoes/procedencia'
-  resources :street_types, :path => 'configuracoes/tipos_rua'
+  resources :street_types, :path => 'configuracoes/logradouro'
   resources :telephone_types, :path => 'configuracoes/telefones'
   resources :class_season_types, :path => 'configuracoes/periodos'
   resources :matrix_evaluation_types, :path => 'configuracoes/matriz_avaliacoes'

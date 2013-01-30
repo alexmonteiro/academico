@@ -393,7 +393,7 @@ pt-BR:
       education_degree: "Níveis Educacionais"
       registration_scheme: "Sistemas de Registro"
       person_address: "Endereços Pessoais"
-      street_type: "Tipos de Rua"
+      street_type: "Logradouro"
       matrix_status: "Estados das Matrizes"
       class_season_type: "Períodos Letivos"
       matrix_evaluation_type: "Tipos de Avaliação de Matrizes"

@@ -63,7 +63,7 @@ module ApplicationHelper
                          ['matrix_statuses','Estados','Itens de Matriz'],
                          ['matrix_evaluation_types','Avaliações','Itens de Matriz'],
                          ['telephone_types','Telefones','Itens de Pessoas'],
-                         ['street_types','Ruas','Gerais'],
+                         ['street_types','Logradouros','Gerais'],
                          ['provenance_areas','Procedência','Gerais'],
                          ['discipline_types','Disciplinas','Itens de Institucional'],
                          ['course_statuses','Cursos','Itens de Institucional'],
