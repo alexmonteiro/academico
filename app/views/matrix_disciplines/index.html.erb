@@ -38,7 +38,7 @@
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       [@matrix, matrix_discipline],
                       :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente exlcuir?')),
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
