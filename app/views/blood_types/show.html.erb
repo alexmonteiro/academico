@@ -1,10 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @blood_type.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Type:</b>
-  <%= @blood_type.type %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
+  <dd><%= @blood_type.type %></dd>
+</dl>
 
-
-<%= link_to 'Edit', edit_blood_type_path(@blood_type) %> |
-<%= link_to 'Back', blood_types_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              blood_types_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_blood_type_path(@blood_type), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              blood_type_path(@blood_type),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+              :class => 'btn btn-danger' %>
+</div>

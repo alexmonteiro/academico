@@ -1,25 +1,20 @@
-<%= form_for(@issuing_institution) do |f| %>
-  <% if @issuing_institution.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@issuing_institution.errors.count, "error") %> prohibited this issuing_institution from being saved:</h2>
-
-      <ul>
-      <% @issuing_institution.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @issuing_institution, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :acronym, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :acronym, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :acronym %><br />
-    <%= f.text_field :acronym %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                issuing_institutions_path, :class => 'btn' %>
   </div>
 <% end %>

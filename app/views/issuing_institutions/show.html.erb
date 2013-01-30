@@ -1,15 +1,23 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = @issuing_institution.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @issuing_institution.description %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @issuing_institution.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
+  <dd><%= @issuing_institution.acronym %></dd>
+</dl>
 
-<p>
-  <b>Acronym:</b>
-  <%= @issuing_institution.acronym %>
-</p>
-
-
-<%= link_to 'Edit', edit_issuing_institution_path(@issuing_institution) %> |
-<%= link_to 'Back', issuing_institutions_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              issuing_institutions_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_issuing_institution_path(@issuing_institution), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              issuing_institution_path(@issuing_institution),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

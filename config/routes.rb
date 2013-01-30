@@ -122,29 +122,28 @@ AcademicoRails::Application.routes.draw do
   #################################
   resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
   resources :races, :path => 'configuracoes/etnias'
-  resources :special_needs_types
-  resources :marital_statuses
-  resources :education_degrees
+  resources :special_needs_types, :path => 'configuracoes/tipo_necessidade_especial'
+  resources :marital_statuses, :path => 'configuracoes/estado_civil'
+  resources :education_degrees, :path => 'configuracoes/niveis_educacionais'
   resources :genders, :path => 'configuracoes/sexos'
-  resources :blood_types  
-  resources :knowledge_areas
-  resources :registration_schemes
-  resources :learning_modalities
+  resources :blood_types, :path => 'configuracoes/tipos_sanguineos'
+  resources :knowledge_areas, :path => "configuracoes/areas_conhecimento"
+  resources :registration_schemes, :path => "configuracoes/sistema_registro"
+  resources :learning_modalities, :path => "configuracoes/modalidades_ensino"
   resources :education_modalities, :path => "configuracoes/modalidades"
   resources :education_steps, :path => "configuracoes/graus" 
   resources :education_levels, :path => "configuracoes/niveis"
-  resources :person_addresses
+  resources :person_addresses, :path =>  'configuracoes/enderecos'
   resources :techaxis_types, :path => "configuracoes/eixos" do
    resources :techaxes, :path => "areas"
   end
-  resources :education_steps
-  resources :provenance_areas
-  resources :street_types
-  resources :telephone_types
-  resources :class_season_types
-  resources :matrix_evaluation_types
-  resources :matrix_statuses
-  resources :discipline_types
+  resources :provenance_areas, :path => 'configuracoes/procedencia'
+  resources :street_types, :path => 'configuracoes/tipos_rua'
+  resources :telephone_types, :path => 'configuracoes/telefones'
+  resources :class_season_types, :path => 'configuracoes/sessoes'
+  resources :matrix_evaluation_types, :path => 'configuracoes/matriz_avaliacoes'
+  resources :matrix_statuses, :path => 'configuracoes/estados'
+  resources :discipline_types, :path => 'configuracoes/disciplinas'
   resources :countries, :path => 'configuracoes/paises' do
    resources :states, :path => 'estados' do
     resources :cities, :path => 'cidades'
@@ -152,24 +151,24 @@ AcademicoRails::Application.routes.draw do
   end
   match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
   match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'
-  resources :class_times
-  resources :day_weeks
-  resources :equipament_types
-  resources :situation_teaching_equipaments
+  resources :class_times, :path => 'configuracoes/horarios_classe'
+  resources :day_weeks, :path => 'configuracoes/dias_semana'
+  resources :equipament_types, :path => 'configuracoes/equipamento'
+  resources :situation_teaching_equipaments, :path => 'configuracoes/estado_equipamento'
   resources :shift_types, :path => "turnos"
   
 
-  resources :academic_rule_types
-  resources :discipline_class_exam_types
-  resources :class_record_types
-  resources :registration_class_statuses
-  resources :registration_statuses
-  resources :course_statuses
-  resources :class_student_statuses
-  resources :military_document_types
-  resources :issuing_institutions
-  resources :matrix_discipline_groups
-  resources :dept_types  
+  resources :academic_rule_types, :path => 'configuracoes/regras_academicas'
+  resources :discipline_class_exam_types, :path => 'configuracoes/exames_classe'
+  resources :class_record_types, :path => 'configuracoes/tipos_registro_classe'
+  resources :registration_class_statuses, :path => 'configuracoes/estado_registro_classe'
+  resources :registration_statuses, :path => 'configuracoes/estado_registro'
+  resources :course_statuses, :path => 'configuracoes/cursos'
+  resources :class_student_statuses, :path => 'configuracoes/estados_classe_estudante'
+  resources :military_document_types, :path => 'configuracoes/documentos_militar'
+  resources :issuing_institutions, :path => 'configuracoes/emissoras'
+  resources :matrix_discipline_groups, :path => 'configuracoes/matriz_disciplina'
+  resources :dept_types, :path => 'configuracoes/departamentos'
   
   
   

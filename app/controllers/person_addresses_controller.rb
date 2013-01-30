@@ -24,7 +24,7 @@ class PersonAddressesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to person_person_addresses_path, :notice => "This record doesn`t exists."}
+        format.html { redirect_to person_person_addresses_path, :notice => "Este registro não existe."}
         format.json { render :json => @person_address}
       end
     end
@@ -65,7 +65,7 @@ class PersonAddressesController < ApplicationController
 
     respond_to do |format|
       if @person_address.save
-        format.html { redirect_to [@person,@person_address], :notice => 'Person address was successfully created.' }
+        format.html { redirect_to [@person,@person_address], :notice => 'Endereço criado com sucesso.' }
         format.json { render :json => [@person,@person_address], :status => :created, :location => @person_address }
       else
         format.html { render :action => "new" }
@@ -82,7 +82,7 @@ class PersonAddressesController < ApplicationController
 
     respond_to do |format|
       if @person_address.update_attributes(params[:person_address])
-        format.html { redirect_to [@person,@person_address], :notice => 'Person address was successfully updated.' }
+        format.html { redirect_to [@person,@person_address], :notice => 'Endereço atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -99,7 +99,7 @@ class PersonAddressesController < ApplicationController
     @person_address.destroy
 
     respond_to do |format|
-      format.html { redirect_to person_person_addresses_path }
+      format.html { redirect_to person_person_addresses_path, :notice => 'Endereço excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

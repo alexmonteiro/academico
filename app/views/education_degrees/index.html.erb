@@ -1,23 +1,34 @@
-<h1>Listing education_degrees</h1>
-
-<table>
-  <tr>
-    <th>Degree</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @education_degrees.each do |education_degree| %>
-  <tr>
-    <td><%= education_degree.degree %></td>
-    <td><%= link_to 'Show', education_degree %></td>
-    <td><%= link_to 'Edit', edit_education_degree_path(education_degree) %></td>
-    <td><%= link_to 'Destroy', education_degree, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = EducationDegree.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:degree) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @education_degrees.each do |education_degree| %>
+      <tr>
+        <td><%= link_to education_degree.id, education_degree_path(education_degree) %></td>
+        <td><%= education_degree.degree %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_education_degree_path(education_degree), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      education_degree_path(education_degree),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Voçê tem certeza?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Education degree', new_education_degree_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_education_degree_path,
+            :class => 'btn btn-primary' %>

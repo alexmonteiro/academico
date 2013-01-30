@@ -1,21 +1,25 @@
-<%= form_for(@learning_modality) do |f| %>
-  <% if @learning_modality.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@learning_modality.errors.count, "error") %> prohibited this learning_modality from being saved:</h2>
+<% if @learning_modality.errors.any? %>
+  <div id="error_explanation" class="alert alert-error">
+    <h2><%= pluralize(@learning_modality.errors.count, "erro impediu", "erros impediram") %>  a gravação:</h2>
 
-      <ul>
-      <% @learning_modality.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <ul>
+    <% @learning_modality.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+<%end%>
+<%= form_for @learning_modality, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                learning_modalities_path, :class => 'btn' %>
   </div>
 <% end %>

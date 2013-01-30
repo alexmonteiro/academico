@@ -19,4 +19,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'avaliação', 'avaliações'
   inflect.irregular 'enturmação', 'enturmações'
   inflect.irregular 'nível', 'níveis'
+  inflect.irregular 'especial', 'especiais'
 end

@@ -1,23 +1,34 @@
-<h1>Listing registration_schemes</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @registration_schemes.each do |registration_scheme| %>
-  <tr>
-    <td><%= registration_scheme.description %></td>
-    <td><%= link_to 'Show', registration_scheme %></td>
-    <td><%= link_to 'Edit', edit_registration_scheme_path(registration_scheme) %></td>
-    <td><%= link_to 'Destroy', registration_scheme, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = RegistrationScheme.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registration_schemes.each do |registration_scheme| %>
+      <tr>
+        <td><%= link_to registration_scheme.id, registration_scheme_path(registration_scheme) %></td>
+        <td><%= registration_scheme.description %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_registration_scheme_path(registration_scheme), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      registration_scheme_path(registration_scheme),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Registration scheme', new_registration_scheme_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_registration_scheme_path,
+            :class => 'btn btn-primary' %>
