@@ -67,7 +67,7 @@ module ApplicationHelper
                          ['provenance_areas','Procedência','Gerais'],
                          ['discipline_types','Disciplinas','Itens de Institucional'],
                          ['course_statuses','Cursos','Itens de Institucional'],
-                         ['class_season_types','Sessões de Classe','Itens de Institucional'],
+                         ['class_season_types','Períodos Letivos','Itens de Institucional'],
                          ['military_document_types','Documentos Mlilitares','Itens de Institucional'],
                          ['registration_statuses','Estados de Registro','Itens de Institucional'],
                          ['class_times','Horários de Classe','Itens de Institucional'],

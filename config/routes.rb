@@ -140,7 +140,7 @@ AcademicoRails::Application.routes.draw do
   resources :provenance_areas, :path => 'configuracoes/procedencia'
   resources :street_types, :path => 'configuracoes/tipos_rua'
   resources :telephone_types, :path => 'configuracoes/telefones'
-  resources :class_season_types, :path => 'configuracoes/sessoes'
+  resources :class_season_types, :path => 'configuracoes/periodos'
   resources :matrix_evaluation_types, :path => 'configuracoes/matriz_avaliacoes'
   resources :matrix_statuses, :path => 'configuracoes/estados'
   resources :discipline_types, :path => 'configuracoes/disciplinas'
