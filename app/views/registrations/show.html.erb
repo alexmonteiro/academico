@@ -75,6 +75,6 @@
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               registration_path(@registration),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja excluir?')),
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
               :class => 'btn btn-danger btn-large pull-right' %>
 </div>
