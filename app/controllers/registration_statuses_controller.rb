@@ -44,7 +44,7 @@ class RegistrationStatusesController < ApplicationController
 
     respond_to do |format|
       if @registration_status.save
-        format.html { redirect_to @registration_status, :notice => 'Registration status was successfully created.' }
+        format.html { redirect_to @registration_status, :notice => 'Estado de registro criado com sucesso.' }
         format.json { render :json => @registration_status, :status => :created, :location => @registration_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class RegistrationStatusesController < ApplicationController
 
     respond_to do |format|
       if @registration_status.update_attributes(params[:registration_status])
-        format.html { redirect_to @registration_status, :notice => 'Registration status was successfully updated.' }
+        format.html { redirect_to @registration_status, :notice => 'Estado de registro atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class RegistrationStatusesController < ApplicationController
     @registration_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to registration_statuses_url }
+      format.html { redirect_to registration_statuses_url, :notice => 'Estado de registro excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

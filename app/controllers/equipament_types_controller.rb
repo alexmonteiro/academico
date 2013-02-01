@@ -44,7 +44,7 @@ class EquipamentTypesController < ApplicationController
 
     respond_to do |format|
       if @equipament_type.save
-        format.html { redirect_to @equipament_type, :notice => 'Equipament type was successfully created.' }
+        format.html { redirect_to @equipament_type, :notice => 'Tipo de Equipamento criado com sucesso.' }
         format.json { render :json => @equipament_type, :status => :created, :location => @equipament_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class EquipamentTypesController < ApplicationController
 
     respond_to do |format|
       if @equipament_type.update_attributes(params[:equipament_type])
-        format.html { redirect_to @equipament_type, :notice => 'Equipament type was successfully updated.' }
+        format.html { redirect_to @equipament_type, :notice => 'Tipo de Equipamento atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class EquipamentTypesController < ApplicationController
     @equipament_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to equipament_types_url }
+      format.html { redirect_to equipament_types_url, :notice => 'Tipo de Equipamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

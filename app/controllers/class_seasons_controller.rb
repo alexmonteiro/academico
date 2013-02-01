@@ -44,7 +44,7 @@ class ClassSeasonsController < ApplicationController
 
     respond_to do |format|
       if @class_season.save
-        format.html { redirect_to @class_season, :notice => 'Class season was successfully created.' }
+        format.html { redirect_to @class_season, :notice => 'Temporada criada com sucesso.' }
         format.json { render :json => @class_season, :status => :created, :location => @class_season }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ClassSeasonsController < ApplicationController
 
     respond_to do |format|
       if @class_season.update_attributes(params[:class_season])
-        format.html { redirect_to @class_season, :notice => 'Class season was successfully updated.' }
+        format.html { redirect_to @class_season, :notice => 'Temporada atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ClassSeasonsController < ApplicationController
     @class_season.destroy
 
     respond_to do |format|
-      format.html { redirect_to class_seasons_url }
+      format.html { redirect_to class_seasons_url, :notice => 'Temporada excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

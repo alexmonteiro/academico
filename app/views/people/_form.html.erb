@@ -1,19 +1,5 @@
 <%= form_for @person, :html => { :class => 'form-vertical' } do |f| %>
-<div class="container">
 
-	<% if @person.errors.any? %>
-	<div class="span9">
-	  <div class="alert alert-error">
-	    <%= pluralize(@person.errors.count, "erro impediu", "erros impediram") %> o novo cadastro:
-	    <ul>
-	    <% @person.errors.full_messages.each do |msg| %>
-	      <li><%=t msg %></li>
-	    <% end %>
-	    </ul>
-	  </div>
-	</div>
-	<% end %>
-</div>
 <div class="container">
 <fieldset>
 <legend>Identificação</legend>	

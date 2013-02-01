@@ -1,16 +1,3 @@
-<%= form_for @discipline_class, :html => { :class => 'form-horizontal' } do |f| %>
-<% if @discipline_class.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline_class.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
-
-    <ul>
-    <% @discipline_class.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <% if (params[:action] == 'edit' || params[:action] == 'update') %>
 <h2>Turma: <%= @discipline_class.try(:school_class_identifier) %> - <%= @discipline_class.try(:course_name) %> </h2>
 <h2>Classe: <%= @discipline_class.try(:code) %> - <%= @discipline_class.try(:discipline_name) %> </h2>

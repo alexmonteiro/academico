@@ -24,7 +24,7 @@ class DeptAddressesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to dept_dept_addresses_path, :notice => "This record do not exists."}
+        format.html { redirect_to dept_dept_addresses_path, :notice => "Este registro não existe."}
         format.json { render :json => @dept_address}
       end
     end
@@ -65,7 +65,7 @@ class DeptAddressesController < ApplicationController
 
     respond_to do |format|
       if @dept_address.save
-        format.html { redirect_to [@dept,@dept_address], :notice => 'Dept address was successfully created.' }
+        format.html { redirect_to [@dept,@dept_address], :notice => 'Endereço de Departamento criado com sucesso.' }
         format.json { render :json => [@dept,@dept_address], :status => :created, :location => @dept_address }
       else
         format.html { render :action => "new" }
@@ -82,7 +82,7 @@ class DeptAddressesController < ApplicationController
 
     respond_to do |format|
       if @dept_address.update_attributes(params[:dept_address])
-        format.html { redirect_to [@dept,@dept_address], :notice => 'Dept address was successfully updated.' }
+        format.html { redirect_to [@dept,@dept_address], :notice => 'Endereço de Departamento atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -98,7 +98,7 @@ class DeptAddressesController < ApplicationController
     @dept_address.destroy
 
     respond_to do |format|
-      format.html { redirect_to dept_dept_addresses_path }
+      format.html { redirect_to dept_dept_addresses_path, :notice => 'Endereço de Departamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -44,7 +44,7 @@ class MatrixEvaluationTypesController < ApplicationController
 
     respond_to do |format|
       if @matrix_evaluation_type.save
-        format.html { redirect_to @matrix_evaluation_type, :notice => 'Matrix evaluation type was successfully created.' }
+        format.html { redirect_to @matrix_evaluation_type, :notice => 'Avaliação de Matriz criada com sucesso.' }
         format.json { render :json => @matrix_evaluation_type, :status => :created, :location => @matrix_evaluation_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class MatrixEvaluationTypesController < ApplicationController
 
     respond_to do |format|
       if @matrix_evaluation_type.update_attributes(params[:matrix_evaluation_type])
-        format.html { redirect_to @matrix_evaluation_type, :notice => 'Matrix evaluation type was successfully updated.' }
+        format.html { redirect_to @matrix_evaluation_type, :notice => 'Avaliação de Matriz atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class MatrixEvaluationTypesController < ApplicationController
     @matrix_evaluation_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to matrix_evaluation_types_url }
+      format.html { redirect_to matrix_evaluation_types_url, :notice => 'Avaliação de Matriz excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

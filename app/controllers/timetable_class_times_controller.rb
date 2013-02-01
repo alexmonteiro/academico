@@ -44,7 +44,7 @@ class TimetableClassTimesController < ApplicationController
 
     respond_to do |format|
       if @timetable_class_time.save
-        format.html { redirect_to @timetable_class_time, :notice => 'Timetable class time was successfully created.' }
+        format.html { redirect_to @timetable_class_time, :notice => 'Tabela de tempo de classe criada com sucesso.' }
         format.json { render :json => @timetable_class_time, :status => :created, :location => @timetable_class_time }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TimetableClassTimesController < ApplicationController
 
     respond_to do |format|
       if @timetable_class_time.update_attributes(params[:timetable_class_time])
-        format.html { redirect_to @timetable_class_time, :notice => 'Timetable class time was successfully updated.' }
+        format.html { redirect_to @timetable_class_time, :notice => 'Tabela de tempo de classe atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class TimetableClassTimesController < ApplicationController
     @timetable_class_time.destroy
 
     respond_to do |format|
-      format.html { redirect_to timetable_class_times_url }
+      format.html { redirect_to timetable_class_times_url, :notice => 'Tabela de tempo de classe excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

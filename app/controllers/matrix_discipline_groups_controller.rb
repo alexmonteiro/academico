@@ -44,7 +44,7 @@ class MatrixDisciplineGroupsController < ApplicationController
 
     respond_to do |format|
       if @matrix_discipline_group.save
-        format.html { redirect_to @matrix_discipline_group, :notice => 'Matrix discipline group was successfully created.' }
+        format.html { redirect_to @matrix_discipline_group, :notice => 'Matriz de Grupo de Disciplina criada com sucesso.' }
         format.json { render :json => @matrix_discipline_group, :status => :created, :location => @matrix_discipline_group }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class MatrixDisciplineGroupsController < ApplicationController
 
     respond_to do |format|
       if @matrix_discipline_group.update_attributes(params[:matrix_discipline_group])
-        format.html { redirect_to @matrix_discipline_group, :notice => 'Matrix discipline group was successfully updated.' }
+        format.html { redirect_to @matrix_discipline_group, :notice => 'Matriz de Grupo de Disciplina atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class MatrixDisciplineGroupsController < ApplicationController
     @matrix_discipline_group.destroy
 
     respond_to do |format|
-      format.html { redirect_to matrix_discipline_groups_url }
+      format.html { redirect_to matrix_discipline_groups_url, :notice => 'Matriz de Grupo de Disciplina excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

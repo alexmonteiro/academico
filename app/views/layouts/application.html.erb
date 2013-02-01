@@ -106,16 +106,21 @@
 				  <div id="error_explanation" class="alert alert-info">
 				      <%= flash[:notice].html_safe %>
 				  </div>
-				<%end%>				
+				<%end%>			
+				
+				<!-- Exibição dos erros -->
+				<%= render :partial => 'layouts/error_messages' %> 
+				<!-- -->	
 				
 	           <div class="hero-unit">		
 	            <%= yield %>
 	            </div><!--/span-->
 	          </div><!--/row-->
 
+
 	        </div><!--/span-->
 	      </div><!--/row-->
-
+	      
 	      <hr>
 
 	      <footer>

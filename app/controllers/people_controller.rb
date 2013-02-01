@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url }
+      format.html { redirect_to people_url, :notice => t('controller_message.deleted') }
       format.json { head :no_content }
     end
   end

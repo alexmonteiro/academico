@@ -45,7 +45,7 @@ class ClassRecordPresencesController < ApplicationController
 
     respond_to do |format|
       if @class_record_presence.save
-        format.html { redirect_to @class_record_presence, :notice => 'Class record presence was successfully created.' }
+        format.html { redirect_to @class_record_presence, :notice => 'Registro de presença de classe criado com sucesso.' }
         format.json { render :json => @class_record_presence, :status => :created, :location => @class_record_presence }
       else
         format.html { render :action => "new" }
@@ -61,7 +61,7 @@ class ClassRecordPresencesController < ApplicationController
 
     respond_to do |format|
       if @class_record_presence.update_attributes(params[:class_record_presence])
-        format.html { redirect_to @class_record_presence, :notice => 'Class record presence was successfully updated.' }
+        format.html { redirect_to @class_record_presence, :notice => 'Registro de presença de classe atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
