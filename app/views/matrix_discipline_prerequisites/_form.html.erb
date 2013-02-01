@@ -1,14 +1,3 @@
-<% if @matrix_discipline_prerequisite.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@matrix_discipline_prerequisite.errors.count, "erro") %> impediu a gravação:</h2>
-
-    <ul>
-    <% @matrix_discipline_prerequisite.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 <%= form_for [@course_matrix, @matrix_discipline, @matrix_discipline_prerequisite], :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">

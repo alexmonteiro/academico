@@ -1,16 +1,5 @@
 <%curso = Course.find(params[:course_id])%>
 <h2>Curso: <%= curso.name%> | <%= curso.dept.try(:name)%></h2>
-<% if @discipline.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline.errors.count, "erro impediu", "erros impediram") %> a gravação:</h2>
-
-    <ul>
-    <% @discipline.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 <%= form_for ([@course, @discipline], :html => { :class => 'form-horizontal' }) do |f| %>
 
 <div class="container">

@@ -1,20 +1,3 @@
-<div class="container">
-
-	<% if @class_record.errors.any? %>
-	<div class="span9">
-	  <div class="alert alert-error">
-	    <%= pluralize(@class_record.errors.count, "erro impediu", "erros impediram") %> o novo cadastro:
-	    <ul>
-	    <% @class_record.errors.full_messages.each do |msg| %>
-	      <li><%=t msg %></li>
-	    <% end %>
-	    </ul>
-	  </div>
-	</div>
-	<% end %>
-
-</div>
-
 <%= form_for [@discipline_class, @class_record], :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">

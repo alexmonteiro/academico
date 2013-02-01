@@ -108,10 +108,8 @@
 				  </div>
 				<%end%>			
 				
-				<!--TODO: Exibição dos erros -->
-				 <% if params %>
-                  <%= params.inspect %>
-                 <%end%>
+				<!-- Exibição dos erros -->
+				<%= render :partial => 'layouts/error_messages' %> 
 				<!-- -->	
 				
 	           <div class="hero-unit">		

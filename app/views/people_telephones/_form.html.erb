@@ -1,18 +1,4 @@
-
 <%= form_for [@person,@people_telephone], :html => { :class => 'form-horizontal' } do |f| %>
-
-<% if @people_telephone.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@people_telephone.errors.count, "erro ocorreu:", "erros ocorreram:") %></h2>
-
-    <ul>
-    <% @people_telephone.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
   <div class="control-group">
       <h3><%= Person.find(params[:person_id]).name %></h3><br />
       <%= f.hidden_field :people_id, :value => params[:person_id] %>

@@ -1,17 +1,6 @@
 <div class="row-fluid">
 <%- model_class = @person_identification_doc.class -%>
 <%= form_for [@person,@person_identification_doc], :html => { :class => 'form-inline' } do |f| %>
-<% if @person_identification_doc.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@person_identification_doc.errors.count, "erro impediu", "erros impediram") %> a gravação da classe:</h2>
-
-    <ul>
-    <% @person_identification_doc.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
 
   <div class="well pagination-centered span12">
       <h2><%= @person.name %></h2><br />

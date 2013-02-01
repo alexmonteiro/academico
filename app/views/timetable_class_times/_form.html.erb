@@ -1,15 +1,4 @@
 <%= form_for(@timetable_class_time) do |f| %>
-  <% if @timetable_class_time.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@timetable_class_time.errors.count, "erro") %> proibiu a Tabela de Tempo de Classe de ser salva:</h2>
-
-      <ul>
-      <% @timetable_class_time.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :timetable %><br />

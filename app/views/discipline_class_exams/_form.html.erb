@@ -1,16 +1,4 @@
 <%= form_for [@discipline_class, @discipline_class_exam], :html => { :class => 'form-horizontal' } do |f| %>
-<% if @discipline_class_exam.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline_class_exam.errors.count, "erro impediu", "erros impediram") %> a gravação da classe:</h2>
-
-    <ul>
-    <% @discipline_class_exam.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 
   <div class="control-group">
     <%= f.label :applied_at, :class => 'control-label' %>
