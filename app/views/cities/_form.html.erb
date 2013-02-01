@@ -1,6 +1,6 @@
 <% if @city.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@city.errors.count, "error impediu", "errors impediram") %> impediu a gravação:</h2>
+    <h2><%= pluralize(@city.errors.count, "erro ocorreu", "erros ocorreram") %> :</h2>
 
     <ul>
     <% @city.errors.full_messages.each do |msg| %>

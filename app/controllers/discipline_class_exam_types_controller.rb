@@ -44,7 +44,7 @@ class DisciplineClassExamTypesController < ApplicationController
 
     respond_to do |format|
       if @discipline_class_exam_type.save
-        format.html { redirect_to @discipline_class_exam_type, :notice => 'Discipline class exam type was successfully created.' }
+        format.html { redirect_to @discipline_class_exam_type, :notice => 'Tipo de Exame de Classe de Disciplina criada com sucesso.' }
         format.json { render :json => @discipline_class_exam_type, :status => :created, :location => @discipline_class_exam_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DisciplineClassExamTypesController < ApplicationController
 
     respond_to do |format|
       if @discipline_class_exam_type.update_attributes(params[:discipline_class_exam_type])
-        format.html { redirect_to @discipline_class_exam_type, :notice => 'Discipline class exam type was successfully updated.' }
+        format.html { redirect_to @discipline_class_exam_type, :notice => 'Tipo de Exame de Classe de Disciplina atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class DisciplineClassExamTypesController < ApplicationController
     @discipline_class_exam_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to discipline_class_exam_types_url }
+      format.html { redirect_to discipline_class_exam_types_url, :notice => 'Tipo de Exame de Classe de Disciplina excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

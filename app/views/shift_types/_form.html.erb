@@ -1,7 +1,7 @@
 <%= form_for(@shift_type) do |f| %>
   <% if @shift_type.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@shift_type.errors.count, "error") %> prohibited this shift_type from being saved:</h2>
+      <h2><%= pluralize(@shift_type.errors.count, "erro") %> proibiu:</h2>
 
       <ul>
       <% @shift_type.errors.full_messages.each do |msg| %>

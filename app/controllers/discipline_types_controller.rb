@@ -44,7 +44,7 @@ class DisciplineTypesController < ApplicationController
 
     respond_to do |format|
       if @discipline_type.save
-        format.html { redirect_to @discipline_type, :notice => 'Discipline type was successfully created.' }
+        format.html { redirect_to @discipline_type, :notice => 'Tipo de disciplina criado com sucesso.' }
         format.json { render :json => @discipline_type, :status => :created, :location => @discipline_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DisciplineTypesController < ApplicationController
 
     respond_to do |format|
       if @discipline_type.update_attributes(params[:discipline_type])
-        format.html { redirect_to @discipline_type, :notice => 'Discipline type was successfully updated.' }
+        format.html { redirect_to @discipline_type, :notice => 'Tipo de disciplina atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class DisciplineTypesController < ApplicationController
     @discipline_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to discipline_types_url }
+      format.html { redirect_to discipline_types_url, :notice => 'Tipo de disciplina excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -44,7 +44,7 @@ class CourseVacanciesController < ApplicationController
 
     respond_to do |format|
       if @course_vacancy.save
-        format.html { redirect_to @course_vacancy, :notice => 'Course vacancy was successfully created.' }
+        format.html { redirect_to @course_vacancy, :notice => 'Vaga de Curso criada com sucesso.' }
         format.json { render :json => @course_vacancy, :status => :created, :location => @course_vacancy }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CourseVacanciesController < ApplicationController
 
     respond_to do |format|
       if @course_vacancy.update_attributes(params[:course_vacancy])
-        format.html { redirect_to @course_vacancy, :notice => 'Course vacancy was successfully updated.' }
+        format.html { redirect_to @course_vacancy, :notice => 'Vaga de Curso atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class CourseVacanciesController < ApplicationController
     @course_vacancy.destroy
 
     respond_to do |format|
-      format.html { redirect_to course_vacancies_url }
+      format.html { redirect_to course_vacancies_url, :notice => 'Vaga de Curso excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -44,7 +44,7 @@ class MilitaryDocumentTypesController < ApplicationController
 
     respond_to do |format|
       if @military_document_type.save
-        format.html { redirect_to @military_document_type, :notice => 'Military document type was successfully created.' }
+        format.html { redirect_to @military_document_type, :notice => 'Tipo de Documento Militar criado com sucesso.' }
         format.json { render :json => @military_document_type, :status => :created, :location => @military_document_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class MilitaryDocumentTypesController < ApplicationController
 
     respond_to do |format|
       if @military_document_type.update_attributes(params[:military_document_type])
-        format.html { redirect_to @military_document_type, :notice => 'Military document type was successfully updated.' }
+        format.html { redirect_to @military_document_type, :notice => 'Tipo de Documento Militar atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class MilitaryDocumentTypesController < ApplicationController
     @military_document_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to military_document_types_url }
+      format.html { redirect_to military_document_types_url, :notice => 'Tipo de Documento Militar excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -1,6 +1,6 @@
 <% if @dept.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@dept.errors.count, "error impediu", "erros impediram") %>  a gravação:</h2>
+    <h2><%= pluralize(@dept.errors.count, "erro impediu", "erros impediram") %>  a gravação:</h2>
 
     <ul>
     <% @dept.errors.full_messages.each do |msg| %>

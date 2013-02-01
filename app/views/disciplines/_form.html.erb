@@ -2,7 +2,7 @@
 <h2>Curso: <%= curso.name%> | <%= curso.dept.try(:name)%></h2>
 <% if @discipline.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline.errors.count, "error impediu", "errors impediram") %> impediu a gravação:</h2>
+    <h2><%= pluralize(@discipline.errors.count, "erro impediu", "erros impediram") %> a gravação:</h2>
 
     <ul>
     <% @discipline.errors.full_messages.each do |msg| %>

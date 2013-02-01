@@ -24,7 +24,7 @@ class TeachingEquipamentsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to dept_teaching_equipaments_path, :notice => "This record do not exists."}
+        format.html { redirect_to dept_teaching_equipaments_path, :notice => "Este registro não existe."}
         format.json { render :json => @teaching_equipament }
       end
     end
@@ -56,7 +56,7 @@ class TeachingEquipamentsController < ApplicationController
 
     respond_to do |format|
       if @teaching_equipament.save
-        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Teaching equipament was successfully created.' }
+        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Equipamento de Ensino criado com sucesso.' }
         format.json { render :json => [@dept, @teaching_equipament], :status => :created, :location => @teaching_equipament }
       else
         format.html { render :action => "new" }
@@ -73,7 +73,7 @@ class TeachingEquipamentsController < ApplicationController
 
     respond_to do |format|
       if @teaching_equipament.update_attributes(params[:teaching_equipament])
-        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Teaching equipament was successfully updated.' }
+        format.html { redirect_to [@dept, @teaching_equipament], :notice => 'Equipamento de Ensino atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -89,7 +89,7 @@ class TeachingEquipamentsController < ApplicationController
     @teaching_equipament.destroy
 
     respond_to do |format|
-      format.html { redirect_to dept_teaching_equipaments_path }
+      format.html { redirect_to dept_teaching_equipaments_path, :notice => 'Equipamento de Ensino excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

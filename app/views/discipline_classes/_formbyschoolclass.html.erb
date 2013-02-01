@@ -1,7 +1,7 @@
 <%= form_for [@school_class, @discipline_class], :html => { :class => 'form-horizontal' } do |f| %>
 <% if @discipline_class.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline_class.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
+    <h2><%= pluralize(@discipline_class.errors.count, "erro impediu", "erros impediram") %> a gravação da classe:</h2>
 
     <ul>
     <% @discipline_class.errors.full_messages.each do |msg| %>

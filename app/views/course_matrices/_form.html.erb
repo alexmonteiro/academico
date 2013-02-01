@@ -1,7 +1,7 @@
 <%= form_for @matrix, :html => { :class => 'form-horizontal' } do |f| %>
 <% if @matrix.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@matrix.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
+    <h2><%= pluralize(@matrix.errors.count, "erro impediu", "erros impediram") %> a gravação da classe:</h2>
 
     <ul>
     <% @matrix.errors.full_messages.each do |msg| %>

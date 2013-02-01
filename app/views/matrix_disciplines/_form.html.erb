@@ -1,6 +1,6 @@
 <% if @matrix_discipline.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@matrix_discipline.errors.count, "error") %> impediu a gravação:</h2>
+    <h2><%= pluralize(@matrix_discipline.errors.count, "erro") %> impediu a gravação:</h2>
 
     <ul>
     <% @matrix_discipline.errors.full_messages.each do |msg| %>

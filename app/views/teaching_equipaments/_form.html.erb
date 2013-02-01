@@ -18,13 +18,13 @@
   <div class="control-group">
     <%= f.label :equipament_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :equipament_type_id, EquipamentType.find(:all) , :id, :description, :prompt => "Select a Equipament Type" %>
+      <%= f.collection_select :equipament_type_id, EquipamentType.find(:all) , :id, :description, :prompt => "Selecione um tipo de Equipamento" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :situation_teaching_equipament_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :situation_teaching_equipament_id, SituationTeachingEquipament.find(:all) , :id, :description, :prompt => "Select a Situation Equipament" %>
+      <%= f.collection_select :situation_teaching_equipament_id, SituationTeachingEquipament.find(:all) , :id, :description, :prompt => "Selecione uma Situação de Equipamento" %>
     </div>
   </div>
 

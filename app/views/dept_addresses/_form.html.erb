@@ -6,7 +6,7 @@
   <div class="control-group">
     <%= f.label :street_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Escolha um tipo de rua" %>
+      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Escolha um tipo" %>
     </div>
   </div>
 <div class="control-group">
@@ -76,7 +76,7 @@
   <div class="control-group">
     <%= f.label :provenance_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Zone" %>
+      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Selecione" %>
     </div>
   </div>
 

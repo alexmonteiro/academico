@@ -1,7 +1,7 @@
 <%= form_for @academic_rule, :html => { :class => 'form-horizontal' } do |f| %>
 <% if @academic_rule.errors.any? %>
   <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@academic_rule.errors.count, "error impediu", "errors impediram") %> a gravação da classe:</h2>
+    <h2><%= pluralize(@academic_rule.errors.count, "erro ocorreu", "erros ocorreram") %> a gravação da classe:</h2>
 
     <ul>
     <% @academic_rule.errors.full_messages.each do |msg| %>

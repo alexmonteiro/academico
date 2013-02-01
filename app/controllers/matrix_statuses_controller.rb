@@ -44,7 +44,7 @@ class MatrixStatusesController < ApplicationController
 
     respond_to do |format|
       if @matrix_status.save
-        format.html { redirect_to @matrix_status, :notice => 'Matrix status was successfully created.' }
+        format.html { redirect_to @matrix_status, :notice => 'Estado de Matriz criada com sucesso.' }
         format.json { render :json => @matrix_status, :status => :created, :location => @matrix_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class MatrixStatusesController < ApplicationController
 
     respond_to do |format|
       if @matrix_status.update_attributes(params[:matrix_status])
-        format.html { redirect_to @matrix_status, :notice => 'Matrix status was successfully updated.' }
+        format.html { redirect_to @matrix_status, :notice => 'Estado de Matriz atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class MatrixStatusesController < ApplicationController
     @matrix_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to matrix_statuses_url }
+      format.html { redirect_to matrix_statuses_url, :notice => 'Estado de Matriz excluída com sucesso.' }
       format.json { head :no_content }
     end
   end
