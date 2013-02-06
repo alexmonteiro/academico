@@ -1,6 +1,6 @@
 <%- model_class = PersonAddress.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class="icon-home"></i><%=t '.title', :default => @person.name %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -15,15 +15,13 @@
       <th><%= model_class.human_attribute_name(:zip_code) %></th>
       <th><%= model_class.human_attribute_name(:number) %></th>
       <th><%= model_class.human_attribute_name(:provenance_area_id) %></th>
-      <th><%= model_class.human_attribute_name(:person_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @person_addresses.each do |person_address| %>
       <tr>
-        <td><%= link_to person_address.id, person_address_path(person_address) %></td>
+        <td><%= link_to person_address.id, person_person_address_path(:id => person_address.id) %></td>
         <td><%= person_address.street_type_id %></td>
         <td><%= person_address.city_id %></td>
         <td><%= person_address.street_name %></td>
@@ -33,13 +31,11 @@
         <td><%= person_address.zip_code %></td>
         <td><%= person_address.number %></td>
         <td><%= person_address.provenance_area_id %></td>
-        <td><%= person_address.person_id %></td>
-        <td><%=l person_address.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_person_address_path(person_address), :class => 'btn btn-mini' %>
+                    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_person_person_address_path(:id => person_address.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      person_address_path(person_address),
+                      person_person_addresses_path,
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
@@ -50,5 +46,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_person_address_path,
+            new_person_person_address_path,
             :class => 'btn btn-primary' %>

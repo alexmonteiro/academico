@@ -112,6 +112,7 @@ module ApplicationHelper
     menu_config << "</div>" #Fechamento da Div do menu
     raw menu_config #mostra toda a estrutura criada na def em html - retorno do método
   end
+  
 end
 
 

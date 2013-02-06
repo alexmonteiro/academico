@@ -2,6 +2,7 @@
 <h2>Turma: <%= @discipline_class.try(:school_class_identifier) %> - <%= @discipline_class.try(:course_name) %> </h2>
 <h2>Classe: <%= @discipline_class.try(:code) %> - <%= @discipline_class.try(:discipline_name) %> </h2>
 <%else%>
+<% form_for @discipline_class, :html => { :class => 'form-horizontal' } do |f| %>
 <div class="control-group">
   <%= f.label :school_class_id, :class => 'control-label' %>
   <div class="controls">
@@ -14,8 +15,7 @@
 	     <%= render :partial => 'disciplines'%>
     </div>
 </div>
-<%end%>
-
+<% form_for @discipline_class, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>
     <div class="controls">
@@ -55,6 +55,6 @@
 	  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
 	              discipline_classes_path, :class => 'btn' %>
 	</div>
-
-
+<% end %>
+<% end %>
 <% end %>
