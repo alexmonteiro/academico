@@ -14,5 +14,5 @@ end
 
 
 def model_full_address
- self.street_name + " " +self.neighborhood + " " +self.complement + " " + ("Cep: "+self.zip_code.to_s + " ") + self.city.try(:name) + "/" +  self.city.state.try(:acronym)
+ "#{self.street_name}" + " " +"#{self.neighborhood}" + " " +"#{self.complement}" + " " + ("Cep: "+"#{self.zip_code.to_s}" + " ") + "#{self.city.try(:name)}" + "/" +  "#{self.city.state.try(:acronym)}"
 end
