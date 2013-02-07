@@ -1,6 +1,6 @@
 <%= form_for [@person,@people_telephone], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-      <h3><%= Person.find(params[:person_id]).name %></h3><br />
+      <h2><i class="icon-user"></i><%= Person.find(params[:person_id]).name %></h2><br />
       <%= f.hidden_field :people_id, :value => params[:person_id] %>
   </div>
   
@@ -34,5 +34,4 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 person_people_telephones_path, :class => 'btn' %>
   </div>
-    
 <% end %>

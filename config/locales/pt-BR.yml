@@ -142,13 +142,14 @@ pt-BR:
       person_address:
         street_type_id: "Logradouro"
         city_id: "Cidade"
+        country_id: "País"
         street_name: "Rua"
         complement: "Complemento"
         post_office_box: "Caixa Postal"
         neighborhood: "Bairro"
         zip_code: "Cep"
         provenance_area_id: "Zona"
-        number: "Número"                
+        number: "Número"             
       dept_telephone:
         telephone_type_id: "Tipo"
         area_code: "Código de área"
@@ -156,6 +157,8 @@ pt-BR:
         branch: "Ramal"        
       dept_address:
         street_type_id: "Logradouro"
+        country_id: "País"
+        state_id: "Estado"
         city_id: "Cidade"
         street_name: "Rua"
         complement: "Complemento"
@@ -292,9 +295,10 @@ pt-BR:
         description: "Descrição"
       special_needs_type:
         description: "Descrição"
+        type: "Tipo"
+        
       registration_scheme:
         description: "Descrição"
-      person_address:
       matrix_status:
         description: "Descrição"
       street_type:
@@ -358,7 +362,6 @@ pt-BR:
       matrix_discipline: "Matriz de Disciplina"
       teaching_equipament: "Equipamento de Ensino"
       people_telephone: "Telefone"
-      person_address: "Endereço"
       dept_telephone: "Telefone"
       dept_address: "Endereço"  
       class_teaching: "Docencias"

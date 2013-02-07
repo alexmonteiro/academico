@@ -6,6 +6,7 @@ class DeptAddress < ActiveRecord::Base
   attr_accessible :complement, :neighborhood, :number, :post_office_box, :street_name, :zip_code, :street_type_id, :city_id, :provenance_area_id, :dept_id
 
   validates_uniqueness_of :dept_id
+  validates :zip_code, :presence => { :message => "deve ser informado" }
   
   
   def model_full_address

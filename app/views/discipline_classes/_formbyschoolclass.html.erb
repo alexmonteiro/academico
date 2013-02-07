@@ -1,16 +1,4 @@
 <%= form_for [@school_class, @discipline_class], :html => { :class => 'form-horizontal' } do |f| %>
-<% if @discipline_class.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@discipline_class.errors.count, "erro impediu", "erros impediram") %> a gravação da classe:</h2>
-
-    <ul>
-    <% @discipline_class.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <h2><%=  @school_class.model_custom_name %></h2>
 	<div class="control-group">
 	  <%= f.label :matrix_discipline_id, :class => 'control-label' %>
@@ -37,12 +25,13 @@
       <%= f.date_select :started_at, :class => 'date_select' %>
     </div>
   </div>
+
 <%if !(action_name == "new" or action_name == "create") %>
-  <div class="control-group">
+ <div class="control-group">	
     <%= f.label :ending_at, :class => 'control-label' %>
     <div class="controls">
       <%= f.date_select :ending_at, :class => 'date_select', :include_blank => true %>
-    </div>
+    </div>	  	
   </div>
 <% end %>
 
@@ -53,13 +42,9 @@
     </div>
   </div>
 
-
   <div class="form-actions">
 	<%= f.submit nil, :class => 'btn btn-primary' %>
 	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
 	              school_class_discipline_classes_path, :class => 'btn' %>
   </div>
-
-
-
 <% end %>

@@ -1,6 +1,6 @@
 <%= form_for [@dept,@dept_address], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-      <h3><%= Dept.find(params[:dept_id]).name %></h3><br />
+      <h2><i class="icon-sitemap"></i><%= Dept.find(params[:dept_id]).name %></h2><br />
       <%= f.hidden_field :dept_id, :value => params[:dept_id] %>
   </div>
   <div class="control-group">

@@ -133,7 +133,6 @@ AcademicoRails::Application.routes.draw do
   resources :education_modalities, :path => "configuracoes/modalidades"
   resources :education_steps, :path => "configuracoes/graus" 
   resources :education_levels, :path => "configuracoes/niveis"
-  resources :person_addresses, :path =>  'configuracoes/enderecos'
   resources :techaxis_types, :path => "configuracoes/eixos" do
    resources :techaxes, :path => "areas"
   end

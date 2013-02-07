@@ -24,7 +24,7 @@
         <td><%= verifica_registro(:campo => people_telephone.branch) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_person_people_telephone_path(:id => people_telephone), :class => 'btn btn-mini' %>
+                      edit_person_people_telephone_path(:id => people_telephone.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       [@person,people_telephone],
                       :method => :delete,
