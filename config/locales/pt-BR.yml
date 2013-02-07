@@ -295,6 +295,8 @@ pt-BR:
         description: "Descrição"
       special_needs_type:
         description: "Descrição"
+        type: "Tipo"
+        
       registration_scheme:
         description: "Descrição"
       matrix_status:

@@ -17,7 +17,7 @@ class ActionView::Helpers::FormBuilder
     required_mark = ''
     #required_mark = ' *'.html_safe if object.class.validators_on(method).map(&:class).include? ActiveModel::Validations::PresenceValidator
     if object.class.respond_to?('validators_on') # check if method exists for class
-      required_mark = '<span class="required-asterisk">*</span> '.html_safe if object.class.validators_on(method).any? { |validator|
+      required_mark = '*'.html_safe if object.class.validators_on(method).any? { |validator|
         #if the validation is of type PresenceValidator
         if (validator.kind_of?(ActiveModel::Validations::PresenceValidator))
           ifresult, unlessresult = nil
@@ -61,7 +61,7 @@ class ActionView::Helpers::FormBuilder
     end
 
     content ||= I18n.t("activerecord.attributes.#{object.class.name.underscore}.#{method}", :default=>method.to_s.humanize)
-    content = required_mark + ' ' + content
+    content = content + ' ' + required_mark
 
     self.orig_label(method, content, options || {}, &block)
   end
