@@ -157,6 +157,8 @@ pt-BR:
         branch: "Ramal"        
       dept_address:
         street_type_id: "Logradouro"
+        country_id: "País"
+        state_id: "Estado"
         city_id: "Cidade"
         street_name: "Rua"
         complement: "Complemento"
