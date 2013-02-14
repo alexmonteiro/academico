@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require bootstrap-datepicker
 //= require twitter/bootstrap
+//= require rails.validations
 //= require_tree .
 /*
 * ADICAO DE JS GENERICA PARA PAIS, ESTADO, CIDADE

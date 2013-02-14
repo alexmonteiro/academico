@@ -33,6 +33,7 @@ class PersonAddressesController < ApplicationController
   # GET /person_addresses/new
   # GET /person_addresses/new.json
   def new
+    @person = Person.find((params[:person_id]))
     @person_addresses = PersonAddress.where("person_id = ?", params[:person_id])
     #Checks if there is already some record address
     if !@person_addresses.exists?

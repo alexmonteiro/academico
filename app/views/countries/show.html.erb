@@ -18,6 +18,6 @@
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               country_path(@country),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
               :class => 'btn btn-danger' %>
 </div>

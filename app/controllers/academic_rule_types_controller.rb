@@ -44,7 +44,7 @@ class AcademicRuleTypesController < ApplicationController
 
     respond_to do |format|
       if @academic_rule_type.save
-        format.html { redirect_to @academic_rule_type, :notice => 'Academic rule type was successfully created.' }
+        format.html { redirect_to @academic_rule_type, :notice => 'Regra acadêmica criada com sucesso.' }
         format.json { render :json => @academic_rule_type, :status => :created, :location => @academic_rule_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class AcademicRuleTypesController < ApplicationController
 
     respond_to do |format|
       if @academic_rule_type.update_attributes(params[:academic_rule_type])
-        format.html { redirect_to @academic_rule_type, :notice => 'Academic rule type was successfully updated.' }
+        format.html { redirect_to @academic_rule_type, :notice => 'Regra acadêmica atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class AcademicRuleTypesController < ApplicationController
     @academic_rule_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to academic_rule_types_url }
+      format.html { redirect_to academic_rule_types_url, :notice => 'Regra acadêmica excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -97,7 +97,7 @@ class RegistrationsController < ApplicationController
     @registration.destroy
 
     respond_to do |format|
-      format.html { redirect_to registrations_url }
+      format.html { redirect_to registrations_url, :notice => 'Matrícula excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

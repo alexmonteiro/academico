@@ -44,7 +44,7 @@ class IssuingInstitutionsController < ApplicationController
 
     respond_to do |format|
       if @issuing_institution.save
-        format.html { redirect_to @issuing_institution, :notice => 'Issuing institution was successfully created.' }
+        format.html { redirect_to @issuing_institution, :notice => 'Orgão Emissor criado com sucesso.' }
         format.json { render :json => @issuing_institution, :status => :created, :location => @issuing_institution }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class IssuingInstitutionsController < ApplicationController
 
     respond_to do |format|
       if @issuing_institution.update_attributes(params[:issuing_institution])
-        format.html { redirect_to @issuing_institution, :notice => 'Issuing institution was successfully updated.' }
+        format.html { redirect_to @issuing_institution, :notice => 'Orgão Emissor atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class IssuingInstitutionsController < ApplicationController
     @issuing_institution.destroy
 
     respond_to do |format|
-      format.html { redirect_to issuing_institutions_url }
+      format.html { redirect_to issuing_institutions_url, :notice => 'Orgão Emissor excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

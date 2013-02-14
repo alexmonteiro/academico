@@ -60,7 +60,7 @@ class AcademicRulesController < ApplicationController
 
     respond_to do |format|
       if @academic_rule.update_attributes(params[:academic_rule])
-        format.html { redirect_to @academic_rule, :notice => 'Regra acadêmica ataulizada com sucesso.' }
+        format.html { redirect_to @academic_rule, :notice => 'Regra acadêmica atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class AcademicRulesController < ApplicationController
     @academic_rule.destroy
 
     respond_to do |format|
-      format.html { redirect_to academic_rules_url }
+      format.html { redirect_to academic_rules_url, :notice => 'Regra acadêmica excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

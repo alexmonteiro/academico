@@ -1,12 +1,12 @@
 <%= form_for [@dept,@dept_telephone], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-      <h3><%= Dept.find(params[:dept_id]).name %></h3><br />
+      <h2><i class="icon-sitemap"></i><%= Dept.find(params[:dept_id]).name %></h2><br />
       <%= f.hidden_field :dept_id, :value => params[:dept_id] %>
   </div>
   <div class="control-group">
     <%= f.label :telephone_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :telephone_type_id, TelephoneType.find(:all),:id, :telephone_type, :prompt => 'Select a Telephone Type' %>
+      <%= f.collection_select :telephone_type_id, TelephoneType.find(:all),:id, :telephone_type, :prompt => 'Selecione' %>
     </div>
   </div>
   <div class="control-group">

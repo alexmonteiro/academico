@@ -108,7 +108,7 @@ class PersonIdentificationDocsController < ApplicationController
     @person_identification_doc.destroy
 
     respond_to do |format|
-      format.html { redirect_to person_person_identification_docs_path }
+      format.html { redirect_to person_person_identification_docs_path, :notice => 'Documentação excluída.' }
       format.json { head :no_content }
     end
   end

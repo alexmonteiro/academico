@@ -1,0 +1,16 @@
+ <% if action_name.in?(['create','new','update']) %>
+	 <% @controller_object = eval('@'+controller.controller_name.singularize) %>
+	 <% if @controller_object.errors.any? %>
+	       <div id="error_explanation" class="alert alert-error">
+			<h2><%= pluralize(@controller_object.errors.count, "erro ocorreu", "erros ocorreram") %>:</h2>
+	
+			<ul>
+				<% @controller_object.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<%end%>

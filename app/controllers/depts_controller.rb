@@ -53,7 +53,7 @@ class DeptsController < ApplicationController
 
     respond_to do |format|
       if @dept.save
-        format.html { redirect_to @dept, :notice => 'Dept was successfully created.' }
+        format.html { redirect_to @dept, :notice => 'Departamento criado com sucesso.' }
         format.json { render :json => @dept, :status => :created, :location => @dept }
       else
         format.html { render :action => "new" }
@@ -69,7 +69,7 @@ class DeptsController < ApplicationController
 
     respond_to do |format|
       if @dept.update_attributes(params[:dept])
-        format.html { redirect_to @dept, :notice => 'Dept was successfully updated.' }
+        format.html { redirect_to @dept, :notice => 'Departamento atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -85,7 +85,7 @@ class DeptsController < ApplicationController
     @dept.destroy
 
     respond_to do |format|
-      format.html { redirect_to depts_url }
+      format.html { redirect_to depts_url, :notice => 'Departamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

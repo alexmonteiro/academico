@@ -106,19 +106,21 @@
 				  <div id="error_explanation" class="alert alert-info">
 				      <%= flash[:notice].html_safe %>
 				  </div>
-				<%end%>	
-				<% if (defined?eval("@#{controller_path.singularize}") && (action_name == 'create' || action_name == 'update' || action_name == 'new'))  %>
-				 <%= render :partial => 'layouts/error_message', :object => eval("@#{controller_path.singularize}") %>			
-			 	<% end %>
+				<%end%>			
+				
+				<!-- Exibição dos erros -->
+				<%= render :partial => 'layouts/error_messages' %> 
+				<!-- -->	
 				
 	           <div class="hero-unit">		
 	            <%= yield %>
 	            </div><!--/span-->
 	          </div><!--/row-->
 
+
 	        </div><!--/span-->
 	      </div><!--/row-->
-
+	      
 	      <hr>
 
 	      <footer>

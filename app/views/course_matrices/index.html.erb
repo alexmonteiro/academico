@@ -31,14 +31,14 @@
         <td><%= matrix.course.try(:name)   %></td>
         <td><%=link_to "<i class='icon-table'></i> ".html_safe+"#{matrix.matrix_disciplines.count.to_s}", course_matrix_matrix_disciplines_path(matrix) %></td>
         <td><%= matrix.matrix_status.description %></td>
-        <td><%= matrix.class_season_type.description %></td>
+        <td><%= matrix.class_season_type.try(:description) %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_course_matrix_path(matrix), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       course_matrix_path(matrix),
                       :method => :delete,
-                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>

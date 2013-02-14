@@ -59,7 +59,7 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, :notice => 'Person was successfully created.' }
+        format.html { redirect_to @person, :notice => 'Pessoa criada com sucesso.' }
         format.json { render :json => @person, :status => :created, :location => @person }
       else
         format.html { render :action => "new" }
@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url }
+      format.html { redirect_to people_url, :notice => t('controller_message.deleted') }
       format.json { head :no_content }
     end
   end

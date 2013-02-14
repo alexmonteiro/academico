@@ -48,7 +48,7 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to country_states_path, :notice => t('controllermessage.insert') }
+        format.html { redirect_to country_states_path, :notice => t('controller_message.inserted') }
         format.json { render :json => @state, :status => :created, :location => @state }
       else
         @country = Country.find(params[:country_id])
@@ -65,7 +65,7 @@ class StatesController < ApplicationController
     
     respond_to do |format|
       if @state.update_attributes(params[:state])
-        format.html { redirect_to country_state_path, :notice => t('controllermessage.update') }
+        format.html { redirect_to country_state_path, :notice => t('controller_message.updated') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -81,7 +81,7 @@ class StatesController < ApplicationController
     @state.destroy
 
     respond_to do |format|
-      format.html { redirect_to country_states_url, :notice => t('controllermessage.delete') }
+      format.html { redirect_to country_states_url, :notice => t('controller_message.deleted') }
       format.json { head :no_content }
     end
   end

@@ -133,14 +133,13 @@ AcademicoRails::Application.routes.draw do
   resources :education_modalities, :path => "configuracoes/modalidades"
   resources :education_steps, :path => "configuracoes/graus" 
   resources :education_levels, :path => "configuracoes/niveis"
-  resources :person_addresses, :path =>  'configuracoes/enderecos'
   resources :techaxis_types, :path => "configuracoes/eixos" do
    resources :techaxes, :path => "areas"
   end
   resources :provenance_areas, :path => 'configuracoes/procedencia'
-  resources :street_types, :path => 'configuracoes/tipos_rua'
+  resources :street_types, :path => 'configuracoes/logradouro'
   resources :telephone_types, :path => 'configuracoes/telefones'
-  resources :class_season_types, :path => 'configuracoes/sessoes'
+  resources :class_season_types, :path => 'configuracoes/periodos'
   resources :matrix_evaluation_types, :path => 'configuracoes/matriz_avaliacoes'
   resources :matrix_statuses, :path => 'configuracoes/estados'
   resources :discipline_types, :path => 'configuracoes/disciplinas'

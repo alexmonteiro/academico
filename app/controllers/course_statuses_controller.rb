@@ -44,7 +44,7 @@ class CourseStatusesController < ApplicationController
 
     respond_to do |format|
       if @course_status.save
-        format.html { redirect_to @course_status, :notice => 'Course status was successfully created.' }
+        format.html { redirect_to @course_status, :notice => 'Estado do Curso criado com sucesso.' }
         format.json { render :json => @course_status, :status => :created, :location => @course_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CourseStatusesController < ApplicationController
 
     respond_to do |format|
       if @course_status.update_attributes(params[:course_status])
-        format.html { redirect_to @course_status, :notice => 'Course status was successfully updated.' }
+        format.html { redirect_to @course_status, :notice => 'Estado de Curso atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class CourseStatusesController < ApplicationController
     @course_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to course_statuses_url }
+      format.html { redirect_to course_statuses_url, :notice => 'Estado de Curso excluído com sucesso.' }
       format.json { head :no_content }
     end
   end
