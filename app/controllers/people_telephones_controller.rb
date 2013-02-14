@@ -24,7 +24,7 @@ class PeopleTelephonesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to person_people_telephones_path, :notice => "This record doesn`t exists."}
+        format.html { redirect_to person_people_telephones_path, :notice => "Este registro não existe."}
         format.json { render :json => @people_telephone }
       end
     end
@@ -56,7 +56,7 @@ class PeopleTelephonesController < ApplicationController
 
     respond_to do |format|
       if @people_telephone.save
-        format.html { redirect_to person_people_telephone_path(:id => @people_telephone.id), :notice => 'People telephone was successfully created.' }
+        format.html { redirect_to person_people_telephone_path(:id => @people_telephone.id), :notice => 'Número de telefone criado com sucesso.' }
         format.json { render :json => [@people,@people_telephone], :status => :created, :location => @people_telephone }
       else
         format.html { render :action => "new" }
@@ -73,7 +73,7 @@ class PeopleTelephonesController < ApplicationController
 
     respond_to do |format|
       if @people_telephone.update_attributes(params[:people_telephone])
-        format.html { redirect_to [@people,@people_telephone], :notice => 'People telephone was successfully updated.' }
+        format.html { redirect_to person_people_telephones_path, :notice => 'Número de telefone atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -89,7 +89,7 @@ class PeopleTelephonesController < ApplicationController
     @people_telephone.destroy
 
     respond_to do |format|
-      format.html { redirect_to person_people_telephones_path }
+      format.html { redirect_to person_people_telephones_path, :notice => 'Número de telefone excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

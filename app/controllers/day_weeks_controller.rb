@@ -44,7 +44,7 @@ class DayWeeksController < ApplicationController
 
     respond_to do |format|
       if @day_week.save
-        format.html { redirect_to @day_week, :notice => 'Day week was successfully created.' }
+        format.html { redirect_to @day_week, :notice => 'Dia da semana criado com sucesso.' }
         format.json { render :json => @day_week, :status => :created, :location => @day_week }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DayWeeksController < ApplicationController
 
     respond_to do |format|
       if @day_week.update_attributes(params[:day_week])
-        format.html { redirect_to @day_week, :notice => 'Day week was successfully updated.' }
+        format.html { redirect_to @day_week, :notice => 'Dia da semana atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class DayWeeksController < ApplicationController
     @day_week.destroy
 
     respond_to do |format|
-      format.html { redirect_to day_weeks_url }
+      format.html { redirect_to day_weeks_url, :notice => 'Dia da semana excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

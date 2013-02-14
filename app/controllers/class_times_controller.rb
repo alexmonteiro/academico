@@ -44,7 +44,7 @@ class ClassTimesController < ApplicationController
 
     respond_to do |format|
       if @class_time.save
-        format.html { redirect_to @class_time, :notice => 'Class time was successfully created.' }
+        format.html { redirect_to @class_time, :notice => 'Horário de Classe criado com sucesso.' }
         format.json { render :json => @class_time, :status => :created, :location => @class_time }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ClassTimesController < ApplicationController
 
     respond_to do |format|
       if @class_time.update_attributes(params[:class_time])
-        format.html { redirect_to @class_time, :notice => 'Class time was successfully updated.' }
+        format.html { redirect_to @class_time, :notice => 'Horário de Classe atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ClassTimesController < ApplicationController
     @class_time.destroy
 
     respond_to do |format|
-      format.html { redirect_to class_times_url }
+      format.html { redirect_to class_times_url, :notice => 'Horário de Classe excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

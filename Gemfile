@@ -22,13 +22,14 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'twitter-bootstrap-rails', '~> 2.0.9'
+  gem 'twitter-bootstrap-rails'
   gem 'bootstrap-datepicker-rails'
 end
 
 gem 'jquery-rails'
 gem 'formtastic'
 gem 'rails-i18n'
+gem 'client_side_validations'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

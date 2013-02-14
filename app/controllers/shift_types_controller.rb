@@ -44,7 +44,7 @@ class ShiftTypesController < ApplicationController
 
     respond_to do |format|
       if @shift_type.save
-        format.html { redirect_to @shift_type, :notice => 'Shift type was successfully created.' }
+        format.html { redirect_to @shift_type, :notice => 'Turno criado com sucesso.' }
         format.json { render :json => @shift_type, :status => :created, :location => @shift_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ShiftTypesController < ApplicationController
 
     respond_to do |format|
       if @shift_type.update_attributes(params[:shift_type])
-        format.html { redirect_to @shift_type, :notice => 'Shift type was successfully updated.' }
+        format.html { redirect_to @shift_type, :notice => 'Turno atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ShiftTypesController < ApplicationController
     @shift_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to shift_types_url }
+      format.html { redirect_to shift_types_url, :notice => 'Turno excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -59,7 +59,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, :notice => 'Course was successfully created.' }
+        format.html { redirect_to @course, :notice => 'Curso criado com sucesso.' }
         format.json { render :json => @course, :status => :created, :location => @course }
       else
         format.html { render :action => "new" }
@@ -75,7 +75,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to @course, :notice => 'Course was successfully updated.' }
+        format.html { redirect_to @course, :notice => 'Curso atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -90,7 +90,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     if @course.destroy
       respond_to do |format|
-        format.html { redirect_to courses_url }
+        format.html { redirect_to courses_url, :notice => 'Curso excluído com sucesso.' }
         format.json { head :no_content }
       end
     else

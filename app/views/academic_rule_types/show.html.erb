@@ -16,6 +16,6 @@
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               academic_rule_type_path(@academic_rule_type),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
               :class => 'btn btn-danger' %>
 </div>

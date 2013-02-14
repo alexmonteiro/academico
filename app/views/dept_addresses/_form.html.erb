@@ -1,12 +1,12 @@
 <%= form_for [@dept,@dept_address], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-      <h3><%= Dept.find(params[:dept_id]).name %></h3><br />
+      <h2><i class="icon-sitemap"></i><%= Dept.find(params[:dept_id]).name %></h2><br />
       <%= f.hidden_field :dept_id, :value => params[:dept_id] %>
   </div>
   <div class="control-group">
     <%= f.label :street_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Select a Street Type" %>
+      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Escolha um tipo" %>
     </div>
   </div>
 <div class="control-group">
@@ -76,7 +76,7 @@
   <div class="control-group">
     <%= f.label :provenance_area_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Select a Zone" %>
+      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Selecione" %>
     </div>
   </div>
 

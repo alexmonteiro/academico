@@ -44,7 +44,7 @@ class ProvenanceAreasController < ApplicationController
 
     respond_to do |format|
       if @provenance_area.save
-        format.html { redirect_to @provenance_area, :notice => 'Provenance area was successfully created.' }
+        format.html { redirect_to @provenance_area, :notice => 'Área de procedência criada com sucesso.' }
         format.json { render :json => @provenance_area, :status => :created, :location => @provenance_area }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ProvenanceAreasController < ApplicationController
 
     respond_to do |format|
       if @provenance_area.update_attributes(params[:provenance_area])
-        format.html { redirect_to @provenance_area, :notice => 'Provenance area was successfully updated.' }
+        format.html { redirect_to @provenance_area, :notice => 'Área de procedência atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ProvenanceAreasController < ApplicationController
     @provenance_area.destroy
 
     respond_to do |format|
-      format.html { redirect_to provenance_areas_url }
+      format.html { redirect_to provenance_areas_url, :notice => 'Área de procedência excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

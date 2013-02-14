@@ -16,6 +16,6 @@
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               education_degree_path(@education_degree),
               :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Voçê tem certeza?')),
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
               :class => 'btn btn-danger' %>
 </div>

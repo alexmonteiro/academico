@@ -44,7 +44,7 @@ class DeptTypesController < ApplicationController
 
     respond_to do |format|
       if @dept_type.save
-        format.html { redirect_to @dept_type, :notice => 'Dept type was successfully created.' }
+        format.html { redirect_to @dept_type, :notice => 'Tipo de Departamento criado com sucesso.' }
         format.json { render :json => @dept_type, :status => :created, :location => @dept_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DeptTypesController < ApplicationController
 
     respond_to do |format|
       if @dept_type.update_attributes(params[:dept_type])
-        format.html { redirect_to @dept_type, :notice => 'Dept type was successfully updated.' }
+        format.html { redirect_to @dept_type, :notice => 'Tipo de Departamento atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class DeptTypesController < ApplicationController
     @dept_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to dept_types_url }
+      format.html { redirect_to dept_types_url, :notice => 'Tipo de Departamento excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

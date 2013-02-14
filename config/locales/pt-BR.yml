@@ -1,6 +1,12 @@
 pt-BR:
 
 # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  controller_message:
+      updated: "Registro atualizado com sucesso."
+      inserted: "Registro gravado com sucesso."
+      delete_confirm: "Deseja realmente excluir?"
+      deleted: "Registro excluído com sucesso."
+      
   will_paginate:
     previous_label: "&#8592; Anterior"
     next_label: "Próximo &#8594;"
@@ -25,7 +31,7 @@ pt-BR:
         education_degree_id:  "Formação" 
         race_id:  "Etnia" 
         marital_status_id:  "Estado Civil" 
-        blood_type_id:  "Tipo Snguíneo" 
+        blood_type_id:  "Tipo Sanguíneo" 
         country_id:  "País" 
         state_id:  "Estado" 
         city_id:  "Cidade" 
@@ -136,13 +142,14 @@ pt-BR:
       person_address:
         street_type_id: "Logradouro"
         city_id: "Cidade"
+        country_id: "País"
         street_name: "Rua"
         complement: "Complemento"
         post_office_box: "Caixa Postal"
         neighborhood: "Bairro"
         zip_code: "Cep"
         provenance_area_id: "Zona"
-        number: "Número"                
+        number: "Número"             
       dept_telephone:
         telephone_type_id: "Tipo"
         area_code: "Código de área"
@@ -150,6 +157,8 @@ pt-BR:
         branch: "Ramal"        
       dept_address:
         street_type_id: "Logradouro"
+        country_id: "País"
+        state_id: "Estado"
         city_id: "Cidade"
         street_name: "Rua"
         complement: "Complemento"
@@ -286,9 +295,10 @@ pt-BR:
         description: "Descrição"
       special_needs_type:
         description: "Descrição"
+        type: "Tipo"
+        
       registration_scheme:
         description: "Descrição"
-      person_address:
       matrix_status:
         description: "Descrição"
       street_type:
@@ -352,7 +362,6 @@ pt-BR:
       matrix_discipline: "Matriz de Disciplina"
       teaching_equipament: "Equipamento de Ensino"
       people_telephone: "Telefone"
-      person_address: "Endereço"
       dept_telephone: "Telefone"
       dept_address: "Endereço"  
       class_teaching: "Docencias"
@@ -376,10 +385,10 @@ pt-BR:
       techaxis: "Área"
       state: "Estados"      
       city: "Cidades"
-      matrix_discipline_prerequisite: "Pré requisitos"      
+      matrix_discipline_prerequisite: "Pré Requisitos"      
       course_matrix_academic_rule: "Regras Acadêmicas"  
       academic_rule: "Regras Acadêmicas"
-      learning_modality: "Modalidade de Ensino"
+      learning_modality: "Modalidades de Ensino"
       knowledge_area: "Áreas do Conhecimento"
       blood_type: "Tipos Sanguíneos"
       marital_status: "Estados Civis"
@@ -387,27 +396,27 @@ pt-BR:
       education_degree: "Níveis Educacionais"
       registration_scheme: "Sistemas de Registro"
       person_address: "Endereços Pessoais"
-      street_type: "Tipos de Rua"
+      street_type: "Logradouro"
       matrix_status: "Estados das Matrizes"
-      class_season_type: "Tipos de Sessão de Classe"
+      class_season_type: "Períodos Letivos"
       matrix_evaluation_type: "Tipos de Avaliação de Matrizes"
       telephone_type: "Tipos de Telefone"
-      discipline_type: "Tipo de Disciplina"
+      discipline_type: "Tipos de Disciplina"
       provenance_area: "Área de Procedência"
       class_time: "Horários de Classe"
       day_week: "Dias da Semana"
       equipament_type: "Tipos de Equipamento"
       situation_teaching_equipament: "Estados de Equipamento"
-      academic_rule_type: "Tipo de regras acadêmicas"
-      discipline_class_exam_type: "Tipos de exame de classe nas disciplinas"
-      class_record_type: "Tipos de registro de classe"
-      registration_class_status: "Estados de registro de classe"
-      registration_status: "Estados de registro"
-      course_status: "Estados de curso"
-      class_student_status: "Estados do estudante da classe"
-      military_document_type: "Tipos de documento militar"
-      issuing_institution: "Instituições emissoras"
-      matrix_discipline_group: "Grupos de matriz de disciplinas"
+      academic_rule_type: "Tipos de Regra Acadêmica"
+      discipline_class_exam_type: "Tipos de Exame de Classe nas Disciplinas"
+      class_record_type: "Tipos de Registro de Classe"
+      registration_class_status: "Estados de Registro de Classe"
+      registration_status: "Estados de Registro"
+      course_status: "Estados de Curso"
+      class_student_status: "Estados do Estudante da Classe"
+      military_document_type: "Tipos de Documento Militar"
+      issuing_institution: "Instituições Emissoras"
+      matrix_discipline_group: "Grupos de Matriz de Disciplinas"
       dept_type: "Tipos de Departamento"
       
   action:
@@ -421,11 +430,6 @@ pt-BR:
       back: "Voltar"
       print: "Imprimir"
       
-  controllermessage:
-      update: "Registro atualizado com sucesso."
-      insert: "Registro gravado com sucesso."
-      delete: "Registro excluído com sucesso."
-
   date:
     abbr_day_names:
     - Dom

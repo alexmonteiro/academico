@@ -44,7 +44,7 @@ class ClassRecordTypesController < ApplicationController
 
     respond_to do |format|
       if @class_record_type.save
-        format.html { redirect_to @class_record_type, :notice => 'Class record type was successfully created.' }
+        format.html { redirect_to @class_record_type, :notice => 'Tipo de registro de classe criado com sucesso.' }
         format.json { render :json => @class_record_type, :status => :created, :location => @class_record_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class ClassRecordTypesController < ApplicationController
 
     respond_to do |format|
       if @class_record_type.update_attributes(params[:class_record_type])
-        format.html { redirect_to @class_record_type, :notice => 'Class record type was successfully updated.' }
+        format.html { redirect_to @class_record_type, :notice => 'Tipo de registro de classe atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class ClassRecordTypesController < ApplicationController
     @class_record_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to class_record_types_url }
+      format.html { redirect_to class_record_types_url, :notice => 'Tipo de registro de classe excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

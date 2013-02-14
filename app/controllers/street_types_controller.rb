@@ -44,7 +44,7 @@ class StreetTypesController < ApplicationController
 
     respond_to do |format|
       if @street_type.save
-        format.html { redirect_to @street_type, :notice => 'Street type was successfully created.' }
+        format.html { redirect_to @street_type, :notice => 'Logradouro criado com sucesso.' }
         format.json { render :json => @street_type, :status => :created, :location => @street_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class StreetTypesController < ApplicationController
 
     respond_to do |format|
       if @street_type.update_attributes(params[:street_type])
-        format.html { redirect_to @street_type, :notice => 'Street type was successfully updated.' }
+        format.html { redirect_to @street_type, :notice => 'Logradouro atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class StreetTypesController < ApplicationController
     @street_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to street_types_url }
+      format.html { redirect_to street_types_url, :notice => 'Logradouro excluído com sucesso.' }
       format.json { head :no_content }
     end
   end

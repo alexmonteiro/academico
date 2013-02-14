@@ -44,7 +44,7 @@ class SituationTeachingEquipamentsController < ApplicationController
 
     respond_to do |format|
       if @situation_teaching_equipament.save
-        format.html { redirect_to @situation_teaching_equipament, :notice => 'Situation teaching equipament was successfully created.' }
+        format.html { redirect_to @situation_teaching_equipament, :notice => 'Situação de Equipamento de Ensino criado com sucesso.' }
         format.json { render :json => @situation_teaching_equipament, :status => :created, :location => @situation_teaching_equipament }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class SituationTeachingEquipamentsController < ApplicationController
 
     respond_to do |format|
       if @situation_teaching_equipament.update_attributes(params[:situation_teaching_equipament])
-        format.html { redirect_to @situation_teaching_equipament, :notice => 'Situation teaching equipament was successfully updated.' }
+        format.html { redirect_to @situation_teaching_equipament, :notice => 'Situação de Equipamento de Ensino atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class SituationTeachingEquipamentsController < ApplicationController
     @situation_teaching_equipament.destroy
 
     respond_to do |format|
-      format.html { redirect_to situation_teaching_equipaments_url }
+      format.html { redirect_to situation_teaching_equipaments_url, :notice => 'Situação de Equipamento de Ensino excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

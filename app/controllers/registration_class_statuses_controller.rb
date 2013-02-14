@@ -44,7 +44,7 @@ class RegistrationClassStatusesController < ApplicationController
 
     respond_to do |format|
       if @registration_class_status.save
-        format.html { redirect_to @registration_class_status, :notice => 'Registration class status was successfully created.' }
+        format.html { redirect_to @registration_class_status, :notice => 'Estado de registro de classe criada.' }
         format.json { render :json => @registration_class_status, :status => :created, :location => @registration_class_status }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class RegistrationClassStatusesController < ApplicationController
 
     respond_to do |format|
       if @registration_class_status.update_attributes(params[:registration_class_status])
-        format.html { redirect_to @registration_class_status, :notice => 'Registration class status was successfully updated.' }
+        format.html { redirect_to @registration_class_status, :notice => 'Estado de registro de classe atualizada.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -76,7 +76,7 @@ class RegistrationClassStatusesController < ApplicationController
     @registration_class_status.destroy
 
     respond_to do |format|
-      format.html { redirect_to registration_class_statuses_url }
+      format.html { redirect_to registration_class_statuses_url, :notice => 'Estado de registro de classe excluída.' }
       format.json { head :no_content }
     end
   end

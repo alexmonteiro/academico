@@ -95,7 +95,7 @@ class DisciplineClassExamsController < ApplicationController
      
      if @discipline_class_exam.destroy
        respond_to do |format|
-         format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação excluída .' }
+         format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação excluída com sucesso.' }
          format.json { head :no_content }
        end
      else

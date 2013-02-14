@@ -1,15 +1,3 @@
-<% if @matrix_discipline.errors.any? %>
-  <div id="error_explanation" class="alert alert-error">
-    <h2><%= pluralize(@matrix_discipline.errors.count, "error") %> impediu a gravação:</h2>
-
-    <ul>
-    <% @matrix_discipline.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <%= form_for ([@matrix, @matrix_discipline], :html => { :class => 'form-horizontal' }) do |f| %>
   <%matrix = CourseMatrix.find(params[:course_matrix_id])%>
   <h2>Matriz: <%= matrix.model_custom_name%></h2>
