@@ -1,0 +1,80 @@
+# Commit Limiting
+git-log-conf:
+    # Limit the number of commits to output. 
+    # comment this line to retrieve all commits ### I DO NOT RECOMMEND IT to big projects with a large number of commits.
+    max-count: "-n 1"
+
+    # --no-merges
+    # Do not print commits with more than one parent. This is exactly the same as --max-parents=1.
+    # To retrieve merges history comment this line
+    no-merges: "--no-merges"
+    
+# PRETTY FORMATS
+# http://git-scm.com/docs/git-log
+# Define the attributes of Log class used on git-log command and the object log created
+# The placeholders:
+git-log-attr:
+    # %H: commit hash
+    commit_hash: "%H"
+    # %h: abbreviated commit hash
+    abbreviated_commit_hash: "%h"
+    # %an: author name
+    author_name: "%an"
+    # %ae: author email
+    author_email: "%ae"
+    # %ad: author date (format respects --date= option)
+    author_date: "%ad"
+    # %cn: committer name
+    committer_name: "%cn"
+    # %ce: committer email
+    committer_email: "%ce"
+    # %cd: committer date
+    committer_date: "%cd"
+    # %s: subject
+    subject: "%s"
+    # %N: commit notes
+    commit_notes: "%N"
+    # %T: tree hash
+    tree_hash: "%T" 
+    # %t: abbreviated tree hash
+    abbreviated_tree_hash: "%t" 
+    # %P: parent hashes
+    parent_hashes: "%P" 
+    # %p: abbreviated parent hashes
+    abbreviated_parent_hashes: "%p"    
+
+    # %aN: author name (respecting .mailmap, see git-shortlog(1) or git-blame(1))
+    # author_name_mailmap: "%aN"
+    # %aE: author email (respecting .mailmap, see git-shortlog(1) or git-blame(1))
+    # author_email_mailmap: "%aE"
+    # %aD: author date, RFC2822 style
+    # author_date_RFC2822: "%aD"
+    # %ar: author date, relative  
+    # author_date_relative: "%ar"
+    # %at: author date, UNIX timestamp
+    # author_date_timestamp: "%at"
+    # %ai: author date, ISO 8601 format
+    # author_date_iso8601: "%ai"    
+    # %cN: committer name (respecting .mailmap, see git-shortlog(1) or git-blame(1))
+    # committer_name_mailmap: "%cN"    
+    # %cE: committer email (respecting .mailmap, see git-shortlog(1) or git-blame(1))
+    # committer_email_mailmap: "%cE"    
+    # %cD: committer date, RFC2822 style
+    # committer_date_rfc2822: "%cD"     
+    # %cr: committer date, relative
+    # committer_date_relative: "%cr"      
+    # %ct: committer date, UNIX timestamp
+    # committer_date_unix: "%ct"     
+    # %ci: committer date, ISO 8601 format
+    # committer_date_iso8601: "%ci"     
+    # %d: ref names, like the --decorate option of git-log(1)
+    # ref_names: "%d"     
+    # %e: encoding
+    # enconding: "%e"    
+    # %f: sanitized subject line, suitable for a filename
+    # filename: "%f"    
+    # %b: body
+    # body: "%b"        
+    
+    # Check out PRETTY FORMATS http://git-scm.com/docs/git-log
+    # to include the parameter of your desire

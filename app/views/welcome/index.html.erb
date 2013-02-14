@@ -1,23 +1,5 @@
 <div class="container">
 	<center><h1>Acadêmico - IFB</h1></center>
 	<br/>
-	<table class="table table-striped table-condensed table-bordered table-hover span6" style="margin: 0 auto !important; float: none !important;">
-		<thead>
-		  <tr class="alert alert-warning"><th colspan=3><center><h4>Histórico de alterações</h4></center></th></tr>
-		  <tr>
-		    <th><center>Data</center></th>
-	     	<th><center>Autor</center></th>
-	        <th><center>Histórico</center></th>
-	      </tr>
-	    </thead>
-	    <tbody>
-		  <% GitLog.logs.each do |log| %>
-		  <tr>
-		    <td><%= I18n.localize(log.date.to_date) %></td>
-	  	    <td><%= log.author[0..13] + (log.author.length > 12 ? "..." : "") %></td>
-		    <td><%= log.subject %> </td>
-		  </tr>
-		  <%end%>
-	
-	</table>
+
 </div>

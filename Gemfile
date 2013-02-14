@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'git-log', :path => '/Users/alex/Documents/projetos/git-log'
+
 gem 'rails', '3.2.6'
 
 gem 'modern-pictograms-rails'
