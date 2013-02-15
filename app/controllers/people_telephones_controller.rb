@@ -3,7 +3,7 @@ class PeopleTelephonesController < ApplicationController
   # GET /people_telephones.json
   def index
     @person = Person.find((params[:person_id]))
-    @people_telephones = PeopleTelephone.where("people_id = ?", params[:person_id])
+    @people_telephones = PeopleTelephone.where("person_id = ?", params[:person_id])
 
     respond_to do |format|
       format.html # index.html.erb
