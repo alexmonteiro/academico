@@ -34,7 +34,7 @@
         <td><%= get_person_types(person) %></td>
         <td>
           <%= link_to person_people_telephones_path(person) do %>
-            <% telephones = PeopleTelephone.where("people_id = ?", person.id)%>
+            <% telephones = PeopleTelephone.where("person_id = ?", person.id)%>
             <i class="icon-phone"></i> <%= telephones.count %>
           <%end%>
         </td>

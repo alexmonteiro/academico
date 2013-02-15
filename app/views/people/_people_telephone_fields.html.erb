@@ -1,0 +1,7 @@
+<div class="fields">
+  
+  <div class="control-group">
+
+    <%= f.collection_select :telephone_type_id, TelephoneType.find(:all),:id, :telephone_type, :prompt => 'Escolha um tipo' %> (<%= f.number_field :area_code %>) <%= f.number_field :number, :class => 'number_field' %> - <%= f.number_field :branch, :class => 'number_field' %> <%= link_to_remove_fields "remove", f  %>
+  </div>
+<div>

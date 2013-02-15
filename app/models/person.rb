@@ -10,15 +10,22 @@ class Person < ActiveRecord::Base
   belongs_to :city
   has_many :person_person_types
   has_many :person_types, :through => :person_person_types
-  has_many :people_telephone
+  has_many :people_telephones
   has_one :person_address
   has_one :person_identification_doc
   has_many :registrations
-  default_scope :order => :name
+  default_scope :order => :name 
 
   attr_accessible :birth_date, :email, :father_name, :lattes_url, :mom_name, :name, :number_children,
-                  :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids
+                  :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids,
+                  :people_telephones_attributes
 
+  #Campos para aceitar atributos aninhados
+  accepts_nested_attributes_for :people_telephones, :reject_if => lambda { |a| a[:number].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :person_address
+  accepts_nested_attributes_for :people_telephones
+  
+  
   #Validações
   validates :name, :birth_date, :mom_name, :gender_id, :education_degree_id, :presence => {:message => "deve ser informado."}
   validates :city_id, :state_id, :race_id, :presence => {:message => "deve ser informado."}

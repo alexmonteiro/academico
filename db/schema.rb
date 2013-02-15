@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128183206) do
+ActiveRecord::Schema.define(:version => 20130214144408) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -510,7 +510,7 @@ ActiveRecord::Schema.define(:version => 20130128183206) do
 
   create_table "people_telephones", :force => true do |t|
     t.integer  "telephone_type_id"
-    t.integer  "people_id"
+    t.integer  "person_id"
     t.integer  "area_code"
     t.integer  "number"
     t.integer  "branch"
@@ -518,7 +518,7 @@ ActiveRecord::Schema.define(:version => 20130128183206) do
     t.datetime "updated_at",        :null => false
   end
 
-  add_index "people_telephones", ["people_id"], :name => "index_people_telephones_on_people_id"
+  add_index "people_telephones", ["person_id"], :name => "index_people_telephones_on_people_id"
   add_index "people_telephones", ["telephone_type_id"], :name => "index_people_telephones_on_telephone_type_id"
 
   create_table "person_addresses", :force => true do |t|
