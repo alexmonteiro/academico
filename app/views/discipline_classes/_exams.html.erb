@@ -1,0 +1,96 @@
+<div class="span12">
+  <div class="well">
+      <fieldset>
+          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Avaliações </div>".html_safe,
+            discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-inverse span12' %>
+         <div style="padding-top: 60px">
+	     <% if @discipline_class.discipline_class_exams.count > 0 %>
+		       <table class="table table-condensed table-bordered table-hover">
+				<thead>
+				 <tr> 	
+				   <th rowspan="2"><center>#</center></th>	
+				   <th rowspan="2"><center>Aluno</center></th>	
+				   <th rowspan="2"><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
+	               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
+				      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
+			       <%end%>
+			       <th rowspan="2"><center><%= link_to 'C', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Nota de Conselho", :disabled => true %></center></th>
+   			       <th rowspan="2"><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>
+   	               <th colspan="2">
+                     <center>Situação</center>
+                   </th>	
+				 </tr>
+				<tr>
+				     <th><center>Prevista</center></th>
+				     <th><center>Atual</center></th>
+				</tr>					
+			    </thead>
+			    <tbody>
+	               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
+				      <tr class="<%= h_status_color(rclass)%>">
+    					<td><%= i+1 %></td>
+					    <td> <%= link_to rclass.student_name, discipline_class_registration_class_path(@discipline_class,rclass) %></td>
+					    <td><center><%= rclass.frequency %></center></td>
+						<% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
+						   <%nota = DisciplineClassExamResult.where(:discipline_class_exam_id => exam.id).where(:registration_class_id => rclass.id).first.try(:result) %>
+						   <td><center> <h5><%= (nota.blank? ? '0.0' : nota.to_s) %> <small>x<%=exam.weight%></small></h5> </center></td>
+					    <%end%>
+					       <td><center> <h5><%= (rclass.endnote_council_class.blank? ? '0.0' : rclass.endnote_council_class.to_s) %></h5> </center></td>	
+					       <td><center> <h5> <%= rclass.model_student_result_average.round(2) %> </h5></center></td>	
+					       <td>
+                            <center> 
+                                <% rclass.registration_class_status_situations.each do |situation| %>            
+                                  <div> <small> <%= situation %> </small></div>
+                                <%end%>
+                            </center>
+                          </td>
+					       <td><center> <h6> <%= rclass.registration_class_status.description %> </h6></center></td>	
+					  </tr>
+			       <%end%>				
+			  </tbody>
+		     </table> 
+		<%else%>
+		      <dd><center><%= '...sem avaliação cadastrada...' if @discipline_class.discipline_class_exams.count == 0 %></center></dd>
+		<% end %>			    
+         </div>
+      </fieldset>
+      <fieldset>
+		 <div class="btn-group pull-left">
+	     	<!-- Informações de regras academicas -->
+	        <ul>
+		     <h5>Regras acadêmicas:</h5>
+		        <ul>
+			      <%if @discipline_class.school_class.course_matrix.course_matrix_academic_rules.count > 0 %>
+					 <%@discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|%>
+				      <li><%= rules.academic_rule.academic_rule_type.rule %> <%= rules.academic_rule.operator %> <%= rules.academic_rule.value %>%</li>
+				     <%end%>					     
+					  <ul class="unstyled">
+						 <%= form_for @discipline_class, :url => discipline_class_close_path(@discipline_class), :html => { :class => 'form-horizontal'} do |f| %>
+						      <% classe_fechada = (@discipline_class.ending_at? ? "Classe fechada" : "Fechar classe") %>
+					       	  <%= f.submit classe_fechada, :class => 'btn btn-primary', :class => "btn btn btn-success", :disabled => (true if @discipline_class.ending_at?) %>
+					     <%end%>
+					    
+					  </ul>
+				  <%else%>
+				      <div class="alert alert-error">
+					     <h5>Nenhuma regra acadêmica definida na matriz deste curso</h5>
+					     <center><%=link_to "<i class='icon-th-list'></i> Incluir regras".html_safe, course_matrix_course_matrix_academic_rules_path(@discipline_class.school_class.course_matrix), :class => "btn btn-mini btn-primary" %></center>
+					  </div>
+				  <%end%>
+			    </ul>				 
+		    </ul>
+			<!-- -->
+		 </div>
+		  <div class=" btn-group pull-right">
+			  <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+			    <i class='icon-print'></i>Imprimir Mapa de Notas
+			    <span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu">
+			    <li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_exams", :preenchido => true ), :tabindex => "-1" %></li>
+				<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_exams" ), :tabindex => "-1" %></li>
+			  </ul>
+		  </div>
+	  </fieldset>
+  </div>
+</div>	
