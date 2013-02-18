@@ -124,22 +124,28 @@ class RegistrationClass < ActiveRecord::Base
   
   #Retorna o id da situação conforme regra academica
   def registration_class_status_id_by_rules
-      #Nota
-      rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 2)
-      rule = AcademicRule.find(rule[0][:academic_rule_id])
-      if do_logical_operation(rule.operator, (self.model_student_result_average.to_f*100).to_s, rule.value.to_s)
-         id = rule.rclass_status_true_id
-         #verifica frequencia e seta id como reprovado na frequencia senao atender a regra
-         rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 1)
-         rule = AcademicRule.find(rule[0][:academic_rule_id])
-         if !do_logical_operation(rule.operator, (self.frequency.to_f*100).to_s, rule.value.to_s) 
+   if  self.endnote_council_class.blank?
+        #Nota
+        rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 2)
+        rule = AcademicRule.find(rule[0][:academic_rule_id])
+        if do_logical_operation(rule.operator, (self.model_student_result_average.to_f*100).to_s, rule.value.to_s)
+           id = rule.rclass_status_true_id
+           #verifica frequencia e seta id como reprovado na frequencia senao atender a regra
+           rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 1)
+           rule = AcademicRule.find(rule[0][:academic_rule_id])
+           if !do_logical_operation(rule.operator, (self.frequency.to_f*100).to_s, rule.value.to_s) 
+             return rule.rclass_status_false_id
+           end
+           return id
+        else
+           #reprovado na nota
            return rule.rclass_status_false_id
-         end
-         return id
-      else
-         #reprovado na nota
-         return rule.rclass_status_false_id
-      end
+        end
+    else
+      #regra de aprovado no conselho
+      # TODO refazer o cálculo para da média para considerar conselho de  classe de maneira dinâmica
+      return 8
+    end
   end
   
   
