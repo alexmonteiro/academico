@@ -19,7 +19,11 @@
 <div class="page-header">
   <h1><i class="icon-check"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
- <h2><%= @class_record.try(:model_custom_name) %></h2>
+ <div class="control-group">
+  <h2>Curso: <%= link_to @class_record.discipline_class.school_class.try(:model_course_matrix), course_matrix_path(@class_record.discipline_class.school_class.course_matrix) %></h2>
+  <h2>Turma: <%= link_to @class_record.discipline_class.school_class.try(:identifier), school_class_path(@class_record.discipline_class.school_class) %></h2>
+  <h2>Classe: <%= link_to @class_record.discipline_class.try(:discipline_name), discipline_class_path(@class_record.discipline_class)  %></h2>
+ </div>
 <%if notice%>
 <div id="error_explanation" class="alert alert-info">
  <p id="notice"><%= notice %></p>

@@ -1,7 +1,10 @@
 <%= form_for [@discipline_class, @class_record], :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">
-  <h2>Classe: <%= @discipline_class.try(:model_custom_name)%></h2>
+  <h3>Curso: <%= @class_record.discipline_class.school_class.try(:model_course_matrix)%></h3>
+  <h3>Turma: <%= @class_record.discipline_class.school_class.try(:identifier)%></h3>
+  <h3>Classe: <%= @class_record.discipline_class.try(:discipline_name)%></h3>
+
   </div>
 
   <div class="control-group">

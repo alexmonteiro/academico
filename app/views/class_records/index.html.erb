@@ -27,7 +27,10 @@
         <td><%= link_to class_record.id, discipline_class_class_record_path(:id => class_record.id) %></td>
         <td><%=l class_record.recorded_at if class_record.recorded_at %></td>
         <td><%= class_record.class_time.try(:model_custom_name) %></td>
-        <td><h4><%= link_to "<i class='icon-check'></i> ".html_safe + class_record.class_record_presences.where(:is_present => true).count.to_s + "|"+ class_record.class_record_presences.where(:is_present => false).count.to_s, discipline_class_class_record_class_record_presences_path(:class_record_id => class_record.id) %></h4></td>
+        <td><h4>
+            <%= link_to "<i class='icon-check'></i> ".html_safe + class_record.countPresences(true).to_s + "|"+ class_record.countPresences(false).to_s, 
+                discipline_class_class_record_class_record_presences_path(:class_record_id => class_record.id) %>
+        </h4></td>
         <td><%= class_record.record %></td>
         <td><%= class_record.person.try(:name) %></td>
 

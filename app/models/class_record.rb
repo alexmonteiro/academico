@@ -14,16 +14,6 @@ class ClassRecord < ActiveRecord::Base
     I18n.localize(self.recorded_at) + " " + (self.class_time.try(:model_custom_name) ? self.class_time.try(:model_custom_name) : '<sem horário>') + " " + self.discipline_class.try(:model_custom_name)
   end
   
-  def has_children?
-    errors.add(:base, "Existem Presenças associadas a esta Aula") unless class_record_presences.count == 0
-   
-    if errors.size > 0
-     false
-    else
-     true
-    end    
-  end
-  
   def students_class
     self.discipline_class.registration_classes
   end
@@ -32,5 +22,21 @@ class ClassRecord < ActiveRecord::Base
   def count_class_registrations_without_results
     self.discipline_class.registration_classes.count - self.class_record_presences.count
   end
+  
+  # Retorna quantidade de presencas(true) ou faltas(false)
+  def countPresences(*args)
+    self.class_record_presences.where(:is_present => args).count
+  end
+  
+  private
+  def has_children?
+    errors.add(:base, "Existem Presenças associadas a esta Aula") unless class_record_presences.count == 0
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
+  end  
   
 end
