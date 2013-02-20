@@ -77,7 +77,7 @@ class ClassRecordPresencesController < ApplicationController
     @class_record_presence.destroy
 
     respond_to do |format|
-      format.html { redirect_to class_record_presences_url }
+      format.html { redirect_to discipline_class_class_record_presencas_url, :notice => 'Aula excluída.' }
       format.json { head :no_content }
     end
   end

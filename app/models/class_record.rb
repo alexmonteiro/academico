@@ -6,7 +6,10 @@ class ClassRecord < ActiveRecord::Base
   has_many   :class_record_presences
   attr_accessible :justification, :note, :record, :recorded_at,
                   :person_id, :class_record_type_id, :class_time_id, :discipline_class_id
-  before_destroy :has_children?                  
+  before_destroy :has_children?  
+  # Insere todos enturmados na lista de presença após criação da aula
+  after_create   :create_class_record_presence  
+    
                   
   validates :person_id, :recorded_at, :class_record_type_id, :class_time_id, :record, :presence => true             
 
@@ -38,5 +41,12 @@ class ClassRecord < ActiveRecord::Base
      true
     end    
   end  
-  
+
+  # Insere todos enturmados na lista de presença após criação da aula
+  def create_class_record_presence
+    self.discipline_class.registration_classes.each do |enturmation|
+     ClassRecordPresence.create([{:is_present => true, :registration_class_id => enturmation.id, :class_record_id => self.id}])
+    end
+  end
+    
 end

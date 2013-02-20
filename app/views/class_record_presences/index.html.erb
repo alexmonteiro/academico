@@ -24,11 +24,6 @@
   <h2>Turma: <%= link_to @class_record.discipline_class.school_class.try(:identifier), school_class_path(@class_record.discipline_class.school_class) %></h2>
   <h2>Classe: <%= link_to @class_record.discipline_class.try(:discipline_name), discipline_class_path(@class_record.discipline_class)  %></h2>
  </div>
-<%if notice%>
-<div id="error_explanation" class="alert alert-info">
- <p id="notice"><%= notice %></p>
-</div>
-<%end%>
 
 <div class="form-actions">	
 <%= form_tag 'import', :method => :put, :action => 'import_registration_to_presence' do %>
@@ -50,6 +45,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:is_present) %> (<a href="#" onclick="selectAll()">Marcar</a> / <a href="#" onclick="unselectAll()">Desmarcar</a> Todos)</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -57,6 +53,13 @@
       <tr>
         <td><%= i+1%></td>
         <td><h4><%= check_box_tag "class_record_presence_ids[]", class_record_presence.id, class_record_presence.is_present %>  <%= class_record_presence.model_student_name %></h4></td>
+        <td>
+	      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      discipline_class_class_record_class_record_presence_path(:id => class_record_presence.id),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+                      :class => 'btn btn-mini btn-danger' %>
+	    </td>
 
       </tr>
     <% end %>
