@@ -22,3 +22,5 @@ sunspot-solr.pid
 *.iml
 
 .idea/*
+
+.rvmrc
