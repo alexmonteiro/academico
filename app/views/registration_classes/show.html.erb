@@ -5,13 +5,15 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:registration_id) %>:</strong></dt>
-  <dd><%= @registration_class.registration_id %></dd>
+  <dd><%= link_to "#{@registration_class.registration.registration_number} - #{@registration_class.registration.student_name}", registration_path(@registration_class.registration)	 %></dd>
   <dt><strong><%= model_class.human_attribute_name(:discipline_class_id) %>:</strong></dt>
-  <dd><%= @registration_class.discipline_class_id %></dd>
+  <dd><%= link_to "#{@registration_class.discipline_class.id} - #{@registration_class.discipline_class.discipline_name}", discipline_class_path(@registration_class.discipline_class) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:registered_at) %>:</strong></dt>
-  <dd><%= @registration_class.registered_at %></dd>
+  <dd><%=l @registration_class.registered_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:registration_class_status_id) %>:</strong></dt>
-  <dd><%= @registration_class.registration_class_status_id %></dd>
+  <dd><%= @registration_class.registration_class_status.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:endnote_council_class) %>:</strong></dt>
+  <dd><%= @registration_class.endnote_council_class %></dd>
 </dl>
 
 <div class="form-actions">

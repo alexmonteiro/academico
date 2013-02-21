@@ -19,12 +19,11 @@
 <div class="page-header">
   <h1><i class="icon-check"></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
- <h2><%= @class_record.try(:model_custom_name) %></h2>
-<%if notice%>
-<div id="error_explanation" class="alert alert-info">
- <p id="notice"><%= notice %></p>
-</div>
-<%end%>
+ <div class="control-group">
+  <h2>Curso: <%= link_to @class_record.discipline_class.school_class.try(:model_course_matrix), course_matrix_path(@class_record.discipline_class.school_class.course_matrix) %></h2>
+  <h2>Turma: <%= link_to @class_record.discipline_class.school_class.try(:identifier), school_class_path(@class_record.discipline_class.school_class) %></h2>
+  <h2>Classe: <%= link_to @class_record.discipline_class.try(:discipline_name), discipline_class_path(@class_record.discipline_class)  %></h2>
+ </div>
 
 <div class="form-actions">	
 <%= form_tag 'import', :method => :put, :action => 'import_registration_to_presence' do %>
@@ -46,6 +45,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:is_present) %> (<a href="#" onclick="selectAll()">Marcar</a> / <a href="#" onclick="unselectAll()">Desmarcar</a> Todos)</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -53,6 +53,13 @@
       <tr>
         <td><%= i+1%></td>
         <td><h4><%= check_box_tag "class_record_presence_ids[]", class_record_presence.id, class_record_presence.is_present %>  <%= class_record_presence.model_student_name %></h4></td>
+        <td>
+	      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      discipline_class_class_record_class_record_presence_path(:id => class_record_presence.id),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Deseja realmente excluir?')),
+                      :class => 'btn btn-mini btn-danger' %>
+	    </td>
 
       </tr>
     <% end %>

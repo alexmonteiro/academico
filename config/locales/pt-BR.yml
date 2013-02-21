@@ -236,9 +236,10 @@ pt-BR:
         result: "Nota"
       registration_class:
         registration_id: "Matrícula"
-        discipline_class_id: "Disciplina"
+        discipline_class_id: "Classe"
         registered_at: "Data"
         registration_class_status_id: "Situação"  
+        endnote_council_class: "Nota do Conselho"
       gender:
         acronym: "Sigla"
         gender: "Descrição"
