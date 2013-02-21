@@ -163,6 +163,6 @@ class RegistrationClass < ActiveRecord::Base
   
   def do_logical_operation(operator, value_one, value_two)
      eval(value_one + operator + value_two)
-  end
+  end  
     
 end
