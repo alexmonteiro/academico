@@ -18,12 +18,12 @@ class Person < ActiveRecord::Base
 
   attr_accessible :birth_date, :email, :father_name, :lattes_url, :mom_name, :name, :number_children,
                   :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids,
-                  :people_telephones_attributes
+                  :people_telephones_attributes, :person_address_attributes, :person_identification_doc_attributes
 
   #Campos para aceitar atributos aninhados
   accepts_nested_attributes_for :people_telephones, :reject_if => lambda { |a| a[:number].blank?}, :allow_destroy => true
   accepts_nested_attributes_for :person_address
-  accepts_nested_attributes_for :people_telephones
+  accepts_nested_attributes_for :person_identification_doc
   
   
   #Validações

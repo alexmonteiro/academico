@@ -8,7 +8,7 @@ class PersonAddress < ActiveRecord::Base
   attr_accessible :complement, :neighborhood, :number, :post_office_box, :street_name, :zip_code, :neighborhood, :city_id, :provenance_area_id, :person_id, :street_type_id
 
   #Validações
-  validates_uniqueness_of :person_id
+  #validates_uniqueness_of :person_id
   validates :zip_code, :presence => {:message => "deve ser informado."}
 end
 

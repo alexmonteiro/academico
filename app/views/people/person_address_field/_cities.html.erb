@@ -1,0 +1,5 @@
+<% if !cities.blank? %>
+	<%= select_tag 'person_address_attributes[city_id]', options_from_collection_for_select(cities, "id", "name") %>
+<% else %>
+	<%= select_tag 'person_address_attributes[city_id]', [], :class => 'select_field' %>
+<% end %>

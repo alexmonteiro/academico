@@ -11,7 +11,8 @@ class PersonIdentificationDoc < ActiveRecord::Base
                   :voter_registration, :vr_date_issuance, :vr_section, :vr_uf, :vr_zone, :military_document_type_id, 
                   :person_id, :rg_issuing_institution_id
 
-  validates :rg, :cpf, :presence => {:message => "deve ser informado."}
+  validates_uniqueness_of :cpf
+  validates :cpf, :presence => {:message => "deve ser informado."}
   validates :bc_date_issuance, :presence => { :message => " O campo 'Data de Expedição' da 'Certidão de Nascimento' não foi preenchido!" }, :if => "!birth_certificate.blank?"
   validates :cnh_date_issuance, :presence => { :message => " O campo 'Data de Expedição' da 'Carteira Nacional de Habilitação' não foi preenchido!" }, :if => "!cnh.blank?" || "!cnh_expiration_date.blank?"
   validates :cnh_expiration_date, :presence => { :message => " O campo 'Data de Validade' da 'Carteira Nacional de Habilitação' não foi preenchido!" }, :if => "!cnh.blank?" || "!cnh_date_issuance.blank?"
