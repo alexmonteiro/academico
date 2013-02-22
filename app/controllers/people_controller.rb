@@ -58,7 +58,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(params[:person])
-
+    
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, :notice => 'Pessoa criada com sucesso.' }
@@ -80,8 +80,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
-        flash[:success] = t('controllermessage.update')
-        format.html { redirect_to @person, :notice => t('controllermessage.update') }
+        flash[:success] = t('controller_message.updated')
+        format.html { redirect_to @person, :notice => t('controller_message.updated') }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

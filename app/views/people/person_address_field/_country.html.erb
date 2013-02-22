@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	
+jQuery(function($) {
+  // when the #country field changes
+  $("#country_person_address").change(function() {
+    // make a POST call and replace the content
+    var country = $('select#country_person_address :selected').val();
+    var nome_view = $('input#nome_view').val();
+    if(country == "") country="0";
+    jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
+        $("#addressStatesPersonAddress").html(data);
+    })
+    return false;
+  });
+})
+</script>
+
+<%= select_tag "country_person_address", options_from_collection_for_select(Country.all, "id", "name"), :prompt => "Escolha um País" %>
