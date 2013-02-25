@@ -1,4 +1,8 @@
+<% containerSpan = "span12" %>
+<% containerSpan = "span10" if user_signed_in? %>
+
 <% fullpath = "#{request.fullpath}"[1..-1].split('/')%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,17 +26,19 @@
 	            <span class="icon-bar"></span>
 	          </a>
 	          <a class="brand" href=<%= root_path %> >@cadêmico - IFB</a>
-	          <div class="btn-group pull-right">
-	            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	              <i class="icon-user"></i> Username
-	              <span class="caret"></span>
-	            </a>
-	            <ul class="dropdown-menu">
-	              <li><a href="#">Profile</a></li>
-	              <li class="divider"></li>
-	              <li><a href="#">Sign Out</a></li>
-	            </ul>
-	          </div>
+	           <%if user_signed_in? %>
+		          <div class="btn-group pull-right">
+		            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		              <i class="icon-user"></i> <%= current_user.userlogin %>
+		              <span class="caret"></span>
+		            </a>
+		            <ul class="dropdown-menu">
+		              <li><a href="#">Profile</a></li>
+		              <li class="divider"></li>
+		              <li><a href="#"> <%= link_to('Sair', destroy_user_session_path, :method => :delete) %>  </a></li>
+		            </ul>
+		          </div>
+		      <%end%>
 	          <div class="nav-collapse">
 	            <ul class="nav">
 	              <li class="<%= 'active' if fullpath.include?('registro_academico') %>"><a href=<%= registro_academico_index_path %> ><i class="icon-edit"></i>Registro Acadêmico</a> </li>
@@ -44,8 +50,11 @@
 	      </div>
 	    </div>
 
+
 	    <div class="container-fluid">
+		
 	      <div class="row-fluid">
+		   <%if user_signed_in? %>
 		    <!-- Menu Esquerdo -->
 		    <% if !fullpath.blank? %>
 		        <div class="span2">
@@ -82,10 +91,14 @@
 		            </ul>
 		          </div><!--/.well -->
 		        </div><!--/span-->
-		      <%end%>
+ 	    	 <%end%>
+ 
+		   <%end%>
+		
 
             <!-- Area Central -->
-        	<div class="span10">
+        	<div class=<%="#{containerSpan}"%>>
+	         
 	           <% relative_path = ""%>
 	           <% "#{request.fullpath}"[1..-1].split('/').each do |path| %>
                 <% relative_path += "/"+path %>
@@ -128,5 +141,6 @@
 	      </footer>
 
 	    </div><!--/.fluid-container-->
+
 </body>
 </html>

@@ -1,5 +1,19 @@
 AcademicoRails::Application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
+                                       :registrations => "users/registrations",
+                                       :confirmations => "users/confirmations",
+                                       :sessions => 'devise/sessions' },
+             :skip => [:sessions, :registrations] do
+    get  'entrar'   => "devise/sessions#new",       :as => :new_user_session
+    post 'entrar'  => 'devise/sessions#create',    :as => :user_session
+    get 'sair'  => 'devise/sessions#destroy',   :as => :destroy_user_session
+    get "assinar" => "academicusers/user_registrations#new",   :as => :new_user_registration
+    #get '/auth/:provider/callback' => 'users/omniauth_callbacks#create'
+
+  end
+  get '/auth/:provider/callback' => 'users/omniauth_callbacks#create'
+
   match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
   match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
   match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
@@ -11,7 +25,7 @@ AcademicoRails::Application.routes.draw do
   
   #######################################
   # Menusuperior de Registro Academicos #
-  ######################################
+  #######################################
   resources :registro_academico, :controller => 'menu/registro_academico', :only => [:index], :path => 'registro_academico'
   # Matrículas
   resources :registrations, :path =>"registro_academico/matriculas" do
@@ -169,11 +183,6 @@ AcademicoRails::Application.routes.draw do
   resources :matrix_discipline_groups, :path => 'configuracoes/matriz_disciplina'
   resources :dept_types, :path => 'configuracoes/departamentos'
   
-  
-  
-  
-
-
 
 
 end
