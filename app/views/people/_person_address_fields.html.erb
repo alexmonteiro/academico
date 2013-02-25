@@ -1,0 +1,83 @@
+<div class="fields">
+    <span class="fields">
+    	  <div class="span6">
+	  <div class="control-group">
+	    <%= f.label :street_type_id, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Escolha um Logradouro" %>
+	    </div>
+	  </div>
+		<div class="control-group">
+		<!-- País Cidade e Estado -->
+		  <!--
+		Tag Hidden atributos:
+		# id = nome_view -> Variavel para o JS application - Não muda
+		# value = person_addresses -> nome da view em que se encontra o codigo - Aqui muda de acordo com a view em que se encontra
+		-->
+		  <input type="hidden" id="nome_view" value="people/person_address_field">
+		  <%= f.label :country_id, :class => 'control-label' %>
+		  <div class="controls" id="addressCountry">
+		    <%= render :partial =>'people/person_address_field/country' %>
+		  </div>
+		</div>
+		<div class="control-group">
+		  <%= f.label :state_id, :class => 'control-label' %>
+		  <div class="controls" id="addressStatesPersonAddress">
+		<%= render :partial => 'people/person_address_field/states'%>
+		  </div>
+		</div>
+		<div class="control-group">
+		  <%= f.label :city_id, :class => 'control-label' %>
+		  <div class="controls" id="addressCitiesPersonAddress">
+		<%= render :partial => 'people/person_address_field/cities' %>
+		  </div>
+		</div>
+		<!-- Fim -->
+		
+		  <div class="control-group">
+		    <%= f.label :street_name, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.text_field :street_name, :class => 'text_field' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :complement, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.text_field :complement, :class => 'text_field' %>
+		    </div>
+		  </div>
+		</div>
+		<div class="span6">
+		  <div class="control-group">
+		    <%= f.label :post_office_box, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.text_field :post_office_box, :class => 'text_field' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :neighborhood, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.text_field :neighborhood, :class => 'text_field' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :zip_code, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.number_field :zip_code, :class => 'number_field' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :number, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.text_field :number, :class => 'text_field' %>
+		    </div>
+		  </div>
+		  <div class="control-group">
+		    <%= f.label :provenance_area_id, :class => 'control-label' %>
+		    <div class="controls">
+		      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Escolha uma Zona" %>
+		    </div>
+		  </div>
+		</div>
+    </span>
+<div>

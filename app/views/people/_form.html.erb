@@ -1,59 +1,68 @@
 <%= form_for @person, :html => { :class => 'form-vertical' } do |f| %>
 
 <div class="container">
-<fieldset>
-<legend>Identificação</legend>	
-   <div class="span3">
-    <%= f.label :name_complete, :class => 'control-label' %>
-    <%= f.text_field :name, :class => 'text_field' %>
-
-    <%= f.label :race_id, :class => 'control-label' %>    
-    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}) , :class => 'select_field' %>
-
-    <%= f.label :gender_id, :class => 'control-label' %>    
-    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}) , :class => 'select_field' %>
-
-    <%= f.label :education_degree_id, :class => 'control-label' %>    
-    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}) , :class => 'select_field' %>
-
-    <%= f.label :marital_status_id, :class => 'control-label' %>    
-    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
-
-   </div>
-
-   <div class="span7">
-    <%= f.label :birth_date, :class => 'control-label' %>
-    <%= f.date_select :birth_date, :class => 'text_field', :include_blank => true, :start_year => Time.now.year, :end_year => 1900 %>
-  
-    <%= f.label :email, :class => 'control-label' %>    
-    <%= f.text_field :email, :class => 'text_field' %>
-
-    <%= f.label :blood_type_id, :class => 'control-label' %>    
-    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}) , :class => 'select_field' %>
-
-    <%= f.label :lattes_url, :class => 'control-label' %>    
-    <%= f.text_field :lattes_url, :class => 'text_field' %>
-
-    <%= f.label :number_children, :class => 'control-label' %>
-    <%= f.number_field :number_children, :class => 'number_field', :value => 0 %>
-
-   </div>
-</fieldset>
-
+<div class="container control-group span7">
+<div class="well">
+	<fieldset>
+	<legend>Identificação</legend>
+		
+	   <div class="span5">
+	   	<%= f.fields_for :person_identification_doc do |builder| %>
+			<%= render "person_identification_doc_fields", :f => builder%>
+		<%end%>	
+	   	
+	    <%= f.label :name_complete, :class => 'control-label' %>
+	    <%= f.text_field :name, :class => 'text_field' %>
 	
-<fieldset>
-  <legend>Filiação</legend>
-   <div class="span5">
-    <%= f.label :father_name, :class => 'control-label' %>
-    <%= f.text_field :father_name, :class => 'text_field' %>
-   </div>
-   <div class="span5">
-    <%= f.label :mom_name, :class => 'control-label' %>    
-    <%= f.text_field :mom_name, :class => 'text_field' 	%>
-   </div>
-</fieldset>
+	    <%= f.label :race_id, :class => 'control-label' %>    
+	    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}) , :class => 'select_field' %>
+	
+	    <%= f.label :gender_id, :class => 'control-label' %>    
+	    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}) , :class => 'select_field' %>
+	
+	    <%= f.label :education_degree_id, :class => 'control-label' %>    
+	    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}) , :class => 'select_field' %>
+	
+	    <%= f.label :marital_status_id, :class => 'control-label' %>    
+	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
+	
+	   </div>
+	
+	   <div class="span5">
+	    <%= f.label :birth_date, :class => 'control-label' %>
+	    <%= f.date_select :birth_date, :class => 'text_field', :include_blank => true, :start_year => Time.now.year, :end_year => 1900 %>
+	  
+	    <%= f.label :email, :class => 'control-label' %>    
+	    <%= f.text_field :email, :class => 'text_field' %>
+	
+	    <%= f.label :blood_type_id, :class => 'control-label' %>    
+	    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}) , :class => 'select_field' %>
+	
+	    <%= f.label :lattes_url, :class => 'control-label' %>    
+	    <%= f.text_field :lattes_url, :class => 'text_field' %>
+	
+	    <%= f.label :number_children, :class => 'control-label' %>
+	    <%= f.number_field :number_children, :class => 'number_field', :value => 0 %>
+	
+	   </div>
+	</fieldset>
+</div>
+
+<div class="well">
+	<fieldset>
+	  <legend>Filiação</legend>
+	   <div class="span5">
+	    <%= f.label :father_name, :class => 'control-label' %>
+	    <%= f.text_field :father_name, :class => 'text_field' %>
+	   </div>
+	   <div class="span5">
+	    <%= f.label :mom_name, :class => 'control-label' %>    
+	    <%= f.text_field :mom_name, :class => 'text_field' 	%>
+	   </div>
+	</fieldset>
+</div>
       
-<div class="container">
+<div class="well">
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
 
@@ -73,6 +82,7 @@
   <div class="controls"  id="addressCities">
 	  <%= f.collection_select :city_id, City.find(:all, :order => "name"), :id, :name, :prompt => "Selecione a Cidade" %>
   </div>
+</div>
 </div>
 <!-- Fim -->
 
@@ -107,16 +117,52 @@
    </div>
  -->
 
+<!-- Inicio Campos Para Telefone -->
 
-
-
-</fieldset>
+<div class="well">
+	<fieldset>
+		<legend> Contato Telefone </legend>
+			<%= f.fields_for :people_telephones do |builder| %>
+				<%= render "people_telephone_fields", :f => builder%>
+			<%end%>
+		<span><%= link_to_add_fields "Adicionar Telefone", f, :people_telephones %></span>
+	</fieldset>
 </div>
- 
+
+<!-- Fim Campos Para Telefone -->
+<!-- Inicio Campos Para Endereços -->
+
+<div class="well">
+	<fieldset>
+		<legend>  Endereço </legend>
+		
+			<%= f.fields_for :person_address do |builder| %>
+				<%= render "person_address_fields", :f => builder%>
+			<%end%>
+	</fieldset>
+</div>
+
+<!-- Fim Campos Para Endereços -->
+<!-- Inicio Campos Para Documentos de Identificação 
+
 <div class="container">
+	<fieldset>
+		<legend> Documentos Pessoais </legend>
+			<%= f.fields_for :person_identification_doc do |builder| %>
+				<%= render "person_identification_doc_fields", :f => builder%>
+			<%end%>
+	</fieldset>
+</div>
+
+<!-- Fim Campos Para Documentos de Identificação -->
+
+
+
+ 
+<div class="well">
 <fieldset>
   <legend>Vínculo Institucional</legend>
-   <div class="span1">
+   <div class="span12">
     <%= f.fields_for :person_type_ids do |pt| %>
         <div class="right_box">
           <% PersonType.all.each do |person_type| %>
@@ -133,6 +179,9 @@
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path, :class => 'btn' %>
   </div>
+</fieldset>
+</div>
+</div>
 </div>
 
 <% end %>

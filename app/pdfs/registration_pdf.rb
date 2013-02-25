@@ -4,6 +4,8 @@ class RegistrationPdf < Prawn::Document
     template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
     super(:top_margin => 110, :template => template_filename)
     #super()
+    
+    # PDF da Declaração de Escolaridade e Passe Estudantil
     @registration = opcoes[:registration]
     @type_document = opcoes[:type_document]
     header_complement
@@ -29,7 +31,7 @@ class RegistrationPdf < Prawn::Document
             end
             stroke_horizontal_line 0, 550, :at => 470
             font("Courier", :size => 12) do
-              text_box "#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) #{@registration.person.try(:name)} está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}.",
+              text_box "#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}.",
               :at => [30, 430],
               :leading => 5,
               :align => :justify
