@@ -1,0 +1,28 @@
+<div class="container">
+<center><h1>Acadêmico - IFB</h1></center>
+<br/>
+	
+<form novalidate="noValidate" action="/users/auth/ldap/callback" method="post" class='form-horizontal'>
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Matrícula: </label>
+    <div class="controls">
+      <input type="text" id="username" placeholder="Matrícula" name="username">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Senha: </label>
+    <div class="controls">
+      <input type="password" id="password" placeholder="Senha" name="password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn">Entrar</button>
+    </div>
+  </div>
+</form>
+
+
+</div>
+
+<%#= render "devise/shared/links" %>

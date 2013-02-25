@@ -62,5 +62,7 @@ module AcademicoRails
     #config.assets.logger = false
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
+    
+    config.i18n.default_locale = "pt-BR"
   end
 end
