@@ -48,6 +48,22 @@ class SchoolClass < ActiveRecord::Base
     
   end
 
+  def discipline_classes_from_scholl_class
+    self.discipline_classes
+  end
+  
+  def list_students_by_school_class
+    students_from_school_class = []
+    self.discipline_classes.each do |disciplina|
+      disciplina.class_records_sort_by_name.each do |aluno|
+        students_from_school_class << aluno
+      end
+    end
+    
+    students_from_school_class
+  end
+  
+
   def has_children?
     errors.add(:base, "Existem Classes associadas a esta Turma") unless discipline_classes.count == 0
    

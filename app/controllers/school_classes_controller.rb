@@ -39,6 +39,12 @@ class SchoolClassesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @school_class }
+      if params[:type_report] == "ausent_result"
+        format.pdf do
+          pdf = SchoolClassAusentResultPDF.new(:school_class => @school_class, :preenchido => params[:preenchido])
+          send_data pdf.render, :filename => "Resultado_de_Faltas_#{@school_class.period}#{@school_class.id}", :type => "application/pdf", :disposition => "inline"
+        end
+      end
     end
   end
 

@@ -61,6 +61,10 @@ class DisciplineClass < ActiveRecord::Base
   def records_planned_count
     self.class_records.count
   end
+  #Correção do Metodo acima
+  def records_planned
+    self.class_records.count
+  end
   
   # Retorna count de aulas ministradas
   def records_taught_count
