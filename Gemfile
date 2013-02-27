@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'rails-i18n'
 
+gem 'devise', '2.1.2'
+gem 'omniauth-ldap', '1.0.2'
+
 gem 'modern-pictograms-rails'
 
 # Bundle edge Rails instead:
