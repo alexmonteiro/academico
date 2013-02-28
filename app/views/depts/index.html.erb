@@ -11,48 +11,6 @@
 	</h1>
   </div>
 </div>
-
-<% @dept_roots = Dept.find_by_sql("select * from depts where dept_id is null") %>
-<br/>
-<%= nested_depts(@dept_roots) %>
-<br/>
-<div class="css-treeview">
-<% for dept in @dept_roots %>	
- <ul>
- <li><input type="checkbox" id="item-0" />
-     <label for="item-0">
-  	   <%= dept.name%> 
-       <%= link_to "<i class='icon-play'></i>".html_safe, :action => 'show', :id => dept %> 
-       <%= link_to "<i class='icon-edit'></i>".html_safe, :action => 'edit', :id => dept %> 
-     </label>
- <% @dept_nodes = Dept.find_by_sql("select * from depts where dept_id = #{dept.id}") %>
-	<ul>
- <% for no in @dept_nodes %>
-		<li>
-			<input type="checkbox" id="item-0-0" />
-			 <label for="item-0-0"><%= no.name%>
-				<%= link_to "<i class='icon-play'></i>".html_safe, :action => 'show', :id => no %> 
- 		        <%= link_to "<i class='icon-edit'></i>".html_safe, :action => 'edit', :id => no %>
-			 </label>
-			 <% @dept_subnodes = Dept.find_by_sql("select * from depts where dept_id = #{no.id}") %>
-			<ul>
-				 <% for subno in @dept_subnodes %>
-				  <li>
-					<input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0"><%= subno.name%></label>
-		            <%= link_to "<i class='icon-play'></i>".html_safe, :action => 'show', :id => subno %>
- 			        <%= link_to "<i class='icon-edit'></i>".html_safe, :action => 'edit', :id => subno %>
-				  </li>
-				 <%end%>
-			</ul>
-		</li>
- <%end%>
-	</ul>
- </li>
- </ul>
-<% end %>
-</div>
-
-
 <table class="table table-striped">
   <thead>
     <tr>
