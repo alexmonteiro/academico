@@ -108,10 +108,7 @@
 				
 				<%if flash[:alert]%>
 				  <div id="error_explanation" class="alert alert-error">
-				    <h2>Problemas ao executar comando:</h2>
-				    <ul>
 				      <%= flash[:alert].html_safe %>
-				    </ul>
 				  </div>
 				<%end%>
 
