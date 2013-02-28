@@ -29,3 +29,16 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+/* Incluido para ajustar o posicionamento da da header do conteúdo exibido*/
+.page-header{
+ margin-top: -50px; 
+ margin-bottom: -10px;
+}
+
+/*Correcao da dl-horinzontal para conteudos em branco*/
+.dl-horizontal > dd:after {
+  display: table;
+  content: "";
+  clear: both;
+}
