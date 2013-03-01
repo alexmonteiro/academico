@@ -60,7 +60,7 @@ class SchoolClass < ActiveRecord::Base
       end
     end
     
-    students_from_school_class
+    students_from_school_class.uniq_by { |i| i.student_id }
   end
   
 

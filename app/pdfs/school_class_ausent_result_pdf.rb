@@ -14,40 +14,72 @@ class SchoolClassAusentResultPDF < Prawn::Document
       image "app/assets/images/IFB_Logo_pro_prawn.jpg", :at => [0,100], :width => 80, :height => 40
     end
     bounding_box([91, 450], :width => 80) do
-      image "app/assets/images/IFB_Logo_pro_prawn.jpg", :at => [0,100], :width => 80, :height => 40
+      draw_text "Curso: #{@school_class.model_course_matrix}", :at => [0,100]
     end
   
     
-    bounding_box([10,400], :width => 700, :size => 12) do
+    bounding_box([10,475], :width => 700, :height => 475) do
       table_info_content = []
       tabela_disciplinas = [["Disciplinas"]]
-    @school_class.discipline_classes_from_scholl_class.each do |disciplina|
-      tabela_disciplinas << ["#{disciplina.matrix_discipline.try(:discipline_name)}"]
-    end
+    # @school_class.discipline_classes_from_scholl_class.each do |disciplina|
+        # disciplina.students_id_from_discipline.each do |aluno|
+          # tabela_disciplinas << ["#{disciplina.matrix_discipline.try(:discipline_name)}","#{aluno.student_id}"]
+        # end
+    # end
+#     
+    # move_down(20)
+    # tabela_alunos = [[" "," ","Alunos","Qtd de Faltas"]]
+    # @school_class.list_students_by_school_class.each do |aluno|
+      # tabela_alunos << ["#{aluno.discipline_name}","#{aluno.student_id}","#{aluno.student_name}","#{aluno.is_ausent_count}"]
+    # end
+    # #tabela_alunos.uniq!
+#     
+    # #tabelas
+    # # tabela_alunos
+    # # tabela_disciplinas
+#     
+    # table(tabela_disciplinas)
+    # table(tabela_alunos) do
+      # columns(0..1).rows(0).borders = []
+    # end
+#     
+    # colunas_disciplinas = []
+    # for i in 0..10 do
+      # !@school_class.discipline_classes_from_scholl_class[i].blank? ? colunas_disciplinas << @school_class.discipline_classes_from_scholl_class[i].discipline_name : colunas_disciplinas << " "
+    # end
+    # tabela_cabecalho = [["Cruso: <<Nome do Curso>>"] + colunas_disciplinas + ["Total de Faltas"]]
+      # table(tabela_cabecalho)
+    # end
+    font_size 8 do
     
-    move_down(20)
-    tabela_alunos = [[" "," ","Alunos","Qtd de Faltas"]]
-    @school_class.list_students_by_school_class.each do |aluno|
-      tabela_alunos << ["#{aluno.discipline_name}","#{aluno.student_id}","#{aluno.student_name}","#{aluno.is_ausent_count}"]
+    #Construção da Tabela de Dados Alunos X Disciplinas
+    tabela = [["Nº","MATRÍCULA","NOME DO(A) ALUNO(A)"]]
+    # disciplinas = []
+    # @school_class.discipline_classes_from_scholl_class do |disciplina|
+      # disciplina << disciplina
+    # end
+    # tabela = << 
+    @school_class.list_students_by_school_class.each_with_index do |student, i|
+      tabela << ["#{i+1}","#{student.student_registration_number}","#{student.student_name.upcase}"]
     end
-    #tabela_alunos.uniq!
+    table(tabela, :cell_style => {:align => :center}) do 
+      
+      columns(0..30).padding = [1,2,1,2]
+      #Config da Coluna 0 ("Nº")
+      columns(0).width = 25
+      columns(0).font_style = :bold
+      columns(0).size = 6
+      
+      columns(2).align = :left
+      
+      rows(0).align = :center
+      rows(0).font_style = :bold
+    end
+   end 
     
-    #tabelas
-    # tabela_alunos
-    # tabela_disciplinas
+   end
     
-    table(tabela_disciplinas)
-    table(tabela_alunos) do
-      columns(0..1).rows(0).borders = []
-    end
     
-    colunas_disciplinas = []
-    for i in 0..10 do
-      !@school_class.discipline_classes_from_scholl_class[i].blank? ? colunas_disciplinas << @school_class.discipline_classes_from_scholl_class[i].discipline_name : colunas_disciplinas << " "
-    end
-    tabela_cabecalho = [["Cruso: <<Nome do Curso>>"] + colunas_disciplinas + ["Total de Faltas"]]
-      table(tabela_cabecalho)
-    end
   end
   
   

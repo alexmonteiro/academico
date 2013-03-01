@@ -98,7 +98,11 @@ class DisciplineClass < ActiveRecord::Base
     end
     students_sort_by_name
   end
-
+  
+  def students_id_from_discipline
+    self.registration_classes
+  end
+  
   searchable do
     text :id, :discipline_name, :code, :school_class_identifier
     
