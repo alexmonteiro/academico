@@ -7,6 +7,8 @@ gem 'rails-i18n'
 
 gem 'devise', '2.1.2'
 gem 'omniauth-ldap', '1.0.2'
+gem "cancan"
+gem 'rolify', '3.1.0'
 
 gem 'modern-pictograms-rails'
 

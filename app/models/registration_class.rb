@@ -99,53 +99,21 @@ class RegistrationClass < ActiveRecord::Base
       return "sem regra"
     end
     situations = []
-
-    if  self.endnote_council_class.blank?
-      self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|
-        #verifica regra para Frequencia
-        if rules.academic_rule_id == 1
-         if !do_logical_operation(rules.academic_rule.operator, (self.frequency.to_f*100).to_s, rules.academic_rule.value.to_s) 
-           return situations.push(rules.academic_rule.rclass_status_false.description)
-         end
-        end
-        #verifica regra para Nota
-        if rules.academic_rule_id == 2
-         do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(rules.academic_rule.rclass_status_true.description) : situations.push(rules.academic_rule.rclass_status_false.description)
-        end
-        
-      end
-      situations
-    else
-      #regra de aprovado no conselho
-      # TODO refazer o cálculo para da média para considerar conselho de  classe de maneira dinâmica
-      RegistrationClassStatus.find(8).description
+    self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|
+       do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
     end
+    situations
   end
   
-  #Retorna o id da situação conforme regra academica
-  def registration_class_status_id_by_rules
-   if  self.endnote_council_class.blank?
-        #Nota
-        rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 2)
-        rule = AcademicRule.find(rule[0][:academic_rule_id])
-        if do_logical_operation(rule.operator, (self.model_student_result_average.to_f*100).to_s, rule.value.to_s)
-           id = rule.rclass_status_true_id
-           #verifica frequencia e seta id como reprovado na frequencia senao atender a regra
-           rule = self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.where(:academic_rule_id => 1)
-           rule = AcademicRule.find(rule[0][:academic_rule_id])
-           if !do_logical_operation(rule.operator, (self.frequency.to_f*100).to_s, rule.value.to_s) 
-             return rule.rclass_status_false_id
-           end
-           return id
-        else
-           #reprovado na nota
-           return rule.rclass_status_false_id
-        end
-    else
-      #regra de aprovado no conselho
-      # TODO refazer o cálculo para da média para considerar conselho de  classe de maneira dinâmica
-      return 8
-    end
+  #Retorna a situação final do aluno
+  def registration_class_status_final
+    situations = self.registration_class_status_situations
+   situations.each do |s|
+     if !s.is_approved
+       return s #Possui uma regra que o reprovou
+     end
+   end
+   situations[0] #Aprovado em todas as regras
   end
   
   
