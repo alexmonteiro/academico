@@ -1,28 +1,29 @@
-<div class="container">
-<center><h1>Acadêmico - IFB</h1></center>
-<br/>
+<div class="container-fluid">
+<div class="row span6 offset5">
+<%= form_for(resource, :as => resource_name, :url => "/users/auth/ldap/callback",:html => { :class => 'form-vertical' } ) do |f| %>
+  	<fieldset class="fieldset span3 center">
+		<legend><center>Autenticação</center></legend>
+		<label for="username">Usuário: </label>
+	    <div class="div_text">	
+	     <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
+	      <%= text_field_tag :username, nil, :name => 'username', :placeholder => "matrícula/siape" %>
+	     </div>
+        </div>
+	     <label for="password">Senha:</label>
+		 <div class="div_text">
+		  <div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span>
+	       <%= password_field_tag :password, nil, :name => 'password', :placeholder => "senha" %>
+	      </div>
+	     </div>
+
+	  <% if devise_mapping.rememberable? -%>
+	    <div>
+	      <%= f.check_box :remember_me %> <small>Lembrar senha</small> <%= f.submit "Entrar", :class => "btn btn-primary pull-right" %>
+	    </div>
+	  <% end -%>
+
+	</fieldset>
 	
-<form novalidate="noValidate" action="/users/auth/ldap/callback" method="post" class='form-horizontal'>
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Matrícula: </label>
-    <div class="controls">
-      <input type="text" id="username" placeholder="Matrícula" name="username">
-    </div>
-  </div>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Senha: </label>
-    <div class="controls">
-      <input type="password" id="password" placeholder="Senha" name="password">
-    </div>
-  </div>
-  <div class="control-group">
-    <div class="controls">
-      <button type="submit" class="btn">Entrar</button>
-    </div>
-  </div>
-</form>
-
-
+<% end %>
 </div>
-
-<%#= render "devise/shared/links" %>
+</div>
