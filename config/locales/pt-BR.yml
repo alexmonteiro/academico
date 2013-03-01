@@ -85,9 +85,9 @@ pt-BR:
       discipline:
         name: "Nome"
         code: "Código"        
-        description: "Descrição"        
-        goals: "Objetivos"
-        workload: "Carga horária"
+        description: "Competências"        
+        goals: "Habilidades"
+        workload: "Carga horária h/a"
         credits: "Créditos"
         discipline_type_id: "Tipo"
         course_id: "Curso"
