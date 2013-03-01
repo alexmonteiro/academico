@@ -94,11 +94,20 @@ class PeopleController < ApplicationController
   # DELETE /people/1.json
   def destroy
     @person = Person.find(params[:id])
-    @person.destroy
-
-    respond_to do |format|
-      format.html { redirect_to people_url, :notice => t('controller_message.deleted') }
-      format.json { head :no_content }
+    if @person.destroy
+      respond_to do |format|
+        format.html { redirect_to people_url, :notice => t('controller_message.deleted') }
+        format.json { head :no_content }
+      end
+    else
+      error_message = ""
+      @person.errors[:base].each do |error|
+       error_message += "<li>#{error}</li>"
+      end
+      respond_to do |format|
+        format.html { redirect_to request.referer, :alert => error_message }
+        format.json { render :json => @person.errors, :status => :unprocessable_entity }
+      end
     end
   end
 

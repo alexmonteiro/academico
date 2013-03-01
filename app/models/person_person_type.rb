@@ -5,7 +5,7 @@ class PersonPersonType < ActiveRecord::Base
   
   #nome da pessoa
   def person_name
-    self.person.name
+    self.person.try(:name)
   end
   
   #cpf da pessoa
