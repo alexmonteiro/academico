@@ -8,13 +8,14 @@ class Person < ActiveRecord::Base
   belongs_to :country
   belongs_to :state
   belongs_to :city
-  has_many :person_person_types
+  has_many :person_person_types, :dependent => :destroy
   has_many :person_types, :through => :person_person_types
-  has_many :people_telephones
-  has_one :person_address
-  has_one :person_identification_doc
+  has_many :people_telephones, :dependent => :destroy
+  has_one :person_address, :dependent => :destroy
+  has_one :person_identification_doc, :dependent => :destroy
   has_many :registrations
   default_scope :order => :name 
+  before_destroy :has_children?
 
   attr_accessible :birth_date, :email, :father_name, :lattes_url, :mom_name, :name, :number_children,
                   :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id, :person_type_ids,
@@ -50,5 +51,16 @@ class Person < ActiveRecord::Base
     text :id, :birth_date, :email, :name, :number_children, :cpf, :rg
     string :name    
   end  
+  
+  private
+  def has_children?
+    errors.add(:base, "Existem matrículas associadas a esta pessoa") unless registrations.count == 0
+   
+    if errors.size > 0
+     false
+    else
+     true
+    end    
+  end
 
 end

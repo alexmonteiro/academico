@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 #gem 'git-log', :git => 'git://github.com/alexmonteiro/git-log.git'
 
@@ -26,11 +26,14 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
 
+  gem 'therubyracer', :platforms => :ruby
+  gem 'less'
+  gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails', '2.0.9'
+
   gem 'bootstrap-datepicker-rails'
 end
 
