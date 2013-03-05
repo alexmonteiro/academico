@@ -19,7 +19,7 @@ class Course < ActiveRecord::Base
   end
 
   def dept_name
-    self.dept.try(:name)
+    Dept.find(self.dept_id).name
   end
   
   def started_at_formatted
