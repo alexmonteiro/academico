@@ -12,13 +12,14 @@ class Course < ActiveRecord::Base
   attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
   before_destroy :has_children?
   
+  validates_presence_of :dept_id
   
   def dept_acronym
-    self.dept.dept.try(:acronym)+"-"+self.dept.try(:acronym)
+    Dept.find(self.dept_id).acronym
   end
 
   def dept_name
-    self.dept.try(:name)
+    Dept.find(self.dept_id).name
   end
   
   def started_at_formatted
