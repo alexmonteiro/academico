@@ -18,9 +18,33 @@
 //= require twitter/bootstrap
 //= require rails.validations
 //= require_tree .
+//= require_self
 /*
 * ADICAO DE JS GENERICA PARA PAIS, ESTADO, CIDADE
 * */
+
+$(function() {
+  $("dd").each(function() {
+    if ($(this).html().length === 0) {
+      $(this).css("color", "red");
+      $(this).css("font-weight", "bold");
+      $(this).html("Sem Registro.");
+    } else {
+      if ($(this).html() === 'true') {
+      	$(this).html("Sim");
+      } else if ($(this).html() === 'false') {
+      	$(this).html("Nao");
+      }
+      $("ul").each(function() {
+	    if ($(this).html().length === 0) {
+	      $(this).remove();
+	    }
+	  });
+	}
+  });
+});
+
+
 jQuery(function($) {
   // when the #country field changes
   $("#country").change(function() {
