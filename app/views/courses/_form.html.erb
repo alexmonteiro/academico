@@ -37,14 +37,14 @@
   </div>
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :started_at, :class => 'date_select' %>
+    <div class="controls" >
+      <%= f.text_field :started_at, :class => "datepicker_class", :style => "width:80px", :id => "date" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :ended_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :ended_at, :class => 'date_select', :include_blank => true %>
+      <%= f.text_field :ended_at, :class => "datepicker_class", :style => "width:80px", :id => "date" %>
     </div>
   </div>
   <div class="control-group">

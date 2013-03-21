@@ -24,6 +24,14 @@
 * */
 
 $(function() {
+	$(".datepicker_class" ).datepicker({
+		language: "br",
+    	format: "dd.mm.yyyy",
+    	"autoclose": true
+	});
+});
+
+$(function() {
   $("dd").each(function() {
     if ($(this).html().length === 0) {
       $(this).css("color", "red");
@@ -113,4 +121,5 @@ function add_fields(link, association, content) {
 }
 //Fim das Funções para campos aninhados em Person
 
+    
 
