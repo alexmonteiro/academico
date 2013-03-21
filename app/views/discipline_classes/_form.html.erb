@@ -34,21 +34,21 @@
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :started_at, :class => 'date_select' %>
+      <%= f.text_field :started_at, :class => 'datepicker_class', :style => "width:80px" %>
     </div>
   </div>
  <%if !(action_name == "new" or action_name == "create") %>
   <div class="control-group">
     <%= f.label :ending_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :ending_at, :class => 'date_select', :include_blank => true %>
+      <%= f.text_field :ending_at, :class => 'datepicker_class', :style => "width:80px" , :include_blank => true %>
     </div>
   </div>
  <%end%>
   <div class="control-group">
     <%= f.label :timetable_started_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :timetable_started_at, :class => 'date_select', :include_blank => true %>
+      <%= f.text_field :timetable_started_at, :class => 'datepicker_class', :style => "width:80px", :include_blank => true %>
     </div>
   </div>
 
