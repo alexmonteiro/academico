@@ -25,9 +25,9 @@
 
 $(function() {
 	$(".datepicker_class" ).datepicker({
-		language: "br",
-    	format: "dd.mm.yyyy",
-    	"autoclose": true
+	        language: "br",
+                format: "dd.mm.yyyy",
+                "autoclose": true
 	});
 });
 
