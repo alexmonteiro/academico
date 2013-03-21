@@ -33,13 +33,13 @@
   <div class="control-group">
     <%= f.label :opening_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :opening_at, :class => 'date_select' %>
+      <%= f.text_field :opening_at, :class => 'datepicker_class', :style => "width:80px", :id => "date" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :closing_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :closing_at, :class => 'date_select', :include_blank => true %>
+      <%= f.text_field :closing_at, :class => 'datepicker_class', :style => "width:80px", :id => "date", :include_blank => true %>
     </div>
   </div>
 
