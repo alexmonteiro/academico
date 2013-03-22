@@ -15,9 +15,9 @@
           <dt><strong><%= model_class.human_attribute_name(:cnpj) %>:</strong></dt>
           <dd><%= verifica_registro :campo => @dept.cnpj, :mensagem => "<<Sem Registro>>"%></dd>
           <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.started_at, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= verifica_registro :campo => l(@dept.started_at), :mensagem => "<<Sem Registro>>"%></dd>
           <dt><strong><%= model_class.human_attribute_name(:finished_at) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.finished_at, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= verifica_registro :campo => l(@dept.finished_at), :mensagem => "<<Sem Registro>>"%></dd>
           <dt><strong><%= model_class.human_attribute_name(:site) %>:</strong></dt>
           <dd><%= verifica_registro :campo => @dept.site, :mensagem => "<<Sem Registro>>"%></dd>
           <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
