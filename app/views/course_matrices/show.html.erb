@@ -19,7 +19,7 @@
   <dt><strong><%= model_class.human_attribute_name(:matrix_status_id) %>:</strong></dt>
   <dd><%= @matrix.matrix_status.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:class_season_type_id) %>:</strong></dt>
-  <dd><%= @matrix.class_season_type.description %></dd>
+  <dd><%= @matrix.class_season_type.try(:description) %></dd>
   <dd></dd>
 
 </dl>

@@ -11,6 +11,12 @@ class DisciplineClass < ActiveRecord::Base
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
   validates :school_class_id, :matrix_discipline_id, :code, :vancancies, :presence => true
+  
+  validate :started_at_date
+  
+  def started_at_date
+    errors.add(:base,"Data de fechamento nao pode ser menor do que a data de abertura") unless ending_at >= started_at
+  end
 
   def vacancies
     self.vancancies

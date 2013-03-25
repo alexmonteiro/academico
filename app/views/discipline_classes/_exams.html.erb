@@ -44,7 +44,7 @@
                                 <%end%>
                             </center>
                           </td>
-					       <td><center> <h6> <%= rclass.registration_class_status.description %> </h6></center></td>	
+					       <td><center> <h6> <%= rclass.registration_class_status.try(:description) %> </h6></center></td>	
 					  </tr>
 			       <%end%>				
 			  </tbody>

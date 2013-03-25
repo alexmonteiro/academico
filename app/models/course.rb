@@ -14,6 +14,12 @@ class Course < ActiveRecord::Base
   
   validates_presence_of :dept_id
   
+  validate :ended_at_date
+  
+  def ended_at_date
+    errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless ended_at >= started_at
+  end
+  
   def dept_acronym
     Dept.find(self.dept_id).acronym
   end
