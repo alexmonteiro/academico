@@ -33,12 +33,14 @@
   <div class="control-group">
     <%= f.label :opening_at, :class => 'control-label' %>
     <div class="controls">
+      <% @school_class.opening_at = @school_class.opening_at.try(:strftime, "%d.%m.%Y") %>
       <%= f.text_field :opening_at, :class => 'datepicker_class', :style => "width:80px", :id => "date" %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :closing_at, :class => 'control-label' %>
     <div class="controls">
+      <% @school_class.closing_at = @school_class.closing_at.try(:strftime, "%d.%m.%Y") %>
       <%= f.text_field :closing_at, :class => 'datepicker_class', :style => "width:80px", :id => "date", :include_blank => true %>
     </div>
   </div>
