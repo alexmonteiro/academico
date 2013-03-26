@@ -8,6 +8,8 @@ class Dept < ActiveRecord::Base
   #Validacoes
   validates :name, :acronym, :presence => true
   
+  validate :finished_at_date
+  
   def dept_type_desc
     self.dept_type.dept_type
   end
@@ -22,7 +24,10 @@ class Dept < ActiveRecord::Base
   
   searchable do
     text :id, :acronym, :cnpj, :description, :email, :name, :site, :dept_type_desc
-        
+  end
+  
+  def finished_at_date
+    errors.add(:base, "Data de desativação nao pode ser menor que a data de ativação") unless finished_at >= started_at
   end
 
 end

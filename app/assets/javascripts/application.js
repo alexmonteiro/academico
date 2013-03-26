@@ -13,13 +13,46 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.maskedinput
 //= require bootstrap-datepicker
 //= require twitter/bootstrap
 //= require rails.validations
 //= require_tree .
+//= require_self
 /*
 * ADICAO DE JS GENERICA PARA PAIS, ESTADO, CIDADE
 * */
+
+$(function() {
+	$(".datepicker_class" ).datepicker({
+	        language: "br",
+                format: "dd.mm.yyyy",
+                "autoclose": true
+	});
+});
+
+$(function() {
+  $("dd").each(function() {
+    if ($(this).html().length === 0) {
+      $(this).css("color", "red");
+      $(this).css("font-weight", "bold");
+      $(this).html("Sem Registro.");
+    } else {
+      if ($(this).html() === 'true') {
+      	$(this).html("Sim");
+      } else if ($(this).html() === 'false') {
+      	$(this).html("Nao");
+      }
+      $("ul").each(function() {
+	    if ($(this).html().length === 0) {
+	      $(this).remove();
+	    }
+	  });
+	}
+  });
+});
+
+
 jQuery(function($) {
   // when the #country field changes
   $("#country").change(function() {
@@ -88,4 +121,5 @@ function add_fields(link, association, content) {
 }
 //Fim das Funções para campos aninhados em Person
 
+    
 

@@ -11,7 +11,10 @@ class DisciplineClass < ActiveRecord::Base
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
   validates :school_class_id, :matrix_discipline_id, :code, :vancancies, :presence => true
-
+  
+  validate :timetable_started_at_date
+  validate :ending_at_date
+ 
   def vacancies
     self.vancancies
   end
@@ -108,7 +111,7 @@ class DisciplineClass < ActiveRecord::Base
     
   end  
   
-
+  #validates
   def has_children?
     errors.add(:base, "Existem Matrículas associadas a esta Classe") unless registration_classes.count == 0
     errors.add(:base, "Existem Professores associadas a esta Classe") unless class_teachings.count == 0  
@@ -120,5 +123,16 @@ class DisciplineClass < ActiveRecord::Base
      true
     end
     
+  end
+  
+  def timetable_started_at_date
+        errors.add(:base, "Data de vigencia da grade horaria nao pode ser menor do que a data de abertura") unless timetable_started_at >= started_at
+  end
+  
+  def ending_at_date
+    if ending_at == nil
+    else
+        errors.add(:base, "Data de fechamento nao pode ser menor do que a data de abertura") unless ending_at >= started_at
+    end
   end
 end

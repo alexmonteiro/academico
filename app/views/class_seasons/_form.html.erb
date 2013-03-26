@@ -2,7 +2,7 @@
   <div class="control-group">
     <%= f.label :year, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :year, :class => 'number_field' %>
+      <%= f.number_field :year, :class => 'number_field', :id => "year" %>
     </div>
   </div>
   <div class="control-group">
@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :start_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :start_at, :class => 'date_select' %>
+      <%= f.text_field :start_at, :class => 'datepicker_class', :id => "date", :style => "width:80px"  %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :end_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :end_at, :class => 'date_select', :include_blank => true %>
+      <%= f.text_field :end_at, :class => 'datepicker_class', :id => "date", :style => "width:80px", :include_blank => true %>
     </div>
   </div>
   <div class="control-group">

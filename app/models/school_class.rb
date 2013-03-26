@@ -11,6 +11,7 @@ class SchoolClass < ActiveRecord::Base
   validates :period, :matrix_id, :shift_type_id, :class_season_id, :opening_at, :presence => true
   validates_uniqueness_of :identifier
   
+  validate :closing_at_date
   # 20121001101A onde 2012 ano 1 período do ano 001 código sequencial do curso 1 turno (pode ser 1 2 ou 3 para mat vesp. E noturno) e 01 para o módulo do curso e o A para turma A, B, C
   def auto_identifier
     year = self.class_season.try(:year).to_s
@@ -108,5 +109,9 @@ class SchoolClass < ActiveRecord::Base
      true
     end    
   end  
+  
+  def closing_at_date
+    errors.add(:base, "Data de fechamento nao pode ser menor do que a abertura") unless closing_at >= opening_at
+  end
   
 end
