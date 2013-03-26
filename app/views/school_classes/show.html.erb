@@ -56,6 +56,9 @@
               school_classes_path, :class => 'btn btn-large pull-left'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
               edit_school_class_path(:id => @school_class.identifier), :class => 'btn btn-large pull-left' %>
+  
+  <%= link_to "<i class='icon-paper'></i> Resultado de Faltas".html_safe, school_class_path(:format => 'pdf', :type_report => 'ausent_result')%>
+  
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
               school_class_path(@school_class),
               :method => 'delete',

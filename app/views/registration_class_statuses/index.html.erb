@@ -7,6 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:acronym) %></th>
       <th><%= model_class.human_attribute_name(:is_approved) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= link_to registration_class_status.id, registration_class_status_path(registration_class_status) %></td>
         <td><%= registration_class_status.description %></td>
+        <td><%= registration_class_status.acronym %></td>
         <td><%= registration_class_status.is_approved? %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

@@ -6,6 +6,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :acronym, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :acronym, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :is_approved, :class => 'control-label' %>
     <div class="controls">
       <%= f.check_box :is_approved, :class => 'check_box' %>

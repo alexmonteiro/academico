@@ -4,6 +4,7 @@ class RegistrationClassPdf < Prawn::Document
     #super()
     @discipline = params[:discipline_class]
     @preenchido = params[:preenchido]
+    @discipline.class_records.reverse!
     #header
     
       #variaveis de Controle
@@ -84,6 +85,7 @@ class RegistrationClassPdf < Prawn::Document
     ite = opcoes[:iteracao]
     
     #Iteracoes para o controle das datas de aulas
+    
       dates_classes = [] 
       for i in (ite*20)..(20*(ite+1))-1
         !@discipline.class_records[i].blank? ? dates_classes << I18n.l(@discipline.class_records[i].recorded_at, :format => "%d/%b") : dates_classes << " "
@@ -163,7 +165,7 @@ class RegistrationClassPdf < Prawn::Document
   
   #Métodos Para Iteracoes e insercoes de informacoes e cruzemntos de dados
   
-  #Método para listar alusnos e presenças (Cruzmento de Dados)
+  #Método para listar alunos e presenças (Cruzmento de Dados)
   def data_calls(opcoes = {})
     data_content = [[" "," "," "] + [" "]*20 + [" "," "," "]]
      if @preenchido.blank?
