@@ -29,11 +29,11 @@
 						   <td><center> <h5><%= (nota.blank? ? '0.0' : nota.to_s) %> <small>x<%=exam.weight%></small></h5> </center></td>
 					    <%end%>
 					       <td><center> <h5> <%= rclass.model_student_result_average.round(2) %> </h5></center></td>	
-					       <td><center> 
-						                <h6> 
-											<%= rclass.registration_class_status_final.description %> 
-						               </h6>
-						    </center></td>	
+					       <td>
+						    <center> 
+						       <h6><%= rclass.registration_class_status_final.description %></h6>
+						    </center>
+						   </td>	
 					  </tr>
 			       <%end%>				
 			  </tbody>

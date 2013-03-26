@@ -84,9 +84,10 @@ class PersonIdentificationDocsController < ApplicationController
   # PUT /person_identification_docs/1.json
   def update
     @person = Person.find((params[:person_id]))
-    params[:person_identification_doc][:rg_uf] = State.find(params[:person_identification_doc][:rg_uf])
-    params[:person_identification_doc][:vr_uf] = State.find(params[:person_identification_doc][:vr_uf])
-    params[:person_identification_doc][:rg_issuing_institution] = IssuingInstitution.find(params[:person_identification_doc][:rg_issuing_institution])
+    params[:person_identification_doc][:rg_uf].blank? ? (params[:person_identification_doc].delete(:rg_uf)) : (params[:person_identification_doc][:rg_uf] = State.find(params[:person_identification_doc][:rg_uf]))
+    params[:person_identification_doc][:vr_uf].blank? ? (params[:person_identification_doc].delete(:vr_uf)) : (params[:person_identification_doc][:vr_uf] = State.find(params[:person_identification_doc][:vr_uf]))
+    params[:person_identification_doc][:rg_issuing_institution].blank? ? (params[:person_identification_doc].delete(:rg_issuing_institution)) : (params[:person_identification_doc][:rg_issuing_institution] = IssuingInstitution.find(params[:person_identification_doc][:rg_issuing_institution]))
+    
     @person_identification_doc = PersonIdentificationDoc.find(params[:id])
 
     respond_to do |format|

@@ -34,7 +34,7 @@
 	            discipline_class_class_teachings_path(@discipline_class), :class => 'btn btn-inverse span12' %>
 	         <div style="padding-top: 60px">
 	           <% @discipline_class.class_teachings.each do |teacher| %>
-			    <dd><%= teacher.person.name %></dd>
+			    <dd><%= teacher.person.try(:name) %></dd>
 			  <%end%>
 			    <dd><center><%= '...sem docente vinculado...' if @discipline_class.class_teachings.count == 0 %></center></dd>
 	         </div>

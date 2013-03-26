@@ -12,13 +12,20 @@ class Course < ActiveRecord::Base
   attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
   before_destroy :has_children?
   
+  validates_presence_of :dept_id
+  
+  validate :ended_at_date
+  
+  def ended_at_date
+    errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless ended_at >= started_at
+  end
   
   def dept_acronym
     "#{self.dept.try(:acronym)}"
   end
 
   def dept_name
-    self.dept.try(:name)
+    Dept.find(self.dept_id).name
   end
   
   def started_at_formatted
