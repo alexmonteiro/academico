@@ -22,7 +22,8 @@
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :started_at, :class => 'date_select' %>
+      <%  @discipline_class.started_at = @discipline_class.started_at.try(:strftime, "%d.%m.%Y")%>
+      <%= f.text_field :started_at, :class => 'datepicker_class', :style => "width:80px" %>
     </div>
   </div>
 
@@ -30,7 +31,8 @@
  <div class="control-group">	
     <%= f.label :ending_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :ending_at, :class => 'date_select', :include_blank => true %>
+      <%  @discipline_class.ending_at = @discipline_class.ending_at.try(:strftime, "%d.%m.%Y") %>
+      <%= f.text_field :ending_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px" %>
     </div>	  	
   </div>
 <% end %>
@@ -38,7 +40,8 @@
   <div class="control-group">
     <%= f.label :timetable_started_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :timetable_started_at, :class => 'date_select', :include_blank => true %>
+      <% @discipline_class.timetable_started_at = @discipline_class.timetable_started_at.try(:strftime, "%d.%m.%Y") %>
+      <%= f.text_field :timetable_started_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px" %>
     </div>
   </div>
 
