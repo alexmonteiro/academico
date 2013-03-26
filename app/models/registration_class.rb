@@ -50,8 +50,11 @@ class RegistrationClass < ActiveRecord::Base
       sum_results = 0.0
       sum_weights = 0.0
       self.discipline_class_exam_results.each do |exam_result|
-         sum_results += (exam_result.result * exam_result.discipline_class_exam.weight)  
-         sum_weights += exam_result.discipline_class_exam.weight
+         # sum_results += (exam_result.result * exam_result.discipline_class_exam.weight)  
+         # sum_weights += exam_result.discipline_class_exam.weight
+        !exam_result.result.nil? ? "" : exam_result.result = 0
+        sum_results += (exam_result.result * exam_result.discipline_class_exam.weight)  
+        sum_weights += exam_result.discipline_class_exam.weight
       end
       #somatório dos pesos é independete do resultado pois pode haver avaliações sem notas lançadas
       #self.discipline_class.discipline_class_exams.each do |exam|
@@ -148,6 +151,14 @@ class RegistrationClass < ActiveRecord::Base
     end
   end
   
+  def acronym_status_rules
+    acronyms = {1 => "AA", 2 => "AAC", 3 => "C", 4 => "D", 5 => "EC", 6 => "RN", 7 => "RF", 8 => "AC"}
+    if !self.registration_class_status_id_by_rules.blank?
+      !acronyms[self.registration_class_status_id_by_rules].blank? ? " #{acronyms[self.registration_class_status_id_by_rules.to_i]} " : "SR"
+    else
+      "SR"
+    end
+  end
   
   private
   def has_children?

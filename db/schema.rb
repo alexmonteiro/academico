@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221135329) do
+ActiveRecord::Schema.define(:version => 20130326170226) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -610,6 +610,7 @@ ActiveRecord::Schema.define(:version => 20130221135329) do
     t.boolean  "is_approved"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "acronym"
   end
 
   create_table "registration_classes", :force => true do |t|
@@ -652,6 +653,17 @@ ActiveRecord::Schema.define(:version => 20130221135329) do
   add_index "registrations", ["course_matrix_id"], :name => "index_registrations_on_course_matrix_id"
   add_index "registrations", ["person_id"], :name => "index_registrations_on_person_id"
   add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "school_classes", :force => true do |t|
     t.string   "identifier"
@@ -788,5 +800,12 @@ ActiveRecord::Schema.define(:version => 20130221135329) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["userlogin"], :name => "index_users_on_userlogin", :unique => true
+
+  create_table "users_roles", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
 end

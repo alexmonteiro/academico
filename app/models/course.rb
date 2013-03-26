@@ -25,8 +25,15 @@ class Course < ActiveRecord::Base
   def started_at_formatted
     self.started_at.strftime("%d/%m/%Y")
   end
-      
   
+  def modality
+    self.education_modality
+  end
+     
+  def dept_institute_course
+    self.dept.dept_institute
+  end
+   
   searchable do
     text :code, :name, :nickname, :dept_acronym, :dept_name
     

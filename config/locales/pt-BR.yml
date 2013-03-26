@@ -331,6 +331,7 @@ pt-BR:
         description: "Descrição"
       registration_class_status:
         description: "Descrição"
+        acronym: "Sigla"
         is_approved: "Está aprovado?"
       registration_status:
         description: "Descrição"

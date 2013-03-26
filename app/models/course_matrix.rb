@@ -48,6 +48,16 @@ class CourseMatrix < ActiveRecord::Base
     
   end
   
+  #modalidade do curso
+  def course_modality
+    self.course.modality
+  end
+  
+  #modalidade do curso
+  def course_dept
+    self.course.dept_institute_course
+  end
+  
   def has_children?
     errors.add(:base, "Existem Disciplinas associadas a esta Matriz") unless matrix_disciplines.count == 0
     errors.add(:base, "Existem Grades Horárias associadas a esta Matriz") unless timetables.count == 0  

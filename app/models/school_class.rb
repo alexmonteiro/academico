@@ -52,6 +52,25 @@ class SchoolClass < ActiveRecord::Base
     self.discipline_classes
   end
   
+  def total_ausents_discipline
+    total_aulas = 0
+    self.discipline_classes.each do |discipline|
+      total_aulas = total_aulas + discipline.records_planned
+    end
+    total_aulas
+  end
+  
+  #Modalidade do Curso da Turma 
+  def school_course_modality
+    self.course_matrix.course_modality
+  end
+  
+  #Campus do Curso da Turma 
+  def school_course_dept
+    self.course_matrix.course_dept
+  end
+  
+  #Lista de estudantes por turma
   def list_students_by_school_class
     students_from_school_class = []
     self.discipline_classes.each do |disciplina|
@@ -61,6 +80,22 @@ class SchoolClass < ActiveRecord::Base
     end
     
     students_from_school_class.uniq_by { |i| i.student_id }
+  end
+  
+  #Total de faltas de um estudante
+  def total_students_ausent(student)
+    ausents = 0
+    self.discipline_classes.each do |discipline|
+      if !discipline.blank?
+        discipline.students_id_from_discipline.each do |aluno|
+          if student.student_id == aluno.student_id
+            ausents = ausents + aluno.is_ausent_count
+            break;
+          end
+        end
+      end
+    end
+    ausents
   end
   
 
