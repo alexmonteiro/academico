@@ -238,33 +238,33 @@ countries = Country.create([
 puts 'Inserindo dados na tabela de Estados...'
 brasil = Country.find_by_name('Brasil')
 states = State.create([
-  {:name => 'Acre', :acronym => 'AC', :country => brasil },
-  {:name => 'Alagoas', :acronym => 'AL', :country => brasil },
-  {:name => 'Amapá', :acronym => 'AP', :country => brasil },
-  {:name => 'Amazonas', :acronym => 'AM', :country => brasil },
-  {:name => 'Bahia', :acronym => 'BA', :country => brasil },
-  {:name => 'Ceará', :acronym => 'CE', :country => brasil },
-  {:name => 'Distrito Federal', :acronym => 'DF', :country => brasil },
-  {:name => 'Espírito Santo', :acronym => 'ES', :country => brasil },
-  {:name => 'Goiás', :acronym => 'GO', :country => brasil },
-  {:name => 'Maranhăo', :acronym => 'MA', :country => brasil },
-  {:name => 'Mato Grosso', :acronym => 'MT', :country => brasil },
-  {:name => 'Mato Grosso do Sul', :acronym => 'MS', :country => brasil },
-  {:name => 'Minas Gerais', :acronym => 'MG', :country => brasil },
-  {:name => 'Pará', :acronym => 'PA', :country => brasil },
-  {:name => 'Paraíba', :acronym => 'PB', :country => brasil },
-  {:name => 'Paraná', :acronym => 'PR', :country => brasil },
-  {:name => 'Pernambuco', :acronym => 'PE', :country => brasil },
-  {:name => 'Piauí', :acronym => 'PI', :country => brasil },
-  {:name => 'Rio de Janeiro', :acronym => 'RJ', :country => brasil },
-  {:name => 'Rio Grande do Norte', :acronym => 'RN', :country => brasil },
-  {:name => 'Rio Grande do Sul', :acronym => 'RS', :country => brasil },
-  {:name => 'Rondônia', :acronym => 'RO', :country => brasil },
-  {:name => 'Roraima', :acronym => 'RR', :country => brasil },
-  {:name => 'Santa Catarina', :acronym => 'SC', :country => brasil },
-  {:name => 'Săo Paulo', :acronym => 'SP', :country => brasil },
-  {:name => 'Sergipe', :acronym => 'SE', :country => brasil },
-  {:name => 'Tocantins', :acronym => 'TO', :country => brasil }])
+  {:name => 'Acre', :acronym => 'AC', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Alagoas', :acronym => 'AL', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Amapá', :acronym => 'AP', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Amazonas', :acronym => 'AM', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Bahia', :acronym => 'BA', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Ceará', :acronym => 'CE', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Distrito Federal', :acronym => 'DF', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Espírito Santo', :acronym => 'ES', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Goiás', :acronym => 'GO', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Maranhăo', :acronym => 'MA', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Mato Grosso', :acronym => 'MT', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Mato Grosso do Sul', :acronym => 'MS', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Minas Gerais', :acronym => 'MG', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Pará', :acronym => 'PA', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Paraíba', :acronym => 'PB', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Paraná', :acronym => 'PR', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Pernambuco', :acronym => 'PE', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Piauí', :acronym => 'PI', :country_id => brasil },
+  {:name => 'Rio de Janeiro', :acronym => 'RJ', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Rio Grande do Norte', :acronym => 'RN', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Rio Grande do Sul', :acronym => 'RS', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Rondônia', :acronym => 'RO', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Roraima', :acronym => 'RR', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Santa Catarina', :acronym => 'SC', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Săo Paulo', :acronym => 'SP', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Sergipe', :acronym => 'SE', :country_id => Country.find_by_name("Brasil") },
+  {:name => 'Tocantins', :acronym => 'TO', :country_id => Country.find_by_name("Brasil") }])
   
 # Alimenta tabela de Municípios
 puts 'Inserindo dados na tabela de Municípios...'
@@ -6025,16 +6025,16 @@ estado_civil = MaritalStatus.create([
 # Alimenta tabela com os tipos de Necessidades Especiais
 puts 'Inserindo dados na tabela de Necessiades Especiais...'
 necessidade_expecial = SpecialNeedsType.create([
-  {:type => 'Baixa Visão'},
-  {:type => 'Cegueira'},
-  {:type => 'Deficiência Auditiva'},
-  {:type => 'Deficiência Física'},
-  {:type => 'Deficiência mental'},
-  {:type => 'Deficiência múltipla'},
-  {:type => 'Nenhuma'},
-  {:type => 'Outros'},
-  {:type => 'Surdez'},
-  {:type => 'Surdocegueira'}])
+  {:description => 'Baixa Visão'},
+  {:description => 'Cegueira'},
+  {:description => 'Deficiência Auditiva'},
+  {:description => 'Deficiência Física'},
+  {:description => 'Deficiência mental'},
+  {:description => 'Deficiência múltipla'},
+  {:description => 'Nenhuma'},
+  {:description => 'Outros'},
+  {:description => 'Surdez'},
+  {:description => 'Surdocegueira'}])
 
 # Alimenta tabela com os tipos de Departamentos
 puts 'Inserindo dados na tabela de Tipos de Departamanetos...'
@@ -6548,7 +6548,7 @@ class_student_statuses = ClassStudentStatus.create([
   {:description => 'Cancelado'},
   {:description => 'Dispensado'},
   {:description => 'Em Curso'},
-  {:description => 'Reprovado'},
+  {:description => 'Reprovado por Nota'},
   {:description => 'Reprovado por Frequência'}
   ])
 

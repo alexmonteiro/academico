@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(:version => 20130227204655) do
   create_table "class_record_presences", :force => true do |t|
     t.integer  "class_record_id"
     t.integer  "registration_class_id"
-    t.boolean  "is_present"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.boolean  "is_present",            :default => true
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   add_index "class_record_presences", ["class_record_id"], :name => "index_class_record_presences_on_class_record_id"
@@ -335,13 +335,11 @@ ActiveRecord::Schema.define(:version => 20130227204655) do
     t.integer  "credits"
     t.integer  "discipline_type_id"
     t.integer  "course_id"
-    t.integer  "dept_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
 
   add_index "disciplines", ["course_id"], :name => "index_disciplines_on_course_id"
-  add_index "disciplines", ["dept_id"], :name => "index_disciplines_on_dept_id"
   add_index "disciplines", ["discipline_type_id"], :name => "index_disciplines_on_discipline_type_id"
 
   create_table "education_degrees", :force => true do |t|
@@ -412,24 +410,6 @@ ActiveRecord::Schema.define(:version => 20130227204655) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "matrices", :force => true do |t|
-    t.date     "started_at"
-    t.date     "ended_at"
-    t.integer  "maxdisciplines"
-    t.integer  "maxseasons"
-    t.integer  "course_id"
-    t.integer  "matrix_evaluation_type_id"
-    t.integer  "matrix_status_id"
-    t.integer  "class_season_type_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "matrices", ["class_season_type_id"], :name => "index_matrices_on_class_season_type_id"
-  add_index "matrices", ["course_id"], :name => "index_matrices_on_course_id"
-  add_index "matrices", ["matrix_evaluation_type_id"], :name => "index_matrices_on_matrix_evaluation_type_id"
-  add_index "matrices", ["matrix_status_id"], :name => "index_matrices_on_matrix_status_id"
-
   create_table "matrix_discipline_groups", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
@@ -494,6 +474,8 @@ ActiveRecord::Schema.define(:version => 20130227204655) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "number_children"
+    t.boolean  "isemployee"
+    t.boolean  "isstudent"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "person_type_id"

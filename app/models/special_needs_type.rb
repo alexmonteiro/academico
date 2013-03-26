@@ -1,3 +1,3 @@
 class SpecialNeedsType < ActiveRecord::Base
-  attr_accessible :type
+  attr_accessible :description
 end

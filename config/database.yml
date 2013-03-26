@@ -15,7 +15,8 @@
 development:
   adapter: postgresql
   encoding: utf-8
-  database: academico_rails_development
+  #database: academico_rails_development
+  database: academico_rails_dev
   host: 172.20.20.30
   port: 5432
   username: postgres

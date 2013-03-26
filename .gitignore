@@ -24,3 +24,5 @@ sunspot-solr.pid
 .idea/*
 
 .rvmrc
+
+public/assets/*

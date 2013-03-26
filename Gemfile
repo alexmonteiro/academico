@@ -32,7 +32,7 @@ group :assets do
   gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'twitter-bootstrap-rails', '2.0.9'
+  gem 'twitter-bootstrap-rails', '2.2.5'
 
   gem 'bootstrap-datepicker-rails'
 end
@@ -60,7 +60,6 @@ gem 'font-awesome-rails'
 gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
 gem 'prawn'
-gem "breadcrumbs_on_rails"
 
 group :development do
   gem 'sunspot_solr'

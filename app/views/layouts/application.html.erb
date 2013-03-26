@@ -94,38 +94,22 @@
  	    	 <%end%>
  
 		   <%end%>
-		
 
             <!-- Area Central -->
         	<div class=<%="#{containerSpan}"%>>
 	         
-	           <% relative_path = ""%>
-	           <% "#{request.fullpath}"[1..-1].split('/').each do |path| %>
-                <% relative_path += "/"+path %>
-                <% add_breadcrumb path.to_s, relative_path %>
-               <% end %>
             	<%= render_breadcrumbs %>
 				
-				<%if flash[:alert]%>
-				  <div id="error_explanation" class="alert alert-error">
-				      <%= flash[:alert].html_safe %>
-				  </div>
-				<%end%>
-
-				<%if flash[:notice]%>
-				  <div id="error_explanation" class="alert alert-info">
-				      <%= flash[:notice].html_safe %>
-				  </div>
-				<%end%>			
-				
+				<%= bootstrap_flash %>
+						
 				<!-- Exibição dos erros -->
 				<%= render :partial => 'layouts/error_messages' %> 
 				<!-- -->	
 				
-	           <div class="hero-unit">		
-	            <%= yield %>
+	            <div class="hero-unit">		
+	             <%= yield %>
 	            </div><!--/span-->
-	          </div><!--/row-->
+	         </div><!--/row-->
 
 
 	        </div><!--/span-->
