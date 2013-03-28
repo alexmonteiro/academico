@@ -10,7 +10,7 @@ class DeptAddress < ActiveRecord::Base
   
   
   def model_full_address
-    self.street_type.try(:description) + " " + self.street_name + " n." + self.number + " " + self.neighborhood + " " + self.city.try(:name)+ "/" + self.city.state.try(:acronym)
+    "#{self.street_type.try(:description)} #{self.street_name} n. #{self.number} #{self.neighborhood} #{self.city.try(:name)} #{self.city.try(:state).try(:acronym)}"
   end
   
 end

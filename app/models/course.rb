@@ -21,7 +21,7 @@ class Course < ActiveRecord::Base
   end
   
   def dept_acronym
-    Dept.find(self.dept_id).acronym
+    "#{self.dept.try(:acronym)}"
   end
 
   def dept_name
