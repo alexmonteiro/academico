@@ -14,6 +14,14 @@ class Dept < ActiveRecord::Base
     self.dept_type.dept_type
   end
   
+  def dept_institute
+    instituto = self.dept
+    until !instituto.blank? do
+      instituto = instituto.dept
+    end
+    return instituto
+  end
+  
   searchable do
     text :id, :acronym, :cnpj, :description, :email, :name, :site, :dept_type_desc
   end

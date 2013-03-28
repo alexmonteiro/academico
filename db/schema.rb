@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227204655) do
+ActiveRecord::Schema.define(:version => 20130326170226) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -592,6 +592,7 @@ ActiveRecord::Schema.define(:version => 20130227204655) do
     t.boolean  "is_approved"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "acronym"
   end
 
   create_table "registration_classes", :force => true do |t|

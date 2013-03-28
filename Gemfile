@@ -59,7 +59,8 @@ gem 'client_side_validations'
 gem 'font-awesome-rails'
 gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
-gem 'prawn'
+#gem 'prawn'
+gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
 
 group :development do
   gem 'sunspot_solr'
