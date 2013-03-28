@@ -95,7 +95,7 @@ class RegistrationPdf < Prawn::Document
     text_box "#{@registration.course_matrix.course.dept.dept.try(:name)}", 
     :at => [0, 20], 
     :align => :right 
-    text_box "#{@registration.course_matrix.course.dept.dept.dept_address.try(:model_full_address)}", 
+    text_box "#{@registration.course_matrix.course.dept.dept_address.try(:model_full_address)}", 
     :at => [0, 10], 
     :align => :right  
   end
