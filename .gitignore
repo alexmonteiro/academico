@@ -27,3 +27,4 @@ sunspot-solr.pid
 .rvmrc
 
 public/assets/*
+config/database.yml
