@@ -17,6 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <!-- Menu superior -->
 	<div class="navbar">
 	      <div class="navbar-inner">
 	        <div class="container-fluid">
@@ -35,20 +36,22 @@
 		            <ul class="dropdown-menu">
 		              <li><a href="#">Profile</a></li>
 		              <li class="divider"></li>
-		              <li><a href="#"> <%= link_to('Sair', destroy_user_session_path, :method => :delete) %>  </a></li>
+		              <li><a href="#"> <%= link_to('Sair', destroy_user_session_path) %>  </a></li>
 		            </ul>
 		          </div>
-		      <%end%>
+
 	          <div class="nav-collapse">
 	            <ul class="nav">
-	              <li class="<%= 'active' if fullpath.include?('registro_academico') %>"><a href=<%= registro_academico_index_path %> ><i class="icon-edit"></i>Registro Acadêmico</a> </li>
-	              <li class="<%= 'active' if fullpath.include?('configuracoes') %>"><a href=<%= config_index_path %> ><i class="icon-wrench"> </i>Configurações</a> </li>
+					<%= top_menu_by_profile %>
 		          <li><a href="#about">About</a></li>
 	            </ul>
 	          </div><!--/.nav-collapse -->
+		      <%end%>
+		
 	        </div>
-	      </div>
-	    </div>
+	      </div>    
+	</div>
+	<!-- -->
 
 
 	    <div class="container-fluid">
@@ -78,6 +81,9 @@
 		              <%end%>
 
 	                  <% if fullpath.include?('configuracoes') %>
+		                  <li class="nav-header">Acesso</li>
+			              <li class="<%= ('users' == params[:controller] ? 'active' : '')%>"><a href=<%= '#'%> > <i class="icon-user"></i>Usuários/Perfis</a></li>
+	
 		                  <!-- <li class="nav-header">Cadastros Básicos</li>
 		                  <li class="<%= ('countries' == params[:controller] ? 'active' : '')%>"><a href=<%= countries_path%> ><i class="icon-file"></i>Países/Estados/Cidades</a></li>                
 		                  <li class="<%= ('education_modalities' == params[:controller] ? 'active' : '')%>"><a href=<%= education_modalities_path%> ><i class="icon-file"></i>Modalidades</a></li>

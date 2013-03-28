@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
   before_filter :authenticate_user!, :breadcumbs_generator
-  
-  #load_and_authorize_resource
-  
+  protect_from_forgery
   
   def breadcumbs_generator
     if user_signed_in?
@@ -14,6 +11,11 @@ class ApplicationController < ActionController::Base
         add_breadcrumb path.to_s, relative_path
       end
     end
+  end
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    exception.default_message = "Perfil sem acesso a esta rotina"
+    redirect_to root_url, :alert => exception.message
   end
   
   

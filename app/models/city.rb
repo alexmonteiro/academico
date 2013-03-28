@@ -1,4 +1,5 @@
 class City < ActiveRecord::Base
+  resourcify
   belongs_to :state
   attr_accessible :name, :state_id, :state
   validates :name, :state_id, :presence => true
