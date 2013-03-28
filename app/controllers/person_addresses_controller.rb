@@ -63,7 +63,7 @@ class PersonAddressesController < ApplicationController
   def create
     @person = Person.find((params[:person_id]))
     @person_address = PersonAddress.new(params[:person_address])
-
+    
     respond_to do |format|
       if @person_address.save
         format.html { redirect_to [@person,@person_address], :notice => 'Endereço criado com sucesso.' }
