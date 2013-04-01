@@ -60,6 +60,7 @@ pt-BR:
         dept_telephones: "Telefones"
         dept_addresses: "Endereço"
         teaching_equipaments: "Equipamentos de Ensino"
+        code_number: "Código"
       course:
         code: "Código"
         name: "Nome"

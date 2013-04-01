@@ -14,9 +14,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:code_number) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:acronym) %></th>
+      <th><%= model_class.human_attribute_name(:code_number) %></th>
       <th><%= model_class.human_attribute_name(:dept_type_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_id) %></th>
       <th><%= model_class.human_attribute_name(:dept_telephones) %></th>
@@ -28,11 +29,12 @@
   <tbody>
     <% @depts.each do |dept| %>
       <tr>
-        <td><%= link_to dept.id, dept_path(dept) %></td>
+        <td><%= link_to dept.code_number.to_s, dept_path(dept) %></td>
         <td><%= dept.name %></td>
         <td><%= dept.acronym %></td>
         <td><%= dept.dept_type.try(:dept_type) %></td>
         <td><%= dept.dept.try(:acronym) %></td>
+        <td><%= dept.dept.try(:code_number) %></td>
         <td>
           <%= link_to dept_dept_telephones_path(dept) do %>
             <% telephones = DeptTelephone.where("dept_id = ?", dept.id)%>
