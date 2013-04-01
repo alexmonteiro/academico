@@ -6626,5 +6626,14 @@ academic_rule_types = AcademicRuleType.create([
   {:rule => 'Nota'}
 ])
 
+#criação do user admin
+puts '### Criando usuário usuário admin com senha admin123! ATENÇÃO: Altere a senha do admin após primeiro acesso. ###'
+admin = User.create! do |u|
+ u.userlogin = 'admin'
+ u.email = 'admin@sample.com'
+ u.password = 'admin123'
+ u.password_confirmation = 'admin123'
+ u.add_role :admin
+end
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
