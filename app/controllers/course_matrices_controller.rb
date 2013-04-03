@@ -101,4 +101,27 @@ def destroy
   
 end
 
+# Update matrix timetable
+def import_matrix_timetable
+  matrix_id = params["course_matrix_id"]
+  
+  Timetable.delete_all(:matrix_id => matrix_id)
+  # Timetable delete os filhos por cascade delete na model
+
+  
+  
+  if params["days_ids"]
+        
+    params["days_ids"].keys.each do |day|
+      timetable = Timetable.find_or_create_by_matrix_id_and_day_week_id(matrix_id, day)
+      params["days_ids"][day].each do|time|
+        TimetableClassTime.find_or_create_by_timetable_id_and_class_time_id(timetable.id, time)
+      end
+    end
+ 
+  end
+  
+  redirect_to course_matrix_timetables_path, :notice => 'Grade atualizada com sucesso.'
+end
+
 end
