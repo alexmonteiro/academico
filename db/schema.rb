@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326170226) do
+ActiveRecord::Schema.define(:version => 20130401183715) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(:version => 20130326170226) do
     t.integer  "dept_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "code_number"
   end
 
   add_index "depts", ["dept_id"], :name => "index_depts_on_dept_id"
