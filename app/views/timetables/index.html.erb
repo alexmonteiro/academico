@@ -1,27 +1,69 @@
 <%- model_class = Timetable.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><i class='icon-calendar'></i> <%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+    <h2><%=link_to "Matriz: #{@matrix.try(:model_custom_name)}", course_matrix_path(@matrix.id) %></h2>
 </div>
+
+
+<%= form_tag course_matrix_import_matrix_timetable_path, :method => :get, :class => 'form-import_timetable' do %>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+		    <% DayWeek.all.each do |day| %>
+			<th>
+			     <h4> <%= day.description %></h4>
+			</th>
+			<%end%>
+	    </tr>
+	  </thead>
+	  <tbody>
+		<div class="control-group">
+		   <% ClassTime.all.each do |time|%>
+		   <tr>
+			  <% DayWeek.all.each do |day| %>
+	
+			     <td> 
+				    <label class="checkbox">
+				      <%= check_box_tag "days_ids[#{day.id}][]", time.id, check_timetable(params[:course_matrix_id], day.id, time.id) %>  <%= time.model_custom_name%>
+					</label>
+				 </td>
+		  
+			  <%end%>
+		   </tr>
+		   <%end%>
+		</div>
+	  </tbody>
+	</table>
+	<%= submit_tag "Atualizar", :class => 'btn btn-primary' %>
+<% end %>
+
+<!-- 
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:matrix_id) %></th>
       <th><%= model_class.human_attribute_name(:day_week_id) %></th>
+      <th>Horários</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @timetables.each do |timetable| %>
       <tr>
-        <td><%= link_to timetable.id, timetable_path(timetable) %></td>
+        <td><%= link_to timetable.id, course_matrix_timetable_path(:id => timetable.id) %></td>
         <td><%= timetable.course_matrix.try(:model_custom_name) %></td>
         <td><%= timetable.day_week.try(:description) %></td>
+        <td>|
+          <% timetable.timetable_class_times.each do |time| %>
+            <%= time.class_time.model_custom_name  %> |
+          <%end%>
+	    </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_timetable_path(timetable), :class => 'btn btn-mini' %>
+                      edit_course_matrix_timetable_path(:id => timetable.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      timetable_path(timetable),
+                      course_matrix_timetable_path(:id => timetable.id),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
@@ -29,8 +71,10 @@
       </tr>
     <% end %>
   </tbody>
+
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_timetable_path,
+            new_course_matrix_timetable_path,
             :class => 'btn btn-primary' %>
+-->

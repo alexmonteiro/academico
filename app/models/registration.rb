@@ -57,7 +57,7 @@ class Registration < ActiveRecord::Base
   def generate_registration_number       
     aa = Date.today.year.to_s[2..4]
     s    = (Date.today.month > 6 ? 2 : 1).to_s 
-    uu   = self.course_matrix.course.dept.id.to_s.rjust(2, '0')
+    uu   = self.course_matrix.course.dept.code_number.to_s.rjust(2, '0')
     ccc  = self.course_matrix.course.code.rjust(3, '0')
     ssss  = (Registration.where('registration_number like ?',(aa + s + uu + ccc + "%")).count+1).to_s.rjust(4, '0')
     

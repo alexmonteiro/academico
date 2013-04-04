@@ -9,25 +9,27 @@
     <div class="span4">
       <dl class="dl-horizontal">
           <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.name, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= @dept.name%></dd>
           <dt><strong><%= model_class.human_attribute_name(:acronym) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.acronym, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= @dept.acronym%></dd>
+          <dt><strong><%= model_class.human_attribute_name(:code_number) %>:</strong></dt>
+          <dd><%= @dept.code_number%></dd>
           <dt><strong><%= model_class.human_attribute_name(:cnpj) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.cnpj, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= @dept.cnpj%></dd>
           <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => l(@dept.started_at), :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= l(@dept.try(:started_at)) if @dept.started_at %></dd>
           <dt><strong><%= model_class.human_attribute_name(:finished_at) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => l(@dept.finished_at), :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= l(@dept.try(:finished_at)) if @dept.finished_at %></dd>
           <dt><strong><%= model_class.human_attribute_name(:site) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.site, :mensagem => "<<Sem Registro>>"%></dd>
+          <dd><%= @dept.site%></dd>
           <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.email, :mensagem =>"<<Sem Registro>>"%></dd>
+          <dd><%= @dept.email%></dd>
           <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.description, :mensagem => "<<Sem Registro>>"  %></dd>
+          <dd><%= @dept.description  %></dd>
           <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.dept_type, :mensagem => "<<Sem Registro>>",  :atributo => "dept_type" %></dd>
+          <dd><%= @dept.dept_type.dept_type %></dd>
           <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-          <dd><%= verifica_registro :campo => @dept.dept, :mensagem => "<<Sem Registro>>",  :atributo => "name"  %></dd>
+          <dd><%= @dept.dept %></dd>
       </dl>
     <br/>
     </div>

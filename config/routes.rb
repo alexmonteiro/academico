@@ -60,6 +60,9 @@ AcademicoRails::Application.routes.draw do
     resources :timetables, :path =>"gradehoraria" do
       resources :timetable_class_times, :path =>"horas"
     end
+    #importa grade horaria
+    match 'import_matrix_timetable', :controller=>'course_matrices', :method => :put, :action => 'import_matrix_timetable'
+    
     # turmas da Matriz
     resources :school_classes, :path =>"turmas" do
       resources :discipline_classes, :path =>"classes" do

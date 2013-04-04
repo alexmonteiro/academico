@@ -32,9 +32,6 @@ group :assets do
   gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
   
-  gem 'twitter-bootstrap-rails', '2.2.5'
-
-  gem 'bootstrap-datepicker-rails'
 end
 
 gem 'jquery-rails'
@@ -61,6 +58,9 @@ gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
 #gem 'prawn'
 gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
+
+gem 'twitter-bootstrap-rails', '2.2.5'
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem 'sunspot_solr'

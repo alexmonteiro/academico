@@ -37,7 +37,7 @@
 </div>
 <div class="span5">		
 <h2><%=link_to "<i class='icon-calendar'></i> Grade Horária".html_safe, course_matrix_timetables_path(@matrix) %></h2>
- <%@matrix.timetables.each do | timetable |%>
+ <%@matrix.timetables.order(:day_week_id).each do | timetable |%>
    <dt><%= timetable.day_week.try(:description) %>:</dt>
 <dd>
     <%timetable.timetable_class_times.each_with_index do |time, index|%>
