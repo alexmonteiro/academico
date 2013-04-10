@@ -35,7 +35,7 @@
                     <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_person_person_address_path(:id => person_address.id), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      person_person_addresses_path,
+                      person_person_address_path(:id => person_address.id),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
@@ -45,6 +45,8 @@
   </tbody>
 </table>
 
+<% if @person_addresses.count == 0%>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_person_person_address_path,
             :class => 'btn btn-primary' %>
+<%end%>

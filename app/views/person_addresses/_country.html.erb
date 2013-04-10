@@ -1,3 +1,18 @@
 
-
-<%= select_tag "country", options_from_collection_for_select(Country.all, "id", "name"), :prompt => "Escolha um País" %>
+<% if !@person_address.blank? %>
+		<% if !@person_address.city.blank? %>
+			<% city_from_country = true%>
+		<%else%>
+			<% state_selected = 0%>
+			<% city_from_country = false%>
+		<%end%>
+	<%else%>
+		<% state_selected = 0%>
+		<% city_from_country = true%>
+	<%end%>
+	
+	<%if city_from_country%>
+		<%= select("country","", Country.all.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person_address.city.state.country.id.to_i}, :id => "country") %>
+	<%else%>
+		<%= select("country","", Country.all.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "country") %>
+	<%end%>
