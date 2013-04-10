@@ -21,7 +21,7 @@
     <% @class_records.each do |class_record| %>
       <tr>
         <td><%= link_to class_record.id, discipline_class_class_record_path(:id => class_record.id) %></td>
-        <td><%=l class_record.recorded_at if class_record.recorded_at %></td>
+        <td><%= link_to l(class_record.recorded_at), discipline_class_class_record_path(:id => class_record.id) %></td>
         <td><%= class_record.class_time.try(:model_custom_name) %></td>
         <td><h4>
             <%= link_to "<i class='icon-check'></i> ".html_safe + class_record.countPresences(true).to_s + "|"+ class_record.countPresences(false).to_s, 
@@ -49,6 +49,10 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_discipline_class_class_record_path,
             :class => 'btn btn-primary' %>
+
+<%= link_to "<i class='icon-calendar'></i> Grade Horária do Professor".html_safe,
+            classdateselect_discipline_class_class_records_path,
+            :class => 'btn' %>
             
 <div class="btn-group pull-right">
 	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

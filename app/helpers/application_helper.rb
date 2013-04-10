@@ -141,7 +141,11 @@ module ApplicationHelper
 
     top_menu.html_safe
   end
-  
+
+
+  # Date::DAYNAMES ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] 
+  # plus 1 to keep equal ids from DayWeek
+  def week_day(day)
+    DayWeek.find(day+1).description
+  end  
 end
-
-
