@@ -14,31 +14,23 @@ jQuery(function($) {
 })
 </script>
 
- 	<% if !@person_address.blank?%>
-		<% if !@person_address.city.blank? && country_id == @person_address.city.state.country.id %>
+ 	<% if !@person_address.blank? %>
+		<% if country_id == @person_address.city.state.country.id %>
 			<% states = State.where(:country_id=>@person_address.city.state.country.id).order(:name) %>
 			<% state_selected = @person_address.city.state.id %>
 			<% city_from_country = true%>
 		<%end%>
 	<%else%>
 		<% state_selected = 0%>
-		<% city_from_country = false%>
+		<% city_from_country = true%>
 	<%end%>
-	
-	
 	
     <% if !states.blank?%>
     	<% if city_from_country = true%>
-      		<%= select("person_address_state","", states.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um Estado", :selected =>  state_selected}, :id => "person_address_state") %>
+      		<%= select_tag 'person_address_state', options_from_collection_for_select(states, "id", "name", state_selected) %>
       	<%else%>
-      		<%= select("person_address_state","", states.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um Estado"}, :id => "person_address_state") %>
+      		<%= select_tag 'person_address_state', options_from_collection_for_select(states, "id", "name", {:prompt => "Selecione um Estado"}) %>
       	<%end%>
     <% else %>
-      	<%= select("person_address_state","", [], { :include_blank => "Escolha um Estado"}, :id => "person_address_state") %>
+      	<%= select_tag 'person_address_state', [], :class => 'select_field' %>
     <% end %>
-
-
-
-
-
-

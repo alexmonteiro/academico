@@ -10,6 +10,7 @@ class PersonAddress < ActiveRecord::Base
   #Validações
   #validates_uniqueness_of :person_id
   validates :zip_code, :presence => {:message => "deve ser informado."}
+  validates :person_id, :uniqueness => {:message => "já tem um endereço cadastrados"}
 end
 
 
