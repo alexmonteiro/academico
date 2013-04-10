@@ -59,12 +59,19 @@ jQuery(function($) {
     // make a POST call and replace the content
     var country = $('select#country :selected').val();
     var nome_view = $('input#nome_view').val();
+    var state = 0
+    if(state == "") state="0";
     if(country == "") country="0";
     jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
         $("#addressStates").html(data);
     })
+    
+    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+        $("#addressCities").html(data);
+    })
     return false;
   });
+  
 })
 
 /*

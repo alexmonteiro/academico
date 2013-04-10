@@ -31,6 +31,7 @@ class Person < ActiveRecord::Base
   validates :name, :birth_date, :mom_name, :gender_id, :education_degree_id, :presence => {:message => "deve ser informado."}
   validates :city_id, :state_id, :race_id, :presence => {:message => "deve ser informado."}
   validates :number_children, :numericality => { :only_integer => true }
+  validates :person_address, :uniqueness => {:message => "já tem um endereço cadastrado."}
   #validates :email, :uniqueness => true
 
   def model_name_whitout_accents

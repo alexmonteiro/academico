@@ -120,12 +120,13 @@ class RegistrationClass < ActiveRecord::Base
   end
   
   def acronym_status_rules
-    acronyms = {1 => "AA", 2 => "AAC", 3 => "C", 4 => "D", 5 => "EC", 6 => "RN", 7 => "RF", 8 => "AC"}
-    if !self.registration_class_status_id_by_rules.blank?
-      !acronyms[self.registration_class_status_id_by_rules].blank? ? " #{acronyms[self.registration_class_status_id_by_rules.to_i]} " : "SR"
-    else
-      "SR"
-    end
+    # acronyms = {1 => "AA", 2 => "AAC", 3 => "C", 4 => "D", 5 => "EC", 6 => "RN", 7 => "RF", 8 => "AC"}
+    # if !self.registration_class_status_id_by_rules.blank?
+      # !acronyms[self.registration_class_status_id_by_rules].blank? ? " #{acronyms[self.registration_class_status_id_by_rules.to_i]} " : "SR"
+    # else
+      # "SR"
+    # end
+    self.registration_class_status_final.acronym
   end
   
   private
