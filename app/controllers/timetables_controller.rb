@@ -2,10 +2,9 @@ class TimetablesController < ApplicationController
   # GET /timetables
   # GET /timetables.json
   def index
-  if params[:matrix_id]
-    @timetables = Timetable.where(:matrix_id => params[:matrix_id])
-  else
-    @timetables = Timetable.all
+  if params[:course_matrix_id]
+    @matrix = CourseMatrix.find(params[:course_matrix_id])
+    @timetables = Timetable.where(:matrix_id => params[:course_matrix_id])
   end
 
     respond_to do |format|
@@ -28,6 +27,7 @@ class TimetablesController < ApplicationController
   # GET /timetables/new
   # GET /timetables/new.json
   def new
+    @course_matrix = CourseMatrix.find(params[:course_matrix_id])
     @timetable = Timetable.new
 
     respond_to do |format|
@@ -38,12 +38,14 @@ class TimetablesController < ApplicationController
 
   # GET /timetables/1/edit
   def edit
+    @course_matrix = CourseMatrix.find(params[:course_matrix_id])
     @timetable = Timetable.find(params[:id])
   end
 
   # POST /timetables
   # POST /timetables.json
   def create
+    @course_matrix = CourseMatrix.find(params[:course_matrix_id])
     @timetable = Timetable.new(params[:timetable])
 
     respond_to do |format|
@@ -84,4 +86,5 @@ class TimetablesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end

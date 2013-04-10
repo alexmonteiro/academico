@@ -3,10 +3,10 @@ class Dept < ActiveRecord::Base
   belongs_to :dept
   has_many :depts
   has_one :dept_address
-  attr_accessible :acronym, :cnpj, :description, :email, :finished_at, :name, :site, :started_at, :dept_type_id, :dept_id
+  attr_accessible :acronym, :cnpj, :description, :email, :finished_at, :name, :site, :started_at, :dept_type_id, :dept_id, :code_number
 
   #Validacoes
-  validates :name, :acronym, :presence => true
+  validates :name, :acronym, :code_number, {:presence => true, :uniqueness => true}
   
   validate :finished_at_date
   
@@ -26,7 +26,9 @@ class Dept < ActiveRecord::Base
   end
   
   def finished_at_date
-    errors.add(:base, "Data de desativação nao pode ser menor que a data de ativação") unless finished_at >= started_at
+    if finished_at and started_at
+     errors.add(:base, "Data de desativação não pode ser menor que a data de ativação") unless finished_at >= started_at
+    end
   end
 
 end
