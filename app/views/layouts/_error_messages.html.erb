@@ -1,4 +1,4 @@
- <% if (action_name.in?(['create','new','update']) && (controller.controller_name.singularize != "session") )%>
+ <% if (action_name.in?(['create','new','update','new_many', 'create_many']) && (controller.controller_name.singularize != "session") )%>
    <% @controller_object = eval('@'+controller.controller_name.singularize) %>
    <%if @controller_object.try(:errors) %>	
 	 <% if @controller_object.errors.any? %>

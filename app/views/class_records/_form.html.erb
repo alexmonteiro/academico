@@ -7,13 +7,20 @@
 
   </div>
 
-  <div class="control-group">
-    <%= f.label :recorded_at, :class => 'control-label' %>
-    <div class="controls">
-      <% @class_record.recorded_at = @class_record.recorded_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :recorded_at, :class => 'datepicker_class', :style => "width:80px" %>
-    </div>
-  </div>
+     <div class="control-group">
+		<%= f.label :recorded_at, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_field :recorded_at, :class => 'datepicker_class', :style => "width:80px" %>
+	  </div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :class_time_id, :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.collection_select :class_time_id, ClassTime.find(:all), :id, :model_custom_name, :prompt => "...Selecione..."%>
+	  </div>
+	</div>
+
   <div class="control-group">
     <%= f.label :record, :class => 'control-label' %>
     <div class="controls">
@@ -38,12 +45,7 @@
       <%= f.collection_select :person_id, ClassTeaching.where(:discipline_class_id =>  @discipline_class.id), :person_id, :name, :prompt => "...Selecione..."%>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :class_time_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :class_time_id, ClassTime.find(:all), :id, :model_custom_name, :prompt => "...Selecione..."%>
-    </div>
-  </div>
+
   <div class="control-group">
     <%= f.label :class_record_type_id, :class => 'control-label' %>
     <div class="controls">
