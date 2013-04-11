@@ -17,7 +17,13 @@ class Course < ActiveRecord::Base
   validate :ended_at_date
   
   def ended_at_date
-    errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless ended_at >= started_at
+    if started_at == nil
+         errors.add(:base, "Data de abertura nao pode estar em branco") unless started_at != nil
+      elsif ended_at == nil
+         errors.add(:base, "Date de encerramento nao pode estar em branco") unless ended_at != nil
+      else  
+       errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless ended_at >= started_at
+    end
   end
   
   def dept_acronym

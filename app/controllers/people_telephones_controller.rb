@@ -17,7 +17,7 @@ class PeopleTelephonesController < ApplicationController
     @person = Person.find((params[:person_id]))
     @people_telephone = PeopleTelephone.find(params[:id])
     #Checks if the person is owner of this telephone
-    if @people_telephone.people_id == @person.id
+    if @people_telephone.person_id == @person.id
       respond_to do |format|
         format.html # show.html.erb
         format.json { render :json => @people_telephone }

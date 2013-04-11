@@ -41,7 +41,7 @@
   <div class="control-group">
     <%= f.label :ending_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :ending_at, :class => 'datepicker_class', :style => "width:80px" , :include_blank => true %>
+	   <%= f.text_field :ending_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @discipline_class.ending_at.blank? ? nil : @discipline_class.ending_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
  <%end%>
