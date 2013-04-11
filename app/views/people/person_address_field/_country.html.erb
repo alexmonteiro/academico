@@ -6,13 +6,35 @@ jQuery(function($) {
     // make a POST call and replace the content
     var country = $('select#country_person_address :selected').val();
     var nome_view = $('input#nome_view').val();
+    var state = 0
+    if(state == "") state="0";
     if(country == "") country="0";
     jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
         $("#addressStatesPersonAddress").html(data);
+    })
+    
+    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+        $("#addressCitiesPersonAddress").html(data);
     })
     return false;
   });
 })
 </script>
 
-<%= select_tag "country_person_address", options_from_collection_for_select(Country.all, "id", "name"), :prompt => "Escolha um País" %>
+
+	<% if !@person.person_address.blank? %>
+		<% if !@person.person_address.city.blank? %>
+			<% city_from_country = true%>
+		<%else%>
+			<% city_from_country = false%>
+		<%end%>
+	<%else%>
+		<% city_from_country = true%>
+	<%end%>
+	
+	<%if city_from_country%>
+		<%= select("country_person_address","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person.person_address.city.state.country.id.to_i}, :id => "country_person_address") %>
+	<%else%>
+		<%= select("country_person_address","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "country_person_address") %>
+	<%end%>
+
