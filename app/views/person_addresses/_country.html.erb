@@ -3,16 +3,14 @@
 		<% if !@person_address.city.blank? %>
 			<% city_from_country = true%>
 		<%else%>
-			<% state_selected = 0%>
 			<% city_from_country = false%>
 		<%end%>
 	<%else%>
-		<% state_selected = 0%>
 		<% city_from_country = true%>
 	<%end%>
 	
 	<%if city_from_country%>
-		<%= select("country","", Country.all.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person_address.city.state.country.id.to_i}, :id => "country") %>
+		<%= select("country","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person_address.city.state.country.id.to_i}, :id => "country") %>
 	<%else%>
-		<%= select("country","", Country.all.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "country") %>
+		<%= select("country","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "country") %>
 	<%end%>

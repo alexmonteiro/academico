@@ -23,13 +23,13 @@
 		<div class="control-group">
 		  <%= f.label :state_id, :class => 'control-label' %>
 		  <div class="controls" id="addressStatesPersonAddress">
-		<%= render :partial => 'people/person_address_field/states'%>
+		<%= render :partial => 'people/person_address_field/states', :locals => {:country_id => (@person.person_address.city.state.country.id if !@person.person_address.city.blank?)}%>
 		  </div>
 		</div>
 		<div class="control-group">
 		  <%= f.label :city_id, :class => 'control-label' %>
 		  <div class="controls" id="addressCitiesPersonAddress">
-		<%= render :partial => 'people/person_address_field/cities' %>
+		<%= render :partial => 'people/person_address_field/cities', :locals => {:state_id => (@person.person_address.city.state.id if !@person.person_address.city.blank?)} %>
 		  </div>
 		</div>
 		<!-- Fim -->
