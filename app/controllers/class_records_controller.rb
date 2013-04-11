@@ -34,19 +34,33 @@ class ClassRecordsController < ApplicationController
     end
   end
 
+  def new_many
+    @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    @class_record = ClassRecord.new
+    @recorded_at = params[:recorded_at]
+
+    respond_to do |format|
+      format.html # new_many.html.erb
+      format.json { render :json => @class_record }
+    end
+  end  
+
   # GET /class_records/1/edit
   def edit
     @discipline_class = DisciplineClass.find(params[:discipline_class_id])
     @class_record = ClassRecord.find(params[:id])
+    params[:recorded_at] = @class_record.recorded_at
+    
   end
 
   # POST /class_records
   # POST /class_records.json
   def create
+
     @class_record = ClassRecord.new(params[:class_record])
     @discipline_class = DisciplineClass.find(params[:discipline_class_id])   
     @class_record.discipline_class_id = @discipline_class.id
-
+    
     respond_to do |format|
       if @class_record.save
         format.html { redirect_to  discipline_class_class_records_path(@discipline_class), :notice => 'Aula criada com sucesso.' }
@@ -56,6 +70,38 @@ class ClassRecordsController < ApplicationController
         format.json { render :json => @class_record.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  
+  def create_many    
+    @class_record = ClassRecord.new(params[:class_record])
+    checked_records = true
+    @discipline_class = DisciplineClass.find(params[:discipline_class_id])   
+    @recorded_at = params[:class_record][:recorded_at]
+    @class_record.class_time_id = params[:class_time_ids].first if params[:class_time_ids]
+    
+    if !@class_record.valid?
+      checked_records = false
+    else
+      params[:class_time_ids].each do |class_time_id|
+        class_record = ClassRecord.new(params[:class_record])
+        class_record.discipline_class_id = @discipline_class.id
+        class_record.class_time_id = class_time_id
+        class_record.save!
+      end
+    end
+    
+    
+    respond_to do |format|
+     if checked_records
+       format.html { redirect_to  discipline_class_class_records_path(@discipline_class), :notice => 'Aulas criada com sucesso.' }
+       format.json { render :json => @discipline_class, :status => :created, :location => @discipline_class }
+     else
+       format.html { render :action => "new_many" }
+       format.json { render :json => @class_record.erros, :status => :unprocessable_entity }
+     end
+    end
+   
   end
 
   # PUT /class_records/1
@@ -95,6 +141,21 @@ class ClassRecordsController < ApplicationController
        end
     end
    end
+  end
+  
+  def classdateselect
+    
+    @discipline_class = DisciplineClass.find(params[:discipline_class_id])
+    @class_record = ClassRecord.new
+    @class_records = ClassRecord.where(:discipline_class_id => params[:discipline_class_id])
+    
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render :json => @class_record }
+    end
+    
   end
     
 end

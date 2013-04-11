@@ -1,0 +1,92 @@
+<%- model_class = @class_record.class -%>
+<div class="page-header">
+  <h1><i class="icon-pencil"></i> <%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
+                                 :default => "New #{model_class.model_name.human}") %></h1>
+</div>
+
+<%= form_for [@discipline_class, @class_record], :html => { :class => 'form-horizontal' }, :url => {:action => "create_many"} do |f| %>
+
+  <div class="control-group">
+  <h3>Curso: <%= @discipline_class.school_class.try(:model_course_matrix)%></h3>
+  <h3>Turma: <%= @discipline_class.school_class.try(:identifier)%></h3>
+  <h3>Classe: <%= @discipline_class.try(:discipline_name)%></h3>
+
+  </div>
+
+   <% @class_record.recorded_at = @class_record.recorded_at.try(:strftime, "%d.%m.%Y") %>
+   <%= f.hidden_field :recorded_at, :class => 'datepicker_class', :style => "width:80px", :value => @recorded_at %>
+
+   <div class="control-group">
+		<%= f.label :recorded_at, :class => 'control-label' %>
+	  <div class="controls">
+	    <h3><%= l(@recorded_at.to_date, :format => :long_complete) if @recorded_at %></h3>
+	  </div>
+	</div>
+
+  <div class="control-group">
+    <%= f.label :class_time_id, :class => 'control-label' %>
+    <div class="controls">
+	 <%if  @discipline_class.school_class.course_matrix.timetables.find_by_day_week_id((@recorded_at.to_date.wday+1)).try(:timetable_class_times)
+	   timetable_class_times = @discipline_class.school_class.course_matrix.timetables.find_by_day_week_id((@recorded_at.to_date.wday+1)).timetable_class_times
+     end%>
+	  <%if timetable_class_times %>
+	      <% timetable_class_times.each do |t| %>        
+	        <label class="checkbox">
+		      <% checkclasstime = check_class_time(@discipline_class.id,t.class_time.id,@recorded_at.to_date)%>
+		      <%= check_box_tag "class_time_ids[]", t.class_time.id, false, :disabled => checkclasstime %>  
+		        <% if checkclasstime %>
+		         <%= "<i>#{t.class_time.model_custom_name} #{'aula já gravada</i>' }".html_safe %>
+		        <%else%>
+	             <%= "#{t.class_time.model_custom_name}".html_safe %>
+		        <%end%>
+			</label>
+          
+	      <%end%>
+	  <%else%>
+	    ...sem horário cadastrado para este dia...		
+      <%end%>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label :record, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :record, :class => 'field span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :note, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :note, :class => 'field span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :justification, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :justification, :class => 'field span8' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :person_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :person_id, ClassTeaching.where(:discipline_class_id =>  @discipline_class.id), :person_id, :name, :prompt => "...Selecione..."%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :class_record_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.collection_select :class_record_type_id, ClassRecordType.find(:all), :id, :description, :prompt => "...Selecione..." %>
+
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                discipline_class_class_records_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+
