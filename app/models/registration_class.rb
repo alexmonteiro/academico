@@ -105,10 +105,10 @@ class RegistrationClass < ActiveRecord::Base
     self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|
       #Frequencia
       if rules.academic_rule.academic_rule_type.id == 1
-        do_logical_operation(rules.academic_rule.operator, (self.frequency.to_f).to_s, (rules.academic_rule.value/100).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
+        do_logical_operation(rules.academic_rule.operator, (self.frequency.to_f).to_s, (rules.academic_rule.value.to_f/100).to_s) ? situations.push(RegistrationClassStatus.find(rules.academic_rule.rclass_status_true)) : situations.push(RegistrationClassStatus.find(rules.academic_rule.rclass_status_false))    
       #Nota
       elsif rules.academic_rule.academic_rule_type.id == 2
-        do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
+        do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(RegistrationClassStatus.find(rules.academic_rule.rclass_status_true)) : situations.push(RegistrationClassStatus.find(rules.academic_rule.rclass_status_false))    
       end
       
     end
