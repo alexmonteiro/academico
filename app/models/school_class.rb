@@ -111,7 +111,9 @@ class SchoolClass < ActiveRecord::Base
   end  
   
   def closing_at_date
-    errors.add(:base, "Data de fechamento nao pode ser menor do que a abertura") unless closing_at >= opening_at
+    if !self.closing_at.blank?
+      errors.add(:base, "Data de fechamento não pode ser menor do que a abertura") if closing_at < opening_at
+    end
   end
   
 end

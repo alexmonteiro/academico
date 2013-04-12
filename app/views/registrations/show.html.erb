@@ -23,6 +23,10 @@
 				  <dd><%= @registration.registration_number %></dd>
 				  <dt><strong><%= model_class.human_attribute_name(:registration_status_id) %>:</strong></dt>
 				  <dd><%= @registration.registration_status.try(:description) %></dd>
+				  <dt><strong><%= model_class.human_attribute_name(:admission_type_ids) %>:</strong></dt>
+				  <%@registration.registration_admission_types.each do |admission_type|%>
+				  	<dd>• <%= admission_type.admission_type.description %></dd>
+				  <%end%>
 				</h4>
 				</dl>
            </fieldset>
