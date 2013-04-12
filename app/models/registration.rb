@@ -4,19 +4,14 @@ class Registration < ActiveRecord::Base
   belongs_to :person
   belongs_to :registration_status
   has_many :registration_classes
-  attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id
+  has_many :registration_admission_types, :dependent => :destroy
+  has_many :admission_types, :through => :registration_admission_types
+  attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id, :admission_type_ids
   default_scope :order => "registration_at DESC"
   #before_save :set_registration_number
   
-  validates_presence_of :person_id, :course_matrix_id, :registration_status_id
-  #validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso pela matrícula: #{@course_matrix_id}."
-  
-  validate :validates_uniqueness_of
-  
-  def validates_uniqueness_of
-    reg = Registration.find_by_person_id_and_course_matrix_id(self.person_id, self.course_matrix_id)
-    errors.add(:base, "Aluno já vinculado a este curso pela matrícula: #{(link_to reg.registration_number, 'matriculas/'+reg.id.to_s )}") unless !reg
-  end
+  validates_presence_of :person_id, :course_matrix_id, :registration_status_id, :admission_type_ids
+  validates_uniqueness_of :person_id, :scope => :course_matrix_id, :message => "já matriculado neste curso pela matrícula: #{@course_matrix_id}."
 
   def student_name
     self.person.try(:name)

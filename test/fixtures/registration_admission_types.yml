@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  registration: 
+  admission_type: 
+
+two:
+  registration: 
+  admission_type: 

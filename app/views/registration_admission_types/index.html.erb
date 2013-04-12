@@ -1,0 +1,38 @@
+<%- model_class = RegistrationAdmissionType -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:registration_id) %></th>
+      <th><%= model_class.human_attribute_name(:admission_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registration_admission_types.each do |registration_admission_type| %>
+      <tr>
+        <td><%= link_to registration_admission_type.id, registration_admission_type_path(registration_admission_type) %></td>
+        <td><%= registration_admission_type.registration_id %></td>
+        <td><%= registration_admission_type.admission_type_id %></td>
+        <td><%=l registration_admission_type.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_registration_admission_type_path(registration_admission_type), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      registration_admission_type_path(registration_admission_type),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_registration_admission_type_path,
+            :class => 'btn btn-primary' %>
