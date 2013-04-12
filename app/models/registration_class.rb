@@ -103,7 +103,14 @@ class RegistrationClass < ActiveRecord::Base
     end
     situations = []
     self.discipline_class.school_class.course_matrix.course_matrix_academic_rules.each do |rules|
-       do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
+      #Frequencia
+      if rules.academic_rule.academic_rule_type.id == 1
+        do_logical_operation(rules.academic_rule.operator, (self.frequency.to_f).to_s, (rules.academic_rule.value/100).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
+      #Nota
+      elsif rules.academic_rule.academic_rule_type.id == 2
+        do_logical_operation(rules.academic_rule.operator, (self.model_student_result_average.to_f).to_s, (rules.academic_rule.value/10).to_s) ? situations.push(rules.academic_rule.rclass_status_true) : situations.push(rules.academic_rule.rclass_status_false)    
+      end
+      
     end
     situations
   end
@@ -119,13 +126,8 @@ class RegistrationClass < ActiveRecord::Base
    situations[0] #Aprovado em todas as regras
   end
   
+  # Sigla da situação
   def acronym_status_rules
-    # acronyms = {1 => "AA", 2 => "AAC", 3 => "C", 4 => "D", 5 => "EC", 6 => "RN", 7 => "RF", 8 => "AC"}
-    # if !self.registration_class_status_id_by_rules.blank?
-      # !acronyms[self.registration_class_status_id_by_rules].blank? ? " #{acronyms[self.registration_class_status_id_by_rules.to_i]} " : "SR"
-    # else
-      # "SR"
-    # end
     self.registration_class_status_final.acronym
   end
   

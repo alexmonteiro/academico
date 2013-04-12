@@ -126,7 +126,9 @@ class DisciplineClass < ActiveRecord::Base
   end
   
   def timetable_started_at_date
-        errors.add(:base, "Data de vigencia da grade horaria nao pode ser menor do que a data de abertura") unless timetable_started_at >= started_at
+    if self.timetable_started_at && self.started_at
+        errors.add(:base, "Data de vigencia da grade horaria nao pode ser menor do que a data de abertura") unless self.timetable_started_at >= self.started_at
+    end
   end
   
   def ending_at_date
