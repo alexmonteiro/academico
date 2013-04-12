@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  #resources :registration_admission_types
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
                                        :registrations => "users/registrations",
                                        :confirmations => "users/confirmations",
@@ -142,6 +144,7 @@ AcademicoRails::Application.routes.draw do
   #################################
   resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
   resources :races, :path => 'configuracoes/etnias'
+  resources :admission_types, :path => 'configuracoes/tipos_de_ingressos'
   resources :special_needs_types, :path => 'configuracoes/tipo_necessidade_especial'
   resources :marital_statuses, :path => 'configuracoes/estado_civil'
   resources :education_degrees, :path => 'configuracoes/niveis_educacionais'
