@@ -24,11 +24,9 @@
 * */
 
 jQuery(function($) {
-  $("#date").mask("99/99/9999");
   $("#telephone").mask("99999999");
-  $("#tin").mask("99-9999999");
-  $("#ssn").mask("999-99-9999");
   $("#cpf").mask("999.999.999-99");
+  $("#zipcode").mask("99999-999");
 });
 
 $(function() {
