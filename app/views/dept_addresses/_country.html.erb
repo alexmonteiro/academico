@@ -39,7 +39,3 @@ jQuery(function($) {
      	<%= select("Country_dept","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "Country_dept") %>
 <% end %>
 
-<%= @dept.inspect %>
-<%= @dept.dept_address.inspect %>
-<%= @dept_address.inspect %>
-<%= @dept_address.city %>
