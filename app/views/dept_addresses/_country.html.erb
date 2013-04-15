@@ -1,3 +1,45 @@
+<script>
+jQuery(function($) {
+  // when the #country field changes
+  $("#Country_dept").change(function() {
+    // make a POST call and replace the content
+    var country = $('select#Country_dept :selected').val();
+    var nome_view = $('input#nome_view').val();
+    var state = 0
+    if(state == "") state="0";
+    if(country == "") country="0";
+    jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
+        $("#addressStatesDept").html(data);
+    })
+    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+        $("#addressCities").html(data);
+    })
+    return false;
+  });
+})
+</script>
 
+<% if !@dept_address.blank?%>
+<!-- se o dept_address estiver sendo criado ou o objetivo blank ... se nao for entra aqui -->
+         <% if !@dept_address.city.blank? %>
+         <!-- se ao for entra aqui -->
+         <!-- city_from_country checa se o objeto tem cidade ou não -->
+              <% city_from_country = true %>
+         <% else %>
+              <% city_from_country = false %>
+         <% end %>
+<% else %>
+    <% city_from_country = true %>    
+<% end %> 
+<!-- end do dept_address.blank, pra checar se ha cidade ou nâo -->
 
-<%= select_tag "country", options_from_collection_for_select(Country.all, "id", "name"), :prompt => "Escolha um País" %>
+<% if city_from_country = true %>
+        <%= select("Country_dept","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected => @dept_address.city.state.country.id.to_i }, :id => "Country_dept") %>
+<% else %>
+     	<%= select("Country_dept","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "Country_dept") %>
+<% end %>
+
+<%= @dept.inspect %>
+<%= @dept.dept_address.inspect %>
+<%= @dept_address.inspect %>
+<%= @dept_address.city %>

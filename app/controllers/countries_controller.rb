@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  load_and_authorize_resource
+
   
   # GET /countries
   # GET /countries.json
@@ -85,12 +85,12 @@ class CountriesController < ApplicationController
 
   def update_state_select
       states = State.where(:country_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => params[:nome_view] + "/states", :locals => { :states => states }
+      render :partial => "#{params[:nome_view]}" + "/states", :locals => { :states => states }
   end
 
   def update_city_select
       cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => params[:nome_view] + "/cities", :locals => { :cities => cities }
+      render :partial => "#{params[:nome_view]}" + "/cities", :locals => { :cities => cities }
   end
 
 end

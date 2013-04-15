@@ -26,7 +26,7 @@
 jQuery(function($) {
   $("#telephone").mask("99999999");
   $("#cpf").mask("999.999.999-99");
-  $("#zipcode").mask("99999-999");
+  $("#zipcode").mask("99999999");
 });
 
 $(function() {
