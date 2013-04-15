@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401183715) do
+ActiveRecord::Schema.define(:version => 20130411170559) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20130401183715) do
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.integer  "course_status_id"
+    t.string   "authorization_code"
   end
 
   add_index "courses", ["class_season_type_id"], :name => "index_courses_on_class_season_type_id"
