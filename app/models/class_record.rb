@@ -9,6 +9,8 @@ class ClassRecord < ActiveRecord::Base
   before_destroy :has_children?  
   # Insere todos enturmados na lista de presença após criação da aula
   after_create   :create_class_record_presence  
+  
+  default_scope order('recorded_at DESC, id DESC')
     
                   
   validates :person_id, :recorded_at, :class_record_type_id, :class_time_id, :record, :presence => true             
@@ -29,6 +31,11 @@ class ClassRecord < ActiveRecord::Base
   # Retorna quantidade de presencas(true) ou faltas(false)
   def countPresences(*args)
     self.class_record_presences.where(:is_present => args).count
+  end
+  
+  # Descricao da aula para o calendário
+  def calendar_description
+    "#{self.class_time.try(:started_at)} - #{self.record[0..10]}#{'...' if self.record.length > 10}"
   end
   
   private

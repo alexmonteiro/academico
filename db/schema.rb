@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411170559) do
+ActiveRecord::Schema.define(:version => 20130411185405) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(:version => 20130411170559) do
   end
 
   add_index "academic_rules", ["academic_rule_type_id"], :name => "index_academic_rules_on_academic_rule_type_id"
+
+  create_table "admission_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "blood_types", :force => true do |t|
     t.string   "type"
@@ -588,6 +594,16 @@ ActiveRecord::Schema.define(:version => 20130411170559) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "registration_admission_types", :force => true do |t|
+    t.integer  "registration_id"
+    t.integer  "admission_type_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "registration_admission_types", ["admission_type_id"], :name => "index_registration_admission_types_on_admission_type_id"
+  add_index "registration_admission_types", ["registration_id"], :name => "index_registration_admission_types_on_registration_id"
 
   create_table "registration_class_statuses", :force => true do |t|
     t.string   "description"

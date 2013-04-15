@@ -81,8 +81,11 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.update_attributes(params[:registration])
-        format.html { redirect_to @registration, :notice => 'Matrícula atualizada com sucesso.' }
-        format.json { head :no_content }
+        if !params[:registration][:admission_type_ids]
+          @registration.registration_admission_types.delete_all
+        end
+          format.html { redirect_to @registration, :notice => 'Matrícula atualizada com sucesso.' }
+          format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.json { render :json => @registration.errors, :status => :unprocessable_entity}

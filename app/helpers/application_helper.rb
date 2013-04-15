@@ -93,7 +93,8 @@ module ApplicationHelper
                          ['class_record_types','Tipos de Registro de Classe','Itens de Institucional'],
                          ['discipline_class_exam_types','Tipos de Exame de Classe por Disciplina','Itens de Institucional'],
                          ['academic_rule_types','Tipos de Regra Acadêmica','Itens de Institucional'],
-                         ['special_needs_types','Necessidade Especial','Itens de Pessoas']]
+                         ['special_needs_types','Necessidade Especial','Itens de Pessoas'],
+                         ['admission_types','Tipos de Ingressos','Itens de Pessoas']]
     #Ordena o Array de controllers e Grupos
     array_controllers = array_controllers.sort {|x,y| y <=> x }
     array_groups = array_groups.sort
@@ -141,7 +142,11 @@ module ApplicationHelper
 
     top_menu.html_safe
   end
-  
+
+
+  # Date::DAYNAMES ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] 
+  # plus 1 to keep equal ids from DayWeek
+  def week_day(day)
+    DayWeek.find(day+1).description
+  end  
 end
-
-

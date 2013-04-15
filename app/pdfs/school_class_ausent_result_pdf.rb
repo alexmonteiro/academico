@@ -4,6 +4,7 @@ class SchoolClassAusentResultPDF < Prawn::Document
     #super()
     @school_class = params[:school_class]
     @preenchido = params[:preenchido]
+    @estados_registro = RegistrationClassStatus.all
     
     #Variaveis de controle
     @limite_disciplina = 8 # => quantidade de colunas de disciplinas por pagina
@@ -58,9 +59,13 @@ class SchoolClassAusentResultPDF < Prawn::Document
     #Legendas
     bounding_box([375, 550], :width => 2200, :height => 100) do
       font("Helvetica", :size => 8, :style => :bold) do
-        legendas = [["<b>TF</b> = Total de Faltas","<b>TN</b> = Total de Nota","<b>AA</b> = Aprovado/Apto","<b>AC</b> = Aprovado no Conselho"],
-                    [{:content => "<b>AAC</b> = Aprovado por Aproveitamento de Crédito", :colspan => 2},"<b>RN</b> = Reprovado por Nota","<b>RF</b> = Reprovado por Faltas",""],
-                    ["<b>EC</b> = Em Curso","<b>C</b> = Cancelado","<b>D</b> = Dispensado",""]]
+        # legendas = [["<b>TF</b> = Total de Faltas","<b>TN</b> = Total de Nota","<b>AA</b> = Aprovado/Apto","<b>AC</b> = Aprovado no Conselho"],
+                    # [{:content => "<b>AAC</b> = Aprovado por Aproveitamento de Crédito", :colspan => 2},"<b>RN</b> = Reprovado por Nota","<b>RF</b> = Reprovado por Faltas",""],
+                    # ["<b>EC</b> = Em Curso","<b>C</b> = Cancelado","<b>D</b> = Dispensado",""]] 
+          legendas = [["<b>TF</b> = Total de Faltas","<b>TN</b> = Total de Nota","<b>#{@estados_registro[0].acronym}</b> = #{@estados_registro[0].description}","<b>#{@estados_registro[7].acronym}</b> = #{@estados_registro[7].description}"],
+                      [{:content => "<b>#{@estados_registro[1].acronym}</b> = #{@estados_registro[1].description}", :colspan => 2},"<b>#{@estados_registro[5].acronym}</b> = #{@estados_registro[5].description}","<b>#{@estados_registro[6].acronym}</b> = #{@estados_registro[6].description}",""],
+                      ["<b>#{@estados_registro[4].acronym}</b> = #{@estados_registro[4].description}","<b>#{@estados_registro[2].acronym}</b> = #{@estados_registro[2].description}","<b>#{@estados_registro[3].acronym}</b> = #{@estados_registro[3].description}",""]]            
+        
         table(legendas, :cell_style => {:borders => [], :size => 8, :align => :left, :inline_format => true})
       end
     end
@@ -84,7 +89,7 @@ class SchoolClassAusentResultPDF < Prawn::Document
     
     #Curso
     font("Helvetica", :size => 10, :style => :bold) do
-      draw_text "Campus: #{@school_class.school_course_dept.name}", :at => [75,481]
+      draw_text "Campus: #{@school_class.school_course_dept.blank? ? "Sem Registro" : @school_class.school_course_dept.name}", :at => [75,481]
     end
   end
   

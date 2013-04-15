@@ -25,13 +25,13 @@ Tag Hidden atributos:
 <div class="control-group">
   <%= f.label :state_id, :class => 'control-label' %>
   <div class="controls" id="addressStates">
-<%= render :partial => 'states'%>
+<%= render :partial => 'states', :locals => {:country_id => (@person_address.city.state.country.id if !@person_address.city.blank?)}%>
   </div>
 </div>
 <div class="control-group">
   <%= f.label :city_id, :class => 'control-label' %>
   <div class="controls" id="addressCities">
-<%= render :partial => 'cities' %>
+<%= render :partial => 'cities', :locals => {:state_id => (@person_address.city.state.id if !@person_address.city.blank?)}%>
   </div>
 </div>
 <!-- Fim -->

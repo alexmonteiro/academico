@@ -16,10 +16,9 @@ class Dept < ActiveRecord::Base
   
   def dept_institute
     instituto = self.dept
-    until !instituto.blank? do
+    while !instituto.blank? do
       instituto = instituto.dept
     end
-    return instituto
   end
   
   searchable do

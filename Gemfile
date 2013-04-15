@@ -62,6 +62,8 @@ gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
 gem 'twitter-bootstrap-rails', '2.2.5'
 gem 'bootstrap-datepicker-rails'
 
+gem "watu_table_builder", :require => "table_builder"
+
 group :development do
   gem 'sunspot_solr'
   gem 'progress_bar' 

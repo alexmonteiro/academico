@@ -32,6 +32,22 @@
      <%= f.collection_select :registration_status_id, RegistrationStatus.find(:all), :id, :description, :selected => 7 %> <!-- 7 = Matriculado -->
     </div>
   </div>
+  
+  <div class="well">
+	<fieldset>
+  	<legend>Tipo de Ingresso</legend>
+   	<div class="span12">
+	    <%= f.fields_for :admission_type_ids do |at| %>
+	        <div class="right_box">
+	          <% AdmissionType.all.each do |admission_type| %>
+	                  <%= (at.check_box [], {:checked=> @registration.admission_types.include?(admission_type) }, admission_type.id, nil) %>
+	                  <%= admission_type.description %><br/>
+	          <% end %>
+	        </div>
+	    <% end %>
+   	</div>
+	</fieldset>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>

@@ -141,7 +141,7 @@ class DisciplineClassesController < ApplicationController
       @discipline_class.ending_at = Time.zone.now
       #atualiza status do aluno na emturmação
       @discipline_class.registration_classes.each do |r|
-        r.registration_class_status_id = r.registration_class_status_id_by_rules
+        r.registration_class_status_id = r.registration_class_status_final.id
         r.save
       end
       

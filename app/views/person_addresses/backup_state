@@ -1,0 +1,36 @@
+<script type="text/javascript">
+jQuery(function($) {
+// when the #region_id field changes
+  $("#person_address_state").change(function() {
+    // make a POST call and replace the content
+    var state = $('select#person_address_state :selected').val();
+    var nome_view = $('input#nome_view').val();
+    if(state == "") state="0";
+    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+        $("#addressCities").html(data);
+    })
+    return false;
+  });
+})
+</script>
+
+ 	<% if !@person_address.blank? %>
+		<% if country_id == @person_address.city.state.country.id %>
+			<% states = State.where(:country_id=>@person_address.city.state.country.id).order(:name) %>
+			<% state_selected = @person_address.city.state.id %>
+			<% city_from_country = true%>
+		<%end%>
+	<%else%>
+		<% state_selected = 0%>
+		<% city_from_country = true%>
+	<%end%>
+	
+    <% if !states.blank?%>
+    	<% if city_from_country = true%>
+      		<%= select_tag 'person_address_state', options_from_collection_for_select(states, "id", "name", state_selected) %>
+      	<%else%>
+      		<%= select_tag 'person_address_state', options_from_collection_for_select(states, "id", "name", {:prompt => "Selecione um Estado"}) %>
+      	<%end%>
+    <% else %>
+      	<%= select_tag 'person_address_state', [], :class => 'select_field' %>
+    <% end %>

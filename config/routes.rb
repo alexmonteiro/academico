@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  #resources :registration_admission_types
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
                                        :registrations => "users/registrations",
                                        :confirmations => "users/confirmations",
@@ -106,6 +108,9 @@ AcademicoRails::Application.routes.draw do
     # Aulas ministradas
     resources :class_records, :path =>"aulas" do
         resources :class_record_presences, :path => "presencas"
+        get :classdateselect, :on => :collection # claendario para inclusao de aulas
+        get :new_many, :on => :collection # inclusao de varias aulas
+        post :create_many, :on => :collection # create de varias aulas
         match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
         match 'import', :controller=>'class_record_presences', :method => :put, :action => 'import_registration_to_presence'
     end
@@ -139,6 +144,7 @@ AcademicoRails::Application.routes.draw do
   #################################
   resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
   resources :races, :path => 'configuracoes/etnias'
+  resources :admission_types, :path => 'configuracoes/tipos_de_ingressos'
   resources :special_needs_types, :path => 'configuracoes/tipo_necessidade_especial'
   resources :marital_statuses, :path => 'configuracoes/estado_civil'
   resources :education_degrees, :path => 'configuracoes/niveis_educacionais'

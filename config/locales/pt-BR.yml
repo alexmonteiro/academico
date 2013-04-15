@@ -207,6 +207,7 @@ pt-BR:
         person_id: "Aluno"
         registration_number: "Matrícula"
         registration_status_id: "Situação"
+        admission_type_ids: "Tipo de Ingresso"
       class_record:
         recorded_at: "Data"
         record: "Conteúdo"
@@ -299,6 +300,8 @@ pt-BR:
       special_needs_type:
         description: "Descrição"
         type: "Tipo"
+      admission_type:
+        description: "Tipo de Ingresso"
         
       registration_scheme:
         description: "Descrição"
@@ -395,6 +398,7 @@ pt-BR:
       learning_modality: "Modalidades de Ensino"
       knowledge_area: "Áreas do Conhecimento"
       blood_type: "Tipos Sanguíneos"
+      admission_type: "Tipos de Ingressos"
       marital_status: "Estados Civis"
       special_needs_type: "Tipos de Necessidade Especial"
       education_degree: "Níveis Educacionais"
@@ -468,7 +472,9 @@ pt-BR:
     formats:
       default: ! '%d/%m/%Y'
       long: ! '%d de %B de %Y'
+      long_complete: ! '%A, %d de %B de %Y'
       short: ! '%d de %B'
+      month_year: ! '%B de %Y'
     month_names:
     -
     - Janeiro
