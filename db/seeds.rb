@@ -6437,6 +6437,16 @@ academic_rule_types = AcademicRuleType.create([
   {:rule => 'Nota'}
 ])
 
+# Alimenta tabela tipo do Tipos de ingressos
+puts 'Inserindo tipo do Tipos de ingressos...'
+admission_types = AdmissionType.create([
+  {:description => 'Ampla Concorrência'},
+  {:description => 'PNE'},
+  {:description => 'Escola Pública - Renda'},
+  {:description => 'Escola Pública - Etnia'},
+  {:description => 'Outros Programas'}
+])
+
 #criação do user admin
 puts '### Criando usuário usuário admin com senha admin123! ATENÇÃO: Altere a senha do admin após primeiro acesso. ###'
 admin = User.create! do |u|
