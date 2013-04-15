@@ -27,9 +27,8 @@
 	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
 	
 	   </div>
-	
 	   <div class="span5">
-	    <%= f.label :birth_date, :class => 'control-label' %>
+	   	<%= f.label :birth_date, :class => 'control-label' %>
 	    <%= f.text_field :birth_date, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @person.birth_date.blank? ? nil : @person.birth_date.strftime("%d.%m.%Y") %>
 	  
 	    <%= f.label :email, :class => 'control-label' %>    
@@ -134,9 +133,9 @@
 
 <div class="well">
 	<fieldset>
-		<legend>  Endereço </legend>
+		<legend> Endereço </legend>
 		
-			<%= f.fields_for :person_address do |builder| %>
+			<%= f.fields_for :person_addresses do |builder| %>
 				<%= render "person_address_fields", :f => builder%>
 			<%end%>
 	</fieldset>
