@@ -12,7 +12,7 @@ jQuery(function($) {
         $("#addressStatesDept").html(data);
     })
     jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
-        $("#addressCities").html(data);
+        $("#addressCitiesDept").html(data);
     })
     return false;
   });
@@ -33,7 +33,7 @@ jQuery(function($) {
 <% end %> 
 <!-- end do dept_address.blank, pra checar se ha cidade ou nâo -->
 
-<% if city_from_country = true %>
+<% if city_from_country %>
         <%= select("Country_dept","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected => @dept_address.city.state.country.id.to_i }, :id => "Country_dept") %>
 <% else %>
      	<%= select("Country_dept","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "Country_dept") %>
