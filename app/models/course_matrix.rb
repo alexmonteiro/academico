@@ -72,4 +72,11 @@ class CourseMatrix < ActiveRecord::Base
     end    
   end  
   
+  #validates
+  def ended_at_time
+      if self.ended_at != nil
+          errors.add(:base, "Termino nao pode ser menor abertura") unless self.ended_at > self.started_at
+      end
+  end
+  
 end

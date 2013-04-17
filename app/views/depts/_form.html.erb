@@ -28,15 +28,13 @@
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls">
-      <% @dept.started_at = @dept.started_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :started_at, :class => 'datepicker_class', :style => "width:80px" %>
+	   <%= f.text_field :started_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @dept.started_at.blank? ? nil : @dept.started_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :finished_at, :class => 'control-label' %>
     <div class="controls">
-      <% @dept.finished_at = @dept.finished_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :finished_at, :class => 'datepicker_class', :style => "width:80px", :include_blank => true %>
+	   <%= f.text_field :finished_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @dept.finished_at.blank? ? nil : @dept.finished_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">
