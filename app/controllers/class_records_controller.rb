@@ -157,5 +157,57 @@ class ClassRecordsController < ApplicationController
     end
     
   end
+  
+  # GET /class_record_presences_day
+  def class_record_presences_day
+    @discipline_class = DisciplineClass.find(params[:discipline_class_id])
     
+    if params[:day]
+      @class_records = ClassRecord.where(:discipline_class_id => @discipline_class.id).where(:recorded_at => params[:day])
+    else
+      @class_records = ClassRecord.where(:discipline_class_id => @discipline_class.id)
+    end
+    
+    
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @class_record }
+    end
+  end      
+  
+  def update_presences_by_date   
+    @class_records = ClassRecord.where(:discipline_class_id => params['discipline_class_id']).where(:recorded_at => params[:day])
+    
+    message = 'Chamada atualizada com sucesso.'
+    
+    if @class_records.count > 0      
+      
+      @class_records.each do |cr|
+        #verifica se todas enturmacoes foram inseridas na chamada 
+        #(["1","2"] + ["3","1"]) - (["1","2"] & ["3","1"])
+        v_rc_presences = cr.class_record_presences.map {|rc| rc.registration_class_id}
+        v_rc_registred = cr.discipline_class.registration_classes.map {|rc| rc.id}
+        v_rc_nopresences = ((v_rc_presences + v_rc_registred) - (v_rc_presences & v_rc_registred) )
+        v_rc_nopresences.each do |rc|
+          ClassRecordPresence.create([{:class_record_id => cr.id, :registration_class_id => rc, :is_present => true}])
+        end
+        #coloca todos daquela classe como false para atualizar conforme parametros
+        cr.class_record_presences.update_all(["is_present = ?", false])
+      end
+      
+      
+      # se possui este objeto marcá-los como true
+      if params['class_record_presence_ids']
+        params['class_record_presence_ids'].each do |class_record|
+          ClassRecordPresence.update_all(["is_present = ?", true], {:class_record_id => class_record[0], :registration_class_id => class_record[1]})
+        end
+      end
+      
+    else
+      message = 'Nenhuma ação realizada...'
+    end
+    redirect_to "#{class_record_presences_day_discipline_class_class_records_path}?day=#{params[:day]}", :notice => message, :params => params
+  end
+  
 end
