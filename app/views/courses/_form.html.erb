@@ -1,10 +1,19 @@
 <%= form_for @course, :html => { :class => 'form-horizontal' } do |f| %>
+<!-- Parte relacionada ao Ato Autorizativo -->
+  <div class="control-group">
+    <%= f.label :authorization_code, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :authorization_code, :class => 'text_field' %>
+    </div>
+  </div>
+<!-- -->
   <div class="control-group">
     <%= f.label :code, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :code, :class => 'text_field' %>
     </div>
   </div>
+
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -38,15 +47,13 @@
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls" >
-      <% @course.started_at = @course.started_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :started_at, :class => "datepicker_class", :style => "width:80px"  %>
+	  <%= f.text_field :started_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @course.started_at.blank? ? nil : @course.started_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :ended_at, :class => 'control-label' %>
     <div class="controls">
-      <% @course.ended_at = @course.ended_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :ended_at, :class => "datepicker_class", :style => "width:80px"%>
+	   <%= f.text_field :ended_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @course.ended_at.blank? ? nil : @course.ended_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">

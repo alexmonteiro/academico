@@ -1,5 +1,21 @@
-<% if !cities.blank? %>
-	<%= select_tag 'dept_address[city_id]', options_from_collection_for_select(cities, "id", "name") %>
+<% if !@dept_address.blank? %>
+    <% if !@dept_address.city.blank? %>
+        <% cities = City.where(:state_id=>@dept_address.city.state.id).order(:name)%>
+        <% city_selected = @dept_address.city.id %>
+        <% city_from_country = true %>
+    <% end %>
 <% else %>
-	<%= select_tag 'dept_address[city_id]', [], :class => 'select_field' %>
+    <% city_selected = 0 %>
+    <% country_from_country = false%>
+<% end %>
+
+
+<% if !cities.blank? %>
+    <% if city_from_country = true %>
+        <%= select("dept_address","city_id", cities.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha uma Cidade", :selected =>  city_selected}) %>
+    <% else %>
+        <%= select("dept_address","city_id", cities.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha uma Cidade"}) %>
+    <% end %>
+<% else %>
+    <%= select("dept_address","city_id", [], { :include_blank => "Escolha uma Cidade"}) %>
 <% end %>

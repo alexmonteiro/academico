@@ -1,7 +1,7 @@
 	<% if !@person.blank? %>
-		<% if !@person.person_address.city.blank? && state_id == @person.person_address.city.state.id %>
-			<% cities = City.where(:state_id=>@person.person_address.city.state.id).order(:name) %>
-			<% city_selected = @person.person_address.city.id %>
+		<% if !@person.person_address.try(:city).blank? && state_id == @person.person_address.try(:city).state.id %>
+			<% cities = City.where(:state_id=>@person.person_address.try(:city).state.id).order(:name) %>
+			<% city_selected = @person.person_address.try(:city).id %>
 			<% city_from_country = true%>
 		<%end%>
 	<%else%>

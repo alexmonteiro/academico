@@ -1,7 +1,7 @@
 <%= form_for [@person,@people_telephone], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
       <h2><i class="icon-user"></i><%= Person.find(params[:person_id]).name %></h2><br />
-      <%= f.hidden_field :people_id, :value => params[:person_id] %>
+      <%= f.hidden_field :person_id, :value => params[:person_id] %>
   </div>
   
   <div class="control-group">
@@ -19,7 +19,7 @@
   <div class="control-group">
     <%= f.label :number, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :number, :class => 'number_field' %>
+      <%= f.number_field :number, :id => 'telephone' %>
     </div>
   </div>
   <div class="control-group">

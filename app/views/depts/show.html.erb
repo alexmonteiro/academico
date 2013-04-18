@@ -29,7 +29,7 @@
           <dt><strong><%= model_class.human_attribute_name(:dept_type_id) %>:</strong></dt>
           <dd><%= @dept.dept_type.dept_type %></dd>
           <dt><strong><%= model_class.human_attribute_name(:dept_id) %>:</strong></dt>
-          <dd><%= @dept.dept %></dd>
+          <dd><%= @dept.dept.try(:description) %></dd>
       </dl>
     <br/>
     </div>

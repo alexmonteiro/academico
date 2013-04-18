@@ -19,20 +19,20 @@
   -->
   <input type="hidden" id="nome_view" value="dept_addresses">
   <%= f.label :country_id, :class => 'control-label' %>
-  <div class="controls" id="addressCountry">
+  <div class="controls" id="addressCountryDept">
     <%= render :partial =>'country' %>
   </div>
   </div>
   <div class="control-group">
     <%= f.label :state_id, :class => 'control-label' %>
-    <div class="controls"  id="addressStates">
-       <%= render :partial => 'states'%>
+    <div class="controls"  id="addressStatesDept">
+       <%= render :partial => 'states', :locals => {:country_id => (@dept_address.city.state.country.id if !@dept_address.city.blank?)}%>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :city_id, :class => 'control-label' %>
-    <div class="controls"  id="addressCities">
-       <%= render :partial => 'cities'  %>
+    <div class="controls"  id="addressCitiesDept">
+       <%= render :partial => 'cities', :locals => {:state_id => (@dept_address.city.state.id if !@dept_address.city.blank?)} %>
     </div>
   </div>
   <!-- Fim -->
@@ -64,7 +64,7 @@
   <div class="control-group">
     <%= f.label :zip_code, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :zip_code, :class => 'number_field' %>
+      <%= f.number_field :zip_code, :class => 'number_field', :id => "zipcode" %>
     </div>
   </div>
   <div class="control-group">

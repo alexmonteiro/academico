@@ -9,15 +9,17 @@ class Course < ActiveRecord::Base
   belongs_to :course_status
   has_many :disciplines
   has_many :course_matrices
-  attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
+  attr_accessible :code, :ended_at, :goal, :maxtime, :mintime, :name, :nickname, :started_at, :dept, :authorization_code, :techaxes_id, :learning_modality_id, :education_modality_id, :class_season_type_id, :knowledge_area_id, :dept_id, :registration_scheme_id, :course_status_id
   before_destroy :has_children?
   
-  validates_presence_of :dept_id
+  validates_presence_of :dept_id, :started_at
   
   validate :ended_at_date
   
   def ended_at_date
-    errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless ended_at >= started_at
+    if self.ended_at
+       errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
+    end
   end
   
   def dept_acronym

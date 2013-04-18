@@ -78,6 +78,7 @@ pt-BR:
         techaxes_id: "Eixo tecnológico"
         education_modality_id: "Modalidade de ensino" 
         discipline: "Discplinas"
+        authorization_code: "Ato autorizativo"
       course_vacancy:
         course_id: "Curso"
         class_season_id: "Período Letivo"
