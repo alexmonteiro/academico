@@ -12,7 +12,7 @@
   <div class="control-group">
     <%= f.label :arrival_date, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :arrival_date, :class => 'date_select' %>
+      <%= f.text_field :arrival_date, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @teaching_equipament.try(:arrival_date).blank? ? nil : @teaching_equipament.try(:arrival_date).strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">
