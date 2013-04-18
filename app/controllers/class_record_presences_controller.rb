@@ -84,10 +84,12 @@ class ClassRecordPresencesController < ApplicationController
   
   def update_presence
     @class_record = ClassRecord.find(params[:class_record_id])
+    
     ClassRecordPresence.update_all(["is_present = ?", false], :id => @class_record.class_record_presences)
     ClassRecordPresence.update_all(["is_present = ?", true], :id => params[:class_record_presence_ids])
     redirect_to discipline_class_class_record_class_record_presences_path, :notice => 'Chamada atualizada com sucesso.'
   end
+  
 
   def import_registration_to_presence
     @class_record = ClassRecord.find(params[:class_record_id])
@@ -102,5 +104,6 @@ class ClassRecordPresencesController < ApplicationController
 
     redirect_to discipline_class_class_record_class_record_presences_path, :notice => 'Importação realizada com sucesso.'
   end
+
   
 end
