@@ -20,6 +20,8 @@ pt-BR:
       <<: *errors
     attributes:
       person:
+        person_address_attributes:
+          street_type_id: "Rua"
         name:  "Nome" 
         name_complete:  "Nome completo" 
         birth_date:  "Nascimento" 
@@ -144,6 +146,7 @@ pt-BR:
       person_address:
         street_type_id: "Logradouro"
         city_id: "Cidade"
+        state_id: "Estado"
         country_id: "País"
         street_name: "Rua"
         complement: "Complemento"
@@ -302,7 +305,6 @@ pt-BR:
         type: "Tipo"
       admission_type:
         description: "Tipo de Ingresso"
-        
       registration_scheme:
         description: "Descrição"
       matrix_status:
@@ -354,7 +356,6 @@ pt-BR:
         description: "Descrição"
       dept_type:
         dept_type: "Departamento"
-        
         
     models:
       person: "Pessoa"  
@@ -577,7 +578,7 @@ pt-BR:
       edit: Editar
       destroy: Excluir
       cancel: Cancelar
-      new: Criar
+      new: Novo
       print: Imprimir
     titles:
       new: Cadastro de %{model}

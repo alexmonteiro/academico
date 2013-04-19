@@ -134,8 +134,7 @@
 <div class="well">
 	<fieldset>
 		<legend> Endereço </legend>
-		
-			<%= f.fields_for :person_address_attributes do |builder| %>
+			<%= f.fields_for :person_address_attributes, PersonAddress.new do |builder| %>
 				<%= render "person_address_fields", :f => builder%>
 			<%end%>
 	</fieldset>
