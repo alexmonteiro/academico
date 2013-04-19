@@ -20,29 +20,40 @@ class RegistrationPdf < Prawn::Document
   def content
             move_down 60
             font("Courier", :size => 12) do
-              text_box "Matrícula............: #{@registration.registration_number}
-                        Nome do(a) aluno(a)..: #{@registration.person.try(:name)}
-                        Naturalidade/UF......: #{@registration.person.try(:city).try(:name)} / #{@registration.person.try(:city).try(:state).try(:acronym)}
-                        Data de nascimento...: #{@registration.person.try(:birth_date).strftime('%d/%m/%Y')}
-                        Identidade...........: #{@registration.person.person_identification_doc.try(:model_rg_custom)}
-                        Endereço.............: #{@registration.person.person_address.try(:model_full_address)}",
-              :at => [30, 600],
-              :leading => 5
+               tabela = [["Matricula","#{@registration.registration_number}"],
+                         ["Nome do(a) aluno(a)", "#{@registration.person.try(:name)}"],
+                         ["Naturalidade/UF", "#{@registration.person.try(:city).try(:name)} / #{@registration.person.try(:city).try(:state).try(:acronym)}"],
+                         ["Data de nascimento", "#{@registration.person.try(:birth_date).strftime('%d/%m/%Y')}"],
+                         ["Identidade", "#{@registration.person.person_identification_doc.try(:model_rg_custom)}"],
+                         ["Endereço", "#{@registration.person.person_address.try(:model_full_address)}"],
+                         ["Campus", "#{@registration.course_matrix.course.dept.try(:name)}"]]
+                       
+                       DeptTelephone.where("dept_id" => @registration.course_matrix.course.dept_id).each do |telefone|
+                          tabela << ['Telefone',telefone.number]
+                       end
+               table(tabela)
+                       
             end
-            stroke_horizontal_line 0, 550, :at => 470
             font("Courier", :size => 12) do
-              text_box "#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}.",
-              :at => [30, 430],
-              :leading => 5,
-              :align => :justify
+              move_down(10)
+               table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
+               ])
             end               
             stroke_horizontal_line 0, 550, :at => 300
             font("Courier", :size => 12) do
-             text_box "Informações complementares:
-                       • Período Letivo: XX/XX a XX/XX/20XX.
-                       • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.",
+              if @registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id).blank?
+              text_box "Informações complementares:
+                       • Nenhuma turma cadastrada.",
              :at => [30, 290],
              :leading => 5    
+                     else
+              text_box "Informações complementares:
+                       • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
+                       • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.",
+             :at => [30, 290],
+             :leading => 5  
+              end
+ 
             end                    
             stroke_horizontal_line 0, 550, :at => 230
   end
