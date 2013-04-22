@@ -31,13 +31,13 @@ class RegistrationPdf < Prawn::Document
                        DeptTelephone.where("dept_id" => @registration.course_matrix.course.dept_id).each do |telefone|
                           tabela << ['Telefone',telefone.number]
                        end
-               table(tabela)
-                       
+               table(tabela, :cell_style => {:borders => []} )
+               stroke_horizontal_line 0, 550, :at => 390     
             end
             font("Courier", :size => 12) do
-              move_down(10)
+              move_down(20)
                table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
-               ])
+               ], :cell_style => {:borders => []})
             end               
             stroke_horizontal_line 0, 550, :at => 300
             font("Courier", :size => 12) do
