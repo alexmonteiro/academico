@@ -10,7 +10,7 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= verifica_registro :campo => @teaching_equipament.description, :mensagem => "<<Sem Registro>>" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:arrival_date) %>:</strong></dt>
-  <dd><%= verifica_registro :campo => @teaching_equipament.arrival_date, :mensagem => "<<Sem Registro>>" %></dd>
+  <dd><%= verifica_registro :campo => @teaching_equipament.arrival_date.strftime("%d/%m/%Y"), :mensagem => "<<Sem Registro>>" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:equipament_type_id) %>:</strong></dt>
   <dd><%= verifica_registro :campo => @teaching_equipament.equipament_type, :atributo => "description" %></dd>
   <dt><strong><%= model_class.human_attribute_name(:situation_teaching_equipament_id) %>:</strong></dt>
