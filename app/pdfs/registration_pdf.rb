@@ -27,7 +27,7 @@ class RegistrationPdf < Prawn::Document
                          ["Identidade", "#{@registration.person.person_identification_doc.try(:model_rg_custom)}"],
                          ["Endereço", "#{@registration.person.person_address.try(:model_full_address)}"],
                          ["Campus", "#{@registration.course_matrix.course.dept.try(:name)}"],
-                         ["CNPJ"],["#{@registration.course_matrix.course.dept.try(:cnpj)}"]]
+                         ["CNPJ","#{@registration.course_matrix.course.dept.try(:cnpj)}"]]
                        
                        DeptTelephone.where("dept_id" => @registration.course_matrix.course.dept_id).each do |telefone|
                           tabela << ['Telefone',telefone.number]
@@ -60,7 +60,8 @@ class RegistrationPdf < Prawn::Document
                     tabela_2 = [ ["Informações complementares:
                                   • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
                                   • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.
-                                  • Módulo: #{days.join(',')}"] ]
+                                  • Período: #{@registration.course_matrix.school_classes.last.period}
+                                  • Dias de Aula: #{days.join(',')}"] ]
                     pad(10) { table(tabela_2, :cell_style => {:borders => []} ) }
               end
  
