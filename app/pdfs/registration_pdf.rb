@@ -18,7 +18,7 @@ class RegistrationPdf < Prawn::Document
   end
   
   def content
-            move_down 60
+            move_down 30
             font("Courier", :size => 12) do
                tabela = [["Matricula","#{@registration.registration_number}"],
                          ["Nome do(a) aluno(a)", "#{@registration.person.try(:name)}"],
@@ -26,36 +26,46 @@ class RegistrationPdf < Prawn::Document
                          ["Data de nascimento", "#{@registration.person.try(:birth_date).strftime('%d/%m/%Y')}"],
                          ["Identidade", "#{@registration.person.person_identification_doc.try(:model_rg_custom)}"],
                          ["Endereço", "#{@registration.person.person_address.try(:model_full_address)}"],
-                         ["Campus", "#{@registration.course_matrix.course.dept.try(:name)}"]]
+                         ["Campus", "#{@registration.course_matrix.course.dept.try(:name)}"],
+                         ["CNPJ"],["#{@registration.course_matrix.course.dept.try(:cnpj)}"]]
                        
                        DeptTelephone.where("dept_id" => @registration.course_matrix.course.dept_id).each do |telefone|
                           tabela << ['Telefone',telefone.number]
                        end
-               table(tabela, :cell_style => {:borders => []} )
-               stroke_horizontal_line 0, 550, :at => 390     
+               pad(10) { table(tabela, :cell_style => {:borders => []} ) }
+               stroke_horizontal_rule
             end
             font("Courier", :size => 12) do
-              move_down(20)
-               table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
-               ], :cell_style => {:borders => []})
+               pad(10) { table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
+               ], :cell_style => {:borders => []}) }
             end               
-            stroke_horizontal_line 0, 550, :at => 300
+            stroke_horizontal_rule
+            
+            days = []
+            @registration.course_matrix.timetables.each do |week|
+              if @registration.course_matrix.timetables.last
+                days << week.day_week.description
+              else
+                days <<  week.day_week.description
+              end
+            end
+            
+            
             font("Courier", :size => 12) do
               if @registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id).blank?
-              text_box "Informações complementares:
-                       • Nenhuma turma cadastrada.",
-             :at => [30, 290],
-             :leading => 5    
-                     else
-              text_box "Informações complementares:
-                       • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
-                       • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.",
-             :at => [30, 290],
-             :leading => 5  
+                    tabela_1 = [ ["Informações complementares:
+                                  • Nenhuma turma cadastrada."] ]
+                    pad(10) { table(tabela_1, :cell_style => {:borders => []} ) }
+                     else          
+                    tabela_2 = [ ["Informações complementares:
+                                  • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
+                                  • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.
+                                  • Módulo: #{days.join(',')}"] ]
+                    pad(10) { table(tabela_2, :cell_style => {:borders => []} ) }
               end
  
             end                    
-            stroke_horizontal_line 0, 550, :at => 230
+            stroke_horizontal_rule
   end
     
   def header_complement
