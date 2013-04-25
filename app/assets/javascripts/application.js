@@ -27,12 +27,13 @@ jQuery(function($) {
   $("#telephone").mask("99999999");
   $("#cpf").mask("999.999.999-99");
   $("#zipcode").mask("99999999");
+  $("#date_format").mask("99/99/9999");
 });
 
 $(function() {
 	$(".datepicker_class" ).datepicker({
 	        language: "br",
-                format: "dd.mm.yyyy",
+                format: "dd/mm/yyyy",
                 "autoclose": true
 	});
 });

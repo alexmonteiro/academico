@@ -29,7 +29,7 @@
 	   </div>
 	   <div class="span5">
 	   	<%= f.label :birth_date, :class => 'control-label' %>
-	    <%= f.text_field :birth_date, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @person.birth_date.blank? ? nil : @person.birth_date.strftime("%d.%m.%Y") %>
+	    <%= f.text_field :birth_date, :id => 'date_format', :style => "width:80px", :value => @person.birth_date.blank? ? nil : @person.birth_date.strftime("%d.%m.%Y") %>
 	  
 	    <%= f.label :email, :class => 'control-label' %>    
 	    <%= f.text_field :email, :class => 'text_field' %>
@@ -134,8 +134,7 @@
 <div class="well">
 	<fieldset>
 		<legend> Endereço </legend>
-		
-			<%= f.fields_for :person_address_attributes do |builder| %>
+			<%= f.fields_for :person_address_attributes, PersonAddress.new do |builder| %>
 				<%= render "person_address_fields", :f => builder%>
 			<%end%>
 	</fieldset>
