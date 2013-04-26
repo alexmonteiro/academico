@@ -21,7 +21,7 @@
   <div class="control-group">
     <%= f.label :class_season_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :class_season_id, ClassSeason.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
+      <%= f.collection_select :class_season_id, ClassSeason.order("start_at DESC"), :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
