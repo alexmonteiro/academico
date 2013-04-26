@@ -1,5 +1,5 @@
 <h2>Turma: <%=@discipline_class.school_class.identifier %> - <%=@discipline_class.course_name %></h2>
-<h2>Classe: <%=@discipline_class.code %></h2>
+<h2>Componente: <%=@discipline_class.matrix_discipline.discipline_name %></h2>
 
 <%= form_for [@discipline_class, @class_teaching], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">

@@ -12,6 +12,9 @@ class CourseMatrix < ActiveRecord::Base
   default_scope :order => "id DESC"
   
   validates :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id,  :course_id, :presence => true
+  
+  validate :ended_at_valid?
+  
 
   def model_custom_name
       self.id.to_s+' - Matriz ' + self.started_at.strftime('%d/%m/%Y') + ' - '+ self.course.try(:name)
@@ -73,10 +76,12 @@ class CourseMatrix < ActiveRecord::Base
   end  
   
   #validates
-  def ended_at_time
-      if self.ended_at != nil
-          errors.add(:base, "Termino nao pode ser menor abertura") unless self.ended_at > self.started_at
-      end
+  #valida se o termino é maior do que o comeco
+  def ended_at_valid?
+    
+    if self.ended_at != nil
+       errors.add(:base, "Termino nao pode ser menor que a abertura") unless self.ended_at > self.started_at
+    end
   end
   
 end

@@ -51,6 +51,10 @@ end
 # POST /matrices.json
 def create
   @matrix = CourseMatrix.new(params[:course_matrix])
+  
+  #ended_at salva nil caso nao troque "/" por "."
+  params[:course_matrix][:started_at].gsub!("/",".")
+  params[:course_matrix][:ended_at].gsub!("/",".")
 
   respond_to do |format|
     if @matrix.save
@@ -67,9 +71,13 @@ end
 # PUT /matrices/1.json
 def update
   @matrix = CourseMatrix.find(params[:id])
-
+  
+  #ended_at salva nil caso nao troque "/" por "."
+  params[:course_matrix][:started_at].gsub!("/",".")
+  params[:course_matrix][:ended_at].gsub!("/",".")
+  
   respond_to do |format|
-    if @matrix.update_attributes(params[:matrix])
+    if @matrix.update_attributes(params[:course_matrix])
       format.html { redirect_to @matrix, :notice => 'Matriz atualizada com sucesso.' }
       format.json { head :no_content }
     else

@@ -3,7 +3,7 @@
   <div class="control-group">
     <%= f.label :applied_at, :class => 'control-label' %>
     <div class="controls">
-      <% @discipline_class_exam.applied_at = @discipline_class_exam.applied_at.strftime("%d.%m.%Y") if @discipline_class_exam.applied_at %>
+      <% @discipline_class_exam.applied_at = @discipline_class_exam.applied_at.strftime("%d/%m/%Y") if @discipline_class_exam.applied_at %>
       <%= f.text_field :applied_at, :class => 'datepicker_class', :style => "width:80px" %>
     </div>
   </div>
