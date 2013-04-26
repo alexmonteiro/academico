@@ -1,0 +1,18 @@
+<div class="media span6">
+</div>	
+<div class="media span6 well">
+  <i class="pull-left">
+    <%= image_tag 'error_image.png', :id => 'homer_simpson' %>
+  </i>
+  <div class="media-body">
+    <h1 class="media-heading"> <i class="icon-cogs icon-2x"></i> Erro <%=params[:status]%> </h1>
+	    <h4>Hummm, ocorreu um erro no sistema.</h4>
+	    <p>Desculpas, algo de errado aconteceu no servidor. Um email contendo informações do problema foi enviado ao ntic@ifb.edu.br.</p>
+	    <hr/>
+		<% if @exception.try(:message) %>
+		  <h4>Mensagem de erro:</h4>
+		  <p><%= @exception.message %></p>
+		<% end %>
+
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Acadêmico Rails</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= csrf_meta_tags %>
+
+  <style>
+   #homer_simpson{}
+  </style>
+
+  <style>
+   #homer_simpson{width: 120px; height: 260px;}
+   #police_simpson{width: 200px; height: 280px;}
+  </style>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+ <hr>
+ <div class="container-fluid">
+	 <%= yield %>
+ </div>
+ <hr>
+ <footer>
+   <p><center>&copy; <%= link_to 'Instituto Federal de Brasília', 'http://www.ifb.edu.br'%> <%= '('+Rails.env+')' if Rails.env != 'production'%></center></p>
+ </footer>
+</body>
+</html>

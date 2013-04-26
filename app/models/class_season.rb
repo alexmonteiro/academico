@@ -5,10 +5,9 @@ class ClassSeason < ActiveRecord::Base
   validates :end_at, :number, :start_at, :year, :class_season_type_id,  :dept_id, :presence => true
   
   validate :ended_at_time
-  
 
   def model_custom_name
-       self.year.to_s + '/' + self.number.to_s + " - #{self.class_season_type.try(:description)}"
+      "#{self.start_at.strftime("%d/%m/%Y")} a #{self.end_at.strftime("%d/%m/%Y")} | #{self.class_season_type.try(:description)}"
   end
   
   #validates

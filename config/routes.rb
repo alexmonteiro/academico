@@ -196,6 +196,6 @@ AcademicoRails::Application.routes.draw do
   resources :matrix_discipline_groups, :path => 'configuracoes/matriz_disciplina'
   resources :dept_types, :path => 'configuracoes/departamentos'
   
-
-
+  # dynamic erros
+  match '(errors)/:status', :to => 'errors#show', :constraints => {:status => /\d{3}/} #, :via => :all
 end
