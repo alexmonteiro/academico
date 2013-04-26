@@ -471,7 +471,7 @@ pt-BR:
     - Sexta
     - Sábado
     formats:
-      default: ! '%d/%m/%Y'
+      default: '%d/%m/%Y'
       long: ! '%d de %B de %Y'
       long_complete: ! '%A, %d de %B de %Y'
       short: ! '%d de %B'
@@ -583,6 +583,7 @@ pt-BR:
     titles:
       new: Cadastro de %{model}
       edit: Edição de %{model}
+      association: Associar %{model}
     actions: "Ações"
     others_links:
       telephones: Telefones
@@ -652,7 +653,7 @@ pt-BR:
   time:
     am: ''
     formats:
-      default: ! '%A, %d de %B de %Y, %H:%M h'
+      default: ! '%d/%m/%Y'
       long: ! '%A, %d de %B de %Y, %H:%M h'
       short: ! '%d/%m, %H:%M h'
     pm: ''

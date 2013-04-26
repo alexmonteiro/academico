@@ -53,10 +53,12 @@ class RegistrationPdf < Prawn::Document
             
             font("Courier", :size => 12) do
               if @registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id).blank?
+                    #informacao padrao caso nao tenha
                     tabela_1 = [ ["Informações complementares:
                                   • Nenhuma turma cadastrada."] ]
                     pad(10) { table(tabela_1, :cell_style => {:borders => []} ) }
-                     else          
+                     else       
+                     #informacoes caso aluno tenha turma   
                     tabela_2 = [ ["Informações complementares:
                                   • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
                                   • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.

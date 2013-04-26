@@ -12,7 +12,7 @@ class ClassSeason < ActiveRecord::Base
   
   #validates
   def ended_at_time
-       errors.add(:base, "Termino nao pode ser menor que a abertura") unless self.end_at > self.start_at
+       errors.add(:base, "Termino nao pode ser menor que a abertura") unless (self.end_at > self.start_at)
   end
   
 end
