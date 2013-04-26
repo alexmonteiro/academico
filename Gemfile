@@ -59,7 +59,7 @@ gem 'sunspot_rails'
 #gem 'prawn'
 gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
 
-gem 'twitter-bootstrap-rails', '2.2.5'
+gem 'twitter-bootstrap-rails', '2.2.1'
 gem 'bootstrap-datepicker-rails'
 
 gem "watu_table_builder", :require => "table_builder"
