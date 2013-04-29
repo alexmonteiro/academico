@@ -59,6 +59,9 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(params[:person])
     
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:person][:birth_date].gsub!("/",".")
+    
     respond_to do |format|
       if @person.save
         format.html { redirect_to @person, :notice => 'Pessoa criada com sucesso.' }
@@ -74,6 +77,10 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:person][:birth_date].gsub!("/",".")
+    
     if !params[:person]['person_type_ids']
       @person.person_types.destroy_all
     end 
