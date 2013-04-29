@@ -1,0 +1,45 @@
+<fieldset>
+  <legend>Vínculo Institucional</legend>
+   <div class="span12">
+   	<!-- Iteração para a parte de Vinculo Institucional -->
+	   <%= f.fields_for :person_person_types_attributes do |pt| %> <!--Cria um fields for para person_person_type atributes -->
+	  		<div class="right_box">
+	          <% PersonType.all.each do |person_type| %> <!--Busca os Person_Type para disponibilizar opcoes para o checkbox-->
+	          <%= pt.fields_for :person_person_type_depts_attributes do |d| %> <!--Cria um fields for para person_person_type_depts_attributes para acrescentar departamento ao tipo de vinculo institucional -->
+	          	<% PersonPersonType.where("person_id = ? and person_type_id = ?",person.id, person_type.id).blank? ? checked = false : checked = true%>
+	          	<!--Javascript para adicionar uma render do tipo institutional_bond para adicionar campos de Dept para cada tipo de Vinculo Institucional-->
+	          	<script type="text/javascript" charset="utf-8">	
+					//Adiciona mais Depts para Vinculo Institucional em Pessoas
+					function add_fields_depts(campo, content){
+						$(campo).before(content);
+					}
+				</script>
+				<!--Iteração para os campos de Vinculo Institucional-->
+	            <% if person_type.id != 1%> <!--Verifica se é person_type é do tipo aluno => Se não for aluno cai nessa condição-->
+	            	<%= check_box_tag"person_types_checkeds[]","#{person_type.id}", checked  %> <%=person_type.description%> <%=link_to_function("Adicionar Instituto","add_fields_depts(\"#campoDeDepts#{person_type.id}\",\"#{escape_javascript(render :partial => 'person_person_type_dept_fields', :locals => {:person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept =>''})}\")") %><!--Checkbox mais descrição + link de adicionar mais um dept-->
+	            	<div id=<%="campoDeDepts#{person_type.id}"%>>
+	            																												
+						<%if !person.person_person_types.exists? %> <!-- Se não existir person_person_type cadastrado-->
+							<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => ""%>
+						<%else%>
+							<% person.person_person_types.each do |person_person_type|%>
+								<%if person_person_type.person_type_id == person_type.id%>
+									<% person_person_type.person_person_type_depts.each do |pptd|%>
+										<%if person_person_type.id == pptd.person_person_type.id%>
+											<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => pptd%>
+										<%end%>
+									<%end%>
+								<%end%>
+							<%end%>
+						<%end%>
+					</div>
+				<%else%> <!-- Cai nessa condição se for aluno -->
+					<%= check_box_tag"person_types_checkeds[]","#{person_type.id}", checked %> <%=person_type.description%>
+				<%end%>
+	            <br/>
+	          <% end %>
+	        <%end%>
+	        </div>
+		<% end %>
+   </div>
+</fieldset>

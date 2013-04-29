@@ -1,0 +1,5 @@
+<div class="fields">
+    <span class="fields">
+    	<%= select("person_person_type_#{person_type.id}_person_person_type", "dept_id", Dept.all.collect {|p| [ p.description, p.id ] }, {:include_blank => "Selecione um Departamento", :selected => !person_person_type_dept.blank? ? person_person_type_dept.dept_id : ""}, :name => "person_type_depts[#{person_type.id}][]") %> <%= link_to_remove_fields "<span class=\"btn btn-danger btn-small\" style=\"text-decoration:none; margin-bottom:8px; color:#FFFFFF\";>Remover</span>".html_safe, f  %>
+	</span>
+<div>
