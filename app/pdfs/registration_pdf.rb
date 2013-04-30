@@ -41,13 +41,18 @@ class RegistrationPdf < Prawn::Document
             end               
             stroke_horizontal_rule
             
+            #array dos dias de aula da grade horariae horas das grades
             days = []
-            @registration.course_matrix.timetables.each do |week|
+            hours = []
+            
+            #loop entre as grades horarias pegando o dia e as horas [a primeira e a ultima do dia]
+            @registration.course_matrix.timetables.order(:day_week_id).each do |week|
               if @registration.course_matrix.timetables.last
                 days << week.day_week.description
               else
                 days <<  week.day_week.description
               end
+              hours << [( week.day_week.description  + " : " + week.timetable_class_times.first.class_time.try(:started_at) + "-" + week.timetable_class_times.last.class_time.try(:ended_at)  + "\n")]
             end
             
             
@@ -63,7 +68,8 @@ class RegistrationPdf < Prawn::Document
                                   • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
                                   • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas.
                                   • Período: #{@registration.course_matrix.school_classes.last.period}
-                                  • Dias de Aula: #{days.join(',')}"] ]
+                                  • Horarios: \n#{hours}"]]               
+                                  
                     pad(10) { table(tabela_2, :cell_style => {:borders => []} ) }
               end
  
