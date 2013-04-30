@@ -20,6 +20,8 @@ pt-BR:
       <<: *errors
     attributes:
       person:
+        person_address_attributes:
+          street_type_id: "Rua"
         name:  "Nome" 
         name_complete:  "Nome completo" 
         birth_date:  "Nascimento" 
@@ -78,6 +80,7 @@ pt-BR:
         techaxes_id: "Eixo tecnológico"
         education_modality_id: "Modalidade de ensino" 
         discipline: "Discplinas"
+        authorization_code: "Ato autorizativo"
       course_vacancy:
         course_id: "Curso"
         class_season_id: "Período Letivo"
@@ -143,6 +146,7 @@ pt-BR:
       person_address:
         street_type_id: "Logradouro"
         city_id: "Cidade"
+        state_id: "Estado"
         country_id: "País"
         street_name: "Rua"
         complement: "Complemento"
@@ -301,7 +305,6 @@ pt-BR:
         type: "Tipo"
       admission_type:
         description: "Tipo de Ingresso"
-        
       registration_scheme:
         description: "Descrição"
       matrix_status:
@@ -353,7 +356,6 @@ pt-BR:
         description: "Descrição"
       dept_type:
         dept_type: "Departamento"
-        
         
     models:
       person: "Pessoa"  
@@ -469,7 +471,7 @@ pt-BR:
     - Sexta
     - Sábado
     formats:
-      default: ! '%d/%m/%Y'
+      default: '%d/%m/%Y'
       long: ! '%d de %B de %Y'
       long_complete: ! '%A, %d de %B de %Y'
       short: ! '%d de %B'
@@ -576,11 +578,12 @@ pt-BR:
       edit: Editar
       destroy: Excluir
       cancel: Cancelar
-      new: Criar
+      new: Novo
       print: Imprimir
     titles:
       new: Cadastro de %{model}
       edit: Edição de %{model}
+      association: Associar %{model}
     actions: "Ações"
     others_links:
       telephones: Telefones
@@ -650,7 +653,7 @@ pt-BR:
   time:
     am: ''
     formats:
-      default: ! '%A, %d de %B de %Y, %H:%M h'
+      default: ! '%d/%m/%Y'
       long: ! '%A, %d de %B de %Y, %H:%M h'
       short: ! '%d/%m, %H:%M h'
     pm: ''

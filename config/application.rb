@@ -64,5 +64,8 @@ module AcademicoRails
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
     
     config.i18n.default_locale = "pt-BR"
+    
+    #tratamento dos errors
+    config.exceptions_app = self.routes
   end
 end

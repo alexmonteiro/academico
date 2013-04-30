@@ -21,7 +21,7 @@
       <tr>
         <td><%= link_to teaching_equipament.id, [@dept, teaching_equipament] %></td>
         <td><%= verifica_registro :campo => teaching_equipament.description, :mensagem => "<<Sem Registro>>" %></td>
-        <td><%= verifica_registro :campo => teaching_equipament.arrival_date, :mensagem => "<<Sem Registro>>" %></td>
+        <td><%= verifica_registro :campo => teaching_equipament.arrival_date.strftime("%d/%m/%Y"), :mensagem => "<<Sem Registro>>" %></td>
         <td><%= verifica_registro :campo => teaching_equipament.equipament_type, :mensagem => "<<Sem Registro>>", :atributo => "description" %></td>
         <td><%= verifica_registro :campo => teaching_equipament.situation_teaching_equipament, :mensagem => "<<Sem Registro>>", :atributo => "description" %></td>
         <td>

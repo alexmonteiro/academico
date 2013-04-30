@@ -1,0 +1,18 @@
+<div class="media span6">
+</div>	
+<div class="media span6 well">
+  <i class="pull-left">
+    <%= image_tag '403_image.png', :id => 'police_simpson' %>
+  </i>
+  <div class="media-body">
+    <h1 class="media-heading"> <i class="icon-minus-sign icon"></i> Acesso negado!</h1>
+	    <h4>Você não tem permissão de acesso.</h4>
+	    <p>Seu perfil não possui acesso a rotina solicitada, por favor contate o administrador do sistema para maiores detalhes.</p>
+	    <hr/>
+		<% if @exception.try(:message) %>
+		  <h4>Mensagem de erro:</h4>
+		  <p><%= @exception.message %></p>
+		<% end %>
+
+  </div>
+</div>

@@ -41,6 +41,11 @@ class ClassSeasonsController < ApplicationController
   # POST /class_seasons.json
   def create
     @class_season = ClassSeason.new(params[:class_season])
+    
+    
+    #comando para transformar as "/" para "." pois o sistema nao le com "/"
+    params[:class_season][:start_at].gsub!("/",".")
+    params[:class_season][:end_at].gsub!("/",".")
 
     respond_to do |format|
       if @class_season.save
@@ -57,7 +62,11 @@ class ClassSeasonsController < ApplicationController
   # PUT /class_seasons/1.json
   def update
     @class_season = ClassSeason.find(params[:id])
-
+    
+    #comando para transformar as "/" para "." pois o sistema nao le com "/"
+    params[:class_season][:start_at].gsub!("/",".")
+    params[:class_season][:end_at].gsub!("/",".")
+    
     respond_to do |format|
       if @class_season.update_attributes(params[:class_season])
         format.html { redirect_to @class_season, :notice => 'Temporada atualizada com sucesso.' }

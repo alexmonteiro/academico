@@ -83,11 +83,18 @@
 <%= calendar_for @class_records, :year => @date.year, :month => @date.month do |calendar| %>
   <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado')%>
   <% calendar.day(:day_method => :recorded_at) do |date, records| %>
+   <div>
     <%= date.day %> <%= link_to "<small class='text-small pull-right'>+</small>".html_safe, "#{new_many_discipline_class_class_records_path}?recorded_at=#{date}" %>
+   </div>
     <ul>
       <% records.each do |r| %>
         <li><%= link_to h(r.calendar_description), discipline_class_class_record_path(:id => r.id) %></li>
       <% end %>
+      <%if records.count > 0 %>
+        <li>
+         <%= link_to "<small class='text-small'> <i class='icon-check'></i> Chamada do dia </small>".html_safe, "#{class_record_presences_day_discipline_class_class_records_path}?day=#{date}" %>
+        </li>
+      <%end%>
     </ul>
   <% end %>
 <% end %>

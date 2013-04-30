@@ -5,9 +5,9 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:street_type_id) %>:</strong></dt>
-  <dd><%= @person_address.street_type.description %></dd>
+  <dd><%= @person_address.street_type.try(:description) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
-  <dd><%= @person_address.city.name %></dd>
+  <dd><%= @person_address.city.try(:name) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:street_name) %>:</strong></dt>
   <dd><%= @person_address.street_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:complement) %>:</strong></dt>
