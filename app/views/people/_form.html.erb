@@ -155,22 +155,8 @@
 <!-- Fim Campos Para Documentos de Identificação -->
 
 
-
- 
 <div class="well">
-<fieldset>
-  <legend>Vínculo Institucional</legend>
-   <div class="span12">
-    <%= f.fields_for :person_type_ids do |pt| %>
-        <div class="right_box">
-          <% PersonType.all.each do |person_type| %>
-                  <%= (pt.check_box [], {:checked=> @person.person_types.include?(person_type) }, person_type.id, nil) %>
-                  <%= person_type.description %><br/>
-          <% end %>
-        </div>
-    <% end %>
-   </div>
-</fieldset>
+	<%= render "institutional_bond", :f => f, :person => @person%>
 </div>
 
   <div class="form-actions">
@@ -181,5 +167,6 @@
 </div>
 </div>
 </div>
-
 <% end %>
+
+
