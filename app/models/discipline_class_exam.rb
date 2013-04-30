@@ -7,6 +7,7 @@ class DisciplineClassExam < ActiveRecord::Base
   before_destroy :has_children?
   
   validates_presence_of :applied_at, :title, :weight, :discipline_class_id
+  validates :real_value ,:numericality => {:greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 10.0}
   
   def is_mandatory?
     if self.is_mandatory

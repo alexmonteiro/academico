@@ -11,13 +11,11 @@ class ApplicationController < ActionController::Base
         add_breadcrumb path.to_s, relative_path
       end
     end
-  end
+  end  
   
   rescue_from CanCan::AccessDenied do |exception|
     exception.default_message = "Perfil sem acesso a esta rotina"
     redirect_to root_url, :alert => exception.message
-  end
-  
-  
-  
+  end  
+    
 end

@@ -21,7 +21,7 @@
   <div class="control-group">
     <%= f.label :class_season_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :class_season_id, ClassSeason.find(:all), :id, :model_custom_name, :prompt => "...Selecione..." %>
+      <%= f.collection_select :class_season_id, ClassSeason.order("start_at DESC"), :id, :model_custom_name, :prompt => "...Selecione..." %>
     </div>
   </div>
   <div class="control-group">
@@ -33,15 +33,13 @@
   <div class="control-group">
     <%= f.label :opening_at, :class => 'control-label' %>
     <div class="controls">
-      <% @school_class.opening_at = @school_class.opening_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :opening_at, :class => 'datepicker_class', :style => "width:80px", :id => "date" %>
+	   <%= f.text_field :opening_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @school_class.opening_at.blank? ? nil : @school_class.opening_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :closing_at, :class => 'control-label' %>
     <div class="controls">
-      <% @school_class.closing_at = @school_class.closing_at.try(:strftime, "%d.%m.%Y") %>
-      <%= f.text_field :closing_at, :class => 'datepicker_class', :style => "width:80px", :id => "date", :include_blank => true %>
+	   <%= f.text_field :closing_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @school_class.closing_at.blank? ? nil : @school_class.closing_at.strftime("%d.%m.%Y") %>
     </div>
   </div>
 

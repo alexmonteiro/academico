@@ -14,13 +14,13 @@
   <div class="control-group">
     <%= f.label :start_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :start_at, :class => 'datepicker_class', :id => "date", :style => "width:80px"  %>
+	  <%= f.text_field :start_at, :class => 'datepicker_class', :style => "width:80px", :value => @class_season.start_at.blank? ? nil : l(@class_season.start_at, :format => :default %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :end_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :end_at, :class => 'datepicker_class', :id => "date", :style => "width:80px", :include_blank => true %>
+	  <%= f.text_field :end_at, :class => 'datepicker_class', :style => "width:80px", :value => @class_season.end_at.blank? ? nil : l(@class_season.end_at, :format => :default) %>
     </div>
   </div>
   <div class="control-group">

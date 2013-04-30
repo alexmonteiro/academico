@@ -7,9 +7,9 @@
   <dt><strong><%= model_class.human_attribute_name(:course_id) %>:</strong></dt>
   <dd><%= @matrix.course.try(:name) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
-  <dd><%=l @matrix.started_at if @matrix.started_at %></dd>
+  <dd><%=l (@matrix.started_at) if @matrix.started_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ended_at) %>:</strong></dt>
-  <dd><%=l @matrix.ended_at if @matrix.ended_at %></dd>
+  <dd><%=l (@matrix.ended_at) if @matrix.ended_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:maxdisciplines) %>:</strong></dt>
   <dd><%= @matrix.maxdisciplines %></dd>
   <dt><strong><%= model_class.human_attribute_name(:maxseasons) %>:</strong></dt>

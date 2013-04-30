@@ -15,7 +15,7 @@ jQuery(function($) {
 </script>
 
     <% if !@person.blank?%>
-		<% if !@person.person_address.city.blank? && country_id == @person.person_address.city.state.country.id %>
+		<% if !@person.person_address.try(:city).blank? && country_id == @person.person_address.try(:city).state.country.id %>
 			<% states = State.where(:country_id=>@person.person_address.city.state.country.id).order(:name) %>
 			<% state_selected = @person.person_address.city.state.id %>
 			<% city_from_country = true%>

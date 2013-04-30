@@ -23,7 +23,7 @@ jQuery(function($) {
 
 
 	<% if !@person.person_address.blank? %>
-		<% if !@person.person_address.city.blank? %>
+		<% if !@person.person_address.try(:city).blank? %>
 			<% city_from_country = true%>
 		<%else%>
 			<% city_from_country = false%>
@@ -33,7 +33,7 @@ jQuery(function($) {
 	<%end%>
 	
 	<%if city_from_country%>
-		<%= select("country_person_address","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person.person_address.city.state.country.id.to_i}, :id => "country_person_address") %>
+		<%= select("country_person_address","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País", :selected =>  @person.person_address.try(:city).try(:state).try(:country_id) }, :id => "country_person_address") %>
 	<%else%>
 		<%= select("country_person_address","", Country.find(:all, :order => "name").collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um País"}, :id => "country_person_address") %>
 	<%end%>

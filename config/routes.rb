@@ -109,8 +109,12 @@ AcademicoRails::Application.routes.draw do
     resources :class_teachings, :path =>"docencias"
     # Aulas ministradas
     resources :class_records, :path =>"aulas" do
+        
+        get :class_record_presences_day, :on => :collection # Chamada de uma classe por dia
+        put 'update_presences_by_date', :on => :collection, :controller => :class_records, :action => 'update_presences_by_date'
+        
         resources :class_record_presences, :path => "presencas"
-        get :classdateselect, :on => :collection # claendario para inclusao de aulas
+        get :classdateselect, :on => :collection # calendário para inclusao de aulas
         get :new_many, :on => :collection # inclusao de varias aulas
         post :create_many, :on => :collection # create de varias aulas
         match 'presencas', :controller=>'class_record_presences', :method => :put, :action => 'update_presence'
@@ -194,6 +198,6 @@ AcademicoRails::Application.routes.draw do
   resources :matrix_discipline_groups, :path => 'configuracoes/matriz_disciplina'
   resources :dept_types, :path => 'configuracoes/departamentos'
   
-
-
+  # dynamic erros
+  match '(errors)/:status', :to => 'errors#show', :constraints => {:status => /\d{3}/} #, :via => :all
 end

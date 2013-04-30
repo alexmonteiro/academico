@@ -6,7 +6,7 @@ class Discipline < ActiveRecord::Base
   default_scope :order => :name
   before_destroy :has_children?
   
-  validates_presence_of :name, :course_id, :discipline_type_id
+  validates_presence_of :name, :course_id, :discipline_type_id, :workload
   
 
 

@@ -1,25 +1,38 @@
 <script type="text/javascript">
 jQuery(function($) {
 // when the #region_id field changes
-  $("#dept_address_state").change(function() {
+  $("#Dept_state").change(function() {
     // make a POST call and replace the content
-    var state = $('select#dept_address_state :selected').val();
+    var state = $('select#Dept_state :selected').val();
     var nome_view = $('input#nome_view').val();
     if(state == "") state="0";
     jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
-        $("#addressCities").html(data);
+        $("#addressCitiesDept").html(data);
     })
     return false;
   });
 })
 </script>
 
-
-    <% if !states.blank? %>
-       <%= select_tag 'dept_address_state', options_from_collection_for_select(states, "id", "name") %>
-
-    <% else %>
-      <%= select_tag 'dept_address_state', [], :class => 'select_field' %>
+<% if !@dept_address.blank? %>
+    <% if !@dept_address.city.blank? %>
+        <% states = State.where(:country_id => @dept_address.city.state.country.id).order(:name) %>
+        <% state_selected = @dept_address.city.state.id %>
+        <% city_from_country = true %>
     <% end %>
-
+<% else %>
+    <% state_selected = 0 %>
+    <% city_from_country = false %>
+<% end %>
+    
+    
+    <% if !states.blank? %>
+          <% if city_from_country = true %>
+               <%= select('Dept_state',"", states.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um Estado", :selected => state_selected}, :id => "Dept_state") %>
+          <% else %>
+               <%= select("Dept_state","", states.collect {|p| [ p.name, p.id ] }, { :include_blank => "Escolha um Estado"}, :id => "Dept_state") %>
+          <% end %>
+    <% else %>
+        <%= select("Dept_state","", [], { :include_blank => "Escolha um Estado"}, :id => "Dept_state") %>
+    <% end %>
 
