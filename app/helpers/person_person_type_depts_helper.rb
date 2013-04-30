@@ -1,0 +1,2 @@
+module PersonPersonTypeDeptsHelper
+end

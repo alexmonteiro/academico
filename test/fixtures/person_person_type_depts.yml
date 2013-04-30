@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  person_person_type: 
+  dept: 
+
+two:
+  person_person_type: 
+  dept: 

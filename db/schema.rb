@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411185405) do
+ActiveRecord::Schema.define(:version => 20130415150050) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -566,6 +566,16 @@ ActiveRecord::Schema.define(:version => 20130411185405) do
   add_index "person_identification_docs", ["rg_issuing_institution"], :name => "index_person_identification_docs_on_rg_issuing_institution"
   add_index "person_identification_docs", ["rg_uf"], :name => "index_person_identification_docs_on_rg_uf"
   add_index "person_identification_docs", ["vr_uf"], :name => "index_person_identification_docs_on_vr_uf"
+
+  create_table "person_person_type_depts", :force => true do |t|
+    t.integer  "person_person_type_id"
+    t.integer  "dept_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "person_person_type_depts", ["dept_id"], :name => "index_person_person_type_depts_on_dept_id"
+  add_index "person_person_type_depts", ["person_person_type_id"], :name => "index_person_person_type_depts_on_person_person_type_id"
 
   create_table "person_person_types", :force => true do |t|
     t.integer  "person_id"

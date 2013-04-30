@@ -2,8 +2,10 @@ class Dept < ActiveRecord::Base
   belongs_to :dept_type
   belongs_to :dept
   has_many :depts
+  has_many :person_person_types, :through => :person_person_type_depts
+  has_many :person_person_type_depts, :dependent => :destroy
   has_one :dept_address
-  attr_accessible :acronym, :cnpj, :description, :email, :finished_at, :name, :site, :started_at, :dept_type_id, :dept_id, :code_number
+  attr_accessible :acronym, :cnpj, :description, :email, :finished_at, :name, :site, :started_at, :dept_type_id, :dept_id, :code_number, :person_person_type_depts
 
   #Validacoes
   validates :name, :acronym, :code_number, {:presence => true, :uniqueness => true}

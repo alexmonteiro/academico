@@ -6427,7 +6427,8 @@ discipline_class_exam_types = DisciplineClassExamType.create([
 puts 'Inserindo tipo do Tipos de pessoas...'
 person_types = PersonType.create([
   {:description => 'Aluno'},
-  {:description => 'Servidor'}
+  {:description => 'Servidor'},
+  {:description => 'Professor'}
 ])
 
 # Alimenta tabela tipo do Tipos de regras academicas
