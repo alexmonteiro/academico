@@ -1,3 +1,9 @@
+<!-- Depts: Unidade Organizacioal -->
+<!-- Renderiza: Mostra o conteudo de uma partial artial. Ex.: Mostra o conteudo da pagina '_form.html.erb'-->
+<!-- Vinculo Institucional: termo relacionado a person_type (que envolve o person_person_type)-->
+<!-- Esta render mostra os campos relacionados a Vinculo Institucional do cadastro de pessoas-->
+
+
 <fieldset>
   <legend>Vínculo Institucional</legend>
    <div class="span12">
@@ -16,17 +22,17 @@
 				</script>
 				<!--Iteração para os campos de Vinculo Institucional-->
 	            <% if person_type.id != 1%> <!--Verifica se é person_type é do tipo aluno => Se não for aluno cai nessa condição-->
-	            	<%= check_box_tag"person_types_checkeds[]","#{person_type.id}", checked  %> <%=person_type.description%> <%=link_to_function("Adicionar Instituto","add_fields_depts(\"#campoDeDepts#{person_type.id}\",\"#{escape_javascript(render :partial => 'person_person_type_dept_fields', :locals => {:person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept =>''})}\")") %><!--Checkbox mais descrição + link de adicionar mais um dept-->
-	            	<div id=<%="campoDeDepts#{person_type.id}"%>>
+	            	<%= check_box_tag"person_types_checkeds[]","#{person_type.id}", checked  %> <%=person_type.description%> | <%=link_to_function("Adicionar Unidade Organizacional","add_fields_depts(\"#campoDeDepts#{person_type.id}\",\"#{escape_javascript(render :partial => 'person_person_type_dept_fields', :locals => {:person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept =>''})}\")") %><!--Checkbox + descrição + link de adicionar mais um dept-->
+	            	<div id=<%="campoDeDepts#{person_type.id}"%>> <!-- Div para indexar o campo de acordo com o Typo de Pessoa. Ex.: person_type.id = 2 #=> Aí o compoDeDepts sera igual a 2  -->
 	            																												
-						<%if !person.person_person_types.exists? %> <!-- Se não existir person_person_type cadastrado-->
-							<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => ""%>
-						<%else%>
-							<% person.person_person_types.each do |person_person_type|%>
-								<%if person_person_type.person_type_id == person_type.id%>
-									<% person_person_type.person_person_type_depts.each do |pptd|%>
-										<%if person_person_type.id == pptd.person_person_type.id%>
-											<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => pptd%>
+						<%if !person.person_person_types.exists? %> <!-- Se não existir Vinculo Institucional (ou seja, person_person_type cadastrado) com Unidade Organizacional -->
+							<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => ""%> <!-- No caso de não haver um vinculo institucional para a pessoa no ato do cadastro, ele ira renderizar sem recuperação dos dados de Vinculo Institucional do registro atual -> Isto acontece quando se cadastra uma nova pessoa (ou quando há inconsistencia de banco de dados na hora que tiver atualizando ou quando for atualiza pessoa que seja aluno atualizara outra tipo de vinculo institucional)-->
+						<%else%> <!-- Se existir Vinculo Institucional (ou seja, person_person_type cadastrado) com Unidade Organizacional -->
+							<% person.person_person_types.each do |person_person_type|%> <!-- Iteração para recuperação de Dados do Vinculo Institucional com Unidade Organizacional -->
+								<%if person_person_type.person_type_id == person_type.id%> <!-- Verifica se o Vinculo Institucional é o mesmo do Person_Type na iteração -->
+									<% person_person_type.person_person_type_depts.each do |pptd|%> <!-- Iteração para recuperação de Dados do Vinculo Institucional com Unidade Organizacional -->
+										<%if person_person_type.id == pptd.person_person_type.id%> <!-- Verifica se as Unidades Organizacionais Vinculadas pertencem a Vinculo Institucional -->
+											<%= render "person_person_type_dept_fields", :person_type => person_type, :pt => pt, :person => person, :f => d, :person_person_type_dept => pptd%> <!-- Renderiza o conteudo da partial '_person_person_type_dept_fields.html.erb' recuperando dados. Isso acontece no ato de atualização de cadastro.-->
 										<%end%>
 									<%end%>
 								<%end%>
