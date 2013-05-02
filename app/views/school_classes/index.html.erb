@@ -51,5 +51,5 @@
 </table>
 <center><%= will_paginate @school_classes %></center>
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_school_class_path,
+            (params[:course_matrix_id].blank? ? new_school_class_path : new_course_matrix_school_class_path(params[:course_matrix_id])),
             :class => 'btn btn-primary' %>
