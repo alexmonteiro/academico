@@ -75,6 +75,11 @@ class DisciplineClassesController < ApplicationController
   def create
     @discipline_class = DisciplineClass.new(params[:discipline_class])
     
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:school_class][:opening_at].gsub!("/",".")
+    params[:school_class][:ending_at].gsub!("/",".")
+    params[:school_class][:timetable_started_at].gsub!("/",".")
+    
     if (params[:school_class_id] && !params[:school_class_id].blank?)
       @school_class = SchoolClass.find_by_identifier(params[:school_class_id]) || SchoolClass.find(params[:school_class_id])
       @discipline_class.school_class_id = @school_class.id
@@ -95,6 +100,11 @@ class DisciplineClassesController < ApplicationController
   # PUT /discipline_classes/1.json
   def update
     @discipline_class = DisciplineClass.find(params[:id])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:discipline_class][:started_at].gsub!("/",".")
+    params[:discipline_class][:ending_at].gsub!("/",".")
+    params[:discipline_class][:timetable_started_at].gsub!("/",".")
 
     respond_to do |format|
       if @discipline_class.update_attributes(params[:discipline_class])

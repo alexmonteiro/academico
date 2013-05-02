@@ -50,6 +50,10 @@ class DeptsController < ApplicationController
   # POST /depts.json
   def create
     @dept = Dept.new(params[:dept])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:dept][:started_at].gsub!("/",".")
+    params[:dept][:finished_at].gsub!("/",".")
 
     respond_to do |format|
       if @dept.save
@@ -66,6 +70,10 @@ class DeptsController < ApplicationController
   # PUT /depts/1.json
   def update
     @dept = Dept.find(params[:id])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:dept][:started_at].gsub!("/",".")
+    params[:dept][:finished_at].gsub!("/",".")
 
     respond_to do |format|
       if @dept.update_attributes(params[:dept])

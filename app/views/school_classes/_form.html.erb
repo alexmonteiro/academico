@@ -35,13 +35,13 @@
   <div class="control-group">
     <%= f.label :opening_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :opening_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @school_class.opening_at.blank? ? nil : @school_class.opening_at.strftime("%d.%m.%Y") %>
+	   <%= f.text_field :opening_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @school_class.opening_at.blank? ? nil : @school_class.opening_at.strftime("%d/%m/%Y") %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :closing_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :closing_at, :class => 'datepicker_class',:readonly => "", :include_blank => true, :style => "width:80px", :value => @school_class.closing_at.blank? ? nil : @school_class.closing_at.strftime("%d.%m.%Y") %>
+	   <%= f.text_field :closing_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @school_class.closing_at.blank? ? nil : @school_class.closing_at.strftime("%d/%m/%Y") %>
     </div>
   </div>
 

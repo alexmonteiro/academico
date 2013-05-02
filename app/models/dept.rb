@@ -9,6 +9,7 @@ class Dept < ActiveRecord::Base
 
   #Validacoes
   validates :name, :acronym, :code_number, {:presence => true, :uniqueness => true}
+  validates :started_at, :presence => true
   
   validate :finished_at_date
   
