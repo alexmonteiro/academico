@@ -53,6 +53,9 @@ class TeachingEquipamentsController < ApplicationController
   def create
     @dept = Dept.find((params[:dept_id]))
     @teaching_equipament = TeachingEquipament.new(params[:teaching_equipament])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:teaching_equipament][:arrival_date].gsub!("/",".")
 
     respond_to do |format|
       if @teaching_equipament.save
@@ -70,6 +73,9 @@ class TeachingEquipamentsController < ApplicationController
   def update
     @dept = Dept.find((params[:dept_id]))
     @teaching_equipament = TeachingEquipament.find(params[:id])
+    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:teaching_equipament][:arrival_date].gsub!("/",".")
 
     respond_to do |format|
       if @teaching_equipament.update_attributes(params[:teaching_equipament])

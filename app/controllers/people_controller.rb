@@ -61,6 +61,9 @@ class PeopleController < ApplicationController
     @person = Person.new(params[:person])
     condition_save_depts = @person.validates_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo para validação dos campos de Vinculo Institucional... Este Método encontra-se na Model de Pessoas
     
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:person][:birth_date].gsub!("/",".")
+    
     respond_to do |format|
       if condition_save_depts && @person.save
         @person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds])  # => Chama o metodo que salva os campos de Vinculo Institucional
@@ -76,7 +79,16 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
+
+    
+    
+    if !params[:person]['person_type_ids']
+      @person.person_types.destroy_all
+    end 
+
+
     condition_save_depts = @person.validates_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo para validação dos campos de Vinculo Institucional... Este Método encontra-se na Model de Pessoas
+
     respond_to do |format|
       if condition_save_depts && @person.update_attributes(params[:person])
         @person.person_person_types.destroy_all # => Antes de atualizar, elimina-se os registros relacionado a Vinculo Institucional
