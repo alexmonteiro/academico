@@ -6,7 +6,7 @@
   <div class="control-group">
     <%= f.label :registered_at, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :registered_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @registration.registered_at.blank? ? nil : @registration.registered_at.strftime("%d.%m.%Y") %>
+      <%= f.text_field :registered_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @registration_class.registered_at.blank? ? nil : @registration_class.registered_at.strftime("%d/%m/%Y") %>
     </div>
   </div>
   <div class="control-group">

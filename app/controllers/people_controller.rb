@@ -80,7 +80,8 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
 
-    
+    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    params[:person][:birth_date].gsub!("/",".")
     
     if !params[:person]['person_type_ids']
       @person.person_types.destroy_all
