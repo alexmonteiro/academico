@@ -1,5 +1,4 @@
 <%= form_for @school_class, :html => { :class => 'form-horizontal' } do |f| %>
-
   <div class="control-group">
     <%= f.label :identifier, :class => 'control-label'%>
     <div class="controls">
@@ -15,13 +14,16 @@
   <div class="control-group">
     <%= f.label :matrix_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.grouped_collection_select :matrix_id, Course.order(:name), :course_matrices, :name, :id, :model_custom_name, :prompt => "...Selecione..." %>
+    	<% options = option_groups_from_collection_for_select(Course.order(:name).all, :course_matrices, :name, :id, :model_custom_name, (!params[:course_matrix_id].blank? ? params[:course_matrix_id] : "")) %>
+   		<%= f.select(:matrix_id, options, :include_blank => "...Selecione...") %>
+      <!-- <%= # f.grouped_collection_select :matrix_id, Course.order(:name), :course_matrices, :name, :id, :model_custom_name, :prompt => "...Selecione...", :selected => @course_matrix.id 
+      	%> -->
     </div>
   </div>
   <div class="control-group">
     <%= f.label :class_season_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :class_season_id, ClassSeason.order("start_at DESC"), :id, :model_custom_name, :prompt => "...Selecione..." %>
+      <%= f.collection_select :class_season_id, ClassSeason.order("start_at DESC"), :id, :model_custom_name, :prompt => "...Selecione..."%>
     </div>
   </div>
   <div class="control-group">
