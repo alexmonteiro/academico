@@ -12,6 +12,7 @@ class CourseMatrix < ActiveRecord::Base
   default_scope :order => "id DESC"
   
   validates :started_at, :class_season_type_id, :matrix_status_id, :matrix_evaluation_type_id,  :course_id, :presence => true
+  validates :maxseasons, :maxdisciplines, :numericality => { :greater_than => 0 }, :presence => true
   
   validate :ended_at_valid?
   

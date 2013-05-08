@@ -19,9 +19,11 @@ class RegistrationPdf < Prawn::Document
   
   def content
     
-           #array dos dias de aula da grade horariae horas das grades
+            #array dos dias de aula da grade horaria e horas minima e maxima das grades
             days = []
+            #horas com "xx:xxh : xx:xxh"
             hours = []
+            #horas com "de xx:xxh as xx:xxh"
             hours_as = []
             
             #loop entre as grades horarias pegando o dia e as horas [a primeira e a ultima do dia]
@@ -36,10 +38,6 @@ class RegistrationPdf < Prawn::Document
               end
              end 
 
-    
-    
-    
-    
             move_down 30
             font("Courier", :size => 12) do
                tabela = [["Matricula","#{@registration.registration_number}"],
@@ -57,7 +55,7 @@ class RegistrationPdf < Prawn::Document
                pad(10) { table(tabela, :cell_style => {:borders => []} ) }
                stroke_horizontal_rule        
             end
-           #caso o di mude , pro alguma forca maior, adpatar para odi atual ou ao correspondente
+           #caso o id mude , por alguma forca maior, adpatar para o id atual ou ao correspondente
            if @registration.course_matrix.course.education_modality_id == 25
              font("Courier", :size => 12) do
                  pad(10) { table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que, o(a) aluno(a) acima identificado(a) está regularmente matriculado(a) para o #{@registration.course_matrix.school_classes.last.period} semestre de #{@registration.course_matrix.course.created_at.year}, no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - Campus #{@registration.course_matrix.course.dept.try(:name)}, no Curso de Formação Inicial e Continuada de #{@registration.course_matrix.course.name}, com aula(s) #{days.join(",")} de #{hours_as.last}."]

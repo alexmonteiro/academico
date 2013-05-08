@@ -45,35 +45,36 @@ class RegistrationClassPdf < Prawn::Document
   
   #Metodo Que Desenha As Informações Sobre a Logo, Titulo Instituto, Diário, Relatório de Frequencia... 
   def title
-    image "app/assets/images/logo-if.png", :at => [0,550], :width => 55, :height => 70
-    text "Instituto Federal de Brasília", :align => :center, :size => 18
-    text "Diário de Classe - Relatório de Frequência", :align => :center, :size => 12
-    text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14
+    image "app/assets/images/logo-if.png", :at => [0,550], :width => 25, :height => 40
+    text_box "Instituto Federal de Brasília", :at => [50,547], :size => 8, :style => :bold
+    text_box "Diário de Classe - Relatório de Frequência", :at => [50,537], :size => 8, :style => :bold
+    #text_box "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :at => [], :size => 8
     move_down(15)
   end
   
   #Método que desenha as informações sobre o relatório como Classe, Curso, Professor...
   def information
-    font_size 9.5
+    font_size 8
     data_header = [["<b>Classe:</b> #{@discipline.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline.discipline_class_dept}"],
                       ["<b>Curso:</b> #{@discipline.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline.discipline_name}"],
                       ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline.discipline_class_classes_taught_planned}"],
                       ["<b>Carga Horária:</b> #{@discipline.discipline_class_workload}", ""]]
-    table(data_header, :width => 775, :cell_style => { :inline_format => true }) do
+    move_up(27)
+    table(data_header, :width => 515, :position => :right, :cell_style => { :inline_format => true }) do
       row(0..3).borders = []
-      row(0..3).columns(0..1).width = 387.5
+      row(0..3).columns(0..1).width = 257.5
       row(0..3).padding = [2,2,2,2]   
   end
   
   #Metodo que desenha o head da tabela Numero, Matriculas, Alunos...
   def head_table(opcoes = {})
-    font_size 9
+    font_size 8
     #Config do campo Datas e a Linha horizontal
-    bounding_box([0, 400], :width => 2200, :font_style => :bold) do
-      vertical_line 0, -40, :at => 225
+    bounding_box([0, 435], :width => 2200, :font_style => :bold) do
+      vertical_line 50, 10, :at => 225
       #horizontal_line 240, 640, :at => -31
       rotate(90, :origin => [00, 00]) do
-        draw_text "Datas", :at => [-32,-235], :font_style => :bold
+        draw_text "Datas", :at => [18,-235], :font_style => :bold
       end
     #fim Config
     
@@ -96,6 +97,7 @@ class RegistrationClassPdf < Prawn::Document
     # Definição e Desenho da Tabela Cabecalho
     data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas"]]
       
+      move_up(50)
       table(data_head, :header => true) do
         row(0).height = (40)
         row(0).align = :center
@@ -126,7 +128,7 @@ class RegistrationClassPdf < Prawn::Document
   #Conteudo da Tabla  - Informações
   def content(opcoes={})
     
-    bounding_box([0, 360], :width => 2200) do
+    bounding_box([0, 400], :width => 2200) do
     font_size 9
 
     data_type = [["Legenda para F e C: F - Falta e C - Comparecimento"]]
@@ -167,6 +169,7 @@ class RegistrationClassPdf < Prawn::Document
   
   #Método para listar alunos e presenças (Cruzmento de Dados)
   def data_calls(opcoes = {})
+    move_up(50)
     data_content = [[" "," "," "] + [" "]*20 + [" "," "," "]]
      if @preenchido.blank?
       @discipline.registration_classes.each_with_index do |student, i|

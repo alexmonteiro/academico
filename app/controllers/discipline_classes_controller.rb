@@ -46,6 +46,17 @@ class DisciplineClassesController < ApplicationController
           pdf = ExamsClassPdf.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
           send_data pdf.render, :filename => "Mapa_de_Notas#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}.#{Time.now.strftime("%d%m%Y")}", :type => "application/pdf", :disposition => "inline"
         end
+      elsif params[:report_discipline] == "teste"
+        format.pdf do
+          pdf = EnrollmentPDF.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
+          send_data pdf.render, :filename => "TESTE#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}#{Time.now.strftime("%d%m%Y")}", :type => "application/pdf", :disposition => "inline"
+      end
+      #pdf para impressao da lista de chamada
+      elsif params[:report_discipline] == "presence_list"
+        format.pdf do
+          pdf = PresenceListPDF.new(:discipline_class => @discipline_class, :preenchido => params[:preenchido])
+          send_data pdf.render, :filename => "Frequência#{@discipline_class.started_at}#{@discipline_class.code}#{@discipline_class.id}#{Time.now.strftime("%d%m%Y")}", :type => "application/pdf", :disposition => "inline"
+        end
       end
     end
   end
