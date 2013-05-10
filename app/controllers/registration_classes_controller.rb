@@ -72,6 +72,8 @@ class RegistrationClassesController < ApplicationController
   # POST /registration_classes.json
   def create        
     @registration_class = RegistrationClass.new(params[:registration_class])
+    
+    params[:registration_class][:registered_at].gsub!("/",".")
 
     if params.has_key?(:discipline_class_id)
      @discipline_class = DisciplineClass.find(params[:discipline_class_id])
@@ -114,6 +116,8 @@ class RegistrationClassesController < ApplicationController
   # PUT /registration_classes/1.json
   def update
     @registration_class = RegistrationClass.find(params[:id])
+    
+    params[:registration_class][:registered_at].gsub!("/",".")
 
     if params.has_key?(:discipline_class_id)
      @discipline_class = DisciplineClass.find(params[:discipline_class_id])

@@ -56,6 +56,9 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(params[:registration])
+    
+    params[:registration][:registration_at].gsub!("/",".")
+    
     if params[:person_id]
       @person = Person.find(params[:person_id])
       @registration.person_id = @person.id
@@ -78,6 +81,8 @@ class RegistrationsController < ApplicationController
   # PUT /registrations/1.json
   def update
     @registration = Registration.find(params[:id])
+    
+    params[:registration][:registration_at].gsub!("/",".")
 
     respond_to do |format|
       if @registration.update_attributes(params[:registration])
