@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  extend Rolify
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -133,12 +133,13 @@ module ApplicationHelper
     fullpath = "#{request.fullpath}"[1..-1].split('/')
     top_menu = ""
 
-    if current_user.has_role? :admin
+    #if current_user.has_role? :admin
      top_menu += "<li class= #{'active' if fullpath.include?('registro_academico')}><a href= #{registro_academico_index_path} %> <i class='icon-edit'></i>Registro Acadêmico</a> </li>"
+     top_menu += "<li class= #{'active' if fullpath.include?('professor')}><a href=#{teacher_index_path}><i class='icon-coffee'> </i>Espaço Professor</a> </li>"
      top_menu += "<li class= #{'active' if fullpath.include?('configuracoes')}><a href=#{config_index_path}><i class='icon-wrench'> </i>Configurações</a> </li>"
-    elsif current_user.has_role? :registroacademico
-     top_menu += "<li class= #{'active' if fullpath.include?('registro_academico')}><a href= #{registro_academico_index_path} %> ><i class='icon-edit'></i>Registro Acadêmico</a> </li>"
-    end
+    #elsif current_user.has_role? :registroacademico
+    # top_menu += "<li class= #{'active' if fullpath.include?('registro_academico')}><a href= #{registro_academico_index_path} %> <i class='icon-edit'></i>Registro Acadêmico</a> </li>"
+    #end
 
     top_menu.html_safe
   end

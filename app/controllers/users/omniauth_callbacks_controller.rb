@@ -24,7 +24,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
     end
     
-    
     def remember_me
       if params[:user][:remember_me]
         @user.remember_me!
