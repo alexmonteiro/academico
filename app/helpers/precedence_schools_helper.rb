@@ -1,0 +1,2 @@
+module PrecedenceSchoolsHelper
+end

@@ -6463,3 +6463,10 @@ admin = User.create! do |u|
 end
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'
+
+# Inserindo Precedencias Escolares
+puts 'Inserindo Precedencias Escolares...'
+precedence_scholl = PrecedenceSchool.create([
+  {:description => 'Pública'},
+  {:description => 'Particular'}
+])

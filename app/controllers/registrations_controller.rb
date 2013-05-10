@@ -56,6 +56,9 @@ class RegistrationsController < ApplicationController
   # POST /registrations.json
   def create
     @registration = Registration.new(params[:registration])
+    
+    params[:registration][:registration_at].gsub!("/",".")
+    
     if params[:person_id]
       @person = Person.find(params[:person_id])
       @registration.person_id = @person.id
@@ -65,6 +68,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.save
+        @registration.person.update_attributes(params[:person])
         format.html { redirect_to [@person, @registration], :notice => 'Matrícula criada com sucesso.' }
         format.json { render :json => @registration, :status => :created, :location => @registration }
       else
@@ -78,9 +82,12 @@ class RegistrationsController < ApplicationController
   # PUT /registrations/1.json
   def update
     @registration = Registration.find(params[:id])
+    
+    params[:registration][:registration_at].gsub!("/",".")
 
     respond_to do |format|
       if @registration.update_attributes(params[:registration])
+        @registration.person.update_attributes(params[:person])
         if !params[:registration][:admission_type_ids]
           @registration.registration_admission_types.delete_all
         end

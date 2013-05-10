@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :precedence_schools
+
   #resources :registration_admission_types
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks",
