@@ -211,6 +211,36 @@ pt-BR:
         registration_number: "Matrícula"
         registration_status_id: "Situação"
         admission_type_ids: "Tipo de Ingresso"
+        family_income: "Renda Familiar"
+        how_many_live: "Quantas pessoas moram com você?"
+        have_work: "Trabalha?"
+        occupation: "Profissão/Cargo"
+        workplace: "Local de Trabalho"
+        responsible_complete_name: "Nome Completo"
+        responsible_cpf: "CPF"
+        responsible_kinship: "Parentesco"
+        responsible_address: "Endereço Residencial"
+        responsible_cep: "CEP"
+        responsible_have_work: "Trabalha?"
+        responsible_occupation: "Profissão/Cargo"
+        responsible_workplace: "Local de Trabalho"
+        responsible_workphone: "Telefone Comercial"
+        responsible_telephone: "Telefone Pessoal"
+        responsible_schooling: "Escolaridade"
+        presents_special_need: "Apresenta alguma necessidade específica?"
+        special_need_description: "Qual necessidade específica?"
+        presents_health_problem: "Problema de saúde?"
+        health_problem_description: "Qual problema de saúde?"
+        precedence_school_id: "Procedência Escolar"
+        parent_institution: "Instituição de Origem"
+        education_degree: "Etapa de Ensino"
+        year_completion: "Ano de Conclusão"
+        is_attending_scholl_level: "Está cursando algum nível de escolaridade?"
+        attending_scholl_level_description: "Qual nível de escolaridade está cursando?"
+        dont_take_another_vacance_public_institution: "Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição pública de ensino superior em todo território nacional, estando em conformidade com a lei 12.089 de 11 de novembro de 2009."
+        dont_take_another_prouni_vacance_public_institution: "Declaro que não ocupo outra vaga, na condição de estudante, em outra instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005."
+
+        
       class_record:
         recorded_at: "Data"
         record: "Conteúdo"
@@ -356,6 +386,8 @@ pt-BR:
         description: "Descrição"
       dept_type:
         dept_type: "Departamento"
+      precedence_school:
+        description: "Descrição"
         
     models:
       person: "Pessoa"  

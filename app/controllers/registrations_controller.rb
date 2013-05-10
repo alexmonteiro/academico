@@ -68,6 +68,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.save
+        @registration.person.update_attributes(params[:person])
         format.html { redirect_to [@person, @registration], :notice => 'Matrícula criada com sucesso.' }
         format.json { render :json => @registration, :status => :created, :location => @registration }
       else
@@ -86,6 +87,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @registration.update_attributes(params[:registration])
+        @registration.person.update_attributes(params[:person])
         if !params[:registration][:admission_type_ids]
           @registration.registration_admission_types.delete_all
         end

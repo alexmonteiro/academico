@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415150050) do
+ActiveRecord::Schema.define(:version => 20130508165947) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -593,6 +593,12 @@ ActiveRecord::Schema.define(:version => 20130415150050) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "precedence_schools", :force => true do |t|
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "provenance_areas", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
@@ -656,12 +662,40 @@ ActiveRecord::Schema.define(:version => 20130415150050) do
     t.integer  "person_id"
     t.string   "registration_number"
     t.integer  "registration_status_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+    t.string   "family_income"
+    t.integer  "how_many_live"
+    t.boolean  "have_work"
+    t.string   "occupation"
+    t.string   "workplace"
+    t.string   "responsible_complete_name"
+    t.string   "responsible_cpf"
+    t.string   "responsible_kinship"
+    t.text     "responsible_address"
+    t.string   "responsible_cep"
+    t.boolean  "responsible_have_work"
+    t.string   "responsible_occupation"
+    t.string   "responsible_workplace"
+    t.string   "responsible_workphone"
+    t.string   "responsible_telephone"
+    t.string   "responsible_schooling"
+    t.boolean  "presents_special_need"
+    t.text     "special_need_description"
+    t.boolean  "presents_health_problem"
+    t.text     "health_problem_description"
+    t.integer  "precedence_school_id"
+    t.string   "parent_institution"
+    t.string   "year_completion"
+    t.boolean  "is_attending_scholl_level"
+    t.text     "attending_scholl_level_description"
+    t.boolean  "dont_take_another_vacance_public_institution"
+    t.boolean  "dont_take_another_prouni_vacance_public_institution"
   end
 
   add_index "registrations", ["course_matrix_id"], :name => "index_registrations_on_course_matrix_id"
   add_index "registrations", ["person_id"], :name => "index_registrations_on_person_id"
+  add_index "registrations", ["precedence_school_id"], :name => "index_registrations_on_precedence_school_id"
   add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
 
   create_table "roles", :force => true do |t|

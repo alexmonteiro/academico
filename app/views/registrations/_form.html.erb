@@ -1,3 +1,4 @@
+<%- model_class = @registration.class -%>
 <%= form_for [@person, @registration], :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">
@@ -46,6 +47,222 @@
 	        </div>
 	    <% end %>
    	</div>
+	</fieldset>
+  </div>
+
+  <!-- Dados Pessoais-->  
+  <div class="well">
+	<fieldset>
+	  <legend>Dados Pessoais</legend>
+	   <div class="span12">
+	   	<div class="pull-right span5">
+	   		<div class="control-group">
+		   	  <%= f.label :have_work, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.radio_button :have_work, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   		  <%= f.radio_button :have_work, false  %> Não
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :occupation, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :occupation %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :workplace, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :workplace %>
+		       </div>
+	   	    </div>
+	   	</div>
+	   	<div class="pull-left span5">
+	   		<div class="control-group">
+			   	  <%= f.label :family_income, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :family_income %>
+		       </div>
+		    </div>
+		    <div class="control-group">
+		       	  <%= f.label :how_many_live, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :how_many_live %>
+		       </div>
+	   	    </div>
+	   </div>
+	 </fieldset>
+   </div>
+  
+  <!-- Dados do Responsável-->  
+  <div class="well">
+	<fieldset>
+	  <legend>Dados do Responsável</legend>
+	   <div class="span12">
+	   	<div class="pull-right span5">
+	   		<div class="control-group">
+		   	  <%= f.label :responsible_complete_name, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_complete_name %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_cpf, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_cpf %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_kinship, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_kinship %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_address, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_address %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_cep, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_cep %>
+		       </div>
+	   	    </div>
+	   		<div class="control-group">
+		   	  <%= f.label :responsible_have_work, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.radio_button :responsible_have_work, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   		  <%= f.radio_button :responsible_have_work, false  %> Não
+		       </div>
+	   	    </div>
+	   	</div>
+	   	<div class="pull-left span5">
+	   		<div class="control-group">
+		   	  <%= f.label :responsible_occupation, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_occupation %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_workplace, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_workplace %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_workphone, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_workphone %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_telephone, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_telephone %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :responsible_schooling, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :responsible_schooling %>
+		       </div>
+	   	    </div>
+	   </div>
+	</fieldset>
+  </div>
+  
+  <!-- Dados Sobre a Saúde-->
+  <div class="well">
+	<fieldset>
+	  <legend>Dados Sobre a Saúde</legend>
+	   <div class="span12">
+	   	<div class="pull-right span5">
+	   		<div class="control-group">
+		   	  <%= f.label :presents_special_need, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.radio_button :presents_special_need, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   		  <%= f.radio_button :presents_special_need, false  %> Não
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :special_need_description, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :special_need_description %>
+		       </div>
+	   	    </div>
+	   	</div>
+	   	<div class="pull-left span5">
+	   		<div class="control-group">
+		   	  <%= f.label :presents_health_problem, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.radio_button :presents_health_problem, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   		  <%= f.radio_button :presents_health_problem, false  %> Não
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :health_problem_description, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :health_problem_description %>
+		       </div>
+	   	    </div>
+	   </div>
+	</fieldset>
+  </div>
+  
+  
+  <!-- Dados Escolaridade do Aluno-->   
+  <div class="well">
+	<fieldset>
+	  <legend>Dados Escolaridade do Aluno</legend>
+	   <div class="span12">
+	   	<div class="pull-right span5">
+	   		<div class="control-group">
+		   	  <%= f.label :precedence_school_id, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.collection_select :precedence_school_id, PrecedenceSchool.all, :id, :description, :prompt => "Selecione"%>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :parent_institution, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :parent_institution %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :year_completion, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :year_completion %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :education_degree, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= select_tag "person[education_degree_id]", options_from_collection_for_select(EducationDegree.all, "id", "degree", :selected => (@registration.person.education_degree_id if !@registration.person.education_degree_id.blank?)), :prompt => "...Selecione..." %>
+			   </div>
+	   	    </div>
+	   	</div>
+	   	<div class="pull-left span5">
+	   		<div class="control-group">
+		   	  <%= f.label :is_attending_scholl_level, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.radio_button :is_attending_scholl_level, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		   		  <%= f.radio_button :is_attending_scholl_level, false  %> Não
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.label :attending_scholl_level_description, :class => 'control-label' %>
+			   <div class="controls">
+			 	  <%= f.text_field :attending_scholl_level_description %>
+		       </div>
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.check_box :dont_take_another_vacance_public_institution, {}, true, false%> &nbsp; Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição pública de ensino superior em todo território nacional, estando em conformidade com a lei 12.089 de 11 de novembro de 2009.
+	   	    </div>
+	   	    <div class="control-group">
+		   	  <%= f.check_box :dont_take_another_prouni_vacance_public_institution, {}, true, false%> &nbsp; Declaro que não ocupo outra vaga, na condição de estudante, em outra instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005.
+	   	    </div>
+	   </div>
 	</fieldset>
   </div>
 
