@@ -1,0 +1,23 @@
+<h1>Listing precedence_schools</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @precedence_schools.each do |precedence_school| %>
+  <tr>
+    <td><%= precedence_school.description %></td>
+    <td><%= link_to 'Show', precedence_school %></td>
+    <td><%= link_to 'Edit', edit_precedence_school_path(precedence_school) %></td>
+    <td><%= link_to 'Destroy', precedence_school, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Precedence school', new_precedence_school_path %>
