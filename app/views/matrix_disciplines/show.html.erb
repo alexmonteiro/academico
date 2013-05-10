@@ -57,7 +57,7 @@
 	      <div style="padding-top: 60px">
 				<% if @matrix_discipline.discipline_classes.count >= 1 %>
 				    <% @matrix_discipline.discipline_classes.group_by(&:school_class_identifier).each do |school_class, discipline_classes| %>
-				     Turma: <%= link_to school_class, school_class_path(discipline_class) %>
+				     Turma: <%= link_to school_class, school_class_path(school_class) %>
 				     <table>
  	  			       <tbody>
 				         <%  discipline_classes.each do |discipline_class| %>

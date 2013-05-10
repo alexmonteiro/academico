@@ -18,6 +18,26 @@ class RegistrationPdf < Prawn::Document
   end
   
   def content
+    
+            #array dos dias de aula da grade horaria e horas minima e maxima das grades
+            days = []
+            #horas com "xx:xxh : xx:xxh"
+            hours = []
+            #horas com "de xx:xxh as xx:xxh"
+            hours_as = []
+            
+            #loop entre as grades horarias pegando o dia e as horas [a primeira e a ultima do dia]
+            if @registration.course_matrix.timetables.order(:day_week_id).each do |week|
+              if @registration.course_matrix.timetables.last
+                  days << week.day_week.description
+                else
+                  days <<  week.day_week.description
+                end
+                  hours << [( week.day_week.description  + " : " + week.timetable_class_times.first.class_time.try(:started_at) + "-" + week.timetable_class_times.last.class_time.try(:ended_at)  + "\n")]
+                  hours_as << [( week.timetable_class_times.first.class_time.try(:started_at) + " as " + week.timetable_class_times.last.class_time.try(:ended_at))]     
+              end
+             end 
+
             move_down 30
             font("Courier", :size => 12) do
                tabela = [["Matricula","#{@registration.registration_number}"],
@@ -33,27 +53,23 @@ class RegistrationPdf < Prawn::Document
                           tabela << ['Telefone',telefone.number]
                        end
                pad(10) { table(tabela, :cell_style => {:borders => []} ) }
-               stroke_horizontal_rule
+               stroke_horizontal_rule        
             end
-            font("Courier", :size => 12) do
-               pad(10) { table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
-               ], :cell_style => {:borders => []}) }
-            end               
+           #caso o id mude , por alguma forca maior, adpatar para o id atual ou ao correspondente
+           if @registration.course_matrix.course.education_modality_id == 25
+             font("Courier", :size => 12) do
+                 pad(10) { table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que, o(a) aluno(a) acima identificado(a) está regularmente matriculado(a) para o #{@registration.course_matrix.school_classes.last.period} semestre de #{@registration.course_matrix.course.created_at.year}, no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - Campus #{@registration.course_matrix.course.dept.try(:name)}, no Curso de Formação Inicial e Continuada de #{@registration.course_matrix.course.name}, com aula(s) #{days.join(",")} de #{hours_as.last}."]
+                 ], :cell_style => {:borders => []}) }   
+               end
+            else
+              font("Courier", :size => 12) do
+                 pad(10) { table([ ["#{Prawn::Text::NBSP * 10}Declaramos, para os fins necessários que o(a) aluno(a) identificado acima está regularmente matriculado(a), no Instituto Federal de Educação, Ciência e Tecnologia de Brasília - #{@registration.course_matrix.course.dept.dept.try(:name)}, no Curso  #{@registration.course_matrix.course.name}."]
+                 ], :cell_style => {:borders => []}) }
+              end
+            end              
             stroke_horizontal_rule
             
-            #array dos dias de aula da grade horariae horas das grades
-            days = []
-            hours = []
-            
-            #loop entre as grades horarias pegando o dia e as horas [a primeira e a ultima do dia]
-            @registration.course_matrix.timetables.order(:day_week_id).each do |week|
-              if @registration.course_matrix.timetables.last
-                days << week.day_week.description
-              else
-                days <<  week.day_week.description
-              end
-              hours << [( week.day_week.description  + " : " + week.timetable_class_times.first.class_time.try(:started_at) + "-" + week.timetable_class_times.last.class_time.try(:ended_at)  + "\n")]
-            end
+
             
             
             font("Courier", :size => 12) do
@@ -62,7 +78,13 @@ class RegistrationPdf < Prawn::Document
                     tabela_1 = [ ["Informações complementares:
                                   • Nenhuma turma cadastrada."] ]
                     pad(10) { table(tabela_1, :cell_style => {:borders => []} ) }
-                     else       
+                    # se a modalidade for FIC mostrar somente horas e periodo letivo
+                     else if @registration.course_matrix.course.education_modality_id == 25
+                         tabela_3 = [["Informações complementares:
+                                        • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
+                                        • Carga horária total do curso: #{@registration.course_matrix.matrix_workload} horas."]]
+                          pad(10) { table(tabela_3, :cell_style => {:borders => []} ) }
+                     else 
                      #informacoes caso aluno tenha turma   
                     tabela_2 = [ ["Informações complementares:
                                   • Período Letivo: #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:start_at).strftime("%d/%m/%Y")} a #{ClassSeason.find(@registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id)).try(:end_at).strftime("%d/%m/%Y")}.
@@ -71,6 +93,7 @@ class RegistrationPdf < Prawn::Document
                                   • Horarios: \n#{hours}"]]               
                                   
                     pad(10) { table(tabela_2, :cell_style => {:borders => []} ) }
+                  end
               end
  
             end                    
@@ -128,8 +151,6 @@ class RegistrationPdf < Prawn::Document
     text_box "#{@registration.course_matrix.course.dept.dept_address.try(:model_full_address)}", 
     :at => [0, 10], 
     :align => :right  
+   end
   end
-  end
-  
-  
-end
+ end 
