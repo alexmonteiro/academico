@@ -386,7 +386,7 @@ pt-BR:
         description: "Descrição"
       dept_type:
         dept_type: "Departamento"
-      users_role:
+      user_role:
         user_id: "Usuário"
         role_id: "Perfil"
       precedence_school:
@@ -462,7 +462,7 @@ pt-BR:
       issuing_institution: "Instituições Emissoras"
       matrix_discipline_group: "Grupos de Matriz de Disciplinas"
       dept_type: "Tipos de Departamento"
-      users_role: "Perfis de Acesso"
+      user_role: "Perfis de Acesso"
       
   action:
       actions: "Ações"

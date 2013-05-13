@@ -1,5 +1,5 @@
 class UserRolesController < ApplicationController
-  authorize_resource
+  #authorize_resource
   # GET /users_roles
   # GET /users_roles.json  
   def index
@@ -38,7 +38,7 @@ class UserRolesController < ApplicationController
     
     respond_to do |format|
        if role_check
-        format.html { redirect_to admin_user_roles_path, :notice => 'Perfil Atualizado com sucesso.' }
+        format.html { redirect_to user_roles_path, :notice => 'Perfil Atualizado com sucesso.' }
         format.json { head :no_content }
        else
          format.html { render :action => "update" }
