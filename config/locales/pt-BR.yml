@@ -173,7 +173,7 @@ pt-BR:
         provenance_area_id: "Zona"
         number: "Número"        
       class_teaching:
-        person_id: "Professor"
+        user_id: "Professor"
         discipline_class_id: "Turma/Classe/Disciplina"
         dept_id: "Ambiente de aprendizagem"
       person_identification_doc:
@@ -248,7 +248,7 @@ pt-BR:
         justification: "Justificativa"
         class_time_id: "Horário"
         discipline_class_id: "Classe"
-        person_id: "Professor"                                
+        user_id: "Professor"                                
         class_time: "Horário"                                
         class_record_type_id: "Tipo"  
         class_record_presence: "Chamada"
@@ -389,6 +389,7 @@ pt-BR:
       user_role:
         user_id: "Usuário"
         role_id: "Perfil"
+        name: "Nome"
       precedence_school:
         description: "Descrição"
                 

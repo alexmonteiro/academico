@@ -7,14 +7,14 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:person_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @class_teachings.each do |class_teaching| %>
       <tr>
-        <td><%= class_teaching.person.try(:name) %></td>
+        <td><%= class_teaching.user.try(:displayname) %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       discipline_class_class_teaching_path(:id => class_teaching.id),

@@ -10,9 +10,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :userlogin, :password, :password_confirmation, :remember_me, :email, :firstname, :lastname
 
-  
-  # attr_accessible :title, :body
 
+  def displayname
+    "#{self.firstname} #{self.lastname}"
+  end
+      
+
+  # attr_accessible :title, :body
   def self.generate_random_password
     Digest::SHA1.hexdigest(Time.now.to_s)
   end  

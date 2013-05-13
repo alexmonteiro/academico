@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:role_id) %></th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.userlogin, user_role_path(:id => user) %></td>
+        <td><%= link_to user.displayname, user_role_path(:id => user) %></td>
         <td>
 	     <% user.roles.each do |role| %>
           <%= link_to role.name, user_role_path(:id => user) %>

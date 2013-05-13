@@ -11,8 +11,8 @@
    <dd><%= @class_record.discipline_class.school_class.try(:identifier)%></dt>
    <dt>Classe:</dt> 
    <dd><%= @class_record.discipline_class.try(:discipline_name)%></dd>
-  <dt><strong><%= model_class.human_attribute_name(:person_id) %>:</strong></dt>
-  <dd><%= @class_record.person.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @class_record.user.try(:displayname) %></dd>
  
     <br/>
 		

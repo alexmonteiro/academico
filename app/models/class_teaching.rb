@@ -1,12 +1,12 @@
 class ClassTeaching < ActiveRecord::Base
   belongs_to :discipline_class
-  belongs_to :person
+  belongs_to :user
   belongs_to :dept
-  attr_accessible :person_id, :discipline_class_id, :dept_id
-  validates :person_id, :discipline_class_id, :presence => true
+  attr_accessible :user_id, :discipline_class_id, :dept_id
+  validates :user_id, :discipline_class_id, :presence => true
   
   def name
-    self.person.try(:name)
+    self.user.try(:displayname)
   end
   
 end

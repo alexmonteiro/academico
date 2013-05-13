@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513190232) do
+ActiveRecord::Schema.define(:version => 20130513202116) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -74,17 +74,17 @@ ActiveRecord::Schema.define(:version => 20130513190232) do
     t.text     "note"
     t.text     "justification"
     t.integer  "discipline_class_id"
-    t.integer  "person_id"
     t.integer  "class_time_id"
     t.integer  "class_record_type_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.integer  "user_id"
   end
 
   add_index "class_records", ["class_record_type_id"], :name => "index_class_records_on_class_record_type_id"
   add_index "class_records", ["class_time_id"], :name => "index_class_records_on_class_time_id"
   add_index "class_records", ["discipline_class_id"], :name => "index_class_records_on_discipline_class_id"
-  add_index "class_records", ["person_id"], :name => "index_class_records_on_person_id"
+  add_index "class_records", ["user_id"], :name => "index_class_records_on_user_id"
 
   create_table "class_season_types", :force => true do |t|
     t.string   "description"
@@ -114,15 +114,15 @@ ActiveRecord::Schema.define(:version => 20130513190232) do
 
   create_table "class_teachings", :force => true do |t|
     t.integer  "discipline_class_id"
-    t.integer  "person_id"
     t.integer  "dept_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "user_id"
   end
 
   add_index "class_teachings", ["dept_id"], :name => "index_class_teachings_on_dept_id"
   add_index "class_teachings", ["discipline_class_id"], :name => "index_class_teachings_on_discipline_class_id"
-  add_index "class_teachings", ["person_id"], :name => "index_class_teachings_on_person_id"
+  add_index "class_teachings", ["user_id"], :name => "index_class_teachings_on_user_id"
 
   create_table "class_times", :force => true do |t|
     t.string   "started_at"
