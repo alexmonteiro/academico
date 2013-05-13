@@ -4,14 +4,16 @@ class Registration < ActiveRecord::Base
   belongs_to :person
   belongs_to :registration_status
   belongs_to :precedence_school
+  belongs_to :ways_of_admission
   has_many :registration_classes
   has_many :registration_admission_types, :dependent => :destroy
   has_many :admission_types, :through => :registration_admission_types
-  attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id, :admission_type_ids,
+  attr_accessible :registration_number, :course_matrix_id, :registration_at, :registration_status_id, :person_id, :admission_type_ids, :ways_of_admission_id,
                   :family_income, :how_many_live, :have_work, :occupation, :workplace,
                   :responsible_complete_name, :responsible_cpf, :responsible_kinship, :responsible_address, :responsible_cep, :responsible_have_work, :responsible_occupation, :responsible_workplace, :responsible_workphone, :responsible_telephone, :responsible_schooling,
                   :presents_special_need, :special_need_description, :presents_health_problem, :health_problem_description,
                   :precedence_school_id, :parent_institution, :year_completion, :is_attending_scholl_level, :attending_scholl_level_description, :dont_take_another_vacance_public_institution, :dont_take_another_prouni_vacance_public_institution
+                  
 
                   
   default_scope :order => "registration_at DESC"

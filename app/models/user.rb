@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
          :omniauth_providers => [:ldap]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :userlogin, :password, :password_confirmation, :remember_me, :email
+  attr_accessible :userlogin, :password, :password_confirmation, :remember_me, :email, :firstname, :lastname
+
+  
   # attr_accessible :title, :body
 
   def self.generate_random_password

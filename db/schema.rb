@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510143041) do
+ActiveRecord::Schema.define(:version => 20130513190232) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -691,12 +691,14 @@ ActiveRecord::Schema.define(:version => 20130510143041) do
     t.text     "attending_scholl_level_description"
     t.boolean  "dont_take_another_vacance_public_institution"
     t.boolean  "dont_take_another_prouni_vacance_public_institution"
+    t.integer  "ways_of_admission_id"
   end
 
   add_index "registrations", ["course_matrix_id"], :name => "index_registrations_on_course_matrix_id"
   add_index "registrations", ["person_id"], :name => "index_registrations_on_person_id"
   add_index "registrations", ["precedence_school_id"], :name => "index_registrations_on_precedence_school_id"
   add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
+  add_index "registrations", ["ways_of_admission_id"], :name => "index_registrations_on_ways_of_admission_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -836,6 +838,9 @@ ActiveRecord::Schema.define(:version => 20130510143041) do
     t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "displayname"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

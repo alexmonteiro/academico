@@ -1,5 +1,7 @@
 AcademicoRails::Application.routes.draw do
 
+  resources :ways_of_admissions
+
   resources :precedence_schools
 
   #resources :registration_admission_types

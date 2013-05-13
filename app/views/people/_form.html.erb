@@ -15,16 +15,16 @@
 	    <%= f.text_field :name, :class => 'text_field' %>
 	
 	    <%= f.label :race_id, :class => 'control-label' %>    
-	    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}) , :class => 'select_field' %>
+	    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}, :selected => (@person.race.id if !@person.race.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
 	
 	    <%= f.label :gender_id, :class => 'control-label' %>    
-	    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}) , :class => 'select_field' %>
+	    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}, :selected => (@person.gender.id if !@person.gender.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
 	
 	    <%= f.label :education_degree_id, :class => 'control-label' %>    
-	    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}) , :class => 'select_field' %>
+	    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}, :selected => (@person.education_degree.id if !@person.education_degree.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
 	
 	    <%= f.label :marital_status_id, :class => 'control-label' %>    
-	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}) , :class => 'select_field' %>
+	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}, :selected => (@person.marital_status.id if !@person.marital_status.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
 	
 	   </div>
 	   <div class="span5">
@@ -35,13 +35,13 @@
 	    <%= f.text_field :email, :class => 'text_field' %>
 	
 	    <%= f.label :blood_type_id, :class => 'control-label' %>    
-	    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}) , :class => 'select_field' %>
+	    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}, :selected => (@person.blood_type.id if !@person.blood_type.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
 	
 	    <%= f.label :lattes_url, :class => 'control-label' %>    
 	    <%= f.text_field :lattes_url, :class => 'text_field' %>
 	
 	    <%= f.label :number_children, :class => 'control-label' %>
-	    <%= f.number_field :number_children, :class => 'number_field', :value => 0 %>
+	    <%= f.number_field :number_children, :class => 'number_field', :value => (@person.number_children.blank? ? 0 : @person.number_children) %>
 	
 	   </div>
 	</fieldset>
@@ -135,7 +135,7 @@
 	<fieldset>
 		<legend> Endereço </legend>
 			<%= f.fields_for :person_address_attributes, PersonAddress.new do |builder| %>
-				<%= render "person_address_fields", :f => builder%>
+				<%= render "person_address_fields", :f => builder, :person => @person%>
 			<%end%>
 	</fieldset>
 </div>
@@ -161,7 +161,7 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path, :class => 'btn' %>
+    <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), person_path(@person), :class => 'btn' %>
   </div>
 </fieldset>
 </div>
