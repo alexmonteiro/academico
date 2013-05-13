@@ -38,6 +38,7 @@
 	<fieldset>
   	<legend>Tipo de Ingresso</legend>
    	<div class="span12">
+   		<div class="pull-left span5">
 	    <%= f.fields_for :admission_type_ids do |at| %>
 	        <div class="right_box">
 	          <% AdmissionType.all.each do |admission_type| %>
@@ -46,7 +47,11 @@
 	          <% end %>
 	        </div>
 	    <% end %>
-   	</div>
+	    </div>
+	    <div class="pull-right span5">
+	    	Forma de Ingresso: <%= f.collection_select :ways_of_admission_id, WaysOfAdmission.all, :id, :description, :prompt => "...Select..."%>
+	   	</div>
+	</div>
 	</fieldset>
   </div>
 
@@ -59,7 +64,7 @@
 	   		<div class="control-group">
 		   	  <%= f.label :have_work, :class => 'control-label' %>
 			   <div class="controls">
-			 	  <%= f.radio_button :have_work, true  %> Sim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			 	  <%= f.radio_button :have_work, true  %> Sim  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		   		  <%= f.radio_button :have_work, false  %> Não
 		       </div>
 	   	    </div>
