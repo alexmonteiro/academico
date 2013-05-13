@@ -6466,3 +6466,13 @@ precedence_scholl = PrecedenceSchool.create([
   {:description => 'Pública'},
   {:description => 'Particular'}
 ])
+
+# Inserindo Precedencias Escolares
+puts 'Inserindo Formas de Ingressos...'
+ways_of_admission = WaysOfAdmission.create([
+  {:description => 'Sorteio'},
+  {:description => 'ENEM'},
+  {:description => 'SISU'},
+  {:description => 'Provas'},
+  {:description => 'Outros'}
+])
