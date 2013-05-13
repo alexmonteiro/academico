@@ -1,0 +1,23 @@
+<h1>Listing ways_of_admissions</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ways_of_admissions.each do |ways_of_admission| %>
+  <tr>
+    <td><%= ways_of_admission.description %></td>
+    <td><%= link_to 'Show', ways_of_admission %></td>
+    <td><%= link_to 'Edit', edit_ways_of_admission_path(ways_of_admission) %></td>
+    <td><%= link_to 'Destroy', ways_of_admission, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ways of admission', new_ways_of_admission_path %>

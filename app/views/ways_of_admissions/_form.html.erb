@@ -1,0 +1,21 @@
+<%= form_for(@ways_of_admission) do |f| %>
+  <% if @ways_of_admission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ways_of_admission.errors.count, "error") %> prohibited this ways_of_admission from being saved:</h2>
+
+      <ul>
+      <% @ways_of_admission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
