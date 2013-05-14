@@ -8,21 +8,21 @@ class Teacher::DashboardController < ApplicationController
   
   def show
     @class_teachings = ClassTeaching.where(:user_id => current_user.id)
-
+  
     respond_to do |format|
       format.html # school_classes.html.erb
       format.json { render :json => @class_teachings }
     end
   end
   
-  # def teacher_school_classes
-  #   @class_teachings = ClassTeaching.where(:user_id => current_user.id)
-  # 
-  #   respond_to do |format|
-  #     format.html # school_classes.html.erb
-  #     format.json { render :json => @class_teachings }
-  #   end
-  # end
+  def teacher_school_classes
+    @class_teachings = ClassTeaching.where(:user_id => current_user.id)
+  
+    respond_to do |format|
+      format.html # school_classes.html.erb
+      format.json { render :json => @class_teachings }
+    end
+  end
   
   def classes_calendar
     @class_teachings = ClassTeaching.where(:user_id => current_user.id)    
