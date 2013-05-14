@@ -26,12 +26,22 @@ class RegistrationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @registration }
-      format.pdf do
-        #pdf = Prawn::Document.new
-        pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
-        send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+      if params[:type_document] == "escolaridade"
+          format.pdf do
+          pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
+          send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
       end
-      
+      elsif params[:type_document] == "passe_estudandil"
+          format.pdf do
+            pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
+            send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+          end
+      elsif params[:type_document] == "matricula"
+          format.pdf do
+            pdf = EnrollmentPDF.new(:registration => @registration)
+            send_data pdf.render, :filename => "ficha_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
+          end
+       end
     end
   end
 
