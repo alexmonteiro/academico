@@ -243,7 +243,7 @@
 	   	    <div class="control-group">
 		   	  <%= f.label :education_degree, :class => 'control-label' %>
 			   <div class="controls">
-			 	  <%= select_tag "person[education_degree_id]", options_from_collection_for_select(EducationDegree.all, "id", "degree", :selected => (@registration.person.education_degree_id if !@registration.person.education_degree_id.blank?)), :prompt => "...Selecione..." %>
+			 	  <%= select_tag "person[education_degree_id]", options_from_collection_for_select(EducationDegree.all, "id", "degree", :selected => (@registration.person.education_degree_id if !@registration.person.try(:education_degree_id).blank?)), :prompt => "...Selecione..." %>
 			   </div>
 	   	    </div>
 	   	</div>

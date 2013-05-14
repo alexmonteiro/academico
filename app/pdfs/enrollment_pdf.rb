@@ -23,7 +23,7 @@ def initialize(params)
   end 
   
   def title
-    image "app/assets/images/logo-if.png", :at => [0,800], :width => 25, :height => 40
+    image "app/assets/images/2237_ifbhorizontal.jpg", :at => [0,800], :width => 120, :height => 40
     text "Instituto Federal de Brasília", :align => :center, :size => 8, :style => :bold
     text "FICHA DE MATRÍCULA", :align => :center, :size => 12, :style => :bold
   end
@@ -54,10 +54,10 @@ def initialize(params)
     data_student_5 = [ ["<b>Endereço Residencial:</b>","#{@registration.person.person_address.street_name}","<b>Celular:</b>",""]]
     data_student_6 = [ ["<b>Localização/Zona da residência:</b>","#{@registration.person.person_address.provenance_area.description}","<b>Quantidade de filhos:</b>","#{@registration.person.number_children}","<b>Telefone(s):</b>","#{telephone}","<b>CEP:</b>","#{@registration.person.person_address.zip_code}"] ]
     data_student_7 = [ ["<b>Renda Familiar:</b>","#{@registration.family_income}","<b>Quantas pessoas moram com você?</b>","#{@registration.how_many_live}","<b>E-mail:</b>","#{@registration.person.email}"]]
-    data_student_8 = [ ["<b>Trabalha?</b>","#{(@registration.have_work ? "Sim" : "Não")}","<b>Profissão/Cargo:</b>","#{}","<b>Telefone(s) do Trabalho:</b>","#{}"]]
+    data_student_8 = [ ["<b>Trabalha?</b>","#{(@registration.have_work ? "Sim" : "Não")}","<b>Profissão/Cargo:</b>","#{@registration.occupation}","<b>Telefone(s) do Trabalho:</b>","#{}"]]
     data_student_9 = [ ["<b>Como você se declara quanto à etnia:</b>","#{@registration.person.race.race}","<b>Estado Civil:</b>","#{@registration.person.marital_status.status}"]]
     data_student_10 = [ ["<b>Naturalidade/UF:</b>","#{@registration.person.try(:city).try(:name).to_s} / #{@registration.person.try(:city).try(:state).try(:acronym)}","<b>Data de Nascimento:</b>","#{I18n.l(@registration.person.birth_date)}"]]
-    data_student_11 = [ ["<b>Cidade:<b>","#{@registration.person.city.name}","<b>Local de Trabalho:</b>",""]]
+    data_student_11 = [ ["<b>Cidade:<b>","#{@registration.person.city.name}","<b>Local de Trabalho:</b>","#{@registration.workplace}"]]
     #dados do responsavel
     data_responsible_1 = [ ["<b>Nome Completo:<b>","#{@registration.responsible_complete_name}",] ]
     data_responsible_2 = [ ["<b>Data de Nascimento:</b>","#{}","<b>Escolaridade:</b>","#{@registration.responsible_schooling}"]]
@@ -65,13 +65,13 @@ def initialize(params)
     data_responsible_4 = [ ["<b>Trabalha?</b>","#{(@registration.responsible_have_work ? "Sim" : "Não")}","<b>Local de Trabalho:</b>","#{@registration.responsible_workplace}","<b>Telefone do Trabalho:</b>","#{@registration.responsible_workphone}"]]
     data_responsible_5 = [ ["<b>Parentesco:</b>","#{@registration.responsible_kinship}","<b>Profissão/Cargo:</b>","#{@registration.responsible_occupation}"]]
     #informacoes sobre o aluno
-    data_health_student_1 = [ ["<b>Apresenta necessidade específica?</b>","#{@registration.presents_special_need}","<b>Qual?</b>","#{@registration.special_need_description}"] ]
-    data_health_student_2 = [ ["<b>Problema de Saúde/Alergia?</b>","#{@registration.presents_health_problem}","<b>Qual?</b>","#{@registration.health_problem_description}"] ]
+    data_health_student_1 = [ ["<b>Apresenta necessidade específica?</b>","#{@registration.presents_special_need.blank? ? "Não" : "Sim" }","<b>Qual?</b>","#{@registration.special_need_description}"] ]
+    data_health_student_2 = [ ["<b>Problema de Saúde/Alergia?</b>","#{@registration.presents_health_problem.blank? ? "Não" : "Sim" }","<b>Qual?</b>","#{@registration.health_problem_description}"] ]
     #escolaridade do aluno
     data_schooling_student_1 = [ ["<b>Instituição de Origem:</b>","#{@registration.precedence_school_id}","<b>Procedência Escolar:</b>","#{@registration.parent_institution}"] ]
     data_schooling_student_2 = [ ["<b>Etapa de Ensino:</b>","#{@registration.person.education_degree.degree}","<b>Ano de Conclusão:</b>","#{@registration.year_completion}"] ]
     #novo data
-    data_schooling_student_3 = [ ["<b>Está cursando algum nível de escolaridade?</b>","","<b>Qual?</b>",""] ]
+    data_schooling_student_3 = [ ["<b>Está cursando algum nível de escolaridade?</b>","#{@registration.is_attending_scholl_level.blank? ?  "Não" : "Sim" }","<b>Qual?</b>","#{@registration.attending_scholl_level_description}"] ]
     
     stroke_horizontal_rule
     move_down(5)
@@ -154,8 +154,8 @@ def initialize(params)
     end
     #cpf,escolaridade
     table(data_responsible_2, :cell_style => { :inline_format => true, :borders => [] }) do
-     column(1).width = 90
-     column(3).width = 340
+     column(1).width = 80
+     column(3).width = 300
     end
     #endereco residencial,cep,telefone
     table(data_responsible_3, :cell_style => { :inline_format => true, :borders => [] }) do
@@ -213,16 +213,16 @@ def initialize(params)
            table(tabela, :cell_style => { :borders => [], :inline_format => true })
         elsif !@registration.dont_take_another_vacance_public_institution.blank? && @registration.dont_take_another_prouni_vacance_public_institution.blank?
            tabela_vacance = [ ["<b>Informações Adicionais:
-                                 •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição pública de ensino superior em todo o território nacional, estando em conformidade com a lei 12.089 de 11 novembro de 2009.</b>"]]
+                                 •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição o  pública de ensino superior em todo o território nacional, estando em conformidade com a lei 12.089 de 11 novembro de 2009.</b>"]]
            table(tabela_vacance, :cell_style => { :borders => [], :inline_format => true })
         elsif @registration.dont_take_another_vacance_public_institution.blank? && !@registration.dont_take_another_prouni_vacance_public_institution.blank?
            tabela_prouni = [ ["<b>Informações Adicionais:
-                                 •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005.</b>"]]
+                                 •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005.</b>"]]
            table(tabela_prouni, :cell_style => { :borders => [], :inline_format => true })
         elsif !@registration.dont_take_another_vacance_public_institution.blank? && !@registration.dont_take_another_prouni_vacance_public_institution.blank?
            tabela_vacance_prouni = [ ["<b>Informações Adicionais:
-                                       •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição pública de ensino superior em todo o território nacional, estando em conformidade com a lei 12.089 de 11 novembro de 2009.
-                                       •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005.</b>"]]
+                                         •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição o  pública de ensino superior em todo o território nacional, estando em conformidade com a lei 12.089 de 11 novembro de 2009.
+                                         •Declaro que não ocupo outra vaga, na condição de estudante, em nenhuma instituição de ensino superior como bolsista do PROUNI, estando em conformidade com o Decreto 5493 de 19 de julho de 2005.</b>"]]
            table(tabela_vacance_prouni, :cell_style => { :borders => [], :inline_format => true }) 
         end      
     #declarações
