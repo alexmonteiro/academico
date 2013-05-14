@@ -1,5 +1,5 @@
-<% containerSpan = "span12" %>
-<% containerSpan = "span10" if user_signed_in? %>
+ <% containerSpan = "span12" %>
+ <% containerSpan = "span10" if user_signed_in? %>
 
 <% fullpath = "#{request.fullpath}"[1..-1].split('/')%>
 
@@ -30,7 +30,7 @@
 	           <%if user_signed_in? %>
 		          <div class="btn-group pull-right">
 		            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-		              <i class="icon-user"></i> <%= current_user.userlogin %>
+		              <i class="icon-user"></i> <%= "#{current_user.firstname}" %>
 		              <span class="caret"></span>
 		            </a>
 		            <ul class="dropdown-menu">
@@ -53,7 +53,6 @@
 	</div>
 	<!-- -->
 
-
 	    <div class="container-fluid">
 		
 	      <div class="row-fluid">
@@ -63,6 +62,13 @@
 		        <div class="span2">
 		          <div class="well sidebar-nav">
 		            <ul class="nav nav-tabs nav-stacked">
+			
+			          <% if fullpath.include?('professor') %>
+		                  <li class="nav-header">Espaço do Professor</li>
+		  			      <li class="<%= ('classes_calendar' == params[:action] ? 'active' : '')%>"><a href=<%= calendar_classes_teacher_index_path %> > <i class="icon-calendar"></i>Calendário de Aulas</a></li>
+			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i>Turmas / Classes</a></li>
+	                  <%end%>
+	
 			 		  <% if fullpath.include?('registro_academico') %>
 		                  <li class="nav-header">Infraestrutura</li>
 			              <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i>Estrutura Organizacional</a></li>
@@ -85,12 +91,7 @@
 			              <li class="<%= ('users' == params[:controller] ? 'active' : '')%>"><a href=<%= user_roles_path %> > <i class="icon-group"></i>Usuários/Perfis</a></li>
 		                  <%= menu_config %>
 	                  <%end%>
-	
-	                  <% if fullpath.include?('professor') %>
-		                  <li class="nav-header">Turmas & Classes</li>
-			              <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
-	                  <%end%>
-                   
+	                   
 		            </ul>
 		          </div><!--/.well -->
 		        </div><!--/span-->

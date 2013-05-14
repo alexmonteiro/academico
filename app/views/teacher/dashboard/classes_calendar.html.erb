@@ -1,0 +1,95 @@
+<style>
+
+#calendar table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td,
+#calendar th {
+  font-family: "Lucida Grande",arial,helvetica,sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+
+#calendar th {
+  background: #DDD;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857143%;
+}
+
+#calendar td {
+  background: #FFF;
+  color: #777;
+  height: 80px;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+#calendar .notmonth {
+  color: #CCC;
+}
+
+#calendar #month {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#calendar #month a, #calendar #month a:hover {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+
+#calendar .today {
+  background-color: #D7F2FF;
+}
+
+#calendar ul {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+}
+
+#calendar li {
+  margin: 0;
+  margin-left: 11px;
+  padding: 0;
+  font-size: 10px;
+  text-align: left;
+}
+</style>
+<div id="calendar">
+	
+<h2 id="month">
+  <%= link_to "<i class='icon-backward'></i>".html_safe, :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
+  <%= l @date, :format => :month_year %>
+  <%= link_to "<i class='icon-forward'></i>".html_safe, :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>
+</h2>
+
+<%= calendar_for @class_records, :year => @date.year, :month => @date.month do |calendar| %>
+  <%= calendar.head('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado')%>
+  <% calendar.day(:day_method => :recorded_at) do |date, records| %>
+   <div>
+    <%= date.day %> <%= link_to "<small class='text-small pull-right'>+</small>".html_safe, "#" %>
+   </div>
+    <ul>
+      <% records.each do |r| %>
+        <li><%= link_to h(r.calendar_description), '#' %></li>
+      <% end %>
+      <%if records.count > 0 %>
+        <li>
+         <%= link_to "<small class='text-small'> <i class='icon-check'></i> Chamada do dia </small>".html_safe, "#{class_record_presences_day_discipline_class_class_records_path}?day=#{date}" %>
+        </li>
+      <%end%>
+    </ul>
+  <% end %>
+<% end %>
+</div>
+
+

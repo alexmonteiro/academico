@@ -9,4 +9,8 @@ class ClassTeaching < ActiveRecord::Base
     self.user.try(:displayname)
   end
   
+  def schoolclass
+    self.discipline_class.school_class
+  end
+  
 end

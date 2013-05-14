@@ -212,8 +212,30 @@ AcademicoRails::Application.routes.draw do
   end
   
   #espaço do professor
-  resources :teacher, :controller => 'menu/teacher', :only => [:index], :path => 'professor'
-  scope "professor" do 
+  resources :teacher, :controller => 'teacher/dashboard', :path => 'professor' do      
+      get :calendar_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'classes_calendar', :path => 'calendario'
+      
+      #get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
+      
+      resources :school_classes, :path =>"turma" do
+        resources :discipline_classes, :path =>"classes" do
+          resources :class_teachings, :path =>"docencias"
+          resources :class_records, :path =>"aulas" do
+              resources :class_record_presences, :path => "presencas"
+          end
+          resources :discipline_class_exams, :path => "avaliacoes" do
+              resources :discipline_class_exam_results, :path => "notas"
+              match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
+          end
+        end
+      end
+      
+      
+      
+      
+      #get :school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'school_classes', :path => 'turmas' do
+      #end
+
   end
   
   
