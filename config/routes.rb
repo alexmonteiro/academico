@@ -215,7 +215,7 @@ AcademicoRails::Application.routes.draw do
   resources :teacher, :controller => 'teacher/dashboard', :path => 'professor' do      
       get :calendar_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'classes_calendar', :path => 'calendario'
       
-      #get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
+      get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
       
       resources :school_classes, :path =>"turma" do
         resources :discipline_classes, :path =>"classes" do
