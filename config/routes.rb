@@ -149,59 +149,97 @@ AcademicoRails::Application.routes.draw do
   
   
   
-  #################################
-  # Menusuperior de Configurações #
-  #################################
-  resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
-  resources :races, :path => 'configuracoes/etnias'
-  resources :admission_types, :path => 'configuracoes/tipos_de_ingressos'
-  resources :special_needs_types, :path => 'configuracoes/tipo_necessidade_especial'
-  resources :marital_statuses, :path => 'configuracoes/estado_civil'
-  resources :education_degrees, :path => 'configuracoes/niveis_educacionais'
-  resources :genders, :path => 'configuracoes/sexos'
-  resources :blood_types, :path => 'configuracoes/tipos_sanguineos'
-  resources :knowledge_areas, :path => "configuracoes/areas_conhecimento"
-  resources :registration_schemes, :path => "configuracoes/sistema_registro"
-  resources :learning_modalities, :path => "configuracoes/modalidades_ensino"
-  resources :education_modalities, :path => "configuracoes/modalidades"
-  resources :education_steps, :path => "configuracoes/graus" 
-  resources :education_levels, :path => "configuracoes/niveis"
-  resources :techaxis_types, :path => "configuracoes/eixos" do
-   resources :techaxes, :path => "areas"
-  end
-  resources :provenance_areas, :path => 'configuracoes/procedencia'
-  resources :street_types, :path => 'configuracoes/logradouro'
-  resources :telephone_types, :path => 'configuracoes/telefones'
-  resources :class_season_types, :path => 'configuracoes/periodos'
-  resources :matrix_evaluation_types, :path => 'configuracoes/matriz_avaliacoes'
-  resources :matrix_statuses, :path => 'configuracoes/estados'
-  resources :discipline_types, :path => 'configuracoes/disciplinas'
-  resources :countries, :path => 'configuracoes/paises' do
-   resources :states, :path => 'estados' do
-    resources :cities, :path => 'cidades'
-   end
-  end
   match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
   match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'
-  resources :class_times, :path => 'configuracoes/horarios_classe'
-  resources :day_weeks, :path => 'configuracoes/dias_semana'
-  resources :equipament_types, :path => 'configuracoes/equipamento'
-  resources :situation_teaching_equipaments, :path => 'configuracoes/estado_equipamento'
-  resources :shift_types, :path => "turnos"
   
+  resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
+  scope "configuracoes" do  
+    #################################
+    # Menusuperior de Configurações #
+    #################################
+    resources :races, :path => 'etnias'
+    resources :admission_types, :path => 'tipos_de_ingressos'
+    resources :special_needs_types, :path => 'tipo_necessidade_especial'
+    resources :marital_statuses, :path => 'estado_civil'
+    resources :education_degrees, :path => 'niveis_educacionais'
+    resources :genders, :path => 'sexos'
+    resources :blood_types, :path => 'tipos_sanguineos'
+    resources :knowledge_areas, :path => "areas_conhecimento"
+    resources :registration_schemes, :path => "sistema_registro"
+    resources :learning_modalities, :path => "modalidades_ensino"
+    resources :education_modalities, :path => "modalidades"
+    resources :education_steps, :path => "graus" 
+    resources :education_levels, :path => "niveis"
+    resources :techaxis_types, :path => "eixos" do
+     resources :techaxes, :path => "areas"
+    end
+    resources :provenance_areas, :path => 'procedencia'
+    resources :street_types, :path => 'logradouro'
+    resources :telephone_types, :path => 'telefones'
+    resources :class_season_types, :path => 'periodos'
+    resources :matrix_evaluation_types, :path => 'matriz_avaliacoes'
+    resources :matrix_statuses, :path => 'estados'
+    resources :discipline_types, :path => 'disciplinas'
+    resources :countries, :path => 'paises' do
+     resources :states, :path => 'estados' do
+      resources :cities, :path => 'cidades'
+     end
+    end
 
-  resources :academic_rule_types, :path => 'configuracoes/regras_academicas'
-  resources :discipline_class_exam_types, :path => 'configuracoes/exames_classe'
-  resources :class_record_types, :path => 'configuracoes/tipos_registro_classe'
-  resources :registration_class_statuses, :path => 'configuracoes/estado_registro_classe'
-  resources :registration_statuses, :path => 'configuracoes/estado_registro'
-  resources :course_statuses, :path => 'configuracoes/cursos'
-  resources :class_student_statuses, :path => 'configuracoes/estados_classe_estudante'
-  resources :military_document_types, :path => 'configuracoes/documentos_militar'
-  resources :issuing_institutions, :path => 'configuracoes/emissoras'
-  resources :matrix_discipline_groups, :path => 'configuracoes/matriz_disciplina'
-  resources :dept_types, :path => 'configuracoes/departamentos'
+    resources :class_times, :path => 'horarios_classe'
+    resources :day_weeks, :path => 'dias_semana'
+    resources :equipament_types, :path => 'equipamento'
+    resources :situation_teaching_equipaments, :path => 'estado_equipamento'
+    resources :shift_types, :path => "turnos"
+
+
+    resources :academic_rule_types, :path => 'regras_academicas'
+    resources :discipline_class_exam_types, :path => 'exames_classe'
+    resources :class_record_types, :path => 'tipos_registro_classe'
+    resources :registration_class_statuses, :path => 'estado_registro_classe'
+    resources :registration_statuses, :path => 'estado_registro'
+    resources :course_statuses, :path => 'cursos'
+    resources :class_student_statuses, :path => 'estados_classe_estudante'
+    resources :military_document_types, :path => 'documentos_militar'
+    resources :issuing_institutions, :path => 'emissoras'
+    resources :matrix_discipline_groups, :path => 'matriz_disciplina'
+    resources :dept_types, :path => 'departamentos'
+
+    
+    #users_role  
+    resources :user_roles, :path => "acesso"    
+
+  end
+  
+  #espaço do professor
+  resources :teacher, :controller => 'teacher/dashboard', :path => 'professor' do      
+      get :calendar_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'classes_calendar', :path => 'calendario'
+      
+      #get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
+      
+      resources :school_classes, :path =>"turma" do
+        resources :discipline_classes, :path =>"classes" do
+          resources :class_teachings, :path =>"docencias"
+          resources :class_records, :path =>"aulas" do
+              resources :class_record_presences, :path => "presencas"
+          end
+          resources :discipline_class_exams, :path => "avaliacoes" do
+              resources :discipline_class_exam_results, :path => "notas"
+              match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
+          end
+        end
+      end
+      
+      
+      
+      
+      #get :school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'school_classes', :path => 'turmas' do
+      #end
+
+  end
+  
   
   # dynamic erros
   match '(errors)/:status', :to => 'errors#show', :constraints => {:status => /\d{3}/} #, :via => :all
+  
 end

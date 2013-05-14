@@ -1,4 +1,5 @@
 class ErrorsController < ApplicationController
+  skip_authorization_check
   layout 'error'
   
   def show

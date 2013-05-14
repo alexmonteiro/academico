@@ -6456,6 +6456,10 @@ admin = User.create! do |u|
  u.password = 'admin123'
  u.password_confirmation = 'admin123'
  u.add_role :admin
+ u.add_role :registro
+ u.add_role :curso
+ u.add_role :professor 
+ u.add_role :aluno
 end
 
 puts '### Carga inicial da base de dados concluída com sucesso! ###'

@@ -1,4 +1,5 @@
 class SchoolClassesController < ApplicationController
+  authorize_resource
   # GET /school_classes
   # GET /school_classes.json
   def index

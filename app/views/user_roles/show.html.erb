@@ -1,0 +1,22 @@
+<%- model_class = UserRole -%>
+<div class="page-header">
+  <h1><i class="icon-user"></i> <%=t '.title', :default => model_class.model_name.human %> <%= @user.userlogin%></h1>
+</div>
+<br/>
+
+<div class="span1"></div>
+
+<%= form_tag user_role_path, :method => :put, :id => 'form' do %>
+	<div>
+		| <% Role.all.each do |role| %>
+		  <b><%=check_box_tag 'role_ids[]', role.id, h_check_roles(@user.id, role.id) %> <%= role.name %></b>  |
+		<%end%>
+	</div>
+
+	<div class="form-actions">
+	<%= submit_tag "Atualizar Perfil",:class => 'btn btn-primary btn-large' %>
+	<%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+	            user_roles_path, :class => 'btn btn-large' %>
+	</div>
+
+<% end %>

@@ -68,9 +68,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :person_id, :class => 'control-label' %>
+    <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :person_id, ClassTeaching.where(:discipline_class_id =>  @discipline_class.id), :person_id, :name, :prompt => "...Selecione..."%>
+      <%= f.collection_select :user_id, ClassTeaching.where(:discipline_class_id =>  @discipline_class.id), :user_id, :name, :prompt => "...Selecione..."%>
     </div>
   </div>
 
