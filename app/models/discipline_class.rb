@@ -89,7 +89,7 @@ class DisciplineClass < ActiveRecord::Base
     @total_t = self.class_teachings.length
     self.class_teachings.each_with_index do |teacher,i|
       #(@total_t - 1) > i ? @teachings << "#{self.teacher.person.name} /" : "#{self.teacher.person.name}"
-      i < (@total_t - 1) ? @teachings << "#{teacher.person.name} /" : @teachings << "#{teacher.person.name}"
+      i < (@total_t - 1) ? @teachings << "#{teacher.user.displayname} /" : @teachings << "#{teacher.user.displayname}"
     end
     "#{@teachings}"
   end
