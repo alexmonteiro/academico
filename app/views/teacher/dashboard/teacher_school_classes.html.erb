@@ -1,7 +1,6 @@
 <h1><i class="icon-group"></i> Minhas turmas / classes</h1>
 <p>
 
-
 	<div class="row-fluid">
 	   <ul class="thumbnails">
 		<% @class_teachings.group_by(&:schoolclass).each do |schoolclass, classt|%>
@@ -13,9 +12,7 @@
 		        <i class="icon-group icon-large"></i> Turma: <%= schoolclass.identifier%></h4><p>
 
 	           <% classt.each do |c| %> 
-                 <% c.discipline_class.class_records.each do |cr| %>
-                  <small><%= "#{I18n.localize(cr.recorded_at)} - #{cr.calendar_description}"%></small><p>
-	             <%end%>
+                  <small><%= link_to "#{c.discipline_class.discipline_name}", teacher_school_class_discipline_class_path(current_user.userlogin, schoolclass.identifier, c.id)%></small><p>
 	           <%end%>
 
 	         </div>
