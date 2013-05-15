@@ -30,8 +30,13 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)    
-    if user.has_role? :admin
-     can :manage, :all
+    # if user.has_role? :teste
+    #      can :manage, :all
+    #     elsif user.has_role? :curso
+    #      can :manage, :discipline_classes
+    if user.has_role? :professor
+     can :read, :school_classes
+     can :read, :discipline_classes
     else
      can :read, "welcome#index"
     end
