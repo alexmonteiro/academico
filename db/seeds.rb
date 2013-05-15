@@ -6468,6 +6468,9 @@ ways_of_admission = WaysOfAdmission.create([
 #criação do user admin
 puts '### Criando usuário usuário admin com senha admin123! ATENÇÃO: Altere a senha do admin após primeiro acesso. ###'
 admin = User.create! do |u|
+ u.firstname = 'Admnistrador'
+ u.lastname = 'do Sistema'
+ u.displayname = 'admin'
  u.userlogin = 'admin'
  u.email = 'admin@sample.com'
  u.password = 'admin123'
