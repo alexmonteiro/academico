@@ -436,6 +436,8 @@ pt-BR:
       knowledge_area: "Áreas do Conhecimento"
       blood_type: "Tipos Sanguíneos"
       admission_type: "Tipos de Ingressos"
+      ways_of_admission: "Formas de Ingressos"
+      precedence_school: "Precedências Escolares"
       marital_status: "Estados Civis"
       special_needs_type: "Tipos de Necessidade Especial"
       education_degree: "Níveis Educacionais"
