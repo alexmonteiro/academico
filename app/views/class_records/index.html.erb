@@ -12,7 +12,7 @@
       <th><%= model_class.human_attribute_name(:class_time_id) %></th>
       <th><%= model_class.human_attribute_name(:class_record_presence) %></th>
       <th><%= model_class.human_attribute_name(:record) %></th>
-      <th><%= model_class.human_attribute_name(:person_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
       <th><%= model_class.human_attribute_name(:class_record_type_id) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -28,7 +28,7 @@
                 discipline_class_class_record_class_record_presences_path(:class_record_id => class_record.id) %>
         </h4></td>
         <td><%= class_record.record %></td>
-        <td><%= class_record.person.try(:name) %></td>
+        <td><%= class_record.user.try(:displayname) %></td>
 
         <td><%= class_record.class_record_type.try(:description) %></td>
 

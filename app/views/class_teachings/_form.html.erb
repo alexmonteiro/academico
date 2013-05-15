@@ -3,9 +3,9 @@
 
 <%= form_for [@discipline_class, @class_teaching], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :person_id, :class => 'control-label' %>
+    <%= f.label :user_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :person_id, PersonPersonType.where(:person_type_id => 2).sort_by(&:person_name), :person_id, :person_name, {:prompt => "...Selecione..."}, {:class => "span8"} %>
+      <%= f.collection_select :user_id, User.all.sort_by(&:displayname), :id, :displayname, {:prompt => "...Selecione..."}, {:class => "span8"} %>
     </div>
   </div>
 

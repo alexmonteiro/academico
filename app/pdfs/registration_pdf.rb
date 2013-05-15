@@ -69,9 +69,6 @@ class RegistrationPdf < Prawn::Document
             end              
             stroke_horizontal_rule
             
-
-            
-            
             font("Courier", :size => 12) do
               if @registration.registration_classes.last.try(:discipline_class).try(:school_class).try(:class_season_id).blank?
                     #informacao padrao caso nao tenha

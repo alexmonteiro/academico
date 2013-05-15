@@ -77,7 +77,7 @@ class StatesController < ApplicationController
   # DELETE /states/1
   # DELETE /states/1.json
   def destroy
-    @state = State.find(params[:id])
+    @state = tate.find(params[:id])
     @state.destroy
 
     respond_to do |format|

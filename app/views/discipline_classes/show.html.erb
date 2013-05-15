@@ -34,7 +34,7 @@
 	            discipline_class_class_teachings_path(@discipline_class), :class => 'btn btn-inverse span12' %>
 	         <div style="padding-top: 60px">
 	           <% @discipline_class.class_teachings.each do |teacher| %>
-			    <dd><%= teacher.person.try(:name) %></dd>
+			    <dd><%= teacher.user.try(:displayname) %></dd>
 			  <%end%>
 			    <dd><center><%= '...sem docente vinculado...' if @discipline_class.class_teachings.count == 0 %></center></dd>
 	         </div>
@@ -84,7 +84,6 @@
 			    <li><%= link_to "Preenchido", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_record", :preenchido => true ), :tabindex => "-1" %></li>
 				<li><%= link_to "Em Branco", discipline_class_path(@discipline_class, :format =>  "pdf", :report_discipline => "class_record" ), :tabindex => "-1" %></li>
 				<li><%= link_to "Lista de Presença", discipline_class_path(@discipline_class, :format => "pdf", :report_discipline => "presence_list"), :tabindex => "-1" %><li>
-			    <li><%= link_to "Teste", discipline_class_path(@discipline_class, :format => "pdf", :report_discipline => "teste"), :tabindex => "-1" %></li>
 			  </ul>
 		  </div>
 		  </fieldset>

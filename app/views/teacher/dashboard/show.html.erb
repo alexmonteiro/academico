@@ -1,0 +1,26 @@
+<h1><i class="icon-group"></i> Minhas turmas / classes</h1>
+<p>
+
+
+	<div class="row-fluid">
+	   <ul class="thumbnails">
+		<% @class_teachings.group_by(&:schoolclass).each do |schoolclass, classt|%>
+	     <li class="span3">
+	       <div class="thumbnail well border-radius">
+	         <div class="caption">
+	           <h4>
+		       	<i class="icon-book icon-large"></i> <%= schoolclass.model_course_matrix%><p>
+		        <i class="icon-group icon-large"></i> Turma: <%= schoolclass.identifier%></h4><p>
+
+	           <% classt.each do |c| %> 
+                 <% c.discipline_class.class_records.each do |cr| %>
+                  <small><%= "#{I18n.localize(cr.recorded_at)} - #{cr.calendar_description}"%></small><p>
+	             <%end%>
+	           <%end%>
+
+	         </div>
+	       </div>
+	     </li>
+	   <%end%>
+	   </ul>
+	</div>

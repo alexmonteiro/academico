@@ -67,6 +67,7 @@
 		<ul class="dropdown-menu">
 			<li><%= link_to "Escolaridade", registration_path(@registration, :format =>  "pdf", :type_document => "escolaridade"), :tabindex => "-1" %></li>
 			<li><%= link_to "Passe Estudantil", registration_path(@registration, :format =>  "pdf", :type_document => "passe_estudandil"  ), :tabindex => "-1" %></li>
+			<li><%= link_to "Ficha de Matrícula", registration_path(@registration, :format => "pdf", :type_document => "matricula" ), :tabindex => "-1"%></li>
 		</ul>
 	</div>
 </fieldset>
