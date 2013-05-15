@@ -1,8 +1,6 @@
 AcademicoRails::Application.routes.draw do
 
-  resources :ways_of_admissions
-
-  resources :precedence_schools
+  
 
   #resources :registration_admission_types
 
@@ -159,6 +157,8 @@ AcademicoRails::Application.routes.draw do
     #################################
     resources :races, :path => 'etnias'
     resources :admission_types, :path => 'tipos_de_ingressos'
+    resources :ways_of_admissions, :path => 'formas_de_ingressos'
+    resources :precedence_schools, :path => 'precedencias_escolares'
     resources :special_needs_types, :path => 'tipo_necessidade_especial'
     resources :marital_statuses, :path => 'estado_civil'
     resources :education_degrees, :path => 'niveis_educacionais'
