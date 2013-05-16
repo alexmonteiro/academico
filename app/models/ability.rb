@@ -35,6 +35,7 @@ class Ability
     can :update_city_select, :cities
     
     if user.has_role? :admin
+     can :read, :dashboard 
      can :manage, :all
     elsif user.has_role? :professor
      can :read, :dashboard 
