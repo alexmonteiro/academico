@@ -1,6 +1,5 @@
 class SchoolClassesController < ApplicationController
-  load_resource :dashboard
-  load_and_authorize_resource :school_class, :find_by => :identifier, :trought => :dashboard 
+  load_and_authorize_resource :school_class, :find_by => :identifier
   # GET /school_classes
   # GET /school_classes.json
   def index
