@@ -1,5 +1,5 @@
 class Country < ActiveRecord::Base
-  has_many :state
+  has_many :states
   attr_accessible :name, :nationality
   validates :name, :nationality, :presence => true
   
