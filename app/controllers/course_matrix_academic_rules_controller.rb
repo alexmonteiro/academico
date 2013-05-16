@@ -1,4 +1,5 @@
 class CourseMatrixAcademicRulesController < ApplicationController
+  load_and_authorize_resource
   # GET /course_matrix_academic_rules
   # GET /course_matrix_academic_rules.json
   def index

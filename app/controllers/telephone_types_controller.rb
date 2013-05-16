@@ -1,4 +1,5 @@
 class TelephoneTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /telephone_types
   # GET /telephone_types.json
   def index

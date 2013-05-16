@@ -1,4 +1,5 @@
 class ClassRecordPresencesController < ApplicationController
+  load_and_authorize_resource
   # GET /class_record_presences
   # GET /class_record_presences.json
   def index

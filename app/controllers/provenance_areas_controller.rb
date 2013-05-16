@@ -1,4 +1,5 @@
 class ProvenanceAreasController < ApplicationController
+  load_and_authorize_resource
   # GET /provenance_areas
   # GET /provenance_areas.json
   def index

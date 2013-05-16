@@ -1,4 +1,5 @@
 class AcademicRulesController < ApplicationController
+  load_and_authorize_resource
   # GET /academic_rules
   # GET /academic_rules.json
   def index

@@ -1,4 +1,5 @@
 class MatrixEvaluationTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /matrix_evaluation_types
   # GET /matrix_evaluation_types.json
   def index
