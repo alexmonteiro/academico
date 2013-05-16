@@ -1,4 +1,5 @@
 class KnowledgeAreasController < ApplicationController
+  load_and_authorize_resource
   # GET /knowledge_areas
   # GET /knowledge_areas.json
   def index

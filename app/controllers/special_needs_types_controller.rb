@@ -1,4 +1,5 @@
 class SpecialNeedsTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /special_needs_types
   # GET /special_needs_types.json
   def index

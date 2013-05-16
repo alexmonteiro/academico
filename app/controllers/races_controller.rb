@@ -1,4 +1,5 @@
 class RacesController < ApplicationController
+  load_and_authorize_resource
   # GET /races
   # GET /races.json
   def index

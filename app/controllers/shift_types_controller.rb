@@ -1,4 +1,5 @@
 class ShiftTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /shift_types
   # GET /shift_types.json
   def index

@@ -1,4 +1,5 @@
 class SituationTeachingEquipamentsController < ApplicationController
+  load_and_authorize_resource
   # GET /situation_teaching_equipaments
   # GET /situation_teaching_equipaments.json
   def index

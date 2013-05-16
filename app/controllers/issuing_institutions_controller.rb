@@ -1,4 +1,5 @@
 class IssuingInstitutionsController < ApplicationController
+  load_and_authorize_resource
   # GET /issuing_institutions
   # GET /issuing_institutions.json
   def index
