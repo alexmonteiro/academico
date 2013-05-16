@@ -1,8 +1,6 @@
 AcademicoRails::Application.routes.draw do
 
-  resources :ways_of_admissions
-
-  resources :precedence_schools
+  
 
   #resources :registration_admission_types
 
@@ -159,6 +157,8 @@ AcademicoRails::Application.routes.draw do
     #################################
     resources :races, :path => 'etnias'
     resources :admission_types, :path => 'tipos_de_ingressos'
+    resources :ways_of_admissions, :path => 'formas_de_ingressos'
+    resources :precedence_schools, :path => 'precedencias_escolares'
     resources :special_needs_types, :path => 'tipo_necessidade_especial'
     resources :marital_statuses, :path => 'estado_civil'
     resources :education_degrees, :path => 'niveis_educacionais'
@@ -217,18 +217,18 @@ AcademicoRails::Application.routes.draw do
       
       get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
       
-      # resources :school_classes, :path =>"turma" do
-      #         resources :discipline_classes, :path =>"classes" do
-      #           resources :class_teachings, :path =>"docencias"
-      #           resources :class_records, :path =>"aulas" do
-      #               resources :class_record_presences, :path => "presencas"
-      #           end
-      #           resources :discipline_class_exams, :path => "avaliacoes" do
-      #               resources :discipline_class_exam_results, :path => "notas"
-      #               match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
-      #           end
-      #         end
-      #       end
+      resources :school_classes, :path =>"turma" do
+        resources :discipline_classes, :path =>"classes" do
+          resources :class_teachings, :path =>"docencias"
+          resources :class_records, :path =>"aulas" do
+              resources :class_record_presences, :path => "presencas"
+          end
+          resources :discipline_class_exams, :path => "avaliacoes" do
+              resources :discipline_class_exam_results, :path => "notas"
+              match 'import_registration_to_exam_result', :controller=>'discipline_class_exam_results', :method => :put, :action => 'import_registration_to_exam_result'
+          end
+        end
+      end
       
       
       

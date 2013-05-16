@@ -1,4 +1,5 @@
 class MilitaryDocumentTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /military_document_types
   # GET /military_document_types.json
   def index

@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  load_and_authorize_resource
   # GET /registrations
   # GET /registrations.json
   def index

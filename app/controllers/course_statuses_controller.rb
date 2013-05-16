@@ -1,4 +1,5 @@
 class CourseStatusesController < ApplicationController
+  load_and_authorize_resource
   # GET /course_statuses
   # GET /course_statuses.json
   def index

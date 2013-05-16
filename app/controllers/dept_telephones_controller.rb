@@ -1,4 +1,5 @@
 class DeptTelephonesController < ApplicationController
+  load_and_authorize_resource
   # GET /dept_telephones
   # GET /dept_telephones.json
   def index

@@ -1,4 +1,5 @@
 class WaysOfAdmissionsController < ApplicationController
+  load_and_authorize_resource
   # GET /ways_of_admissions
   # GET /ways_of_admissions.json
   def index

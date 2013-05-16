@@ -1,21 +1,14 @@
-<%= form_for(@ways_of_admission) do |f| %>
-  <% if @ways_of_admission.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ways_of_admission.errors.count, "error") %> prohibited this ways_of_admission from being saved:</h2>
-
-      <ul>
-      <% @ways_of_admission.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @ways_of_admission, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                ways_of_admissions_path, :class => 'btn' %>
   </div>
 <% end %>

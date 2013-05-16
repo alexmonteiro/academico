@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  load_and_authorize_resource
   # GET /people
   # GET /people.json
   def index

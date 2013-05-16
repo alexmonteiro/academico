@@ -1,4 +1,5 @@
 class RegistrationAdmissionTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /registration_admission_types
   # GET /registration_admission_types.json
   def index

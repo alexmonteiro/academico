@@ -1,4 +1,5 @@
 class CourseMatricesController < ApplicationController  
+  load_and_authorize_resource
 # GET /matrices
 # GET /matrices.json
 def index

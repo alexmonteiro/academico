@@ -1,6 +1,6 @@
-<h1>Editing ways_of_admission</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @ways_of_admission %> |
-<%= link_to 'Back', ways_of_admissions_path %>
+<%- model_class = WaysOfAdmission -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                   :default => "Edit #{model_class.model_name.human}") %></h1>
+</div>
+<%= render :partial => 'form' %>

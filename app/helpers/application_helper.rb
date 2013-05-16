@@ -94,7 +94,9 @@ module ApplicationHelper
                          ['discipline_class_exam_types','Tipos de Exame de Classe por Disciplina','Itens de Institucional'],
                          ['academic_rule_types','Tipos de Regra Acadêmica','Itens de Institucional'],
                          ['special_needs_types','Necessidade Especial','Itens de Pessoas'],
-                         ['admission_types','Tipos de Ingressos','Itens de Pessoas']]
+                         ['admission_types','Tipos de Ingressos','Itens de Pessoas'],
+                         ['ways_of_admissions','Formas de Ingressos','Itens de Pessoas'],
+                         ['precedence_schools','Precedências Escolares','Itens de Pessoas']]
     #Ordena o Array de controllers e Grupos
     array_controllers = array_controllers.sort {|x,y| y <=> x }
     array_groups = array_groups.sort

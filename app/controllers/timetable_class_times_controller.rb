@@ -1,4 +1,5 @@
 class TimetableClassTimesController < ApplicationController
+  load_and_authorize_resource
   # GET /timetable_class_times
   # GET /timetable_class_times.json
   def index

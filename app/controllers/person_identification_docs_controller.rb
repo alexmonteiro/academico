@@ -1,4 +1,5 @@
 class PersonIdentificationDocsController < ApplicationController
+  load_and_authorize_resource
   # GET /person_identification_docs
   # GET /person_identification_docs.json
   def index

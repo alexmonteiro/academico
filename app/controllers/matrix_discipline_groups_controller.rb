@@ -1,4 +1,5 @@
 class MatrixDisciplineGroupsController < ApplicationController
+  load_and_authorize_resource
   # GET /matrix_discipline_groups
   # GET /matrix_discipline_groups.json
   def index

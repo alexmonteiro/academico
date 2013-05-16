@@ -1,4 +1,5 @@
 class StreetTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /street_types
   # GET /street_types.json
   def index

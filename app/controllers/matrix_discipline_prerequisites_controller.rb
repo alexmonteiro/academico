@@ -1,4 +1,5 @@
 class MatrixDisciplinePrerequisitesController < ApplicationController
+  load_and_authorize_resource
   # GET /matrix_discipline_prerequisites
   # GET /matrix_discipline_prerequisites.json
   def index

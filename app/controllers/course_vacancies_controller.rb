@@ -1,4 +1,5 @@
 class CourseVacanciesController < ApplicationController
+  load_and_authorize_resource
   # GET /course_vacancies
   # GET /course_vacancies.json
   def index
