@@ -1,5 +1,4 @@
 class SchoolClass < ActiveRecord::Base
-  load_and_authorize_resource  
   belongs_to :course_matrix, :foreign_key => "matrix_id"
   belongs_to :class_season
   belongs_to :shift_type
