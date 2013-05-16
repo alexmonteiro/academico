@@ -30,10 +30,28 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     user ||= User.new # guest user (not logged in)    
+    
+    can :update_state_select, Person
+    can :update_city_select, Person
+    
     if user.has_role? :admin
      can :manage, :all
-    else
-     can :read, "welcome#index"
+    elsif user.has_role? :professor
+     can :read, :dashboard 
+     can :teacher_school_classes, :dashboard
+     can :classes_calendar, :dashboard
+     
+     # Professor lê somente Turma (SchoolClass) vinculada em Docêcnia (ClassTeching)
+     can :read, SchoolClass do |turma|
+       (ClassTeaching.where(:user_id => user.id).map {|ct| ct.discipline_class_id} & turma.discipline_classes.map {|dc| dc.id}).present?
+     end
+     # Professor lê somente Classe (DisciplineClass) vinculada em Docêcnia (ClassTeching)
+     can :read, DisciplineClass do |classe|
+       ClassTeaching.where(:discipline_class_id => classe.id, :user_id => user.id).any?
+     end
+       
+     
+     
     end
     
   end
