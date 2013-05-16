@@ -41,6 +41,11 @@ class RegistrationsController < ApplicationController
             pdf = EnrollmentPDF.new(:registration => @registration)
             send_data pdf.render, :filename => "ficha_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
           end
+      elsif params[:type_document] == "estatistica"
+          format.pdf do
+            pdf = RegistrationStatisticPDF.new(:registration => @registration)
+            send_data pdf.render, :filename => "teste_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
+          end
        end
     end
   end
