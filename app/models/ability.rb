@@ -31,8 +31,8 @@ class Ability
 
     user ||= User.new # guest user (not logged in)    
     
-    can :update_state_select, Person
-    can :update_city_select, Person
+    can :update_state_select, :people
+    can :update_city_select, :people
     
     if user.has_role? :admin
      can :manage, :all
