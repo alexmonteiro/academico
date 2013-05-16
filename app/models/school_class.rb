@@ -116,8 +116,4 @@ class SchoolClass < ActiveRecord::Base
     end
   end
   
-  def id
-    self.identifier
-  end
-  
 end
