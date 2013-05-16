@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513202116) do
+ActiveRecord::Schema.define(:version => 20130516201105) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -478,8 +478,6 @@ ActiveRecord::Schema.define(:version => 20130513202116) do
     t.integer  "race_id"
     t.integer  "marital_status_id"
     t.integer  "blood_type_id"
-    t.integer  "country_id"
-    t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "number_children"
     t.boolean  "isemployee"
@@ -491,12 +489,10 @@ ActiveRecord::Schema.define(:version => 20130513202116) do
 
   add_index "people", ["blood_type_id"], :name => "index_people_on_blood_type_id"
   add_index "people", ["city_id"], :name => "index_people_on_city_id"
-  add_index "people", ["country_id"], :name => "index_people_on_country_id"
   add_index "people", ["education_degree_id"], :name => "index_people_on_education_degree_id"
   add_index "people", ["gender_id"], :name => "index_people_on_gender_id"
   add_index "people", ["marital_status_id"], :name => "index_people_on_marital_status_id"
   add_index "people", ["race_id"], :name => "index_people_on_race_id"
-  add_index "people", ["state_id"], :name => "index_people_on_state_id"
 
   create_table "people_telephones", :force => true do |t|
     t.integer  "telephone_type_id"

@@ -1,5 +1,5 @@
 class City < ActiveRecord::Base
-  resourcify
+  default_scope :order => :name 
   belongs_to :state
   attr_accessible :name, :state_id, :state
   validates :name, :state_id, :presence => true

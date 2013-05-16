@@ -6,7 +6,7 @@ jQuery(function($) {
     var state = $('select#person_person_address_attributes_state :selected').val();
     var nome_view = $('input#nome_view').val();
     if(state == "") state="0";
-    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+    jQuery.get('/states/update_city_select/' + state, {nome_view:nome_view}, function(data){
         $("#addressCitiesPersonAddress").html(data);
     })
     return false;

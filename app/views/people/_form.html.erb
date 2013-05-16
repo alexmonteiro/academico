@@ -66,55 +66,15 @@
   <legend>Nacionalidade/Naturalidade</legend>
 
   <!-- País Cidade e Estado -->
-  <%= f.label :country_id, :class => 'control-label' %>
-  <div class="controls" id="addressCountry">
-     <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Selecione o país" %>
-  </div>
-<div class="control-group">
-  <%= f.label :state_id, :class => 'control-label' %>
-  <div class="controls"  id="addressStates">
-	 <%= f.collection_select :state_id, State.find(:all, :order => "name"), :id, :name, :prompt => "Selecione a UF" %>
-  </div>
-</div>
-<div class="control-group">
-  <%= f.label :city_id, :class => 'control-label' %>
-  <div class="controls"  id="addressCities">
-	  <%= f.collection_select :city_id, City.find(:all, :order => "name"), :id, :name, :prompt => "Selecione a Cidade" %>
-  </div>
-</div>
+	<div class="control-group">
+	  <%= f.label :city_id, :class => 'control-label' %>
+	  <div class="controls"  id="city_id">
+		  <% options = option_groups_from_collection_for_select(State.where(:country_id => 24, :id => 7).order(:name).all, :cities, :name, :id, :name, (!@person.city_id.blank? ? @person.city_id : "")) %>
+		  <%= f.select(:city_id, options, :include_blank => "...Selecione...") %>
+	  </div>
+	</div>
 </div>
 <!-- Fim -->
-
-  <!-- Antes Aplicado
-
-  <div class="span3">
-    <%= f.label :country_id, :class => 'control-label' %>
-    <%= f.collection_select :country_id, Country.find(:all), :id, :name, :prompt => "Select a Country" %>
-  </div>
-  <div class="span3">
-
-    <%= f.label :state_id, :class => 'control-label' %>
-    <div class="controls"  id="addressStates">
-	   <%= render :partial => 'states'%>
-    </div>
-	<!--
-   <%= f.label :state_id, :class => 'control-label' %>
-   <%= f.select :state_id, [[State.find(7, :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
-    --<
-  </div>
-
-  <div class="span3">  
-
-    <%= f.label :city_id, :class => 'control-label' %>
-    <div class="controls"  id="addressCities">
-	   <%= render :partial => 'cities'  %>	
-    </div>
-	<!--
-   <%= f.label :city_id, :class => 'control-label' %>
-   <%= f.select :city_id, [[City.find_by_name('Brasília', :order=>:name).name,Country.find(24, :order=>:name).id]], :required=>true, :class => 'select_field' %>
-
-   </div>
- -->
 
 <!-- Inicio Campos Para Telefone -->
 
@@ -154,9 +114,21 @@
 
 <!-- Fim Campos Para Documentos de Identificação -->
 
-
+<!-- -->
 <div class="well">
-	<%= render "institutional_bond", :f => f, :person => @person%>
+	<fieldset>
+	  <legend>Vínculo Institucional</legend>
+	   <div class="span12">
+	    <%= f.fields_for :person_type_ids do |pt| %>
+	        <div class="right_box">
+	          <% PersonType.all.each do |person_type| %>
+	                  <%= (pt.check_box [], {:checked=> @person.person_types.include?(person_type) }, person_type.id, nil) %>
+	                  <%= person_type.description %><br/>
+	          <% end %>
+	        </div>
+	    <% end %>
+	   </div>
+	</fieldset>
 </div>
 
   <div class="form-actions">
