@@ -14,6 +14,8 @@
 		# id = nome_view -> Variavel para o JS application - Não muda
 		# value = person_addresses -> nome da view em que se encontra o codigo - Aqui muda de acordo com a view em que se encontra
 		-->
+		
+		<!-- 
 		  <input type="hidden" id="nome_view" value="people/person_address_field">
 		  <%= f.label :country_id, :class => 'control-label' %>
 		  <div class="controls" id="addressCountry">
@@ -30,6 +32,13 @@
 		  <%= f.label :city_id, :class => 'control-label' %>
 		  <div class="controls" id="addressCitiesPersonAddress">
 		<%= render :partial => 'people/person_address_field/cities', :locals => {:state_id => (@person.person_address.try(:city).state.id if !@person.person_address.try(:city).blank?)} %>
+		  </div>
+		</div>
+		-->
+		<%= f.label :city_id, :class => 'control-label' %>
+		  <div class="controls" id="addressCitiesPersonAddress">
+			    <% options = option_groups_from_collection_for_select(State.where(:country_id => 24, :id => 7).order(:name).all, :cities, :name, :id, :name, (!params[:city_id].blank? ? params[:city_id] : "")) %>
+				<%= f.select(:city_id, options, :include_blank => "...Selecione...") %>
 		  </div>
 		</div>
 		<!-- Fim -->

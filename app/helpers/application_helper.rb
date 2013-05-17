@@ -139,6 +139,7 @@ module ApplicationHelper
      top_menu += "<li class= #{'active' if fullpath.include?('professor')}><a href=#{teacher_index_path}><i class='icon-coffee'> </i>Espaço do Professor</a> </li>"
      top_menu += "<li class= #{'active' if fullpath.include?('registro_academico')}><a href= #{registro_academico_index_path} %> <i class='icon-edit'></i>Registro Acadêmico</a> </li>"
      top_menu += "<li class= #{'active' if fullpath.include?('configuracoes')}><a href=#{config_index_path}><i class='icon-wrench'> </i>Configurações</a> </li>"
+     top_menu += "<li class= #{'active' if fullpath.include?('about')}><a href=#{about_index_path}><i class='icon-list-alt'> </i>Sobre</a> </li>"
     #elsif current_user.has_role? :registroacademico
     # top_menu += "<li class= #{'active' if fullpath.include?('registro_academico')}><a href= #{registro_academico_index_path} %> <i class='icon-edit'></i>Registro Acadêmico</a> </li>"
     #end

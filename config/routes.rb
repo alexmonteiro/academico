@@ -18,8 +18,8 @@ AcademicoRails::Application.routes.draw do
   end
   get '/auth/:provider/callback' => 'users/omniauth_callbacks#create'
 
-  match 'people/update_state_select/:id', :controller=>'people', :action => 'update_state_select'
-  match 'people/update_city_select/:id', :controller=>'people', :action => 'update_city_select'
+  match 'states/update_state_select/:id', :controller=>'states', :action => 'update_state_select'
+  match 'cities/update_city_select/:id', :controller=>'cities', :action => 'update_city_select'
   match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
 
 
@@ -143,13 +143,6 @@ AcademicoRails::Application.routes.draw do
   # Regras acadêmicas
   resources :academic_rules, :path => 'registro_academico/regras_academicas'
   
-  
-  
-  
-  
-  match 'countries/update_state_select/:id', :controller=>'countries', :action => 'update_state_select'
-  match 'countries/update_city_select/:id', :controller=>'countries', :action => 'update_city_select'
-  
   resources :config, :controller => 'menu/config', :only => [:index], :path => 'configuracoes'
   scope "configuracoes" do  
     #################################
@@ -238,6 +231,8 @@ AcademicoRails::Application.routes.draw do
 
   end
   
+  # about
+  resources :about, :controller => 'menu/about', :only => [:index], :path => 'sobre'
   
   # dynamic erros
   match '(errors)/:status', :to => 'errors#show', :constraints => {:status => /\d{3}/} #, :via => :all

@@ -1,12 +1,13 @@
 <script type="text/javascript">
 jQuery(function($) {
 // when the #region_id field changes
-  $("#person_state_id").change(function() {
+  $("#personStates").change(function() {
     // make a POST call and replace the content
+    alert("Teste");
     var state = $('select#person_state_id :selected').val();
     if(state == "") state="0";
-    jQuery.get('/people/update_city_select/' + state, function(data){
-        $("#addressCities").html(data);
+    jQuery.get('/cities/update_city_select/' + state, function(data){
+        $("#personCities").html(data);
     })
     return false;
   });

@@ -1,4 +1,4 @@
-<h1><i class="icon-group"></i> Minhas turmas / classes</h1>
+<h1><i class="icon-group"></i>Meus componentes</h1>
 <p>
 
 	<div class="row-fluid">
@@ -12,7 +12,7 @@
 		        <i class="icon-group icon-large"></i> Turma: <%= schoolclass.identifier%></h4><p>
 
 	           <% classt.each do |c| %> 
-                  <small><%= link_to "#{c.discipline_class.discipline_name}", teacher_school_class_discipline_class_path(current_user.userlogin, schoolclass.identifier, c.id)%></small><p>
+                  <small><%= link_to "#{c.discipline_class.discipline_name}", teacher_school_class_discipline_class_path(current_user.userlogin, schoolclass.identifier, c.discipline_class_id)%></small><p>
 	           <%end%>
 
 	         </div>

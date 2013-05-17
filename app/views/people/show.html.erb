@@ -31,9 +31,9 @@
       <dt><strong><%= model_class.human_attribute_name(:blood_type_id) %>:</strong></dt>
       <dd><%= verifica_registro(:campo => @person.blood_type, :atributo => "type")%></dd>
       <dt><strong><%= model_class.human_attribute_name(:country_id) %>:</strong></dt>
-      <dd><%= verifica_registro(:campo => @person.country, :atributo => "name") %></dd>
+      <dd><%= verifica_registro(:campo => @person.city.state.country, :atributo => "name") %></dd>
       <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
-      <dd><%= verifica_registro(:campo => @person.state, :atributo => "name")%></dd>
+      <dd><%= verifica_registro(:campo => @person.city.state, :atributo => "name")%></dd>
       <dt><strong><%= model_class.human_attribute_name(:city_id) %>:</strong></dt>
       <dd><%= verifica_registro(:campo => @person.city, :atributo => "name") %></dd>
       <dt><strong><%= model_class.human_attribute_name(:number_children) %>:</strong></dt>
