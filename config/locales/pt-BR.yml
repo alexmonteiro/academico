@@ -34,8 +34,6 @@ pt-BR:
         race_id:  "Etnia" 
         marital_status_id:  "Estado Civil" 
         blood_type_id:  "Tipo Sanguíneo" 
-        country_id:  "País" 
-        state_id:  "Estado" 
         city_id:  "Cidade" 
         number_children:  "Filhos" 
         person_types: "Vínculo(s)"

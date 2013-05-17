@@ -1,4 +1,5 @@
 class TechaxisTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /techaxis_types
   # GET /techaxis_types.json
   def index

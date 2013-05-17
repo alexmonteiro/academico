@@ -1,4 +1,5 @@
 class ClassTimesController < ApplicationController
+  load_and_authorize_resource
   # GET /class_times
   # GET /class_times.json
   def index

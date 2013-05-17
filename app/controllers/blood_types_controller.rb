@@ -1,4 +1,5 @@
 class BloodTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /blood_types
   # GET /blood_types.json
 

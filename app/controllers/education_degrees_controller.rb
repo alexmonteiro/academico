@@ -1,4 +1,5 @@
 class EducationDegreesController < ApplicationController
+  load_and_authorize_resource
   # GET /education_degrees
   # GET /education_degrees.json
   def index

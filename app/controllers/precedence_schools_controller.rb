@@ -1,4 +1,5 @@
 class PrecedenceSchoolsController < ApplicationController
+  load_and_authorize_resource
   # GET /precedence_schools
   # GET /precedence_schools.json
   def index

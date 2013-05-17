@@ -1,4 +1,5 @@
 class ClassSeasonTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /class_season_types
   # GET /class_season_types.json
   def index

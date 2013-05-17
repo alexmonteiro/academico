@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  load_and_authorize_resource
   # GET /cities
   # GET /cities.json
   def index
@@ -88,4 +89,10 @@ class CitiesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def update_city_select
+      cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
+      render :partial => "cities", :locals => { :cities => cities }
+  end  
+  
 end

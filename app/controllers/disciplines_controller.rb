@@ -1,4 +1,5 @@
 class DisciplinesController < ApplicationController
+  load_and_authorize_resource
   # GET /disciplines
   # GET /disciplines.json
   def index

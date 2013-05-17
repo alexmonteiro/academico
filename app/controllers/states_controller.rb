@@ -1,4 +1,5 @@
 class StatesController < ApplicationController
+  load_and_authorize_resource
   # GET /states
   # GET /states.json
   def index
@@ -85,4 +86,10 @@ class StatesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def update_state_select
+      states = State.where(:country_id=>params[:id]).order(:name) unless params[:id].blank?
+      render :partial => "states", :locals => { :states => states }
+  end
+  
 end

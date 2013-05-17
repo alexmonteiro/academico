@@ -1,4 +1,5 @@
 class LearningModalitiesController < ApplicationController
+  load_and_authorize_resource
   # GET /learning_modalities
   # GET /learning_modalities.json
   def index
