@@ -9,11 +9,11 @@ jQuery(function($) {
     var state = 0
     if(state == "") state="0";
     if(country == "") country="0";
-    jQuery.get('/countries/update_state_select/' + country,{nome_view: nome_view}, function(data){
+    jQuery.get('/states/update_state_select/' + country,{nome_view: nome_view}, function(data){
         $("#addressStatesPersonAddress").html(data);
     })
     
-    jQuery.get('/countries/update_city_select/' + state, {nome_view:nome_view}, function(data){
+    jQuery.get('/cities/update_city_select/' + state, {nome_view:nome_view}, function(data){
         $("#addressCitiesPersonAddress").html(data);
     })
     return false;

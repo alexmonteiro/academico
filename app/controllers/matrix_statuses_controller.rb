@@ -1,4 +1,5 @@
 class MatrixStatusesController < ApplicationController
+  load_and_authorize_resource
   # GET /matrix_statuses
   # GET /matrix_statuses.json
   def index

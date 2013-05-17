@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  load_and_authorize_resource
   # GET /people
   # GET /people.json
   def index
@@ -59,14 +60,15 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(params[:person])
-    condition_save_depts = @person.validates_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo para validação dos campos de Vinculo Institucional... Este Método encontra-se na Model de Pessoas
+    #condition_save_depts = @person.validates_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo para validação dos campos de Vinculo Institucional... Este Método encontra-se na Model de Pessoas
     
-    #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
-    params[:person][:birth_date].gsub!("/",".")
+    ##comando para transformar as "/" para "." pois o sistema nao le datas com "/"
+    #params[:person][:birth_date].gsub!("/",".")
     
     respond_to do |format|
-      if condition_save_depts && @person.save
-        @person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds])  # => Chama o metodo que salva os campos de Vinculo Institucional
+      #if condition_save_depts && @person.save
+      if @person.save
+        #@person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds])  # => Chama o metodo que salva os campos de Vinculo Institucional
         format.html { redirect_to @person, :notice => 'Pessoa criada com sucesso.' }
         format.json { render :json => @person, :status => :created, :location => @person }
       else
@@ -88,10 +90,11 @@ class PeopleController < ApplicationController
     end
 
     respond_to do |format|
-      if condition_save_depts && @person.update_attributes(params[:person])
-        @person.person_person_types.destroy_all # => Antes de atualizar, elimina-se os registros relacionado a Vinculo Institucional
-        @person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo que salva os campos de Vinculo Institucional
-        #flash[:success] = t('controller_message.updated')
+      #if condition_save_depts && @person.update_attributes(params[:person])
+      if @person.update_attributes(params[:person])
+        #@person.person_person_types.destroy_all # => Antes de atualizar, elimina-se os registros relacionado a Vinculo Institucional
+        #@person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo que salva os campos de Vinculo Institucional
+        flash[:success] = t('controller_message.updated')
         format.html { redirect_to @person, :notice => t('controller_message.updated') }
         format.json { head :no_content }
       else
@@ -122,15 +125,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  def update_state_select
-      states = State.where(:country_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => "states", :locals => { :states => states }
-  end
-
-  def update_city_select
-      cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
-      render :partial => "cities", :locals => { :cities => cities }
-  end
   
   #Pesquisar por pessoa para efetuar a matrícula
   # GET /people

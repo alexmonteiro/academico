@@ -1,4 +1,5 @@
 class DeptsController < ApplicationController
+  load_and_authorize_resource
   # GET /depts
   # GET /depts.json
   def index

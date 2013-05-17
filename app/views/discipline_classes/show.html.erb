@@ -95,12 +95,12 @@
 
   </div>
 </div>
-
+<%= request.fullpath %>
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
               discipline_classes_path, :class => 'btn btn-large'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
-              edit_discipline_class_path(@discipline_class), :class => 'btn btn-large' %>
+              "#{request.fullpath}/edit", :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-pencil'></i> ".html_safe + t('Aulas'),
 			   discipline_class_class_records_path(@discipline_class), :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-user'></i> ".html_safe + t('Docentes'),

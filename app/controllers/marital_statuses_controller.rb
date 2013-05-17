@@ -1,4 +1,5 @@
 class MaritalStatusesController < ApplicationController
+  load_and_authorize_resource
   # GET /marital_statuses
   # GET /marital_statuses.json
   def index

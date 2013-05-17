@@ -1,4 +1,5 @@
 class PersonPersonTypeDeptsController < ApplicationController
+  load_and_authorize_resource
   # GET /person_person_type_depts
   # GET /person_person_type_depts.json
   def index

@@ -1,4 +1,5 @@
 class EquipamentTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /equipament_types
   # GET /equipament_types.json
   def index

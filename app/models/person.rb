@@ -5,8 +5,6 @@ class Person < ActiveRecord::Base
   belongs_to :race
   belongs_to :marital_status
   belongs_to :blood_type
-  belongs_to :country
-  belongs_to :state
   belongs_to :city
   has_many :person_person_types, :dependent => :destroy
   has_many :person_types, :through => :person_person_types
@@ -18,9 +16,9 @@ class Person < ActiveRecord::Base
   before_destroy :has_children?
 
   attr_accessible :birth_date, :email, :father_name, :lattes_url, :mom_name, :name, :number_children,
-                  :city_id, :country_id, :state_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id,
+                  :city_id, :race_id, :education_degree_id, :marital_status_id, :blood_type_id, :gender_id,
                   :people_telephones_attributes, :person_address_attributes, :person_identification_doc_attributes, :person_person_types_attributes, :person_person_type_depts_attributes,
-                  :person_person_types
+                  :person_person_types, :person_type_ids
 
   #Campos para aceitar atributos aninhados
   accepts_nested_attributes_for :people_telephones, :reject_if => lambda { |a| a[:number].blank?}, :allow_destroy => true
@@ -30,7 +28,7 @@ class Person < ActiveRecord::Base
     
   #Validações
   validates :name, :birth_date, :mom_name, :gender_id, :education_degree_id, :presence => {:message => "deve ser informado."}
-  validates :city_id, :state_id, :race_id, :presence => {:message => "deve ser informado."}
+  validates :city_id, :race_id, :presence => {:message => "deve ser informado."}
   validates :number_children, :numericality => { :only_integer => true }
   #validates :email, :uniqueness => true
   

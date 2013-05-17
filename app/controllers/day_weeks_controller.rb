@@ -1,4 +1,5 @@
 class DayWeeksController < ApplicationController
+  load_and_authorize_resource
   # GET /day_weeks
   # GET /day_weeks.json
   def index

@@ -1,4 +1,5 @@
 class ClassRecordTypesController < ApplicationController
+  load_and_authorize_resource
   # GET /class_record_types
   # GET /class_record_types.json
   def index

@@ -1,4 +1,5 @@
 class TechaxesController < ApplicationController
+  load_and_authorize_resource
   # GET /techaxes
   # GET /techaxes.json
   def index

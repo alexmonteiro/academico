@@ -43,7 +43,6 @@
 	          <div class="nav-collapse">
 	            <ul class="nav">
 					<%= top_menu_by_profile %>
-		          <li><a href="#about">About</a></li>
 	            </ul>
 	          </div><!--/.nav-collapse -->
 		      <%end%>
@@ -65,7 +64,9 @@
 			
 			          <% if fullpath.include?('professor') %>
 		                  <li class="nav-header">Espaço do Professor</li>
+		                  <!--
 		  			      <li class="<%= ('classes_calendar' == params[:action] ? 'active' : '')%>"><a href=<%= calendar_classes_teacher_index_path %> > <i class="icon-calendar"></i>Calendário de Aulas</a></li>
+		                   -->
 			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i>Turmas / Classes</a></li>
 	                  <%end%>
 	
