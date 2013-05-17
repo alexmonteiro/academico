@@ -43,7 +43,7 @@ def initialize(params)
     @registration.person.people_telephones.each do |tel|
        if !tel.blank?
 
-             telephone << ["#{tel.telephone_type.telephone_type} - #{tel.try(:branch)} (#{tel.try(:area_code)}) #{tel.try(:number)} "]
+             telephone << ["#{tel.telephone_type.telephone_type} - Ramal:#{tel.try(:branch).blank? ? "()" : tel.try(:branch)} (#{tel.try(:area_code)}) #{tel.try(:number)} " + "\n"]
          
        end
     end
@@ -52,12 +52,12 @@ def initialize(params)
     #dados do aluno
     data_student_1 = [ ["<b>Nome Completo:</b>","#{@registration.person.try(:name)}"] ]
     data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.country.try(:name)}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
-    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.description}"]]
+    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.try(:description)}"]]
     data_student_4 = [ ["<b>Nome do Pai:</b>","#{@registration.person.try(:father_name)}"],
                        ["<b>Nome da Mãe:</b>","#{@registration.person.try(:mom_name)}"] ]
     data_student_5 = [ ["<b>Endereço Residencial:</b>","#{@registration.person.person_address.try(:street_name)}","<b>Telefone(s):</b>","#{telephone}"]]
     data_student_6 = [ ["<b>Localização/Zona da residência:</b>","#{@registration.person.person_address.provenance_area.try(:description)}","<b>Quantidade de filhos:</b>","#{@registration.person.number_children}","<b>CEP:</b>","#{@registration.person.person_address.zip_code}"] ]
-    data_student_7 = [ ["<b>Renda Familiar:</b>","#{@registration.family_income}","<b>Quantas pessoas moram com você?</b>","#{@registration.how_many_live}","<b>E-mail:</b>","#{@registration.person.email}"]]
+    data_student_7 = [ ["<b>Renda Familiar:</b>","#{@registration.family_income.blank? ? "" : @registration.family_income}","<b>Quantas pessoas moram com você?</b>","#{@registration.how_many_live}","<b>E-mail:</b>","#{@registration.person.email}"]]
     data_student_8 = [ ["<b>Trabalha?</b>","#{(@registration.have_work ? "Sim" : "Não")}","<b>Profissão/Cargo:</b>","#{@registration.occupation}"]]
     data_student_9 = [ ["<b>Como você se declara quanto à etnia:</b>","#{@registration.person.race.try(:race)}","<b>Estado Civil:</b>","#{@registration.person.marital_status.try(:status)}"]]
     data_student_10 = [ ["<b>Naturalidade/UF:</b>","#{@registration.person.try(:city).try(:name).to_s} / #{@registration.person.try(:city).try(:state).try(:acronym)}","<b>Data de Nascimento:</b>","#{I18n.l(@registration.person.birth_date)}"]]

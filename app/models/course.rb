@@ -18,7 +18,7 @@ class Course < ActiveRecord::Base
   
   def ended_at_date
     if self.ended_at
-       errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
+       errors.add(:base, "Data de encerramento não pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
     end
   end
   
