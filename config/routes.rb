@@ -231,6 +231,8 @@ AcademicoRails::Application.routes.draw do
 
   end
   
+  # about
+  resources :about, :controller => 'menu/about', :only => [:index], :path => 'sobre'
   
   # dynamic erros
   match '(errors)/:status', :to => 'errors#show', :constraints => {:status => /\d{3}/} #, :via => :all
