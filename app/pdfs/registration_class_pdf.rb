@@ -36,9 +36,9 @@ class RegistrationClassPdf < Prawn::Document
   
   #Metodo Que Desenha As Informações Sobre a Logo, Titulo Instituto, Diário, Relatório de Frequencia... 
   def title
-    image "app/assets/images/logo-if.png", :at => [0,550], :width => 25, :height => 40
-    text_box "Instituto Federal de Brasília", :at => [50,547], :size => 8, :style => :bold
-    text_box "Diário de Classe - Relatório de Frequência", :at => [50,537], :size => 8, :style => :bold
+    image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,550], :width => 110, :height => 45
+    #text_box "Instituto Federal de Brasília", :at => [50,547], :size => 8, :style => :bold
+    text_box "Diário de Frequência", :at => [135,547], :size => 12, :style => :bold
     #text_box "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :at => [], :size => 8
     move_down(15)
   end

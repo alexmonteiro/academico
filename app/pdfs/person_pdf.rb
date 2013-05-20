@@ -41,8 +41,8 @@ class PersonPdf < Prawn::Document
                       ["Etnia..........................:","#{@person.try(:race).try(:race)}"],
                       ["Estado Civil...................:","#{@person.try(:marital_status).try(:status)}"],
                       ["Tipo Sanguíneo.................:","#{@person.try(:blood_type).try(:type)}"],
-                      ["País...........................:","#{@person.try(:country).try(:name)}"],
-                      ["Estado.........................:","#{@person.try(:state).try(:name)}"],
+                      ["País...........................:","#{@person.try(:city).try(:state).try(:country).try(:name)}"],
+                      ["Estado.........................:","#{@person.try(:city).try(:state).try(:name)}"],
                       ["Cidade.........................:","#{@person.try(:city).try(:name)}"],
                       ["Filhos(os).....................:","#{@person.try(:number_children)}"]]
                       
