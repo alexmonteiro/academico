@@ -19,10 +19,14 @@ class Course < ActiveRecord::Base
   
   validate :ended_at_date
   
+  #rever
   def ended_at_date
-    if self.ended_at
-       errors.add(:base, "Data de encerramento não pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
-    end
+    if !self.started_at.blank? 
+      if self.ended_at
+        errors.add(:base, "Data de encerramento não pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
+      end
+
+   end
   end
   
   def dept_acronym

@@ -78,8 +78,8 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     
-    params[:course][:started_at].gsub!("/",".") if params[:course][:started_at]
-    params[:course][:ended_at].gsub!("/",".")  if params[:course][:ended_at]
+    params[:course][:started_at].gsub!("/",".") 
+    params[:course][:ended_at].gsub!("/",".")  
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
