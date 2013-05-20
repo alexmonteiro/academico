@@ -43,7 +43,7 @@ class PeopleController < ApplicationController
     @person = Person.new
     @person.people_telephones.build
     @person.build_person_address
-    #@person.build_person_identification_doc
+    @person.build_person_identification_doc
     @person.person_person_types.build
     respond_to do |format|
       format.html # new.html.erb

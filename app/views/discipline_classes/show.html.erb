@@ -8,7 +8,7 @@
 
 	<dl class="dl-horizontal">
 	  <dt><strong><%= SchoolClass.human_attribute_name(:matrix_id) %>:</strong></dt>
-	  <dd><%=link_to "#{@discipline_class.school_class.course_matrix.id} - #{@discipline_class.school_class.course_matrix.started_at_formatted}", course_matrix_path(@discipline_class.school_class.course_matrix) %></dd>		
+	  <dd><%=link_to "#{@discipline_class.school_class.course_matrix.id} - #{@discipline_class.school_class.course_matrix.started_at_formatted}", course_matrix_path(@discipline_class.school_class.course_matrix)%></dd>		
 	  <dt><strong><%= model_class.human_attribute_name(:school_class_id) %>:</strong></dt>
 	  <dd><%= link_to "#{@discipline_class.school_class.identifier}", school_class_path(@discipline_class.school_class.identifier) %> </dd>
 	  <dt><strong><%= model_class.human_attribute_name(:matrix_discipline_id) %>:</strong></dt>
@@ -47,14 +47,14 @@
 	  <div class="well">
 	      <fieldset>
 	          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Aulas </div>".html_safe,
-	            discipline_class_class_records_path(@discipline_class), :class => 'btn btn-inverse span12' %>
+	            "#{request.fullpath}/aulas", :class => 'btn btn-inverse span12' %>
 	         <div style="padding-top: 60px">
 		       <table class="table table-striped table-condensed">
 	           <% @discipline_class.class_records.each_with_index do |record, i| %>
 			    <tr><td><%= I18n.localize(record.recorded_at) %> <%= record.class_time.try(:model_custom_name)%> <%= record.record%></td></tr>
 			    <% break if i == 5 %>
 				<%end%>
-    			<tr><td><%= link_to "...mais...", discipline_class_class_records_path(@discipline_class) %></td></tr>
+    			<tr><td><%= link_to "...mais...", "#{request.fullpath}/aulas" %></td></tr>
 			  </table> 
 			    <dd><center><%= '...sem aula cadastrada...' if @discipline_class.class_records.count == 0 %></center></dd>
 	         </div>
@@ -95,7 +95,6 @@
 
   </div>
 </div>
-<%= request.fullpath %>
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
               discipline_classes_path, :class => 'btn btn-large'  %>
