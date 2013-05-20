@@ -11,6 +11,7 @@ class DisciplineClass < ActiveRecord::Base
   
   validates_uniqueness_of :school_class_id, :scope => :matrix_discipline_id, :message => "já possui esta disciplina associada a classe."
   validates :school_class_id, :matrix_discipline_id, :started_at, :code, :vancancies, :presence => true
+  validates :vancancies, :numericality => { :only_integer => true }
   
   validate :timetable_started_at_date
   validate :ending_at_date

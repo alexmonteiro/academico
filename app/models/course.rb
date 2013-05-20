@@ -14,11 +14,14 @@ class Course < ActiveRecord::Base
   
   validates_presence_of :dept_id, :started_at, :goal, :name, :code
   
+  validates :mintime, :numericality => { :only_integer => true }
+  validates :maxtime, :numericality => true, :allow_blank => true
+  
   validate :ended_at_date
   
   def ended_at_date
     if self.ended_at
-       errors.add(:base, "Data de encerramento nao pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
+       errors.add(:base, "Data de encerramento não pode ser menor que a data de abertura") unless self.ended_at >= self.started_at
     end
   end
   
@@ -31,7 +34,7 @@ class Course < ActiveRecord::Base
   end
   
   def started_at_formatted
-    self.started_at.strftime("%d/%m/%Y")
+    I18n.l(self.started_at)
   end
   
   def modality
