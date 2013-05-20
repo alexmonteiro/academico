@@ -2,45 +2,36 @@ class RegistrationClassPdf < Prawn::Document
   def initialize(params)
     super(:top_margin => 20, :page_layout => :landscape, :page_size => "A4")
     #super()
-    @discipline = params[:discipline_class]
+    @discipline_class = params[:discipline_class]
     @preenchido = params[:preenchido]
-    @discipline.class_records.reverse!
-    #header
-    
-      #variaveis de Controle
-      qtd_aulas = @discipline.class_records.count
-      repeticoes = qtd_aulas.div 20
-      paginacao_inicio = 0
-      paginacao_fim = 0
-      #Fim Variáveis de Controle
-      
-      #Cabecalho
-      repeat(:all) do
+    @discipline_class.class_records.reverse!
+    #variaveis de Controle
+      @number_classes_by_page = 30 #Este valor não pode ser menos que 3 nem mais que 22 Quando o total de faltas estiver habilitado
+      @classes_count = @discipline_class.class_records.count
+      @repetitions = @classes_count.div @number_classes_by_page
+      @rest = @classes_count.modulo @number_classes_by_page
+    #Fim Variáveis de Controle
+       
+    #Cabeçalho
+    repeat(:all) do
       title
       information
-      #head_table
+    end
+    #Fim do Cabeçalho
+    #Corpo do Relatório
+    if @preenchido.blank?
+      content_blank
+    else
+      for i in 1..(@repetitions+1)
+        content(:iteracao => i)
+        start_new_page if ((@repetitions+1) != i) 
       end
-      #Fim Cabecalho
-      
-      #Iteraca do Cruzamento de dados entre estudantes e presenca em aulas
-      for i in 1..repeticoes+1
-        content(:iteracao => i-1)
-        paginacao_fim = page_count
-        repeat((paginacao_inicio.to_i + 1)..paginacao_fim.to_i) do
-          head_table(:iteracao => i-1)
-        end
-        paginacao_inicio = page_count
-        if i < repeticoes-1 || ((page_count.to_i.remainder 2) != 0)
-          if repeticoes != 0
-            start_new_page
-          end
-        end
-      end
-      #Fim da Iteracao
-       
-      #Rodape
-      foot
-      #Fim do Rodape
+    end
+    
+    #Fim Corpo do Relatório
+    #Rodape
+    foot
+    #Fim do Rodape
   end
   
   #Metodo Que Desenha As Informações Sobre a Logo, Titulo Instituto, Diário, Relatório de Frequencia... 
@@ -55,100 +46,155 @@ class RegistrationClassPdf < Prawn::Document
   #Método que desenha as informações sobre o relatório como Classe, Curso, Professor...
   def information
     font_size 8
-    data_header = [["<b>Classe:</b> #{@discipline.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline.discipline_class_dept}"],
-                      ["<b>Curso:</b> #{@discipline.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline.discipline_name}"],
-                      ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline.discipline_class_classes_taught_planned}"],
-                      ["<b>Carga Horária:</b> #{@discipline.discipline_class_workload}", ""]]
+    data_header = [["<b>Classe:</b> #{@discipline_class.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline_class.discipline_class_dept}"],
+                      ["<b>Curso:</b> #{@discipline_class.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline_class.discipline_name}"],
+                      ["<b>Professor:</b> #{@discipline_class.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline_class.discipline_class_classes_taught_planned}"],
+                      ["", "<b>Carga Horária:</b> #{@discipline_class.discipline_class_workload}"]]
     move_up(27)
-    table(data_header, :width => 515, :position => :right, :cell_style => { :inline_format => true }) do
-      row(0..3).borders = []
-      row(0..3).columns(0..1).width = 257.5
-      row(0..3).padding = [2,2,2,2]   
+    bounding_box([300, 550], :width => 2200, :height => 250) do 
+      table(data_header, :width => 515, :cell_style => { :inline_format => true }) do
+        row(0..3).borders = []
+        row(0..3).columns(0..1).width = 257.5
+        row(0..3).padding = [2,2,2,2]   
+      end
+    end
   end
   
-  #Metodo que desenha o head da tabela Numero, Matriculas, Alunos...
-  def head_table(opcoes = {})
-    font_size 8
-    #Config do campo Datas e a Linha horizontal
-    bounding_box([0, 435], :width => 2200, :font_style => :bold) do
-      vertical_line 50, 10, :at => 225
-      #horizontal_line 240, 640, :at => -31
-      rotate(90, :origin => [00, 00]) do
-        draw_text "Datas", :at => [18,-235], :font_style => :bold
-      end
-    #fim Config
-    
-    #Tabela de Cabecalho
-    
-    #Controle das datas das aulas
-    qtd_aulas = @discipline.class_records.count
-    repeticoes = qtd_aulas.div 20
-    ite = opcoes[:iteracao]
-    
-    #Iteracoes para o controle das datas de aulas
-    
-      dates_classes = [] 
-      for i in (ite*20)..(20*(ite+1))-1
-        !@discipline.class_records[i].blank? ? dates_classes << I18n.l(@discipline.class_records[i].recorded_at, :format => "%d/%b") : dates_classes << " "
-      end
-    #Fim da Iteraca
-    #Fim do controle das datas de aulas
-    
-    # Definição e Desenho da Tabela Cabecalho
-    data_head = [["Nº","Matrícula","Aluno"] + dates_classes + ["Total de Presenças","Total de Faltas","% de Faltas"]]
-      
-      move_up(50)
-      table(data_head, :header => true) do
-        row(0).height = (40)
-        row(0).align = :center
-        row(0).font_style = :bold
-        row(0).columns(0).padding = [15,0,0,0]
-        row(0).columns(1).padding = [15,0,0,0]
-        row(0).columns(2).padding = [15,0,0,0]
-        row(0).columns(23).padding = [10,0,0,0]
-        row(0).columns(24).padding = [10,0,0,0]
-        row(0).columns(25).padding = [10,0,0,0]
-        columns(3..34).width = 17
-        columns(0).width = 25
-        columns(1).width = 90
-        columns(2).width = 125
-        columns(23).width = 60
-        columns(24).width = 35
-        columns(25).width = 35
+  def content_blank
+    header_table = [["Nº","Matrícula","Nome"] + [""]*@number_classes_by_page]
+    @discipline_class.class_records_sort_by_name.each_with_index do |student, j|
+      header_table += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*@number_classes_by_page]
+    end
+    bounding_box([-10, 480], :width => 2200, :height => 425) do #Determina a posição que a tabela se encontra e o tamanho
+      font_size 8
+      data_type = [["Legenda para F e C: F - Falta e C - Comparecimento"]]
+      #Desenha a Tabela
+      table(header_table, :header => true) do |table, p|
+        p = {:registration_class_count => @discipline_class.registration_classes.count, :number_classes_by_page => @number_classes_by_page} # Array de variaveis para valores dos atributos
         
-        row(0).column(3..22).rotate = 90
-        row(0).column(3..22).padding = [40,-35,-50,5]
+        table.column(0..(p[:number_classes_by_page]+2)).align = :center
+        
+        table.row(1..p[:registration_class_count]).padding = [1,1,1,1]
+        table.column(2).row(1..p[:registration_class_count]).align = :left
+        table.columns(1).width = 67
+        table.columns(2).width = 125
+        
+        #Atributos Para Resultados Finais => "Total de Presenças","Total de Faltas","% de Faltas"
+        # table.column((p[:number_classes_by_page]+3)).width = 60
+        # table.column((p[:number_classes_by_page]+4)).width = 35
+        # table.column((p[:number_classes_by_page]+5)).width = 35
+        # table.column(3..(p[:number_classes_by_page]+5)).align = :center
+        #Atributos para a parte das datas
+        table.row(0).column(3..p[:number_classes_by_page]+2).width = 19
+        table.row(0).column(3..p[:number_classes_by_page]+2).height = 40
+        table.row(0).column(3..p[:number_classes_by_page]+2).rotate = 90
+        table.row(0).column(3..p[:number_classes_by_page]+2).padding = [33,-15,-20,5]
       end
+      table(data_type, :width => 775) do
+        row(0).columns(0).width = 775
+        row(0).align = :center
+        row(0).borders = []
+      end
+    end
+    self.signatures_and_subtitles
+  end
+  
+  def content(params = {})
+    iteracao = params[:iteracao]
+    data_content = []
+
+    for i in ((iteracao-1)*@number_classes_by_page)..((iteracao*@number_classes_by_page)-1)
+      data_content << "#{(@discipline_class.class_records[i].blank? ? " " : I18n.l(@discipline_class.class_records[i].recorded_at, :format => "%d / %b"))}"
+    end
+    
+    header_table = [["Nº","Matrícula","Nome"] + data_content]
+    #Total de Faltas Desabilitado Abaixo deste comentario
+    # if ((@repetitions+1) != iteracao)
+      # header_table = [["Nº","Matrícula","Nome"] + data_content]
+    # else
+      # header_table = [["Nº","Matrícula","Nome"] + data_content + ["Total de Presenças","Total de Faltas","% de Faltas"]]
+    # end 
+    
+    
+    
+    #Começo da Iteração dos Cruzamento de Dados entre Estudantes e Aulas para colocar Presença
+    @discipline_class.class_records_sort_by_name.each_with_index do |student, j| #Começa a iteração para criar a tabela de presenças por alunos - Linha da tabela que contem Numero (posição) do Aluno na chamada, Matricula do Aluno, Nome do Aluno e sequencias de dias com Presença ou Falta
+      classes_presences_hash = [] #Cria Array de Presença para as aulas
+      
+      for i in ((iteracao-1)*@number_classes_by_page)..((iteracao*@number_classes_by_page)-1)
+        ispresent = nil
+        if !@discipline_class.class_records[i].blank?
+          if !@discipline_class.class_records[i].class_record_presences.any?
+            classes_presences_hash << " "
+          else
+            @discipline_class.class_records[i].class_record_presences.each_with_index do |presence, k|
+              if presence.model_student_id == student.student_id and presence.is_present == true
+                 ispresent = "C"
+                 break
+              end
+            end
+            ispresent.nil? ? classes_presences_hash << "F" : classes_presences_hash << ispresent
+          end
+        else
+          classes_presences_hash << " "
+        end
+      end
+      header_table += [["#{j+1}","#{student.student_registration_number}","#{student.student_name}"] + classes_presences_hash]
+      
+      #Total de Faltas Desabilitado Abaixo deste comentario
+      # if ((@repetitions+1) != iteracao)
+        # header_table += [["#{j+1}","#{student.student_registration_number}","#{student.student_name}"] + classes_presences_hash]
+      # else
+        # header_table += [["#{j+1}","#{student.student_registration_number}","#{student.student_name}"] + classes_presences_hash + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%"]]
+      # end  
       
       
+    end
+    
+    bounding_box([-10, 480], :width => 2200, :height => 425) do #Determina a posição que a tabela se encontra e o tamanho
+      font_size 8
+      data_type = [["Legenda para F e C: F - Falta e C - Comparecimento"]]
+      #Desenha a Tabela
+      table(header_table, :header => true) do |table, p|
+        p = {:registration_class_count => @discipline_class.registration_classes.count, :number_classes_by_page => @number_classes_by_page, :rest => @rest, :iteracao => iteracao} # Array de variaveis para valores dos atributos
+        
+        table.column(0..(p[:number_classes_by_page]+2)).align = :center
+        
+        table.row(1..p[:registration_class_count]).padding = [1,1,1,1]
+        table.column(2).row(1..p[:registration_class_count]).align = :left
+        table.columns(1).width = 67
+        table.columns(2).width = 125
+        
+        #Atributos Para Resultados Finais => "Total de Presenças","Total de Faltas","% de Faltas"
+        # table.column((p[:number_classes_by_page]+3)).width = 60
+        # table.column((p[:number_classes_by_page]+4)).width = 35
+        # table.column((p[:number_classes_by_page]+5)).width = 35
+        # table.column(3..(p[:number_classes_by_page]+5)).align = :center
+        #Atributos para a parte das datas
+        table.row(0).column(3..p[:number_classes_by_page]+2).width = 19
+        table.row(0).column(3..p[:number_classes_by_page]+2).height = 40
+        table.row(0).column(3..p[:number_classes_by_page]+2).rotate = 90
+        table.row(0).column(3..p[:number_classes_by_page]+2).padding = [33,-15,-20,5]
+      end
+      table(data_type, :width => 775) do
+        row(0).columns(0).width = 775
+        row(0).align = :center
+        row(0).borders = []
+      end
+    end
+    if ((@repetitions+1) == iteracao)
+      self.signatures_and_subtitles
     end
   end
   
-  
-  #Conteudo da Tabla  - Informações
-  def content(opcoes={})
-    
-    bounding_box([0, 400], :width => 2200) do
-    font_size 9
-
-    data_type = [["Legenda para F e C: F - Falta e C - Comparecimento"]]
-    
-    data_footer = [["Visto do Coordenador: ____________________________________ ","Assinatura do Professor: ____________________________________ "]]
-    
-    move_down(5)
-    self.data_calls(:iteracao => opcoes[:iteracao])
-    
-    table(data_type, :width => 775) do
-      row(0).columns(0).width = 775
-      row(0).align = :center
-      row(0).borders = []
+  def signatures_and_subtitles
+    bounding_box([0, 50], :width => 2200) do
+      data_footer = [["Visto do Coordenador: ____________________________________ ","Assinatura do Professor: ____________________________________ "]]
+      table(data_footer, :width => 775) do
+        row(0).columns(0..1).width = 387.5
+        row(0).borders = [] 
+      end
     end
-    table(data_footer, :width => 775) do
-      row(0).columns(0..1).width = 387.5
-      row(0).borders = [] 
-    end
-    end
-   end
   end
   
   def foot
@@ -158,71 +204,6 @@ class RegistrationClassPdf < Prawn::Document
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
       draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [700, -10]
-      
-    end
-    
-  end 
-  
-  
-  
-  #Métodos Para Iteracoes e insercoes de informacoes e cruzemntos de dados
-  
-  #Método para listar alunos e presenças (Cruzmento de Dados)
-  def data_calls(opcoes = {})
-    move_up(50)
-    data_content = [[" "," "," "] + [" "]*20 + [" "," "," "]]
-     if @preenchido.blank?
-      @discipline.registration_classes.each_with_index do |student, i|
-        data_content += [["#{i + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*20 + [" "," "," "]]
-      end
-    else
-      quantidade_aulas = @discipline.records_planned_count
-      espacamentos = quantidade_aulas.modulo 20
-      repeticoes = quantidade_aulas.div 20 + 1
-        
-         ite = opcoes[:iteracao]
-         @discipline.class_records_sort_by_name.each_with_index do |student, j|
-          presencas = []
-          for i in (ite*20)..(20*(ite+1))-1
-            presenca = nil
-            if !@discipline.class_records[i].blank?
-              if !@discipline.class_records[i].class_record_presences.any?
-                presencas << " "
-              else
-                @discipline.class_records[i].class_record_presences.each_with_index do |chamada, k| 
-                  if chamada.model_student_id == student.student_id and chamada.is_present == true
-                    presenca = "C"
-                    break
-                  end
-                end
-                presenca.nil? ? presencas << "F" : presencas << presenca
-              end
-            else
-              presencas << " " 
-            end
-         end
-         
-          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%"]]
-          repeticoes = repeticoes - 1
-        end 
-      
-    end
-    table(data_content, :header => true) do
-      row(0).borders = []
-      row(0).height = 10
-      columns(0).width = 25
-      columns(1).width = 90
-      columns(2).width = 125
-      # columns(2).width = 100
-      
-      # columns(3..34).padding = 3.5
-      columns(3..22).width = 17
-      columns(23).width = 60
-      columns(24).width = 35
-      columns(25).width = 35
-      
-      columns(0..1).align = :center
-      columns(3..25).align = :center
     end
   end
   
