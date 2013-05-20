@@ -51,7 +51,7 @@ def initialize(params)
     
     #dados do aluno
     data_student_1 = [ ["<b>Nome Completo:</b>","#{@registration.person.try(:name)}"] ]
-    data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.country.try(:name)}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
+    data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.try(:city).try(:state).try(:country).try(:name)}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
     data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.try(:description)}"]]
     data_student_4 = [ ["<b>Nome do Pai:</b>","#{@registration.person.try(:father_name)}"],
                        ["<b>Nome da Mãe:</b>","#{@registration.person.try(:mom_name)}"] ]

@@ -72,7 +72,7 @@
 		  <div class="control-group">
 		    <%= f.label :zip_code, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.number_field :zip_code, :class => 'number_field', :id => "zipcode", :value =>  (@person.person_address.zip_code if !@person.person_address.zip_code.blank?) %>
+		      <%= f.text_field :zip_code, :class => 'number_field', :id => "zipcode", :value =>  (@person.person_address.zip_code if !@person.person_address.zip_code.blank?) %>
 		    </div>
 		  </div>
 		  <div class="control-group">
