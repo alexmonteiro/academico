@@ -49,12 +49,14 @@ class RegistrationClassPdf < Prawn::Document
     data_header = [["<b>Classe:</b> #{@discipline_class.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline_class.discipline_class_dept}"],
                       ["<b>Curso:</b> #{@discipline_class.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline_class.discipline_name}"],
                       ["<b>Professor:</b> #{@discipline_class.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline_class.discipline_class_classes_taught_planned}"],
-                      ["<b>Carga Horária:</b> #{@discipline_class.discipline_class_workload}", ""]]
+                      ["", "<b>Carga Horária:</b> #{@discipline_class.discipline_class_workload}"]]
     move_up(27)
-    table(data_header, :width => 515, :position => :right, :cell_style => { :inline_format => true }) do
-      row(0..3).borders = []
-      row(0..3).columns(0..1).width = 257.5
-      row(0..3).padding = [2,2,2,2]   
+    bounding_box([300, 550], :width => 2200, :height => 250) do 
+      table(data_header, :width => 515, :cell_style => { :inline_format => true }) do
+        row(0..3).borders = []
+        row(0..3).columns(0..1).width = 257.5
+        row(0..3).padding = [2,2,2,2]   
+      end
     end
   end
   
