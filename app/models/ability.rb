@@ -50,15 +50,16 @@ class Ability
      can :read, DisciplineClass do |classe|
        ClassTeaching.where(:discipline_class_id => classe.id, :user_id => user.id).any?
      end
+    
+     # Controller com acesso através de DisciplineClass
+     can :manage, ClassRecord
+     # Controller com acesso através de ClassRecord
+     can :manage, ClassRecordPresence
+     # Controller com acesso através de DisciplineClass
+     can :manage, DisciplineClassExam
+     # Controller com acesso através de DisciplineClassExam
+     can :manage, DisciplineClassExamResult
      
-     # Professor CRUD somente Aulas (ClassRecord) vinculada em Docêcnia (ClassTeching)
-     can :manage, ClassRecord do |classe|
-       ClassRecord.where(:discipline_class_id => classe.discipline_class_id, :user_id => user.id).any?
-       # Professor CRUD somente Presenças (ClassRecordPresence) vinculada em Docêcnia (ClassTeching)
-       can :manage, ClassRecordPresence do |presence|
-         ClassRecordPresence.where(:class_record_id => presence.id).any?
-       end
-     end
      
        
      
