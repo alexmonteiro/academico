@@ -57,6 +57,9 @@ class DisciplineClassExamsController < ApplicationController
      @discipline_class = DisciplineClass.find(params[:discipline_class_id])
      @discipline_class_exam.discipline_class_id = @discipline_class.id
     end
+    
+   params[:discipline_class_exam][:applied_at].gsub!("/",".")
+
 
     respond_to do |format|
       if @discipline_class_exam.save
