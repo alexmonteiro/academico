@@ -34,21 +34,21 @@
   <div class="control-group">
     <%= f.label :started_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :started_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.started_at.blank? ? nil : @discipline_class.started_at.strftime("%d/%m/%Y") %>
+	   <%= f.text_field :started_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.started_at.blank? ? nil : I18n.l(@discipline_class.started_at) %>
     </div>
   </div>
  <%if !(action_name == "new" or action_name == "create") %>
   <div class="control-group">
     <%= f.label :ending_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :ending_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.ending_at.blank? ? nil : @discipline_class.ending_at.strftime("%d/%m/%Y") %>
+	   <%= f.text_field :ending_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.ending_at.blank? ? nil : I18n.l(@discipline_class.ending_at) %>
     </div>
   </div>
  <%end%>
   <div class="control-group">
     <%= f.label :timetable_started_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :timetable_started_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.timetable_started_at.blank? ? nil : @discipline_class.timetable_started_at.strftime("%d/%m/%Y") %>
+	   <%= f.text_field :timetable_started_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @discipline_class.timetable_started_at.blank? ? nil : I18n.l(@discipline_class.timetable_started_at) %>
     </div>
   </div>
 
