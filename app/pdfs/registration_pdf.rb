@@ -19,10 +19,9 @@ class RegistrationPdf < Prawn::Document
   end
   
   def header
-    image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,750], :width => 140, :height => 55
-    text_box "Ministério de Educação", :at => [170,737], :size => 12, :style => :bold
-    text_box "Instituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", :style => :bold, :size => 10, :at => [170,722]
-    text_box "Instituto Federal de Brasília", :size => 12, :style => :bold, :at => [170,708]
+    image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,740], :width => 140, :height => 55
+    text_box "Ministério de Educação", :at => [170,720], :size => 12, :style => :bold
+    text_box "Instituto Federal de Brasília", :size => 12, :style => :bold, :at => [170,700]
   end
   
   def content
@@ -135,11 +134,11 @@ class RegistrationPdf < Prawn::Document
   end
 
   def sign_area
-    font("Helvetica", :size => 10, :style => :bold) do
-      text_box "Brasília-DF, #{I18n.localize(Date.today, :format => :long)}", 
-      :at => [370, 28], 
-      :align => :left 
-    end   
+    # font("Helvetica", :size => 10, :style => :bold) do
+      # text_box "Brasília-DF, #{I18n.localize(Date.today, :format => :long)}", 
+      # :at => [370, 28], 
+      # :align => :left 
+    # end   
     stroke_horizontal_line 150, 400, :at => 100, :align => :center
     font("Helvetica", :size => 8, :style => :bold) do
       text_box "Assinatura", 
