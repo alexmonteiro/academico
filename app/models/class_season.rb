@@ -6,7 +6,7 @@ class ClassSeason < ActiveRecord::Base
   
   validate :ended_at_time
   
-  validates :number, :year, :numericality => { :only_integer => true }
+  validates :number, :numericality => { :only_integer => true }
   validates :year, :numericality => { :less_than => 9999 }
 
   def model_custom_name
