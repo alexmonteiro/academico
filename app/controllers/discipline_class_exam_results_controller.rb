@@ -1,5 +1,6 @@
 class DisciplineClassExamResultsController < ApplicationController
-  load_and_authorize_resource
+  load_resource :discipline_class_exam
+  load_and_authorize_resource :discipline_class_exam_result, :through => :discipline_class_exam
   # GET /discipline_class_exam_results
   # GET /discipline_class_exam_results.json
   def index

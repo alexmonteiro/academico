@@ -97,18 +97,18 @@
 </div>
 <div class="form-actions">
   <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
-              discipline_classes_path, :class => 'btn btn-large'  %>
+              :back, :class => 'btn btn-large'  %>
   <%= link_to "<i class='icon-edit'></i> ".html_safe + t('.edit', :default => t("helpers.links.edit")),
               "#{request.fullpath}/edit", :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-pencil'></i> ".html_safe + t('Aulas'),
-			   discipline_class_class_records_path(@discipline_class), :class => 'btn btn-large' %>
+			   "#{request.fullpath}/aulas", :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-user'></i> ".html_safe + t('Docentes'),
 			   discipline_class_class_teachings_path(@discipline_class), :class => 'btn btn-large' %>
   <%= link_to "<i class='icon-align-justify'></i> ".html_safe + t('Avaliações'),
 			   discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-large' %> 
   
   <%= link_to "<i class='icon-group'></i> ".html_safe + t('Enturmação'),
-               discipline_class_registration_classes_path(@discipline_class), :class => 'btn btn-large' %> 
+               "#{request.fullpath}/avaliacoes", :class => 'btn btn-large' %> 
 
 
   <%= link_to "<i class='icon-trash'></i> ".html_safe + t('.destroy', :default => t("helpers.links.destroy")),
