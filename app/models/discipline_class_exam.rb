@@ -6,7 +6,8 @@ class DisciplineClassExam < ActiveRecord::Base
   attr_accessible :applied_at, :is_mandatory, :real_value, :title, :weight, :discipline_class_exam_type_id, :discipline_class_id
   before_destroy :has_children?
   
-  validates_presence_of :applied_at, :title, :weight, :discipline_class_id
+  validates :applied_at, :presence => true
+  validates_presence_of :title, :weight, :discipline_class_id
   validates :real_value ,:numericality => {:greater_than_or_equal_to => 0.0, :less_than_or_equal_to => 10.0}
   
   def is_mandatory?
