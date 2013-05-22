@@ -1,5 +1,5 @@
 class SchoolClassesController < ApplicationController
-  load_and_authorize_resource :school_class, :find_by => :identifier
+  #load_and_authorize_resource :school_class, :find_by => :identifier
   # GET /school_classes
   # GET /school_classes.json
   def index
@@ -62,7 +62,7 @@ class SchoolClassesController < ApplicationController
 
   # GET /school_classes/1/edit
   def edit
-    @school_class = SchoolClass.find_by_identifier(params[:identifier])
+    @school_class = SchoolClass.find_by_identifier(params[:id])
   end
 
   # POST /school_classes
@@ -94,7 +94,7 @@ class SchoolClassesController < ApplicationController
   # PUT /school_classes/1
   # PUT /school_classes/1.json
   def update
-    @school_class = SchoolClass.find_by_identifier(params[:school_class][:identifier])
+    @school_class = SchoolClass.find_by_id(params[:id])
     
     params[:school_class][:opening_at].gsub!("/",".")
     params[:school_class][:closing_at].gsub!("/",".")
