@@ -39,7 +39,11 @@
     <% end %>
   </tbody>
 </table>
-
+<div class="form-actions">
 <%= link_to t('.new', :default => t("helpers.links.new")),
             "#{request.fullpath}/new",
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary btn-mini pull-left' %>
+
+		  <%= link_to "<i class='icon-undo'></i> ".html_safe + t('.back', :default => t("helpers.links.back")),
+		              "#{request.referer.gsub('http://','').split('/')[1..-2].map{|item| '/'+item}.join}", :class => 'btn btn-mini pull-left'  %>
+</div>
