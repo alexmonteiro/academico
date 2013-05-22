@@ -1,5 +1,6 @@
 class ClassRecordPresencesController < ApplicationController
-  load_and_authorize_resource
+  load_resource :class_record
+  load_and_authorize_resource :class_record_presence, :through => :class_record
   # GET /class_record_presences
   # GET /class_record_presences.json
   def index

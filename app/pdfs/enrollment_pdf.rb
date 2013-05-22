@@ -41,21 +41,25 @@ def initialize(params)
     
     #par pegar todos os telefones
     @registration.person.people_telephones.each do |tel|
-      telephone = tel.number
+       if !tel.blank?
+
+             telephone << ["#{tel.telephone_type.telephone_type} - Ramal:#{tel.try(:branch).blank? ? "()" : tel.try(:branch)} (#{tel.try(:area_code)}) #{tel.try(:number)} " + "\n"]
+         
+       end
     end
     
     
     #dados do aluno
     data_student_1 = [ ["<b>Nome Completo:</b>","#{@registration.person.try(:name)}"] ]
-    data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.country.name}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
-    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.description}"]]
-    data_student_4 = [ ["<b>Nome do Pai:</b>","#{@registration.person.father_name}"],
-                       ["<b>Nome da Mãe:</b>","#{@registration.person.mom_name}"] ]
-    data_student_5 = [ ["<b>Endereço Residencial:</b>","#{@registration.person.person_address.street_name}","<b>Celular:</b>",""]]
-    data_student_6 = [ ["<b>Localização/Zona da residência:</b>","#{@registration.person.person_address.provenance_area.description}","<b>Quantidade de filhos:</b>","#{@registration.person.number_children}","<b>Telefone(s):</b>","#{telephone}","<b>CEP:</b>","#{@registration.person.person_address.zip_code}"] ]
-    data_student_7 = [ ["<b>Renda Familiar:</b>","#{@registration.family_income}","<b>Quantas pessoas moram com você?</b>","#{@registration.how_many_live}","<b>E-mail:</b>","#{@registration.person.email}"]]
-    data_student_8 = [ ["<b>Trabalha?</b>","#{(@registration.have_work ? "Sim" : "Não")}","<b>Profissão/Cargo:</b>","#{@registration.occupation}","<b>Telefone(s) do Trabalho:</b>","#{}"]]
-    data_student_9 = [ ["<b>Como você se declara quanto à etnia:</b>","#{@registration.person.race.race}","<b>Estado Civil:</b>","#{@registration.person.marital_status.status}"]]
+    data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.try(:city).try(:state).try(:country).try(:name)}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
+    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.try(:description)}"]]
+    data_student_4 = [ ["<b>Nome do Pai:</b>","#{@registration.person.try(:father_name)}"],
+                       ["<b>Nome da Mãe:</b>","#{@registration.person.try(:mom_name)}"] ]
+    data_student_5 = [ ["<b>Endereço Residencial:</b>","#{@registration.person.person_address.try(:street_name)}","<b>Telefone(s):</b>","#{telephone}"]]
+    data_student_6 = [ ["<b>Localização/Zona da residência:</b>","#{@registration.person.person_address.provenance_area.try(:description)}","<b>Quantidade de filhos:</b>","#{@registration.person.number_children}","<b>CEP:</b>","#{@registration.person.person_address.zip_code}"] ]
+    data_student_7 = [ ["<b>Renda Familiar:</b>","#{@registration.family_income.blank? ? "" : @registration.family_income}","<b>Quantas pessoas moram com você?</b>","#{@registration.how_many_live}","<b>E-mail:</b>","#{@registration.person.email}"]]
+    data_student_8 = [ ["<b>Trabalha?</b>","#{(@registration.have_work ? "Sim" : "Não")}","<b>Profissão/Cargo:</b>","#{@registration.occupation}"]]
+    data_student_9 = [ ["<b>Como você se declara quanto à etnia:</b>","#{@registration.person.race.try(:race)}","<b>Estado Civil:</b>","#{@registration.person.marital_status.try(:status)}"]]
     data_student_10 = [ ["<b>Naturalidade/UF:</b>","#{@registration.person.try(:city).try(:name).to_s} / #{@registration.person.try(:city).try(:state).try(:acronym)}","<b>Data de Nascimento:</b>","#{I18n.l(@registration.person.birth_date)}"]]
     data_student_11 = [ ["<b>Cidade:<b>","#{@registration.person.city.name}","<b>Local de Trabalho:</b>","#{@registration.workplace}"]]
     #dados do responsavel
@@ -69,7 +73,7 @@ def initialize(params)
     data_health_student_2 = [ ["<b>Problema de Saúde/Alergia?</b>","#{@registration.presents_health_problem.blank? ? "Não" : "Sim" }","<b>Qual?</b>","#{@registration.health_problem_description}"] ]
     #escolaridade do aluno
     data_schooling_student_1 = [ ["<b>Instituição de Origem:</b>","#{@registration.precedence_school_id}","<b>Procedência Escolar:</b>","#{@registration.parent_institution}"] ]
-    data_schooling_student_2 = [ ["<b>Etapa de Ensino:</b>","#{@registration.person.education_degree.degree}","<b>Ano de Conclusão:</b>","#{@registration.year_completion}"] ]
+    data_schooling_student_2 = [ ["<b>Etapa de Ensino:</b>","#{@registration.person.education_degree.try(:degree)}","<b>Ano de Conclusão:</b>","#{@registration.year_completion}"] ]
     #novo data
     data_schooling_student_3 = [ ["<b>Está cursando algum nível de escolaridade?</b>","#{@registration.is_attending_scholl_level.blank? ?  "Não" : "Sim" }","<b>Qual?</b>","#{@registration.attending_scholl_level_description}"] ]
     
@@ -116,8 +120,8 @@ def initialize(params)
     end
     #endereco reisdencial, celular
     table(data_student_5, :cell_style => { :inline_format => true, :borders => [] }) do
-      column(1).width = 285
-      column(3).width = 100
+      column(1).width = 200
+      column(3).width = 140
     end 
     #localizacao/zona,quantidades de filhos,telefone, cep
     table(data_student_6, :cell_style => { :inline_format => true, :borders => [] }) do

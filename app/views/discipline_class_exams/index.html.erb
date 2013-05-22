@@ -28,7 +28,7 @@
         <td><%= discipline_class_exam.is_mandatory? %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_discipline_class_discipline_class_exam_path(:id => discipline_class_exam.id), :class => 'btn btn-mini' %>
+                      "#{request.fullpath}/#{discipline_class_exam.id}/edit", :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       discipline_class_discipline_class_exam_path(:id => discipline_class_exam.id),
                       :method => :delete,
@@ -41,5 +41,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_discipline_class_discipline_class_exam_path,
+            "#{request.fullpath}/new",
             :class => 'btn btn-primary' %>

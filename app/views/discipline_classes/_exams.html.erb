@@ -2,7 +2,7 @@
   <div class="well">
       <fieldset>
           <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Avaliações </div>".html_safe,
-            discipline_class_discipline_class_exams_path(@discipline_class), :class => 'btn btn-inverse span12' %>
+            "#{request.fullpath}/avaliacoes", :class => 'btn btn-inverse span12' %>
          <div style="padding-top: 60px">
 	     <% if @discipline_class.discipline_class_exams.count > 0 %>
 		       <table class="table table-condensed table-bordered table-hover">
@@ -12,7 +12,7 @@
 				   <th><center>Aluno</center></th>	
 				   <th><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
 	               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
-				      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, discipline_class_discipline_class_exam_discipline_class_exam_results_path(@discipline_class, exam) %></center></th>
+				      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, "#{request.fullpath}/avaliacoes/#{exam.id}/notas" %></center></th>
 			       <%end%>
    			       <th><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>
    	               <th><center>Situação</center></th>	
