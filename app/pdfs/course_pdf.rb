@@ -1,19 +1,19 @@
 class CoursePdf < Prawn::Document
   def initialize(course)
-    template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
-    super(:top_margin => 110, :template => template_filename)
+    #template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
+    super(:top_margin => 110)
     #super()
     @course = course
 
-    #header
+    header
     title
     content
     footer                
   end
   
   def content
-    
-        font("Helvetica", :size => 22, :style => :bold) do
+         move_up(30)
+        font("Helvetica", :size => 16, :style => :bold) do
          text "Curso: #{@course.name}"    
          #stroke_horizontal_rule
         end
@@ -76,26 +76,13 @@ class CoursePdf < Prawn::Document
   end
     
   def header
-    image "#{Rails.root}/app/assets/images/logo-if.png", :at => [0, 740], :scale => 0.75      
-    font("Helvetica", :size => 16, :style => :bold) do
-      text_box "Ministério da Educação", 
-      :at => [60, 740], 
-      :align => :left    
-    end     
-    font("Helvetica", :size => 14, :style => :bold) do
-      text_box "Insitituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", 
-      :at => [60, 720], 
-      :align => :left    
-    end     
-
+    image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0, 740], :width => 140, :height => 55      
+    text_box "Ministério da Educação", :at => [60, 735], :align => :center, :font => "Helvetica", :size => 12, :style => :bold
+    text_box "Insitituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", :at => [135, 720], :align => :center, :size => 10, :style => :bold, :font => "Helvetica"  
   end
   
   def title
-    font("Courier", :size => 16, :style => :bold ) do
-     text_box "Relatório de especificação de curso", 
-     :at => [45, 675], 
-     :align => :center
-    end
+     text_box "Relatório de especificação de curso", :at => [115, 705], :align => :center, :size => 16, :style => :bold, :font => "Courier"
   end
   
   def footer
