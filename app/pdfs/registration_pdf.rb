@@ -151,12 +151,7 @@ class RegistrationPdf < Prawn::Document
   def footer
   stroke_horizontal_line 0, 550, :at => 15, :align => :center
   font("Helvetica", :size => 8, :style => :bold) do
-    #text_box "#{@registration.course_matrix.course.dept.dept.try(:name)}", 
-    #:at => [0, 10], 
-    #:align => :right
-    text_box "Instituto Federal de Brasília", 
-    :at => [410, 10] 
-   # :align => :right  
+    text_box "Instituto Federal de Brasília", :at => [410, 10]  
    end
   end
  end 
