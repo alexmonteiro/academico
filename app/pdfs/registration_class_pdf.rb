@@ -202,7 +202,7 @@ class RegistrationClassPdf < Prawn::Document
       go_to_page(i+1)
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
-      draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
+      draw_text "ACADEMICO - IFB - #{@discipline_class.discipline_year.blank? ? " " : "#{@discipline_class.discipline_year.strftime('%Y')}.#{@discipline_class.school_class_period}"}", :at => [345, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [700, -10]
     end
   end

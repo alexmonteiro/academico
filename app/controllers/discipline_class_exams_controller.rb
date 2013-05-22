@@ -53,6 +53,7 @@ class DisciplineClassExamsController < ApplicationController
   # POST /discipline_class_exams
   # POST /discipline_class_exams.json
   def create
+    params[:discipline_class_exam][:applied_at].gsub!('/','-')
     @discipline_class_exam = DisciplineClassExam.new(params[:discipline_class_exam])
     if params[:discipline_class_id]
      @discipline_class = DisciplineClass.find(params[:discipline_class_id])
@@ -64,7 +65,7 @@ class DisciplineClassExamsController < ApplicationController
 
     respond_to do |format|
       if @discipline_class_exam.save
-        format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação criada com sucesso.' }
+        format.html { redirect_to "#{request.referer.gsub('http://','').split('/')[1..-2].map{|item| '/'+item}.join}", :notice => 'Avaliação criada com sucesso.' }
         format.json { render :json => @discipline_class_exam, :status => :created, :location => @discipline_class_exam }
       else
         format.html { render :action => "new" }
@@ -77,10 +78,11 @@ class DisciplineClassExamsController < ApplicationController
   # PUT /discipline_class_exams/1.json
   def update
     @discipline_class_exam = DisciplineClassExam.find(params[:id])
+    params[:discipline_class_exam][:applied_at].gsub!('/','-')
 
     respond_to do |format|
       if @discipline_class_exam.update_attributes(params[:discipline_class_exam])
-        format.html { redirect_to @discipline_class_exam, :notice => 'Avaliação atualizada com sucesso.' }
+        format.html { redirect_to "#{request.referer.gsub('http://','').split('/')[1..-3].map{|item| '/'+item}.join}", :notice => 'Avaliação atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
@@ -100,7 +102,7 @@ class DisciplineClassExamsController < ApplicationController
      
      if @discipline_class_exam.destroy
        respond_to do |format|
-         format.html { redirect_to discipline_class_discipline_class_exams_path(@discipline_class), :notice => 'Avaliação excluída com sucesso.' }
+         format.html { redirect_to "#{request.referer.gsub('http://','').split('/')[1..-1].map{|item| '/'+item}.join}", :notice => 'Avaliação excluída com sucesso.' }
          format.json { head :no_content }
        end
      else
