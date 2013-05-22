@@ -22,7 +22,7 @@ class RegistrationPdf < Prawn::Document
     image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,750], :width => 140, :height => 55
     text_box "Ministério de Educação", :at => [170,737], :size => 12, :style => :bold
     text_box "Instituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", :style => :bold, :size => 10, :at => [170,722]
-    text_box "Instituto Federal de Brasília", :size => 12, :style => :bold, :at => [170,708]
+    #text_box "Instituto Federal de Brasília", :size => 12, :style => :bold, :at => [170,708]
   end
   
   def content
