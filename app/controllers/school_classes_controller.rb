@@ -62,7 +62,7 @@ class SchoolClassesController < ApplicationController
 
   # GET /school_classes/1/edit
   def edit
-    @school_class = SchoolClass.find_by_identifier(params[:id])
+    @school_class = SchoolClass.find_by_identifier(params[:identifier])
   end
 
   # POST /school_classes
@@ -94,7 +94,7 @@ class SchoolClassesController < ApplicationController
   # PUT /school_classes/1
   # PUT /school_classes/1.json
   def update
-    @school_class = SchoolClass.find(params[:id])
+    @school_class = SchoolClass.find_by_identifier(params[:school_class][:identifier])
     
     params[:school_class][:opening_at].gsub!("/",".")
     params[:school_class][:closing_at].gsub!("/",".")

@@ -10,6 +10,8 @@ class PersonAddress < ActiveRecord::Base
   #Validações
   #validates_uniqueness_of :person_id
   validates :zip_code, :presence => {:message => "deve ser informado."}
+  validates :zip_code, :length => { :is => 8}
+  # validates :zip_code, :numericality => { :only_integer => true }
 end
 
 

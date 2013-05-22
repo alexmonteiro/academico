@@ -7,6 +7,7 @@ class Discipline < ActiveRecord::Base
   before_destroy :has_children?
   
   validates_presence_of :name, :course_id, :discipline_type_id, :workload
+  validates :workload , :numericality => { :greather_than_or_equal_to => 0 }, :allow_blank => true
   
 
 

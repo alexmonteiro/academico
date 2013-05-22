@@ -41,6 +41,7 @@ class CoursesController < ApplicationController
   # GET /courses/new.json
   def new
     @course = Course.new
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,6 +58,9 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(params[:course])
+    
+    params[:course][:started_at].gsub!("/",".") if params[:course][:started_at]
+    params[:course][:ended_at].gsub!("/",".")  if params[:course][:ended_at]
 
     respond_to do |format|
       if @course.save
@@ -73,6 +77,9 @@ class CoursesController < ApplicationController
   # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
+    
+    params[:course][:started_at].gsub!("/",".") 
+    params[:course][:ended_at].gsub!("/",".")  
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
@@ -99,7 +106,7 @@ class CoursesController < ApplicationController
       respond_to do |format|
         @course.errors[:base].each do |error|
          error_message += "<li>#{error}</li>"
-        format.html { redirect_to request.referer, :alert => error_message}
+        format.html { redirect_to request.referer}
         format.json { render :json => @course.errors, :status => :unprocessable_entity }
        end
     end

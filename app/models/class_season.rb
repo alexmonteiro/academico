@@ -5,9 +5,12 @@ class ClassSeason < ActiveRecord::Base
   validates :end_at, :number, :start_at, :year, :class_season_type_id,  :dept_id, :presence => true
   
   validate :ended_at_time
+  
+  validates :number, :numericality => { :only_integer => true }
+  validates :year, :numericality => { :less_than => 9999 }
 
   def model_custom_name
-      "#{self.start_at.strftime("%d/%m/%Y")} a #{self.end_at.strftime("%d/%m/%Y")} | #{self.class_season_type.try(:description)}"
+      "#{I18n.l(self.start_at)} a #{I18n.l(self.end_at)} | #{self.class_season_type.try(:description)}"
   end
   
   #validates

@@ -72,7 +72,8 @@ class PeopleController < ApplicationController
         format.html { redirect_to @person, :notice => 'Pessoa criada com sucesso.' }
         format.json { render :json => @person, :status => :created, :location => @person }
       else
-                                                                                                                                                                                                                                                                                                     
+         format.html { render :action => "new" } 
+         format.json { render :json => @person.errors, :status => :unprocessable_entity }                                                                                                                                                                                                                                                                                      
       end
     end
   end
@@ -95,7 +96,7 @@ class PeopleController < ApplicationController
         #@person.person_person_types.destroy_all # => Antes de atualizar, elimina-se os registros relacionado a Vinculo Institucional
         #@person.create_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo que salva os campos de Vinculo Institucional
         flash[:success] = t('controller_message.updated')
-        format.html { redirect_to @person, :notice => t('controller_message.updated') }
+        format.html { redirect_to @person}
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

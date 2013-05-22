@@ -50,6 +50,17 @@ class Ability
      can :read, DisciplineClass do |classe|
        ClassTeaching.where(:discipline_class_id => classe.id, :user_id => user.id).any?
      end
+    
+     # Controller com acesso através de DisciplineClass
+     can :manage, ClassRecord
+     # Controller com acesso através de ClassRecord
+     can :manage, ClassRecordPresence
+     # Controller com acesso através de DisciplineClass
+     can :manage, DisciplineClassExam
+     # Controller com acesso através de DisciplineClassExam
+     can :manage, DisciplineClassExamResult
+     
+     
        
      
      

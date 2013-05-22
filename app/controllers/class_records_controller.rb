@@ -1,5 +1,6 @@
 class ClassRecordsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :discipline_class
+  load_and_authorize_resource :class_record, :through => :discipline_class
   # GET /class_records
   # GET /class_records.json
   def index    
