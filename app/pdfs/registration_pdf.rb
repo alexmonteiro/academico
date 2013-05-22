@@ -1,7 +1,6 @@
 class RegistrationPdf < Prawn::Document
   def initialize(opcoes)
-    #template with header
-    #template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
+
     super(:top_margin => 110)
     #super()
     
@@ -106,7 +105,6 @@ class RegistrationPdf < Prawn::Document
   end
     
   def header_complement
-      text_box "#{@registration.course_matrix.course.dept.dept.try(:name)}", :at => [45, 700], :align => :center, :style => :bold, :size => 16, :font => "Helvetica"
       text_box "Criado pela Lei No. 11.892, de 29/12/2008, DOU No. 253, 30/12/2008, Seção I", :at => [175, 698], :align => :center, :size => 7, :font => "Helvetica"
   end
   
