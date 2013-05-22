@@ -33,7 +33,7 @@ class Person < ActiveRecord::Base
   #validates :email, :uniqueness => true
   
   def model_name_whitout_accents
-    self.registration_class.registration.person.try(:name).removeaccents
+    self.name.removeaccents
   end
   
   #CPF
@@ -47,7 +47,7 @@ class Person < ActiveRecord::Base
   end
 
   searchable do
-    text :id, :birth_date, :email, :name, :number_children, :cpf, :rg
+    text :id, :birth_date, :email, :name, :number_children, :cpf, :rg, :model_name_whitout_accents
     string :name    
   end  
   
