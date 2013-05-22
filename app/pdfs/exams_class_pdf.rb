@@ -44,31 +44,34 @@ class ExamsClassPdf < Prawn::Document
   
   #Metodo Que Desenha As Informações Sobre a Logo, Titulo Instituto, Diário, Relatório de Frequencia... 
   def title
-    image "app/assets/images/logo-if.png", :at => [0,550], :width => 55, :height => 70
-    text "Instituto Federal de Brasília", :align => :center, :size => 18
-    text "Diário de Classe - Mapa de Notas", :align => :center, :size => 12
-    text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14
+    image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,550], :width => 110, :height => 45
+    #text "Instituto Federal de Brasília", :align => :center, :size => 18
+    text_box "Mapa de Notas", :at => [150,547], :size => 12 ,:style => :bold
+    #text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14
     move_down(15)
   end
   
   #Método que desenha as informações sobre o relatório como Classe, Curso, Professor...
   def information
-    font_size 9.5
+    font_size 8
     data_header = [["<b>Classe:</b> #{@discipline.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline.discipline_class_dept}"],
                       ["<b>Curso:</b> #{@discipline.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline.discipline_name}"],
                       ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline.discipline_class_classes_taught_planned}"],
                       ["<b>Carga Horária:</b> #{@discipline.discipline_class_workload}", ""]]
-    table(data_header, :width => 775, :cell_style => { :inline_format => true }) do
-      row(0..3).borders = []
-      row(0..3).columns(0..1).width = 387.5
-      row(0..3).padding = [2,2,2,2]   
+    bounding_box([300, 550], :width => 2200, :height => 250) do 
+      table(data_header, :width => 575, :cell_style => { :inline_format => true }) do
+        row(0..3).borders = []
+        row(0..3).columns(0..1).width = 287.5
+        row(0..3).padding = [2,2,2,2]   
+      end
+    end
   end
   
   #Metodo que desenha o head da tabela Numero, Matriculas, Alunos...
   def head_table(opcoes = {})
-    font_size 9
+    font_size 8
     #Config do campo Datas e a Linha horizontal
-    bounding_box([0, 400], :width => 2200, :font_style => :bold) do
+    bounding_box([0, 470], :width => 2200, :font_style => :bold) do
       # vertical_line 0, -40, :at => 225
       # #horizontal_line 240, 640, :at => -31
       # rotate(90, :origin => [00, 00]) do
@@ -131,8 +134,8 @@ class ExamsClassPdf < Prawn::Document
   #Conteudo da Tabla  - Informações
   def content(opcoes={})
     
-    bounding_box([0, 360], :width => 2200) do
-    font_size 9
+    bounding_box([0, 430], :width => 2200) do
+    font_size 8
 
     data_type = [["Legenda(s): S/N - Sem Nota"]]
     
@@ -152,14 +155,13 @@ class ExamsClassPdf < Prawn::Document
     end
     end
    end
-  end
   
   def foot
       page_count.times do |i|
       go_to_page(i+1)
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
-      draw_text "ACADEMICO - IFB", :at => [350, -10], :style => :bold
+      draw_text "ACADEMICO - IFB - #{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :at => [345, -10], :style => :bold
       draw_text "Página #{i+1} de #{page_count}", :at => [700, -10]
       
     end
@@ -209,22 +211,24 @@ class ExamsClassPdf < Prawn::Document
         end 
       
     end
-    table(data_content, :header => true) do
-      row(0).borders = []
-      row(0).height = 10
-      columns(0).width = 25
-      columns(1).width = 90
-      columns(2).width = 125
+    table(data_content, :header => true) do |table, vars|
+      vars = {:count_students => @discipline.class_records_sort_by_name.count}
+      table.row(0).borders = []
+      table.row(0).height = 10
+      table.columns(0).width = 25
+      table.columns(1).width = 90
+      table.columns(2).width = 125
       # columns(2).width = 100
       
       # columns(3..34).padding = 3.5
-      columns(3..22).width = 30
-      columns(15).width = 60
-      columns(16).width = 35
-      columns(17).width = 35
-      columns(18).width = 35
-      columns(0..1).align = :center
-      columns(3..18).align = :center
+      table.columns(3..22).width = 30
+      table.columns(15).width = 60
+      table.columns(16).width = 35
+      table.columns(17).width = 35
+      table.columns(18).width = 35
+      table.columns(0..1).align = :center
+      table.columns(3..18).align = :center
+      table.row(1..vars[:count_students]).padding = [1,4,1,4]
     end
   end
   
