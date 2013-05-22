@@ -64,32 +64,29 @@
 			
 			          <% if fullpath.include?('professor') %>
 		                  <li class="nav-header">Espaço do Professor</li>
-		                  <!--
-		  			      <li class="<%= ('classes_calendar' == params[:action] ? 'active' : '')%>"><a href=<%= calendar_classes_teacher_index_path %> > <i class="icon-calendar"></i>Calendário de Aulas</a></li>
-		                   -->
-			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i>Turmas / Classes</a></li>
+			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i><small>Turmas / Classes</small></a></li>
 	                  <%end%>
 	
 			 		  <% if fullpath.include?('registro_academico') %>
-		                  <li class="nav-header">Infraestrutura</li>
-			              <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i>Estrutura Organizacional</a></li>
-				          <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i>Pessoas</a></li>                  							 
+		                  <li class="nav-header"><small>Infraestrutura</small></li>
+			              <li class="<%= ('depts' == params[:controller] ? 'active' : '')%>"><a href=<%= depts_path%> ><i class="icon-sitemap"></i><small>Estrutura Organizacional</small></a></li>
+				          <li class="<%= ('people' == params[:controller] ? 'active' : '')%>"><a href=<%= people_path%> ><i class="icon-user"></i><small>Pessoas</small></a></li>                  							 
 			
-			              <li class="nav-header">Cursos e Ciclos</li>
-		             	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><a href=<%= courses_path%> ><i class="icon-book"></i>Cursos & Disciplinas</a></li>
-		             	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i>Período Letivo</a></li>
-		             	  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><a href=<%= course_vacancies_path%> ><i class="icon-bullhorn"></i>Oferta de Vagas</a></li>
-				          <li class="<%= ('academic_rules' == params[:controller] ? 'active' : '')%>"><a href=<%= academic_rules_path%> ><i class="icon-th-list"></i>Regras Acadêmicas</a></li>
-		                  <li class="<%= ('course_matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= course_matrices_path%> ><i class="icon-table"></i>Matriz Curricular</a></li>
-		                  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i>Turmas</a></li>
-		                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i>Classes & Aulas</a></li>
-		                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i>Matrículas</a></li>
+			              <li class="nav-header"><small>Cursos e Ciclos</small></li>
+		             	  <li class="<%= ('courses' == params[:controller] ? 'active' : '')%>"><a href=<%= courses_path%> ><i class="icon-book"></i><small>Cursos & Disciplinas</small></a></li>
+		             	  <li class="<%= ('class_seasons' == params[:controller] ? 'active' : '')%>"><a href=<%= class_seasons_path%> ><i class="icon-calendar"></i><small>Período Letivo</small></a></li>
+		             	  <li class="<%= ('course_vacancies' == params[:controller] ? 'active' : '')%>"><a href=<%= course_vacancies_path%> ><i class="icon-bullhorn"></i><small>Oferta de Vagas</small></a></li>
+				          <li class="<%= ('academic_rules' == params[:controller] ? 'active' : '')%>"><a href=<%= academic_rules_path%> ><i class="icon-th-list"></i><small>Regras Acadêmicas</small></a></li>
+		                  <li class="<%= ('course_matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= course_matrices_path%> ><i class="icon-table"></i><small>Matriz Curricular</small></a></li>
+		                  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i><small>Turmas</small></a></li>
+		                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i><small>Classes & Aulas</small></a></li>
+		                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i><small>Matrículas</small></a></li>
 
 		              <%end%>
 
 	                  <% if fullpath.include?('configuracoes') %>
-		                  <li class="nav-header">Acesso</li>
-			              <li class="<%= ('users' == params[:controller] ? 'active' : '')%>"><a href=<%= user_roles_path %> > <i class="icon-group"></i>Usuários/Perfis</a></li>
+		                  <li class="nav-header"><small>Acesso</small></li>
+			              <li class="<%= ('users' == params[:controller] ? 'active' : '')%>"><a href=<%= user_roles_path %> > <i class="icon-group"></i><small>Usuários/Perfis</small></a></li>
 		                  <%= menu_config %>
 	                  <%end%>
 	                   
