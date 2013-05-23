@@ -63,6 +63,8 @@ class ClassRecordsController < ApplicationController
     @discipline_class = DisciplineClass.find(params[:discipline_class_id])   
     @class_record.discipline_class_id = @discipline_class.id
     
+    params[:class_record][:recorded_at].gsub!("/",".")
+    
     respond_to do |format|
       if @class_record.save
         format.html { redirect_to  discipline_class_class_records_path(@discipline_class), :notice => 'Aula criada com sucesso.' }
@@ -81,6 +83,8 @@ class ClassRecordsController < ApplicationController
     @discipline_class = DisciplineClass.find(params[:discipline_class_id])   
     @recorded_at = params[:class_record][:recorded_at]
     @class_record.class_time_id = params[:class_time_ids].first if params[:class_time_ids]
+    
+    params[:class_record][:recorded_at].gsub!("/",".")
     
     if !@class_record.valid?
       checked_records = false
@@ -111,6 +115,8 @@ class ClassRecordsController < ApplicationController
   def update
       @class_record = ClassRecord.find(params[:id])
       @Discipline_class = DisciplineClass.find(@class_record.discipline_class_id)
+      
+      params[:class_record][:recorded_at].gsub!("/",".")
 
     respond_to do |format|
       if @class_record.update_attributes(params[:class_record])

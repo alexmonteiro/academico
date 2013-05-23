@@ -195,7 +195,8 @@ class AcademicRecordPDF < Prawn::Document
       page_count.times do |i|
       go_to_page(i+1)
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
-      draw_text "ACADEMICO - IFB", :at => [240, -10], :style => :bold
+      draw_text "ACADEMICO - IFB", :at => [200, -10], :style => :bold
+      draw_text "Data de emissão: #{I18n.l(Time.now)}", :at => [360, -10], :font => "Helvetica"
     end
   end
 end

@@ -116,30 +116,22 @@ class RegistrationPdf < Prawn::Document
       elsif @type_document == "passe_estudandil"
         documento = "para Aquisição de Passe Estudantil"
       end
-     text_box "Declaração #{documento}", 
-     :at => [45, 665], 
-     :align => :center
+     text_box "Declaração #{documento}", :at => [45, 665], :align => :center
     end
   end
 
   def sign_area
-    # font("Helvetica", :size => 10, :style => :bold) do
-      # text_box "Brasília-DF, #{I18n.localize(Date.today, :format => :long)}", 
-      # :at => [370, 28], 
-      # :align => :left 
-    # end   
     stroke_horizontal_line 150, 400, :at => 100, :align => :center
     font("Helvetica", :size => 8, :style => :bold) do
-      text_box "Assinatura", 
-      :at => [10, 98], 
-      :align => :center 
+      text_box "Assinatura", :at => [10, 98], :align => :center 
     end    
   end
   
   def footer
-  stroke_horizontal_line 0, 550, :at => 15, :align => :center
-  font("Helvetica", :size => 8, :style => :bold) do
-    text_box "Instituto Federal de Brasília", :at => [410, 10]  
+    text_box "Data de emissão: #{I18n.l(Time.now)}", :at => [10, 10], :align => :left ,:size => 8, :style => :bold, :font => "Helvetica"
+    stroke_horizontal_line 0, 550, :at => 15, :align => :center
+    font("Helvetica", :size => 8, :style => :bold) do
+      text_box "Instituto Federal de Brasília", :at => [410, 10]  
    end
   end
  end 
