@@ -1,7 +1,6 @@
 class RegistrationPdf < Prawn::Document
   def initialize(opcoes)
-    #template with header
-    #template_filename = "#{Rails.root}/app/pdfs/templates/full_template.pdf"
+
     super(:top_margin => 110)
     #super()
     
@@ -10,9 +9,9 @@ class RegistrationPdf < Prawn::Document
     @type_document = opcoes[:type_document]
     header
     header_complement
-    stroke_horizontal_line 0, 550, :at => 655
+    stroke_horizontal_line 0, 550, :at => 675
     title
-    stroke_horizontal_line 0, 550, :at => 620     
+    stroke_horizontal_line 0, 550, :at => 640     
     content
     sign_area
     footer                
@@ -20,9 +19,8 @@ class RegistrationPdf < Prawn::Document
   
   def header
     image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,750], :width => 140, :height => 55
-    text_box "Ministério de Educação", :at => [170,737], :size => 12, :style => :bold
-    text_box "Instituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", :style => :bold, :size => 10, :at => [170,722]
-    #text_box "Instituto Federal de Brasília", :size => 12, :style => :bold, :at => [170,708]
+    text_box "Ministério de Educação", :at => [170,726], :size => 12, :style => :bold, :align => :center
+    text_box "Instituto Federal de Ciência, Educação e Tecnologia de Brasília - IFB", :style => :bold, :size => 10, :at => [170,712], :align => :center
   end
   
   def content
@@ -44,7 +42,7 @@ class RegistrationPdf < Prawn::Document
               end
              end 
 
-            move_down 30
+            move_down 8
             font("Courier", :size => 10) do
                tabela = [["Matricula........#{@registration.registration_number}","Data de nascimento....#{I18n.l(@registration.person.try(:birth_date))}",],
                          ["Nome do(a) aluno(a)...........", "#{@registration.person.try(:name)}"],
@@ -107,17 +105,7 @@ class RegistrationPdf < Prawn::Document
   end
     
   def header_complement
-    font("Helvetica", :size => 16, :style => :bold) do
-      text_box "#{@registration.course_matrix.course.dept.dept.try(:name)}", 
-      :at => [45, 700], 
-      :align => :center 
-    end     
-    font("Helvetica", :size => 8, :style => :bold) do
-      text_box "Criado pela Lei No. 11.892, de 29/12/2008, DOU No. 253, 30/12/2008, Seção I", 
-      :at => [85, 680], 
-      :align => :center 
-    end   
-
+      text_box "Criado pela Lei No. 11.892, de 29/12/2008, DOU No. 253, 30/12/2008, Seção I", :at => [175, 698], :align => :center, :size => 7, :font => "Helvetica"
   end
   
   def title
@@ -129,17 +117,17 @@ class RegistrationPdf < Prawn::Document
         documento = "para Aquisição de Passe Estudantil"
       end
      text_box "Declaração #{documento}", 
-     :at => [45, 645], 
+     :at => [45, 665], 
      :align => :center
     end
   end
 
   def sign_area
-    font("Helvetica", :size => 10, :style => :bold) do
-      text_box "Brasília-DF, #{I18n.localize(Date.today, :format => :long)}", 
-      :at => [370, 28], 
-      :align => :left 
-    end   
+    # font("Helvetica", :size => 10, :style => :bold) do
+      # text_box "Brasília-DF, #{I18n.localize(Date.today, :format => :long)}", 
+      # :at => [370, 28], 
+      # :align => :left 
+    # end   
     stroke_horizontal_line 150, 400, :at => 100, :align => :center
     font("Helvetica", :size => 8, :style => :bold) do
       text_box "Assinatura", 

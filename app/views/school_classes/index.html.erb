@@ -12,31 +12,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:identifier) %></th>
-      <th><%= model_class.human_attribute_name(:period) %></th>
-      <th><%= model_class.human_attribute_name(:matrix_id) %></th>
-      <th><%= model_class.human_attribute_name(:class_season_id) %></th>
-      <th><%= model_class.human_attribute_name(:shift_type_id) %></th>
-      <th><%= model_class.human_attribute_name(:discipline_classes) %></th>
-      <th><%= model_class.human_attribute_name(:opening_at) %></th>
-      <th><%= model_class.human_attribute_name(:closing_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><small><%= model_class.human_attribute_name(:id) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:identifier) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:period) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:matrix_id) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:class_season_id) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:discipline_classes) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:opening_at) %><small></th>
+      <th><small><%= model_class.human_attribute_name(:closing_at) %><small></th>
+      <th><small><%=t '.actions', :default => t("helpers.actions") %><small></th>
     </tr>
   </thead>
   <tbody>
     <% @school_classes.each do |school_class| %>
       <tr>
-        <td><%= link_to school_class.id, school_class_path(:id => school_class.identifier) %></td>
-        <td><%= link_to school_class.identifier, school_class_path(:id => school_class.identifier) %></td>
-        <td><%= school_class.period %></td>
-        <td><%= school_class.course_matrix.try(:model_custom_name) %></td>
-        <td><%= school_class.class_season.try(:model_custom_name) %></td>
-        <td><%= school_class.shift_type.try(:description) %></td>
-        <td><%= link_to "<i class='icon-pencil'></i> ".html_safe + school_class.discipline_classes.count.to_s, school_class_discipline_classes_path(school_class.identifier) %></td>
-        <td><%=l school_class.opening_at if school_class.opening_at %></td>
-        <td><%=l school_class.closing_at if school_class.closing_at %></td>
-        <td>
+        <td><small><%= link_to school_class.id, school_class_path(:id => school_class.identifier) %><small></td>
+        <td><small><%= link_to school_class.identifier, school_class_path(:id => school_class.identifier) %><small></td>
+        <td><small><%= school_class.period %><small></td>
+        <td><small><%= school_class.course_matrix.try(:course_name) %><small></td>
+        <td><small><%= school_class.class_season.try(:model_custom_name) %><small></td>
+        <td><small><%= link_to "<i class='icon-pencil'></i> ".html_safe + school_class.discipline_classes.count.to_s, school_class_discipline_classes_path(school_class.identifier) %><small></td>
+        <td><small><%=l school_class.opening_at if school_class.opening_at %><small></td>
+        <td><small><%=l school_class.closing_at if school_class.closing_at %><small></td>
+        <td><small>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_school_class_path(:id => school_class.identifier), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -44,12 +42,12 @@
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => t("controller_message.delete_confirm"))),
                       :class => 'btn btn-mini btn-danger' %>
-        </td>
+        <small></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<center><%= will_paginate @school_classes %></center>
+<center><small><%= will_paginate @school_classes %></small></center>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             (params[:course_matrix_id].blank? ? new_school_class_path : new_course_matrix_school_class_path(params[:course_matrix_id])),
             :class => 'btn btn-primary' %>

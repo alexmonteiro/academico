@@ -25,9 +25,9 @@ class PresenceListPDF < Prawn::Document
   end 
   
   def title
-    image "app/assets/images/logo-if.png", :at => [0,550], :width => 25, :height => 40
-    text_box "Instituto Federal de Brasília", :at => [50,547], :size => 8, :style => :bold
-    text_box "Lista de Presença", :at => [50,537], :size => 8, :style => :bold
+    image "app/assets/images/2237_ifbhorizontal.jpg", :at => [0,555], :width => 165, :height => 55
+    #text_box "Instituto Federal de Brasília", :at => [180,544], :size => 8, :style => :bold
+    text_box "Lista de Presença", :at => [180,534], :size => 12, :style => :bold
     #text_box "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :at => [50,527], :size => 8 #Modificar a Data
   end
   
@@ -42,7 +42,7 @@ class PresenceListPDF < Prawn::Document
       data_content += [[" "," "," "," "]] * 24
     else
       @discipline.class_records.each do |class_record|
-        data_content += [["#{class_record.recorded_at.strftime("%d/%m/%Y") if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
+        data_content += [["#{I18n.l(class_record.recorded_at) if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
       end
     end
     
@@ -51,12 +51,14 @@ class PresenceListPDF < Prawn::Document
     
     #data_subfooter = [["Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}","ACADEMICO - IFB","Página #{page_count}"]]
     move_up(10)
-    table(data_header, :width => 575, :position => :right, :cell_style => { :inline_format => true ,}) do
+    bounding_box([320,550], :width => 10) do
+    table(data_header, :width => 455, :cell_style => { :inline_format => true }) do
       row(0..3).borders = []
-      row(0..3).columns(0..1).width = 287.5
-      row(0..3).padding = [0,5,5,0]
+      row(0..3).columns(0..1).width = 227.5
+
     end
-    move_down(33)
+    end
+    move_down(10)
     table(data_content, :width => 775) do
       row(0).align = :center
       row(0).font_style = :bold

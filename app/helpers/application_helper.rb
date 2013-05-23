@@ -119,7 +119,7 @@ module ApplicationHelper
         for i in 0...array_count_controllers do
           if array_controllers[i][2] == array_groups[j]
             menu_config << "<div class=\"accordion-inner\">
-                              <li class='#{"#{array_controllers[i][0]}" == params[:controller] ? 'active' : '' }'><a href=#{send("#{array_controllers[i][0]}_path")} ><i class='icon-file'></i>#{array_controllers[i][1]}</li></a>
+                              <li class='#{"#{array_controllers[i][0]}" == params[:controller] ? 'active' : '' }'><a href=#{send("#{array_controllers[i][0]}_path")} ><i class='icon-file'></i><small>#{array_controllers[i][1]}</small></li></a>
                             </div>"
           end  
         end
