@@ -191,7 +191,7 @@ class ExamsClassPdf < Prawn::Document
             presenca = nil
             if !@discipline.discipline_class_exams[i].blank?
               if !@discipline.discipline_class_exams[i].discipline_class_exam_results.any?
-                presenca << " "
+                presencas << " "
               else  
                 @discipline.discipline_class_exams[i].discipline_class_exam_results.each_with_index do |result, r|
                   if student.student_id == result.student_id
