@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516201105) do
+ActiveRecord::Schema.define(:version => 20130523172654) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -688,6 +688,7 @@ ActiveRecord::Schema.define(:version => 20130516201105) do
     t.boolean  "dont_take_another_vacance_public_institution"
     t.boolean  "dont_take_another_prouni_vacance_public_institution"
     t.integer  "ways_of_admission_id"
+    t.string   "responsible_email"
   end
 
   add_index "registrations", ["course_matrix_id"], :name => "index_registrations_on_course_matrix_id"
