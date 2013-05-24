@@ -225,6 +225,7 @@ pt-BR:
         responsible_workphone: "Telefone Comercial"
         responsible_telephone: "Telefone Pessoal"
         responsible_schooling: "Escolaridade"
+        responsible_email: "E-mail"
         presents_special_need: "Apresenta alguma necessidade específica?"
         special_need_description: "Qual necessidade específica?"
         presents_health_problem: "Problema de saúde?"

@@ -32,7 +32,7 @@ class PeopleController < ApplicationController
       format.json { render :json => @person }
       format.pdf do
         pdf = PersonPdf.new(:person => @person, :people_telephones => @people_telephones, :person_address => @person_address, :person_identification_doc => @person_identification_doc)
-        send_data pdf.render, :filename => "pessoa_#{@person.name}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
+        send_data pdf.render, :filename => "pessoa_#{@person.name}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf"#, :disposition => "inline"
       end
     end
   end
