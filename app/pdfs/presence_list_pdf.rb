@@ -26,7 +26,6 @@ class PresenceListPDF < Prawn::Document
   
   def title
     image "app/assets/images/2237_ifbhorizontal.jpg", :at => [0,555], :width => 165, :height => 55
-    #text_box "Instituto Federal de Brasília", :at => [180,544], :size => 8, :style => :bold
     text_box "Lista de Presença", :at => [180,534], :size => 12, :style => :bold
     #text_box "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :at => [50,527], :size => 8 #Modificar a Data
   end
@@ -37,26 +36,28 @@ class PresenceListPDF < Prawn::Document
                       ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Data:</b> ____/____/____"]]
     data_content = [["Nº","Matrícula","Aluno","Assinatura"]]
     
-    
-    if @preenchido.blank? || @discipline.class_records.blank?
-      data_content += [[" "," "," "," "]] * 24
-    else
-      @discipline.class_records.each do |class_record|
-        data_content += [["#{I18n.l(class_record.recorded_at) if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
+    #contador de numero
+    count = 0
+    #preenche cada linha da tabela com um aluno matriculado a classe
+     if @preenchido.blank? || @discipline.class_records.blank?
+             @discipline.registration_classes.each_with_index do |student, f|
+                data_content += [["#{count+1}","#{student.student_registration_number}"," "," "]] 
+                count = count +1
+             end
+     else
+        @discipline.class_records.each do |class_record|
+          data_content += [["#{I18n.l(class_record.recorded_at) if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
+        end
       end
-    end
-    
+
     data_type = [[""]]
-    
-    
-    #data_subfooter = [["Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}","ACADEMICO - IFB","Página #{page_count}"]]
+   
     move_up(10)
     bounding_box([320,550], :width => 10) do
-    table(data_header, :width => 455, :cell_style => { :inline_format => true }) do
-      row(0..3).borders = []
-      row(0..3).columns(0..1).width = 227.5
-
-    end
+      table(data_header, :width => 455, :cell_style => { :inline_format => true }) do
+        row(0..3).borders = []
+        row(0..3).columns(0..1).width = 227.5
+      end
     end
     move_down(10)
     table(data_content, :width => 775) do
