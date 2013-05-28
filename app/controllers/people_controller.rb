@@ -55,11 +55,6 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
-    #variaveis do select estado/cidades -> naturalidade
-    @states = State.search{paginate :page => 1, :per_page => State.all.count}.results
-    @cities = City.search do 
-     paginate :page => 1, :per_page => state.cities.count
-     with(:state_id, state.id)
     end
   end
 

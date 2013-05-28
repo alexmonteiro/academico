@@ -34,7 +34,6 @@
 	   <div class="span5">
 	   	<%= f.label :birth_date, :class => 'control-label' %>
 	    <%= f.text_field :birth_date, :style => "width:80px", :value => @person.birth_date.blank? ? nil : I18n.l(@person.birth_date) %>
-		<%= f.input :birth_date, :as => :date %>
 	  
 	    <%= f.label :email, :class => 'control-label' %>    
 	    <%= f.text_field :email, :class => 'text_field' %>
