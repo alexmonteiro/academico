@@ -7,4 +7,12 @@ class Country < ActiveRecord::Base
     paginate :per_page => 10, :page => page, :order => 'name'         
   end
   
+  searchable do
+    integer :id
+    text :name
+    text :states do
+      states.map {|state| state.name}
+    end
+  end
+  
 end

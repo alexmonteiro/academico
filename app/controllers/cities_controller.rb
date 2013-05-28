@@ -93,6 +93,14 @@ class CitiesController < ApplicationController
   def update_city_select
       cities = City.where(:state_id=>params[:id]).order(:name) unless params[:id].blank?
       render :partial => "cities", :locals => { :cities => cities }
-  end  
+  end
+
+  def autocomplete_city_name
+    @cities = City.select("id, name").where("name LIKE ?", "#{params[:name]}%").order(:name).limit(10)
+
+    respond_to do |format|
+      format.json { render :json => @cities , :only => [:id, :name] }
+    end
+  end
   
 end

@@ -7,5 +7,16 @@ class City < ActiveRecord::Base
   # def self.search(search, page)
     # paginate :per_page => 10, :page => page, :order => 'id'         
   # end
+  
+  def state_acronym
+     "#{self.state.acronym}"
+  end
+  
+  searchable do
+    integer :state_id
+    integer :id
+    text :name
+    text :state_acronym
+  end
     
 end

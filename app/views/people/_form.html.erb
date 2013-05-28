@@ -1,4 +1,8 @@
-<%= form_for @person, :html => { :class => 'form-vertical' } do |f| %>
+<script type="text/javascript">
+
+</script>
+
+<%= simple_form_for @person, :html => { :class => 'form-vertical' } do |f| %>
 
 <div class="container">
 <div class="container control-group span7">
@@ -30,6 +34,7 @@
 	   <div class="span5">
 	   	<%= f.label :birth_date, :class => 'control-label' %>
 	    <%= f.text_field :birth_date, :style => "width:80px", :value => @person.birth_date.blank? ? nil : I18n.l(@person.birth_date) %>
+		<%= f.input :birth_date, :as => :date %>
 	  
 	    <%= f.label :email, :class => 'control-label' %>    
 	    <%= f.text_field :email, :class => 'text_field' %>
@@ -64,15 +69,16 @@
 <div class="well">
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
-
   <!-- País Cidade e Estado -->
-	<div class="control-group">
-	  <%= f.label :city_id, :class => 'control-label' %>
-	  <div class="controls"  id="city_id">
-		  <% options = option_groups_from_collection_for_select(State.where(:country_id => 24, :id => 7).order(:name).all, :cities, :name, :id, :name, (!@person.city_id.blank? ? @person.city_id : "")) %>
-		  <%= f.select(:city_id, options, :include_blank => "...Selecione...") %>
-	  </div>
-	</div>
+	<select style="width:300px" name="person_city_id" id="city_id">
+		<%City.all.group_by(&:state).each do |state, cities|%>
+		      <optgroup label='<%="#{state.name}"%>'>
+			        <%cities.each do |city|%>
+			          <option value='<%="#{city.id}"%>'> <%="#{city.name} - #{city.state_acronym}"%> </option>
+			        <%end%>
+			  </optgroup>
+		<%end%>
+	</select>	
 </div>
 <!-- Fim -->
 
