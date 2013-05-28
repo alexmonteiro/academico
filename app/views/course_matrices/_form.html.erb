@@ -11,20 +11,20 @@
   <div class="control-group">
     <%= f.label :ended_at, :class => 'control-label' %>
     <div class="controls">
-	   <%= f.text_field :ended_at, :class => 'datepicker_class', :style => "width:80px", :value => @matrix.ended_at.blank? ? nil : @matrix.ended_at.strftime("%d/%m/%Y") %>
+	   <%= f.text_field :ended_at, :class => 'datepicker_class', :style => "width:80px", :value => @matrix.ended_at.blank? ? nil : I18n.l(@matrix.ended_at) %>
     </div>
   </div>
 </fieldset>
   <div class="control-group">
     <%= f.label :maxdisciplines, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :maxdisciplines, :class => 'number_field' %>
+      <%= f.text_field :maxdisciplines, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :maxseasons, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :maxseasons, :class => 'number_field' %>
+      <%= f.text_field :maxseasons, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">

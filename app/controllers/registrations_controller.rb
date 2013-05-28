@@ -30,23 +30,28 @@ class RegistrationsController < ApplicationController
       if params[:type_document] == "escolaridade"
           format.pdf do
           pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
-          send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf"#, :disposition => "inline"
+          send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
       end
       elsif params[:type_document] == "passe_estudandil"
           format.pdf do
             pdf = RegistrationPdf.new(:registration => @registration, :type_document => params[:type_document])
-            send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf"#, :disposition => "inline"
+            send_data pdf.render, :filename => "matricula_#{@registration.registration_number}", :type => "application/pdf", :template => "#{Rails.root}/app/pdfs/templates/full_template.pdf", :disposition => "inline"
           end
       elsif params[:type_document] == "matricula"
           format.pdf do
             pdf = EnrollmentPDF.new(:registration => @registration)
-            send_data pdf.render, :filename => "ficha_#{@registration.registration_number}", :type => "application/pdf"#, :disposition => "inline"
+            send_data pdf.render, :filename => "ficha_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
           end
       elsif params[:type_document] == "estatistica"
           format.pdf do
             pdf = RegistrationStatisticPDF.new(:registration => @registration)
-            send_data pdf.render, :filename => "teste_#{@registration.registration_number}", :type => "application/pdf"#, :disposition => "inline"
+            send_data pdf.render, :filename => "teste_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
           end
+      elsif params[:type_document] == "historico"
+          format.pdf do
+            pdf = AcademicRecordPDF.new(:registration => @registration)
+            send_data pdf.render, :filename => "historico_#{@registration.registration_number}", :type => "application/pdf", :disposition => "inline"
+          end   
        end
     end
   end

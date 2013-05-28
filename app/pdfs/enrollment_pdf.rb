@@ -14,6 +14,7 @@ def initialize(params)
       go_to_page(i+1)
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
       draw_text "ACADEMICO - IFB", :at => [240, -10], :style => :bold
+      draw_text "Data de emissão: #{I18n.l(Time.now)}", :at => [440, -10], :font => "Helvetica"
     end
   end
   def footer
@@ -52,7 +53,7 @@ def initialize(params)
     #dados do aluno
     data_student_1 = [ ["<b>Nome Completo:</b>","#{@registration.person.try(:name)}"] ]
     data_student_2 = [ ["<b>Sexo:</b>","#{@registration.person.gender.acronym}","<b>Nacionalidade:</b>","#{@registration.person.try(:city).try(:state).try(:country).try(:name)}","<b>CPF:</b>","#{@registration.person.try(:cpf)}"]]
-    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{Time.now.strftime("%d/%m/%Y")}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.try(:description)}"]]
+    data_student_3 = [ ["<b>Número de Identidade</b>:","#{@registration.person.person_identification_doc.try(:model_rg_custom)}","<b>Data de Expedição:</b>","#{I18n.l(Time.now)}","<b>Orgão Emissor:</b>","#{@registration.person.person_identification_doc.rg_issuing_institution.try(:description)}"]]
     data_student_4 = [ ["<b>Nome do Pai:</b>","#{@registration.person.try(:father_name)}"],
                        ["<b>Nome da Mãe:</b>","#{@registration.person.try(:mom_name)}"] ]
     data_student_5 = [ ["<b>Endereço Residencial:</b>","#{@registration.person.person_address.try(:street_name)}","<b>Telefone(s):</b>","#{telephone}"]]
@@ -64,7 +65,7 @@ def initialize(params)
     data_student_11 = [ ["<b>Cidade:<b>","#{@registration.person.city.name}","<b>Local de Trabalho:</b>","#{@registration.workplace}"]]
     #dados do responsavel
     data_responsible_1 = [ ["<b>Nome Completo:<b>","#{@registration.responsible_complete_name}",] ]
-    data_responsible_2 = [ ["<b>Data de Nascimento:</b>","#{}","<b>Escolaridade:</b>","#{@registration.responsible_schooling}"]]
+    data_responsible_2 = [ ["<b>Escolaridade:</b>","#{@registration.responsible_schooling}"]]
     data_responsible_3 = [ ["<b>Endereço Residencial:</b>","#{@registration.responsible_address}","<b>CEP:</b>","#{@registration.responsible_cep}","<b>Telefone:</b>","#{@registration.responsible_telephone}"]]
     data_responsible_4 = [ ["<b>Trabalha?</b>","#{(@registration.responsible_have_work ? "Sim" : "Não")}","<b>Local de Trabalho:</b>","#{@registration.responsible_workplace}","<b>Telefone do Trabalho:</b>","#{@registration.responsible_workphone}"]]
     data_responsible_5 = [ ["<b>Parentesco:</b>","#{@registration.responsible_kinship}","<b>Profissão/Cargo:</b>","#{@registration.responsible_occupation}"]]

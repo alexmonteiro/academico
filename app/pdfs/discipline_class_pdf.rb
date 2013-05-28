@@ -54,7 +54,7 @@ class DisciplineClassPDF < Prawn::Document
       data_content += [[" "," "," "," "," "]] * 20
     else
       @discipline.class_records.each do |class_record|
-        data_content += [["#{class_record.recorded_at.strftime("%d/%m/%Y") if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
+        data_content += [["#{I18n.l(class_record.recorded_at) if class_record.recorded_at}","#{class_record.class_record_type.description if !class_record.class_record_type.blank?}","#{class_record.class_time.model_custom_name if !class_record.class_time.blank?}","#{class_record.record if class_record.record}","#{class_record.note if class_record.note}"]]
       end
     end
     

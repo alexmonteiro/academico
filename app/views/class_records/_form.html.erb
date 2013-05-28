@@ -10,7 +10,7 @@
      <div class="control-group">
 		<%= f.label :recorded_at, :class => 'control-label' %>
 	  <div class="controls">
-	    <%= f.text_field :recorded_at, :class => 'datepicker_class', :style => "width:80px" %>
+	    <%= f.text_field :recorded_at, :class => 'datepicker_class', :style => "width:80px", :value => @class_record.recorded_at.blank? ? nil : I18n.l(@class_record.recorded_at)  %>
 	  </div>
 	</div>
 
