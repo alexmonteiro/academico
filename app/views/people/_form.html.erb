@@ -69,6 +69,7 @@
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
   <!-- País Cidade e Estado -->
+    <%f.input :city_id%>
 	<select style="width:300px" name="person_city_id" id="city_id">
 		<%City.all.group_by(&:state).each do |state, cities|%>
 		      <optgroup label='<%="#{state.name}"%>'>
