@@ -11,12 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.maskedinput
 //= require bootstrap-datepicker
 //= require twitter/bootstrap
 //= require rails.validations
+//= require select2
 //= require_tree .
 //= require_self
 /*
