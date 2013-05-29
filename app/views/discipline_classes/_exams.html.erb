@@ -55,7 +55,7 @@
 				     <%end%>					     
 					  <ul class="unstyled">
 						 <%= form_for @discipline_class, :url => discipline_class_close_path(@discipline_class), :html => { :class => 'form-horizontal'} do |f| %>
-						      <% classe_fechada = (@discipline_class.ending_at? ? "Classe fechada" : "Fechar classe") %>
+						      <% classe_fechada = (@discipline_class.ending_at? ? "Componente Curricular fechado" : "Fechar Componente Curricular") %>
 					       	  <%= f.submit classe_fechada, :class => 'btn btn-primary', :class => "btn btn btn-success", :disabled => (true if @discipline_class.ending_at?) %>
 					     <%end%>
 					    

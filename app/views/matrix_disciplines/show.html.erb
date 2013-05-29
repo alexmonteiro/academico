@@ -53,7 +53,7 @@
 	<div class="span4">
 	  <div class="well">
 	    <fieldset>
-	        <%= link_to "<i class='icon-user-group'></i> Turmas/Classes".html_safe, course_matrix_matrix_disciplines_path(:matrix_discipline_id => @matrix_discipline.id), :class => 'btn btn-inverse span12' %>
+	        <%= link_to "<i class='icon-user-group'></i> Turmas/Componenetes Curriculares".html_safe, course_matrix_matrix_disciplines_path(:matrix_discipline_id => @matrix_discipline.id), :class => 'btn btn-inverse span12' %>
 	      <div style="padding-top: 60px">
 				<% if @matrix_discipline.discipline_classes.count >= 1 %>
 				    <% @matrix_discipline.discipline_classes.group_by(&:school_class_identifier).each do |school_class, discipline_classes| %>
@@ -71,7 +71,7 @@
 				
 				    <%end%>
 				<%else%>
-					    <center>Disciplina sem classes registradas.</center>
+					    <center>Disciplina sem componentes curriculares registrados.</center>
 				<%end%>
 	      </div>
 	    </fieldset>

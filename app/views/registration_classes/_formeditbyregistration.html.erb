@@ -2,7 +2,7 @@
    <h2>Aluno:  <%= @registration.try(:student_name) %></h2>
    <h2>Matrícula: <%= @registration.try(:registration_number) %> </h2>
    <h2>Curso: <%= @registration.try(:course_name) %> </h2>
-   <h2>Classe: <%= @registration_class.discipline_class.try(:code) %> - <%= @registration_class.discipline_class.try(:discipline_name)%></h2>
+   <h2>Componente Curricular: <%= @registration_class.discipline_class.try(:code) %> - <%= @registration_class.discipline_class.try(:discipline_name)%></h2>
 
 
    <div class="control-group">

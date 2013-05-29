@@ -20,4 +20,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'enturmação', 'enturmações'
   inflect.irregular 'nível', 'níveis'
   inflect.irregular 'especial', 'especiais'
+  inflect.irregular 'componente curricular','componentes curriculares'
 end
