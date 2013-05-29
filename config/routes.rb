@@ -51,7 +51,7 @@ AcademicoRails::Application.routes.draw do
   # Departamento
   resources :depts, :path => "registro_academico/departamentos" do
     resources :courses, :path => "cursos"
-    resources :teaching_equipaments, :path => "equipamentos_de_ensino"
+    resources :teaching_equipaments, :path => "equipamentosdeensino"
     resources :dept_addresses, :path => "enderecos"
     resources :dept_telephones, :path => "telefones"
   end
@@ -71,7 +71,7 @@ AcademicoRails::Application.routes.draw do
     
     # turmas da Matriz
     resources :school_classes, :path =>"turmas" do
-      resources :discipline_classes, :path =>"classes" do
+      resources :discipline_classes, :path =>"componentescurriculares" do
         resources :class_teachings, :path =>"docencias"
         resources :class_records, :path =>"aulas" do
             resources :class_record_presences, :path => "presencas"
@@ -92,7 +92,7 @@ AcademicoRails::Application.routes.draw do
   # Turmas
   resources :school_classes, :path =>"registro_academico/turmas" do
     # Classes das turmas
-    resources :discipline_classes, :path =>"classes" do
+    resources :discipline_classes, :path =>"componentescurriculares" do
       resources :class_teachings, :path =>"docencias"
       resources :class_records, :path =>"aulas" do
           resources :class_record_presences, :path => "presencas"
@@ -105,7 +105,7 @@ AcademicoRails::Application.routes.draw do
   end  
 
   # Classes  
-  resources :discipline_classes, :path =>"registro_academico/classes" do
+  resources :discipline_classes, :path =>"registro_academico/componentescurriculares" do
     #match 'close', :controller=>'discipline_classes', :method => :put, :action => 'close'
     put 'close'
     resources :class_teachings, :path =>"docencias"
@@ -179,7 +179,7 @@ AcademicoRails::Application.routes.draw do
      end
     end
 
-    resources :class_times, :path => 'horarios_classe'
+    resources :class_times, :path => 'horarios'
     resources :day_weeks, :path => 'dias_semana'
     resources :equipament_types, :path => 'equipamento'
     resources :situation_teaching_equipaments, :path => 'estado_equipamento'
@@ -187,12 +187,12 @@ AcademicoRails::Application.routes.draw do
 
 
     resources :academic_rule_types, :path => 'regras_academicas'
-    resources :discipline_class_exam_types, :path => 'exames_classe'
-    resources :class_record_types, :path => 'tipos_registro_classe'
-    resources :registration_class_statuses, :path => 'estado_registro_classe'
+    resources :discipline_class_exam_types, :path => 'exames'
+    resources :class_record_types, :path => 'tipos_registro'
+    resources :registration_class_statuses, :path => 'estado_registro'
     resources :registration_statuses, :path => 'estado_registro'
     resources :course_statuses, :path => 'cursos'
-    resources :class_student_statuses, :path => 'estados_classe_estudante'
+    resources :class_student_statuses, :path => 'estados_estudante'
     resources :military_document_types, :path => 'documentos_militar'
     resources :issuing_institutions, :path => 'emissoras'
     resources :matrix_discipline_groups, :path => 'matriz_disciplina'
@@ -211,7 +211,7 @@ AcademicoRails::Application.routes.draw do
       get :teacher_school_classes, :on => :collection, :controller => 'teacher/dashboard', :action => 'teacher_school_classes', :path => 'minhas_turmas'
       
       resources :school_classes, :path =>"turma" do
-        resources :discipline_classes, :path =>"classes" do
+        resources :discipline_classes, :path =>"componentescurriculares" do
           resources :class_teachings, :path =>"docencias"
           resources :class_records, :path =>"aulas" do
               resources :class_record_presences, :path => "presencas"
