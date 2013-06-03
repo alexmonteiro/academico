@@ -12,6 +12,7 @@
  *= require_self
  *= require 'modern-pictograms'
  *= require bootstrap-datepicker
+ *= require select2
  *= require_tree .
  */
 

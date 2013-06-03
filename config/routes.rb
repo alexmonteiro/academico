@@ -20,6 +20,7 @@ AcademicoRails::Application.routes.draw do
 
   match 'states/update_state_select/:id', :controller=>'states', :action => 'update_state_select'
   match 'cities/update_city_select/:id', :controller=>'cities', :action => 'update_city_select'
+  match 'cities/autocomplete_city_name', :controller=>'cities', :action => 'autocomplete_city_name'
   match 'discipline_classes/update_discipline_select/:id', :controller=>'discipline_classes', :action => 'update_discipline_select'
 
 
