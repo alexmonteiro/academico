@@ -12,7 +12,7 @@
 				   <th><center>Aluno</center></th>	
 				   <th><center><%= link_to '%', "#", :rel => "tooltip", "data-placement"=>"top", "data-original-title" => "Percentual de Presenças", :disabled => true %></center></th>	
 	               <% @discipline_class.discipline_class_exams.each_with_index do |exam, i| %>
-				      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? exam.applied_at.strftime("%d/%m/%Y") : 'sem data') + '<br/>' + exam.title).html_safe, "#{request.fullpath}/avaliacoes/#{exam.id}/notas" %></center></th>
+				      <th rowspan="2"><center><%=link_to ( (exam.applied_at ? I18n.l(exam.applied_at) : 'sem data') + '<br/>' + exam.title).html_safe, "#{request.fullpath}/avaliacoes/#{exam.id}/notas" %></center></th>
 			       <%end%>
    			       <th><center>Média<br/>( ∑(n*p) / ∑(p) )</center></th>
    	               <th><center>Situação</center></th>	

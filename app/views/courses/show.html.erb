@@ -13,7 +13,7 @@
   <dt><strong><%= model_class.human_attribute_name(:nickname) %>:</strong></dt>
   <dd><%= @course.nickname %></dd>
   <dt><strong><%= model_class.human_attribute_name(:goal) %>:</strong></dt>
-  <dd><%= @course.goal %></dd>
+  <dd><%= breaking_word_wrap(@course.goal, :line_width => 55) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:maxtime) %>:</strong></dt>
   <dd><%= @course.maxtime %></dd>
   <dt><strong><%= model_class.human_attribute_name(:mintime) %>:</strong></dt>

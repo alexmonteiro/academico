@@ -17,6 +17,7 @@
 //= require bootstrap-datepicker
 //= require twitter/bootstrap
 //= require rails.validations
+//= require select2
 //= require_tree .
 //= require_self
 /*

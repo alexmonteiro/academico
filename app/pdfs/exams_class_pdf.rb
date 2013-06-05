@@ -47,7 +47,6 @@ class ExamsClassPdf < Prawn::Document
     image "app/assets/images/ifbhorizontal_logo.jpg", :at => [0,550], :width => 110, :height => 45
     #text "Instituto Federal de Brasília", :align => :center, :size => 18
     text_box "Mapa de Notas", :at => [150,547], :size => 12 ,:style => :bold
-    #text "#{@discipline.discipline_year.blank? ? " " : "#{@discipline.discipline_year.strftime('%Y')}.#{@discipline.school_class_period}"}", :align => :center, :size => 14
     move_down(15)
   end
   

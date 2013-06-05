@@ -4,7 +4,7 @@
 <%= form_for [@person,@person_identification_doc], :html => { :class => 'form-inline' } do |f| %>
 
   <div class="well pagination-centered span12">
-      <h2><i class="icon-user"></i><%= @person.name %></h2><br />
+      <h2><i class="icon-user"></i> <%= @person.name %></h2><br />
       <%= f.hidden_field :person_id, :value => params[:person_id] %>
   </div>
     <!-- CPF -->

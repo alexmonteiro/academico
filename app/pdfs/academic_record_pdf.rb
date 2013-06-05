@@ -16,7 +16,7 @@ class AcademicRecordPDF < Prawn::Document
   def title
     text_box "Ministério da Educação", :size => 13, :at => [150,790], :align => :center
     text_box "Instituto Federal de Educação, Ciência e Tecnologia de Brasília", :size => 11, :at => [150,775], :align => :center
-    text_box "Campus", :style => :italic, :size => 9, :at => [150,762], :align => :center
+    text_box "#{@registration.course_matrix.course.dept.try(:name)}", :style => :italic, :size => 9, :at => [150,762], :align => :center
     text_box "Criado pela Lei Nº 11.892, de 29/12/2008, DOU Nº 253, 30/12/2008, Seção 1", :at => [150,750], :align => :center, :size => 7
     text_box "Nome do Estabelecimento de Ensino", :at => [2,735], :size => 8
     text_box "Endereço/Telefone:", :at => [2,704], :size => 8
@@ -24,7 +24,7 @@ class AcademicRecordPDF < Prawn::Document
     text_box "Área do Curso:", :at => [322,648], :size => 8
     text_box "Nº Matrícula:", :at => [2,628], :size => 8
     text_box "Nome do Aluno:", :at => [124,628], :size => 8
-    text_box "Sexo:", :at => [394,628], :size => 8
+    text_box "Sexo: ", :at => [394,628], :size => 8
     text_box "Data Nasc.", :at => [434,628], :size => 8
     text_box "Nacionalidade:", :at => [2,608], :size => 8
     text_box "Naturalidade/UF:", :at => [156,608], :size => 8
@@ -33,7 +33,7 @@ class AcademicRecordPDF < Prawn::Document
   
   def content
     
-    data_institution = [ [""],
+    data_institution = [ ["#{@registration.person.try(:name)}"],
                          [""]]
     move_down(50)
     table(data_institution) do
@@ -58,18 +58,18 @@ class AcademicRecordPDF < Prawn::Document
     # end
     
 
-    data_line_1 = [ ["",""]]
-    data_line_2 = [ ["","","",""]]
-    data_line_3 = [ ["","",""]]
+    data_line_1 = [ ["#{@registration.course_matrix.course.name}",""]]
+    data_line_2 = [ ["#{@registration.registration_number}","#{@registration.person.try(:name)}","#{@registration.person.gender.try(:acronym)}","#{I18n.l(@registration.person.try(:birth_date))}"]]
+    data_line_3 = [ ["#{@registration.person.try(:city).try(:state).try(:country).try(:name)}","#{@registration.person.try(:city).try(:name).to_s} / #{@registration.person.try(:city).try(:state).try(:acronym)}","#{@registration.person.person_identification_doc.try(:model_rg_custom)}"]]
     
     #nome do curso,area do curso
-    table(data_line_1) do
+    table(data_line_1, :cell_style => { :size => 8 }) do
       row(0).height = 20
       column(0).width = 320
       column(1).width = 203
     end
     #n matricula,nome do aluno,sexo,data nascimento
-    table(data_line_2) do
+    table(data_line_2, :cell_style => { :size => 8}) do
       row(0).height = 20
       column(0).width = 123
       column(1).width = 270
@@ -77,7 +77,7 @@ class AcademicRecordPDF < Prawn::Document
       column(3).width = 90
     end
     #nacionalidade, naturalidade/UF,cart. identidade/orgao expeditor/UF
-    table(data_line_3) do
+    table(data_line_3, :cell_style => { :size => 8}) do
       row(0).height = 20
       column(0).width = 155
       column(1).width = 195
@@ -137,6 +137,11 @@ class AcademicRecordPDF < Prawn::Document
               Campus xxxxxxxxx
               Instituto Federal de Brasília
               Portaria Nº xxxxxxxx", :size => 8, :at => [0,60], :align => :center
+    text_box "xxxxxxxxxxxxxxxxxxxxxxx
+              Coordenadoria de Registro Acadêmico
+              Campus xxxxxxxxx
+              Instituto Federal de Brasília
+              Portaria Nº xxxxxxxxxxxxxx", :size => 8, :at => [320,60], :align => :center
 
     table_components_2 = [ ["",""]]
     move_down(20)
@@ -195,7 +200,8 @@ class AcademicRecordPDF < Prawn::Document
       page_count.times do |i|
       go_to_page(i+1)
       draw_text "Brasília, #{I18n.l Time.now, :format => '%d de %B de %Y'}", :at => [10, -10]
-      draw_text "ACADEMICO - IFB", :at => [240, -10], :style => :bold
+      draw_text "ACADEMICO - IFB", :at => [200, -10], :style => :bold
+      draw_text "Data de emissão: #{I18n.l(Time.now)}", :at => [360, -10], :font => "Helvetica"
     end
   end
 end

@@ -45,6 +45,7 @@ class PeopleController < ApplicationController
     @person.build_person_address
     @person.build_person_identification_doc
     @person.person_person_types.build
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @person }
@@ -60,6 +61,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(params[:person])
+    @person.city_id = params[:person_city_id]
     #condition_save_depts = @person.validates_depts_by_person_types(:person_type_depts_attributes => params[:person_type_depts], :person_types_checkeds => params[:person_types_checkeds]) # => Chama o metodo para validação dos campos de Vinculo Institucional... Este Método encontra-se na Model de Pessoas
     
     ##comando para transformar as "/" para "." pois o sistema nao le datas com "/"
@@ -82,7 +84,7 @@ class PeopleController < ApplicationController
   # PUT /people/1.json
   def update
     @person = Person.find(params[:id])
-
+    @person.city_id = params[:person_city_id]
     #comando para transformar as "/" para "." pois o sistema nao le datas com "/"
     params[:person][:birth_date].gsub!("/",".")
     

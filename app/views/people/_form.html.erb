@@ -1,7 +1,9 @@
-<%= form_for @person, :html => { :class => 'form-vertical' } do |f| %>
-<%@tabindex=0%> <!--Variavel q define as tabindex automaticamente de forma sequencial-->
-<div class="container control-group">
-<div class="container control-group span12">
+<%@tabindex=0%>
+<%= simple_form_for @person, :html => { :class => 'form-vertical' } do |f| %>
+
+<div class="container">
+<div class="container control-group span7">
+
 <div class="well">
 	<fieldset>
 	<legend>Identificação</legend>
@@ -64,17 +66,18 @@
 <div class="well">
 <fieldset>
   <legend>Nacionalidade/Naturalidade</legend>
-
   <!-- País Cidade e Estado -->
-  <div class="span5 pull-left">
-	<div class="control-group">
-	  <%= f.label :city_id, :class => 'control-label' %>
-	  <div class="controls"  id="city_id">
-		  <% options = option_groups_from_collection_for_select(State.where(:country_id => 24, :id => 7).order(:name).all, :cities, :name, :id, :name, (!@person.city_id.blank? ? @person.city_id : "")) %>
-		  <%= f.select(:city_id, options, {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}") %>
-	  </div>
-	</div>
-  </div>
+    <%f.input :city_id%>
+	<select style="width:300px" name="person_city_id" id="city_id">
+		<%City.all.group_by(&:state).each do |state, cities|%>
+		      <optgroup label='<%="#{state.name}"%>'>
+			        <%cities.each do |city|%>
+			          <option value='<%="#{city.id}"%>'> <%="#{city.name} - #{city.state_acronym}"%> </option>
+			        <%end%>
+			  </optgroup>
+		<%end%>
+	</select>	
+
 </div>
 <!-- Fim -->
 <!-- Inicio Campos Para Telefone -->

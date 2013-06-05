@@ -28,8 +28,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 
   gem 'therubyracer', :platforms => :ruby
-  gem 'less'
-  gem 'less-rails'
+  gem 'less-rails', '2.2.3'
   gem 'uglifier', '>= 1.0.3'
   
 end
@@ -58,11 +57,16 @@ gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
 #gem 'prawn'
 gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
+#gem 'prawn', :path => 'lib/prawn'
 
-gem 'twitter-bootstrap-rails', '2.2.5'
+gem 'twitter-bootstrap-rails', '2.2.1'
 gem 'bootstrap-datepicker-rails'
 
 gem "watu_table_builder", :require => "table_builder"
+
+gem "select2-rails", "3.3.1"
+gem "simple_form"
+gem "browser"
 
 group :development do
   gem 'sunspot_solr'
