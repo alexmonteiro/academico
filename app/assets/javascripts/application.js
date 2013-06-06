@@ -11,8 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery-ui
 //= require jquery.maskedinput
 //= require bootstrap-datepicker
 //= require twitter/bootstrap

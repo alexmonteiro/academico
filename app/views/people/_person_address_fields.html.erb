@@ -1,17 +1,17 @@
 <div class="fields">
     <span class="fields">
-    	  <div class="span6">
+    	  <div class="span6 pull-left">
 	  <div class="control-group">
 	    <%= f.label :street_type_id, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, :prompt => "Escolha um Logradouro", :selected => (@person.person_address.street_type.id if !@person.person_address.street_type.blank?) %>
+	      <%= f.collection_select :street_type_id, StreetType.find(:all) , :id, :description, {:prompt => "Escolha um Logradouro"}, :tabindex => "#{@tabindex = @tabindex+1}", :selected => (@person.person_address.street_type.id if !@person.person_address.street_type.blank?) %>
 	    </div>
 	  </div>
 		<div class="control-group">
 		<%= f.label :city_id, :class => 'control-label' %>
 		  <div class="controls" id="addressCitiesPersonAddress">
 			    <% options = option_groups_from_collection_for_select(State.where(:country_id => 24, :id => 7).order(:name).all, :cities, :name, :id, :name, (!params[:city_id].blank? ? params[:city_id] : "")) %>
-				<%= f.select(:city_id, options, :include_blank => "...Selecione...") %>
+				<%= f.select(:city_id, options, {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}") %>
 		  </div>
 		</div>
 		<!-- Fim -->
@@ -19,45 +19,45 @@
 		  <div class="control-group">
 		    <%= f.label :street_name, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :street_name, :class => 'text_field', :value =>  (@person.person_address.street_name if !@person.person_address.street_name.blank?)%>
+		      <%= f.text_field :street_name, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}", :value =>  (@person.person_address.street_name if !@person.person_address.street_name.blank?)%>
 		    </div>
 		  </div>
 		  <div class="control-group">
 		    <%= f.label :complement, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :complement, :class => 'text_field', :value =>  (@person.person_address.complement if !@person.person_address.complement.blank?) %>
+		      <%= f.text_field :complement, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}", :value =>  (@person.person_address.complement if !@person.person_address.complement.blank?) %>
 		    </div>
 		  </div>
 		</div>
-		<div class="span6">
+		<div class="span6 pull-right">
 		  <div class="control-group">
 		    <%= f.label :post_office_box, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :post_office_box, :class => 'text_field', :value =>  (@person.person_address.post_office_box if !@person.person_address.post_office_box.blank?) %>
+		      <%= f.text_field :post_office_box, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}", :value =>  (@person.person_address.post_office_box if !@person.person_address.post_office_box.blank?) %>
 		    </div>
 		  </div>
 		  <div class="control-group">
 		    <%= f.label :neighborhood, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :neighborhood, :class => 'text_field', :value =>  (@person.person_address.neighborhood if !@person.person_address.neighborhood.blank?) %>
+		      <%= f.text_field :neighborhood, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}", :value =>  (@person.person_address.neighborhood if !@person.person_address.neighborhood.blank?) %>
 		    </div>
 		  </div>
 		  <div class="control-group">
 		    <%= f.label :zip_code, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :zip_code, :class => 'number_field', :id => "zipcode", :value =>  (@person.person_address.zip_code if !@person.person_address.zip_code.blank?) %>
+		      <%= f.text_field :zip_code, :class => 'number_field', :tabindex => "#{@tabindex = @tabindex+1}", :id => "zipcode", :value =>  (@person.person_address.zip_code if !@person.person_address.zip_code.blank?) %>
 		    </div>
 		  </div>
 		  <div class="control-group">
 		    <%= f.label :number, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.text_field :number, :class => 'text_field', :value =>  (@person.person_address.number if !@person.person_address.number.blank?) %>
+		      <%= f.text_field :number, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}", :value =>  (@person.person_address.number if !@person.person_address.number.blank?) %>
 		    </div>
 		  </div>
 		  <div class="control-group">
 		    <%= f.label :provenance_area_id, :class => 'control-label' %>
 		    <div class="controls">
-		      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, :prompt => "Escolha uma Zona", :selected => (@person.person_address.provenance_area.id if !@person.person_address.provenance_area.blank?) %>
+		      <%= f.collection_select :provenance_area_id, ProvenanceArea.find(:all) , :id, :description, {:prompt => "Escolha uma Zona"}, :tabindex => "#{@tabindex = @tabindex+1}", :selected => (@person.person_address.provenance_area.id if !@person.person_address.provenance_area.blank?) %>
 		    </div>
 		  </div>
 		</div>

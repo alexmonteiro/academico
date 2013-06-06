@@ -1,6 +1,6 @@
 <%- model_class = @registration.class -%>
 <%= form_for [@person, @registration], :html => { :class => 'form-horizontal' } do |f| %>
-<%@tabindex=0%>
+<%@tabindex=0%> <!--Variavel q define as tabindex automaticamente de forma sequencial-->
 
   <div class="control-group">
     <%= f.label :registration_at, :class => 'control-label' %>

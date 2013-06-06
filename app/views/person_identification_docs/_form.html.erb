@@ -1,4 +1,5 @@
 <div class="row-fluid">
+<%@tabindex=0%> <!--Variavel q define as tabindex automaticamente de forma sequencial-->
 <%- model_class = @person_identification_doc.class -%>
 <%= form_for [@person,@person_identification_doc], :html => { :class => 'form-inline' } do |f| %>
 
@@ -15,7 +16,7 @@
         <div class="pull-left span12">
             <div class="well well-large">
             <%= f.label :cpf, model_class.human_attribute_name(:cpf), :class => 'control-label' %>
-            <%= f.text_field :cpf, :class => 'text_field'%>
+            <%= f.text_field :cpf, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}"%>
             </div>
         </div>
       </div>
@@ -31,7 +32,7 @@
         <div class="pull-left span12">
             <div class="well well-large">
             <%= f.label :pis_pasep, model_class.human_attribute_name(:pis_pasep), :class => 'control-label' %>
-            <%= f.text_field :pis_pasep, :class => 'text_field' %>
+            <%= f.text_field :pis_pasep, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
         </div>
       </div>
@@ -48,22 +49,22 @@
           <div class="pull-left span6">
             <div class="well">
                 <%= f.label :rg, model_class.human_attribute_name(:rg), :class => 'control-label' %>
-                <%= f.text_field :rg, :class => 'text_field' %>
+                <%= f.text_field :rg, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
             <div class="well">
                 <%= f.label :rg_issuing_institution, model_class.human_attribute_name(:rg_issuing_institution), :class => 'control-label ' %>
-                <%= f.collection_select :rg_issuing_institution, IssuingInstitution.find(:all, :order => "description"), :id, :description, {:prompt => "Selecione o Órgão Emissor", :selected => @person_identification_doc.rg_issuing_institution.blank? ? nil : @person_identification_doc.rg_issuing_institution.id } %>           
+                <%= f.collection_select :rg_issuing_institution, IssuingInstitution.find(:all, :order => "description"), :id, :description, {:prompt => "Selecione o Órgão Emissor", :selected => @person_identification_doc.rg_issuing_institution.blank? ? nil : @person_identification_doc.rg_issuing_institution.id }, :tabindex => "#{@tabindex = @tabindex+1}" %>           
             </div>
           </div>
           <div class="pull-right span6">
             <div class="well">
                 <%= f.label :rg_uf, model_class.human_attribute_name(:rg_uf), :class => 'control-label' %>
-                <%= f.collection_select :rg_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.rg_uf.blank? ? nil : @person_identification_doc.rg_uf.id } %>
+                <%= f.collection_select :rg_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.rg_uf.blank? ? nil : @person_identification_doc.rg_uf.id }, :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
             <div class="well">
               <div id="person_identification_doc_rg_date_issuance_div" class="input-append date">
                 <%= f.label :rg_date_issuance, model_class.human_attribute_name(:rg_date_issuance), :class => 'control-label' %>
-                <%= f.text_field :rg_date_issuance, :style => "width:80px", :readonly =>"", :value => @person_identification_doc.rg_date_issuance.blank? ? nil : @person_identification_doc.rg_date_issuance.strftime("%d.%m.%Y") %><i class="icon-calendar add-on" title="Selecine a Data" ></i>
+                <%= f.text_field :rg_date_issuance, :style => "width:80px", :readonly =>"", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person_identification_doc.rg_date_issuance.blank? ? nil : @person_identification_doc.rg_date_issuance.strftime("%d.%m.%Y") %><i class="icon-calendar add-on" title="Selecine a Data" ></i>
               </div>
                <i class="add-on btn btn-mini" onclick="limparCampo('person_identification_doc_rg_date_issuance')">Limpar</i>
             </div>
@@ -90,30 +91,30 @@
           <div class="pull-left span4">
             <div class="well">
                 <%= f.label :birth_certificate, model_class.human_attribute_name(:birth_certificate), :class => 'control-label' %>
-                <%= f.text_field :birth_certificate, :class => 'text_field' %>
+                <%= f.text_field :birth_certificate, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
             <div class="well">
                 <%= f.label :bc_notarys_office, model_class.human_attribute_name(:bc_notarys_office), :class => 'control-label' %>
-                <%= f.text_field :bc_notarys_office, :class => 'text_field' %>
+                <%= f.text_field :bc_notarys_office, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="span4">
             <div class="well">
               <div id="person_identification_doc_bc_date_issuance_div" class="input-append date" >
                 <%= f.label :bc_date_issuance, model_class.human_attribute_name(:bc_date_issuance), :class => 'control-label' %>
-                <%= f.text_field :bc_date_issuance, :style => "width:80px", :readonly =>"", :value => @person_identification_doc.bc_date_issuance.blank? ? nil : @person_identification_doc.bc_date_issuance.strftime("%d.%m.%Y") %><i class="icon-calendar add-on" title="Selecine a Data" ></i>
+                <%= f.text_field :bc_date_issuance, :style => "width:80px", :readonly =>"", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person_identification_doc.bc_date_issuance.blank? ? nil : @person_identification_doc.bc_date_issuance.strftime("%d.%m.%Y") %><i class="icon-calendar add-on" title="Selecine a Data" ></i>
               </div>
                <i class="add-on btn btn-mini" onclick="limparCampo('person_identification_doc_bc_date_issuance')">Limpar</i>
             </div>
             <div class="well">
                 <%= f.label :bc_book, model_class.human_attribute_name(:bc_book), :class => 'control-label' %>
-                <%= f.text_field :bc_book, :class => 'text_field' %>
+                <%= f.text_field :bc_book, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="pull-right span4">
             <div class="well">
                 <%= f.label :bc_sheet, model_class.human_attribute_name(:bc_sheet), :class => 'control-label' %>
-                <%= f.text_field :bc_sheet, :class => 'text_field' %>
+                <%= f.text_field :bc_sheet, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
       </div>
@@ -138,13 +139,13 @@
           <div class="pull-left span6">
             <div class="well">
                 <%= f.label :ctps, model_class.human_attribute_name(:ctps), :class => 'control-label' %>
-                <%= f.text_field :ctps, :class => 'text_field' %>
+                <%= f.text_field :ctps, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="pull-right span6">
             <div class="well">
                 <%= f.label :ctps_series, model_class.human_attribute_name(:ctps_series), :class => 'control-label' %>
-                <%= f.text_field :ctps_series, :class => 'text_field' %>
+                <%= f.text_field :ctps_series, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
       </div>
@@ -160,14 +161,14 @@
           <div class="pull-left span4">
             <div class="well">
                 <%= f.label :cnh, model_class.human_attribute_name(:cnh), :class => 'control-label' %>
-                <%= f.text_field :cnh, :class => 'text_field' %>
+                <%= f.text_field :cnh, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="span4">
             <div class="well">
               <div id="person_identification_doc_cnh_date_issuance_div" class="input-append date">
                 <%= f.label :cnh_date_issuance, model_class.human_attribute_name(:cnh_date_issuance), :class => 'control-label' %>
-                <%= f.text_field :cnh_date_issuance, :style => "width:80px", :readonly =>"", :value => @person_identification_doc.cnh_date_issuance.blank? ? nil : @person_identification_doc.cnh_date_issuance.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
+                <%= f.text_field :cnh_date_issuance, :style => "width:80px", :readonly =>"", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person_identification_doc.cnh_date_issuance.blank? ? nil : @person_identification_doc.cnh_date_issuance.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
               </div>
                <i class="add-on btn btn-mini" onclick="limparCampo('person_identification_doc_cnh_date_issuance')">Limpar</i>
             </div>
@@ -176,7 +177,7 @@
             <div class="well">
               <div id="person_identification_doc_cnh_expiration_date_div" class="input-append date">
                 <%= f.label :cnh_expiration_date, model_class.human_attribute_name(:cnh_expiration_date), :class => 'control-label' %>
-                <%= f.text_field :cnh_expiration_date, :style => "width:80px", :readonly =>"", :value => @person_identification_doc.cnh_expiration_date.blank? ? nil : @person_identification_doc.cnh_expiration_date.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
+                <%= f.text_field :cnh_expiration_date, :style => "width:80px", :readonly =>"", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person_identification_doc.cnh_expiration_date.blank? ? nil : @person_identification_doc.cnh_expiration_date.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
               </div>
                <i class="add-on btn btn-mini" onclick="limparCampo('person_identification_doc_cnh_expiration_date')">Limpar</i>
             </div>
@@ -211,19 +212,19 @@
           <div class="pull-left span4">
             <div class="well">
                 <%= f.label :military_document, model_class.human_attribute_name(:military_document), :class => 'control-label' %>
-                <%= f.text_field :military_document, :class => 'text_field' %>
+                <%= f.text_field :military_document, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="span4">
             <div class="well">
                 <%= f.label :military_document_type_id, model_class.human_attribute_name(:military_document_type_id), :class => 'control-label' %>
-                <%= f.collection_select :military_document_type_id, MilitaryDocumentType.find(:all) , :id, :description , :prompt => "Select the Document Type"%>
+                <%= f.collection_select :military_document_type_id, MilitaryDocumentType.find(:all) , :id, :description , {:prompt => "Select the Document Type"}, :tabindex => "#{@tabindex = @tabindex+1}"%>
             </div>
           </div>
           <div class="pull-right span4">
             <div class="well">
                 <%= f.label :military_document_region, model_class.human_attribute_name(:military_document_region), :class => 'control-label' %>
-                <%= f.text_field :military_document_region, :class => 'text_field' %>
+                <%= f.text_field :military_document_region, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
       </div>
@@ -239,30 +240,30 @@
           <div class="pull-left span4">
             <div class="well">
                 <%= f.label :voter_registration, model_class.human_attribute_name(:voter_registration), :class => 'control-label' %>
-                <%= f.text_field :voter_registration, :class => 'text_field' %>
+                <%= f.text_field :voter_registration, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
             <div class="well">
                 <%= f.label :vr_zone, model_class.human_attribute_name(:vr_zone), :class => 'control-label' %>
-                <%= f.text_field :vr_zone, :class => 'text_field' %>
+                <%= f.text_field :vr_zone, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="span4">
             <div class="well">
                <div id="person_identification_doc_vr_date_issuance_div" class="input-append date" >
                 <%= f.label :vr_date_issuance, model_class.human_attribute_name(:vr_date_issuance), :class => 'control-label' %>
-                <%= f.text_field :vr_date_issuance, :style => "width:80px", :readonly =>"", :value => @person_identification_doc.vr_date_issuance.blank? ? nil : @person_identification_doc.vr_date_issuance.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
+                <%= f.text_field :vr_date_issuance, :style => "width:80px", :readonly =>"", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person_identification_doc.vr_date_issuance.blank? ? nil : @person_identification_doc.vr_date_issuance.strftime("%d.%m.%Y")%><i class="icon-calendar add-on" title="Selecine a Data" ></i>
                </div>
               <i class="add-on btn btn-mini" onclick="limparCampo('person_identification_doc_vr_date_issuance')">Limpar</i>
             </div>
             <div class="well">
                 <%= f.label :vr_section, model_class.human_attribute_name(:vr_section), :class => 'control-label' %>
-                <%= f.text_field :vr_section, :class => 'text_field' %>
+                <%= f.text_field :vr_section, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
           <div class="pull-right span4">
             <div class="well">
                 <%= f.label :vr_uf, model_class.human_attribute_name(:vr_uf), :class => 'control-label' %>
-                <%= f.collection_select :vr_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.vr_uf.blank? ? nil : @person_identification_doc.vr_uf.id } %>
+                <%= f.collection_select :vr_uf, State.find(:all, :order => "name"), :id, :name, {:prompt => "Selecione a UF", :selected => @person_identification_doc.vr_uf.blank? ? nil : @person_identification_doc.vr_uf.id }, :tabindex => "#{@tabindex = @tabindex+1}" %>
             </div>
           </div>
       </div>
