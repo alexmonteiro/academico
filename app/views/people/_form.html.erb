@@ -1,51 +1,49 @@
-<script type="text/javascript">
-
-</script>
-
+<%@tabindex=0%>
 <%= simple_form_for @person, :html => { :class => 'form-vertical' } do |f| %>
 
 <div class="container">
 <div class="container control-group span7">
+
 <div class="well">
 	<fieldset>
 	<legend>Identificação</legend>
 		
-	   <div class="span5">
+	   <div class="span5 pull-left">
 	   	<%= f.fields_for :person_identification_doc do |builder| %>
-			<%= render "person_identification_doc_fields", :f => builder%>
+			<%= render "person_identification_doc_fields", :f => builder, :tabindex => @tabindex%>
 		<%end%>	
 	   	
 	    <%= f.label :name_complete, :class => 'control-label' %>
-	    <%= f.text_field :name, :class => 'text_field' %>
+	    <%= f.text_field :name, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
 	
 	    <%= f.label :race_id, :class => 'control-label' %>    
-	    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}, :selected => (@person.race.id if !@person.race.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
+	    <%= f.select :race_id,  options_for_select(Race.all.map{|v| [v.race, v.id]}, :selected => (@person.race.id if !@person.race.blank?)), {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}", :class => 'select_field' %>
 	
 	    <%= f.label :gender_id, :class => 'control-label' %>    
-	    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}, :selected => (@person.gender.id if !@person.gender.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
+	    <%= f.select :gender_id,  options_for_select(Gender.all.map{|v| [v.gender, v.id]}, :selected => (@person.gender.id if !@person.gender.blank?)), {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}", :class => 'select_field' %>
 	
 	    <%= f.label :education_degree_id, :class => 'control-label' %>    
-	    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}, :selected => (@person.education_degree.id if !@person.education_degree.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
+	    <%= f.select :education_degree_id,  options_for_select(EducationDegree.all.map{|v| [v.degree, v.id]}, :selected => (@person.education_degree.id if !@person.education_degree.blank?)), {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}", :class => 'select_field' %>
 	
 	    <%= f.label :marital_status_id, :class => 'control-label' %>    
-	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}, :selected => (@person.marital_status.id if !@person.marital_status.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
+	    <%= f.select :marital_status_id,  options_for_select(MaritalStatus.all.map{|v| [v.status, v.id]}, :selected => (@person.marital_status.id if !@person.marital_status.blank?)), {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}", :class => 'select_field' %>
 	
 	   </div>
-	   <div class="span5">
+	   <div class="span5 pull-right">
 	   	<%= f.label :birth_date, :class => 'control-label' %>
-	    <%= f.text_field :birth_date, :style => "width:80px", :value => @person.birth_date.blank? ? nil : I18n.l(@person.birth_date) %>
+	    <%= f.text_field :birth_date, :style => "width:80px", :tabindex => "#{@tabindex = @tabindex+1}", :value => @person.birth_date.blank? ? nil : I18n.l(@person.birth_date) %>
 	  
 	    <%= f.label :email, :class => 'control-label' %>    
-	    <%= f.text_field :email, :class => 'text_field' %>
+	    <%= f.text_field :email, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
 	
 	    <%= f.label :blood_type_id, :class => 'control-label' %>    
-	    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}, :selected => (@person.blood_type.id if !@person.blood_type.blank?)), :include_blank => "...Selecione...", :class => 'select_field' %>
+	    <%= f.select :blood_type_id,  options_for_select(BloodType.all.map{|v| [v.type, v.id]}, :selected => (@person.blood_type.id if !@person.blood_type.blank?)), {:include_blank => "...Selecione..."}, :tabindex => "#{@tabindex = @tabindex+1}", :class => 'select_field' %>
 	
 	    <%= f.label :lattes_url, :class => 'control-label' %>    
-	    <%= f.text_field :lattes_url, :class => 'text_field' %>
+	    <%= f.text_field :lattes_url, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
 	
 	    <%= f.label :number_children, :class => 'control-label' %>
-	    <%= f.text_field :number_children, :class => 'number_field', :value => (@person.number_children.blank? ? 0 : @person.number_children) %>
+	    <%= f.text_field :number_children, :class => 'number_field', :tabindex => "#{@tabindex = @tabindex+1}", :value => (@person.number_children.blank? ? 0 : @person.number_children) %>
 	
 	   </div>
 	</fieldset>
@@ -54,13 +52,13 @@
 <div class="well">
 	<fieldset>
 	  <legend>Filiação</legend>
-	   <div class="span5">
+	   <div class="span5 pull-left">
 	    <%= f.label :father_name, :class => 'control-label' %>
-	    <%= f.text_field :father_name, :class => 'text_field' %>
+	    <%= f.text_field :father_name, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" %>
 	   </div>
-	   <div class="span5">
+	   <div class="span5 pull-right">
 	    <%= f.label :mom_name, :class => 'control-label' %>    
-	    <%= f.text_field :mom_name, :class => 'text_field' 	%>
+	    <%= f.text_field :mom_name, :class => 'text_field', :tabindex => "#{@tabindex = @tabindex+1}" 	%>
 	   </div>
 	</fieldset>
 </div>
@@ -79,18 +77,20 @@
 			  </optgroup>
 		<%end%>
 	</select>	
+
 </div>
 <!-- Fim -->
-
 <!-- Inicio Campos Para Telefone -->
 
 <div class="well">
 	<fieldset>
 		<legend> Contato Telefone </legend>
+		<div class="span12 pull-left">
 			<%= f.fields_for :people_telephones do |builder| %>
 				<%= render "people_telephone_fields", :f => builder%>
 			<%end%>
-		<span><%= link_to_add_fields "Adicionar Telefone", f, :people_telephones %></span>
+			<span><%= link_to_add_fields "Adicionar Telefone", f, :people_telephones %></span>
+		</div>
 	</fieldset>
 </div>
 
@@ -100,9 +100,11 @@
 <div class="well">
 	<fieldset>
 		<legend> Endereço </legend>
+		<div class="span12">
 			<%= f.fields_for :person_address_attributes, PersonAddress.new do |builder| %>
 				<%= render "person_address_fields", :f => builder, :person => @person%>
 			<%end%>
+		</div>
 	</fieldset>
 </div>
 
@@ -124,11 +126,11 @@
 <div class="well">
 	<fieldset>
 	  <legend>Vínculo Institucional</legend>
-	   <div class="span12">
+	   <div class="span5 pull-left">
 	    <%= f.fields_for :person_type_ids do |pt| %>
 	        <div class="right_box">
 	          <% PersonType.all.each do |person_type| %>
-	                  <%= (pt.check_box [], {:checked=> @person.person_types.include?(person_type) }, person_type.id, nil) %>
+	                  <%= (pt.check_box [], {:checked=> @person.person_types.include?(person_type), :tabindex => "#{@tabindex = @tabindex+1}" }, person_type.id, nil) %>
 	                  <%= person_type.description %><br/>
 	          <% end %>
 	        </div>
@@ -142,7 +144,6 @@
     <%= link_to t('action.cancel', :default => t("helpers.links.cancel")), people_path(), :class => 'btn' %>
   </div>
 </fieldset>
-</div>
 </div>
 </div>
 <% end %>

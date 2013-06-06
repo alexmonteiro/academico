@@ -24,7 +24,7 @@ gem 'json'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
+  gem 'jquery-ui-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 
   gem 'therubyracer', :platforms => :ruby
@@ -56,8 +56,8 @@ gem 'font-awesome-rails'
 gem 'bootstrap-will_paginate', '0.0.7'
 gem 'sunspot_rails'
 #gem 'prawn'
-#gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
-gem 'prawn', :path => 'lib/prawn'
+gem 'prawn', :git => 'http://github.com/prawnpdf/prawn.git'
+#gem 'prawn', :path => 'lib/prawn'
 
 gem 'twitter-bootstrap-rails', '2.2.1'
 gem 'bootstrap-datepicker-rails'
