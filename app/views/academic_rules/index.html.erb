@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:education_modality_id) %></th>
       <th><%= model_class.human_attribute_name(:academic_rule_type_id) %></th>
       <th><%= model_class.human_attribute_name(:operator) %></th>
       <th><%= model_class.human_attribute_name(:value) %></th>
@@ -18,6 +19,7 @@
     <% @academic_rules.each do |academic_rule| %>
       <tr>
         <td><%= link_to academic_rule.id, academic_rule_path(academic_rule) %></td>
+        <td><%= academic_rule.education_modality.try(:description) %></td>
         <td><%= academic_rule.academic_rule_type.rule %></td>
         <td><%= academic_rule.operator %></td>
         <td><%= academic_rule.value %></td>
