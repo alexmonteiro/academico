@@ -314,7 +314,8 @@ pt-BR:
         course_matrix_id: "Curso"
         academic_rule_id: "Regra" 
       academic_rule:
-        academic_rule_type_id: "Tipo"       
+        education_modality_id: "Modalidade"       
+        academic_rule_type_id: "Tipo"
         operator: "Operador"
         value: "Valor (%)"
         rclass_status_true_id: "Se verdadeiro"

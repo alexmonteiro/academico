@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523172654) do
+ActiveRecord::Schema.define(:version => 20130607181404) do
 
   create_table "academic_rule_types", :force => true do |t|
     t.string   "rule"
@@ -26,9 +26,11 @@ ActiveRecord::Schema.define(:version => 20130523172654) do
     t.datetime "updated_at",             :null => false
     t.integer  "rclass_status_true_id"
     t.integer  "rclass_status_false_id"
+    t.integer  "education_modality_id"
   end
 
   add_index "academic_rules", ["academic_rule_type_id"], :name => "index_academic_rules_on_academic_rule_type_id"
+  add_index "academic_rules", ["education_modality_id"], :name => "index_academic_rules_on_education_modality_id"
 
   create_table "admission_types", :force => true do |t|
     t.string   "description"
@@ -639,6 +641,18 @@ ActiveRecord::Schema.define(:version => 20130523172654) do
   add_index "registration_classes", ["registration_class_status_id"], :name => "index_registration_classes_on_registration_class_status_id"
   add_index "registration_classes", ["registration_id"], :name => "index_registration_classes_on_registration_id"
 
+  create_table "registration_healths", :force => true do |t|
+    t.boolean  "presents_special_need"
+    t.text     "special_need_description"
+    t.boolean  "presents_health_problem"
+    t.text     "health_problem_description"
+    t.integer  "registration_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "registration_healths", ["registration_id"], :name => "index_registration_healths_on_registration_id"
+
   create_table "registration_schemes", :force => true do |t|
     t.string   "description"
     t.datetime "created_at",  :null => false
@@ -697,6 +711,26 @@ ActiveRecord::Schema.define(:version => 20130523172654) do
   add_index "registrations", ["registration_status_id"], :name => "index_registrations_on_registration_status_id"
   add_index "registrations", ["ways_of_admission_id"], :name => "index_registrations_on_ways_of_admission_id"
 
+  create_table "registrations_responsibles", :force => true do |t|
+    t.string   "complete_name"
+    t.string   "cpf"
+    t.string   "kinship"
+    t.text     "address"
+    t.string   "cep"
+    t.boolean  "have_work"
+    t.string   "occupation"
+    t.string   "workplace"
+    t.string   "workphonr"
+    t.string   "telephone"
+    t.string   "schooling"
+    t.string   "email"
+    t.integer  "registration_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "registrations_responsibles", ["registration_id"], :name => "index_registrations_responsibles_on_registration_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -723,6 +757,22 @@ ActiveRecord::Schema.define(:version => 20130523172654) do
   add_index "school_classes", ["class_season_id"], :name => "index_school_classes_on_class_season_id"
   add_index "school_classes", ["matrix_id"], :name => "index_school_classes_on_matrix_id"
   add_index "school_classes", ["shift_type_id"], :name => "index_school_classes_on_shift_type_id"
+
+  create_table "schooling_registrations", :force => true do |t|
+    t.string   "parent_institution"
+    t.string   "year_completion"
+    t.boolean  "is_attending_school_level"
+    t.string   "attending_school_level_description"
+    t.boolean  "dont_take_another_vacance_public_institution"
+    t.boolean  "dont_take_another_prouni_vacance_public_institution"
+    t.integer  "registration_id"
+    t.integer  "precedence_school_id"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+  end
+
+  add_index "schooling_registrations", ["precedence_school_id"], :name => "index_schooling_registrations_on_precedence_school_id"
+  add_index "schooling_registrations", ["registration_id"], :name => "index_schooling_registrations_on_registration_id"
 
   create_table "shift_types", :force => true do |t|
     t.string   "description"
