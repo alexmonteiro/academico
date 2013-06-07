@@ -22,7 +22,7 @@
     <%= f.label :discipline_class_id, :class => 'control-label' %>
     <div class="controls">
 	 <select name="registration_class[discipline_class_id]" class="span8">
-		<option value="">Classe</option>
+		<option value="">Componente Curricular</option>
 		<% @registration.course_matrix.school_classes.each do |turmas|%>
           <optgroup label="<%= turmas.model_identifier_and_period%>">
 	         <% turmas.discipline_classes.each do |classe|%>
