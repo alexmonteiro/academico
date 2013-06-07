@@ -136,10 +136,12 @@ class PeopleController < ApplicationController
     if params[:search]
      @search = Person.search do
        fulltext params[:search]
-       paginate :page => params[:page] || 1, :per_page => 20
+       paginate :page => params[:page] || 1, :per_page => 10
        #order_by(:name, :asc)
      end
      @people = @search.results
+    else
+     @people = Person.paginate(:page => params[:page], :per_page => 10, :order => 'name')
     end
 
     respond_to do |format|
