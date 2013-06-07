@@ -2,13 +2,13 @@
    <h2>Aluno:  <%= @registration.try(:student_name) %></h2>
    <h2>Matrícula: <%= @registration.try(:registration_number) %> </h2>
    <h2>Curso: <%= @registration.try(:course_name) %> </h2>
-   <h2>Classe: <%= @registration_class.discipline_class.try(:code) %> - <%= @registration_class.discipline_class.try(:discipline_name)%></h2>
+   <h2>Componente Curricular: <%= @registration_class.discipline_class.try(:code) %> - <%= @registration_class.discipline_class.try(:discipline_name)%></h2>
 
 
    <div class="control-group">
      <%= f.label :registered_at, :class => 'control-label' %>
      <div class="controls">
-      <%= f.text_field :registered_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @registration_class.registered_at.blank? ? nil : @registration_class.registered_at.strftime("%d/%m/%Y") %>
+      <%= f.text_field :registered_at, :class => 'datepicker_class', :include_blank => true, :style => "width:80px", :value => @registration_class.registered_at.blank? ? nil : I18n.l(@registration_class.registered_at) %>
     </div>
    </div>
 

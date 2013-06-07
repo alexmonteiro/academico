@@ -63,7 +63,9 @@ class RegistrationClassPdf < Prawn::Document
   def content_blank
     header_table = [["Nº","Matrícula","Nome"] + [""]*@number_classes_by_page]
     @discipline_class.class_records_sort_by_name.each_with_index do |student, j|
-      header_table += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*@number_classes_by_page]
+       if !student.registration.registration_status.is_attending.blank?
+          header_table += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*@number_classes_by_page]
+       end   
     end
     bounding_box([-10, 480], :width => 2200, :height => 425) do #Determina a posição que a tabela se encontra e o tamanho
       font_size 8
@@ -139,7 +141,9 @@ class RegistrationClassPdf < Prawn::Document
           classes_presences_hash << " "
         end
       end
-      header_table += [["#{j+1}","#{student.student_registration_number}","#{student.student_name}"] + classes_presences_hash]
+       if !student.registration.registration_status.is_attending.blank?
+          header_table += [["#{j+1}","#{student.student_registration_number}","#{student.student_name}"] + classes_presences_hash]
+       end
       
       #Total de Faltas Desabilitado Abaixo deste comentario
       # if ((@repetitions+1) != iteracao)

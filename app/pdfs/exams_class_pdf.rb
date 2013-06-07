@@ -175,8 +175,10 @@ class ExamsClassPdf < Prawn::Document
   def data_calls(opcoes = {})
     data_content = [[" "," "," "] + [" "]*20 + [" "," "," "]]
      if @preenchido.blank?
-      @discipline.registration_classes.each_with_index do |student, i|
-        data_content += [["#{i + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*12 + [" "," "," "," "]]
+      @discipline.registration_classes.each_with_index do |student, i| 
+        if !student.registration.registration_status.is_attending.blank? 
+           data_content += [["#{i + 1}","#{student.student_registration_number}","#{student.student_name}"] + [" "]*12 + [" "," "," "," "]]
+        end
       end
     else
       quantidade_aulas = @discipline.records_planned_count
@@ -205,8 +207,10 @@ class ExamsClassPdf < Prawn::Document
             end
             
          end
-          data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%","#{student.model_student_result_average.round(2).to_s.gsub('.',',')}"]]
-          repeticoes = repeticoes - 1
+           if !student.registration.registration_status.is_attending.blank? 
+            data_content += [["#{j + 1}","#{student.student_registration_number}","#{student.student_name}"] + presencas + ["#{student.is_present_count}","#{student.is_ausent_count}","#{student.is_ausent_percent}%","#{student.model_student_result_average.round(2).to_s.gsub('.',',')}"]] 
+            repeticoes = repeticoes - 1
+          end
         end 
       
     end
