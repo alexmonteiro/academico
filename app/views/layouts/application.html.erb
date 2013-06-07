@@ -22,6 +22,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+	<% if Rails.env != 'production'%>
+      <center class="alert alert-block"><h4><%= h_environment_footer_text %></h4></center>
+    <% end %>
+	
     <!-- Menu superior -->
 	<div class="navbar">
 	      <div class="navbar-inner">
@@ -125,7 +129,7 @@
 	      <hr>
 
 	      <footer>
-	        <p><center>&copy; <%= link_to 'Instituto Federal de Brasília', 'http://www.ifb.edu.br'%> <%= '('+Rails.env+')' if Rails.env != 'production'%></center></p>
+	        <p><center>&copy; <%= link_to 'Instituto Federal de Brasília', 'http://www.ifb.edu.br'%> </center></p>
 	      </footer>
 
 	    </div><!--/.fluid-container-->
