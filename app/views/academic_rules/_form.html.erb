@@ -1,6 +1,13 @@
 <%= form_for @academic_rule, :html => { :class => 'form-horizontal' } do |f| %>
 
   <div class="control-group">
+	<%= f.label :education_modality_id, :class => 'control-label' %>
+	<div class="controls">
+	  <%= f.collection_select :education_modality_id, EducationModality.find(:all, :order => :description), :id, :description, :prompt => "Selecione"%>
+	</div>
+   </div>
+
+  <div class="control-group">
     <%= f.label :academic_rule_type_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.collection_select :academic_rule_type_id, AcademicRuleType.find(:all, :order => :rule), :id, :rule, :prompt => "Selecione"%>
