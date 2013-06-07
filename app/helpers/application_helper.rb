@@ -169,4 +169,10 @@ module ApplicationHelper
    end * "\n"
   end
 
+  def h_environment_footer_text
+    return "AMBIENTE DE DESENVOLVIMENTO" if Rails.env == 'development'
+    return "AMBIENTE DE TESTE" if Rails.env == 'test'
+  end
+ 
+ 
 end
