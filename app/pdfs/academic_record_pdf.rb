@@ -132,16 +132,7 @@ class AcademicRecordPDF < Prawn::Document
     text_box "Outras Informações:\n
               -Este histórico não contém emendas ou rasuras.", :size => 8, :at => [5,195], :style => :bold
     text_box "Samambaia - DF, 16 de Maio de 2013.", :style => :bold, :size => 8, :at => [5,138]
-    text_box "xxxxxxxxxxxxxxxxxxxxxxx
-              Diretoria Geral
-              Campus xxxxxxxxx
-              Instituto Federal de Brasília
-              Portaria Nº xxxxxxxx", :size => 8, :at => [0,60], :align => :center
-    text_box "xxxxxxxxxxxxxxxxxxxxxxx
-              Coordenadoria de Registro Acadêmico
-              Campus xxxxxxxxx
-              Instituto Federal de Brasília
-              Portaria Nº xxxxxxxxxxxxxx", :size => 8, :at => [320,60], :align => :center
+
 
     table_components_2 = [ ["",""]]
     move_down(20)

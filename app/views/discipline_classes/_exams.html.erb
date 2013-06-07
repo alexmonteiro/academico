@@ -20,6 +20,7 @@
 			    </thead>
 			    <tbody>
 	               <% @discipline_class.registration_classes.sort_by(&:student_name).each_with_index do |rclass, i| %>
+	                 <% if !rclass.registration.registration_status.is_attending.blank? %>
 				      <tr class="<%= h_status_color(rclass)%>">
     					<td><%= i+1 %></td>
 					    <td> <%= link_to rclass.student_name, discipline_class_registration_class_path(@discipline_class,rclass) %></td>
@@ -35,6 +36,9 @@
 						    </center>
 						   </td>	
 					  </tr>
+					  <% else %>
+					  <!--caso a pessoa matriculada nao possa comparecer por causa da situacao matricular nao imprime nada-->
+					  <% end %>
 			       <%end%>				
 			  </tbody>
 		     </table> 
