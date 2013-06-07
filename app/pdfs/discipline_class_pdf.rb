@@ -42,7 +42,7 @@ class DisciplineClassPDF < Prawn::Document
   
   def content
     font_size 8
-    data_header = [["<b>Classe:</b> #{@discipline.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline.discipline_class_dept}"],
+    data_header = [["<b>Componete Curricular:</b> #{@discipline.school_class.model_custom_tiny_name}", "<b>Unidade Organizacional:</b> #{@discipline.discipline_class_dept}"],
                       ["<b>Curso:</b> #{@discipline.school_class.model_course_matrix}", "<b>Elemento Curricular:</b> #{@discipline.discipline_name}"],
                       ["<b>Professor:</b> #{@discipline.discipline_teaches}", "<b>Aulas Ministradas/Previstas:</b> #{@discipline.discipline_class_classes_taught_planned}"],
                       ["", "<b>Carga Horária:</b> #{@discipline.discipline_class_workload}"]]

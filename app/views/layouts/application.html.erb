@@ -1,3 +1,4 @@
+
  <% containerSpan = "span12" %>
  <% containerSpan = "span10" if user_signed_in? %>
 
@@ -68,7 +69,7 @@
 			
 			          <% if fullpath.include?('professor') %>
 		                  <li class="nav-header">Espaço do Professor</li>
-			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i><small>Turmas / Classes</small></a></li>
+			              <li class="<%= ('school_classes' == params[:action] ? 'active' : '')%>"><a href=<%= teacher_school_classes_teacher_index_path %> > <i class="icon-group"></i><small>Turmas / Componentes Curriculares</small></a></li>
 	                  <%end%>
 	
 			 		  <% if fullpath.include?('registro_academico') %>
@@ -83,7 +84,7 @@
 				          <li class="<%= ('academic_rules' == params[:controller] ? 'active' : '')%>"><a href=<%= academic_rules_path%> ><i class="icon-th-list"></i><small>Regras Acadêmicas</small></a></li>
 		                  <li class="<%= ('course_matrices' == params[:controller] ? 'active' : '')%>"><a href=<%= course_matrices_path%> ><i class="icon-table"></i><small>Matriz Curricular</small></a></li>
 		                  <li class="<%= ('school_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= school_classes_path%> ><i class="icon-group"></i><small>Turmas</small></a></li>
-		                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i><small>Classes & Aulas</small></a></li>
+		                  <li class="<%= ('discipline_classes' == params[:controller] ? 'active' : '')%>"><a href=<%= discipline_classes_path%> ><i class="icon-pencil"></i><small>Componentes Curriculares & Aulas</small></a></li>
 		                  <li class="<%= ('registrations' == params[:controller] ? 'active' : '')%>"><a href=<%= registrations_path%> ><i class="icon-barcode"></i><small>Matrículas</small></a></li>
 
 		              <%end%>

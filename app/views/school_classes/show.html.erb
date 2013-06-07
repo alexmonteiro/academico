@@ -4,7 +4,10 @@
   <div class="span8">
 	      <fieldset>	
 			<div class="page-header">
+			  <% if !model_class.blank? %>
+			  <% else %>
 			  <h1><i class="icon-group"></i> <%=t '.title', :default => model_class.model_name.human %> <%= @school_class.identifier %></h1>
+			  <% end %>
 			</div>
 			<dl class="dl-horizontal">
 			  <dt><strong><%= model_class.human_attribute_name(:identifier) %>:</strong></dt>
@@ -30,7 +33,7 @@
 	<div class="span4">
 	  <div class="well">
 	      <fieldset>
-	          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Classes </div>".html_safe,
+	          <%= link_to "<div style='font-size: 16px;  padding-top:4px; '><i class='icon-pencil'></i> Componentes Curriculares </div>".html_safe,
 	            school_class_discipline_classes_path(@school_class.identifier), :class => 'btn btn-inverse span12' %>
 	         <div style="padding-top: 60px">
 			    <%if @school_class.discipline_classes.count > 0%>
@@ -42,7 +45,7 @@
 	    			<tr><td><%= link_to "...mais...", school_class_discipline_classes_path(@school_class.identifier) %></td></tr>
 				  </table> 
 			    <%else%>
-			      <dd><center><%= '...sem classe cadastrada...' if @school_class.discipline_classes.count == 0 %></center></dd>
+			      <dd><center><%= '...sem componente curricular cadastrado...' if @school_class.discipline_classes.count == 0 %></center></dd>
 			    <%end%>
 	         </div>
 	      </fieldset>

@@ -40,7 +40,7 @@ class PresenceListPDF < Prawn::Document
     count = 0
     #preenche cada linha da tabela com um aluno matriculado a classe
      if @preenchido.blank? || @discipline.class_records.blank?
-             @discipline.registration_classes.each_with_index do |student, f|
+             @discipline.registration_classes.sort.each_with_index do |student, f|
                 data_content += [["#{count+1}","#{student.student_registration_number}"," "," "]] 
                 count = count +1
              end

@@ -8,7 +8,7 @@
 <% @registration_classes.sort_by(&:model_student_name_whitout_accents).group_by(&:school_class_identifier).each do |turma, classes| %>
 <h2>Disciplina: <%= @discipline_class.try(:discipline_name)%></h2>
 <h2>Turma: <%= turma%></h2>
-<h2>Classe: <%= @discipline_class.try(:code)%></h2>
+<h2>Componente Curricular: <%= @discipline_class.try(:code)%></h2>
 <h3>Vagas: <%= @discipline_class.try(:vacancies_left) %> de  <%= @discipline_class.try(:vacancies)%></h3>
 <table class="table table-striped">
   <thead>
@@ -43,7 +43,7 @@
 <br/>
 <% end %>
 
-<h2>Matrícula(s) sem vínculo com esta classe.</h2>
+<h2>Matrícula(s) sem vínculo com este componente curricular.</h2>
 <%= form_tag discipline_class_enturmacoes_path, :method => :put do %>
 <div class="span6">
   <div class="well">
@@ -57,7 +57,7 @@
 	    <% end %>
 	  </tbody>
 	</table>
-	  <%= submit_tag "Vincular Alunos a Classe",:class => 'btn btn-primary btn-large  pull-left' %>
+	  <%= submit_tag "Vincular Alunos ao Componente Curricular",:class => 'btn btn-primary btn-large  pull-left' %>
 	<br/>
 	
 	<%end%>
